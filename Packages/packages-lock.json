@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.dcfa_pixels.debugx": {
+      "version": "https://github.com/DCFApixels/Unity-DebugX.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e470b229bc95be1f4abe7d6b95f1c8b37247862d"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.8",
       "depth": 0,
