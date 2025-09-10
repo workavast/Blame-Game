@@ -7,7 +7,7 @@ using UnityEngine;
 namespace App.Scripts
 {
     public struct InitializeFlag : IComponentData, IEnableableComponent { }
-
+    
     public struct MoveDirection : IComponentData
     {
         public float2 Value;
@@ -56,7 +56,7 @@ namespace App.Scripts
             foreach (var (physicsVelocity,direction,speed) 
                      in SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>())
             {
-                var step2D = direction.ValueRO.Value * speed.ValueRO.Value;
+                var step2D = direction.ValueRO.Value * speed.ValueRO.Value * Time.deltaTime;
                 physicsVelocity.ValueRW.Linear += new float3(step2D.x, 0, step2D.y);
             }
         }

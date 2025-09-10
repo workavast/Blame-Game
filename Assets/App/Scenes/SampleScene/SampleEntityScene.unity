@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 50
 --- !u!114 &1164432642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,9 +592,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164432636}
   serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: Infinity
-  m_AngularDamping: Infinity
+  m_Mass: 100
+  m_LinearDamping: 10
+  m_AngularDamping: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 0, y: 0, z: 0}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -608,8 +608,8 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
+  m_Interpolate: 1
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1441807488
 GameObject:
