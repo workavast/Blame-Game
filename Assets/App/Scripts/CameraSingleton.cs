@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts
+namespace App
 {
     public class CameraSingleton : MonoBehaviour
     {
