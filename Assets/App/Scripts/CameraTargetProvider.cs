@@ -2,16 +2,20 @@
 
 namespace App
 {
-    public class CameraSingleton : MonoBehaviour
+    public class CameraTargetProvider : MonoBehaviour
     {
         [SerializeField] private Transform cameraTarget;
         
-        public static CameraSingleton Instance;
         public Transform CameraTarget => cameraTarget;
 
         private void Awake()
         {
-            Instance = this;
+            ServiceLocator.Add(this);
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Remove(this);
         }
     }
 }

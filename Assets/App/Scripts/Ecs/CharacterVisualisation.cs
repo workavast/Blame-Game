@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace App.Ecs
 {
+    public struct IsAliveTag : IComponentData { }
+    
     public struct CharacterVisualPrefab : IComponentData
     {
         public WeakObjectReference<EntityView> Prefab;
@@ -13,22 +15,22 @@ namespace App.Ecs
     
     public struct CharacterVisual : ICleanupComponentData
     {
-        public UnityObjectRef<EntityView> Value;
+        public UnityObjectRef<EntityView> Instance;
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial class CharacterVisualisationSpawnerSystem : SystemBase
     {
         private EntityQuery _query;
-        
-        public void OnCreate(ref SystemState state)
+
+        protected override void OnCreate()
         {
             _query = SystemAPI.QueryBuilder()
                 .WithAll<CharacterVisualPrefab>()
                 .WithNone<CharacterVisual>()
                 .Build();
             
-            state.RequireForUpdate(_query);
+            RequireForUpdate(_query);
         }
         
         protected override void OnUpdate()
@@ -47,14 +49,15 @@ namespace App.Ecs
                         && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
                         prefabRef.LoadAsync();
 
-                    // можно подождать синхронно (для простоты, но не лучший вариант для продакшена)
-                    // var prefab = prefabRef.WaitForCompletion();
-
                     if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
                     {
                         // var view = Object.Instantiate(prefabRef.Result);
-                        var view = SpawnProvider.Spawn(prefabRef.Result);
-                        ecb.AddComponent(entity, new CharacterVisual { Value = view });
+                        var instance = ServiceLocator.Get<SpawnProvider>().Spawn(prefabRef.Result);
+                        instance.SetPrefab(viewPrefabHolder.ValueRO.Prefab);
+                        ecb.AddComponent(entity, new CharacterVisual
+                        {
+                            Instance = instance, 
+                        });
                     }
                 }
             }
@@ -79,13 +82,42 @@ namespace App.Ecs
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, physicsVelocity, characterVisual) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRO<CharacterVisual>>())
+            foreach (var (transform, physicsVelocity, characterVisual, entity) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterVisual>>().WithEntityAccess())
             {
-                characterVisual.ValueRO.Value.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
-                characterVisual.ValueRO.Value.Value.SetPosition(transform.ValueRO.Position);
-                characterVisual.ValueRO.Value.Value.SetRotation(transform.ValueRO.Rotation);
+                characterVisual.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
+                characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
+                characterVisual.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
             }
         }
-    } 
+    }
+    
+    public partial struct CharacterVisualisationPrefabCleanSystem : ISystem
+    {
+        private EntityQuery _query;
+        
+        public void OnCreate(ref SystemState state)
+        {
+            _query = SystemAPI.QueryBuilder()
+                .WithAll<CharacterVisual>()
+                .WithNone<IsAliveTag>()
+                .Build();
+    
+            state.RequireForUpdate(_query);
+        }
+    
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+            foreach (var (visual, entity) in 
+                     SystemAPI.Query<RefRW<CharacterVisual>>().WithNone<IsAliveTag>().WithEntityAccess())
+            {
+                visual.ValueRO.Instance.Value.DestroyCallback();
+                
+                ecb.RemoveComponent<CharacterVisual>(entity);
+            }
+            
+            ecb.Playback(state.EntityManager);
+        }
+    }
 }

@@ -5,14 +5,13 @@ namespace App
 {
     public class SpawnProvider : MonoBehaviour
     {
-        public static SpawnProvider Instance;
-        
-        private void Awake()
-        {
-            Instance = this;
-        }
+        private void Awake() 
+            => ServiceLocator.Add(this);
 
-        public static T Spawn<T>(T prefab) where T : Object 
-            => Instantiate(prefab, Instance.transform);
+        private void OnDestroy() 
+            => ServiceLocator.Remove(this);
+
+        public T Spawn<T>(T prefab) where T : Object 
+            => Instantiate(prefab, transform);
     }
 }

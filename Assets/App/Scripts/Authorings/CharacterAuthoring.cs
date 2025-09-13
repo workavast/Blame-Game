@@ -15,6 +15,7 @@ namespace App.Authorings
             public override void Bake(CharacterAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(entity, new IsAliveTag());
                 AddComponent(entity, new PhysicsMassInitializeFlag());
                 AddComponent(entity, new MoveDirection());
                 AddComponent(entity, new MoveSpeed() { Value = authoring.moveSpeed });
