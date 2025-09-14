@@ -15,10 +15,14 @@ namespace App.Ecs
 
         protected override void OnUpdate()
         {
-            var moveDirectionInput = (float2)_input.Player.Move.ReadValue<Vector2>();
-            foreach (var moveDirection in SystemAPI.Query<RefRW<MoveDirection>>().WithAll<PlayerTag>())
+            var playerInput = ServiceLocator.Get<InputProvider>();
+            var moveDirectionInput = (float2)playerInput.Input.Player.Move.ReadValue<Vector2>();
+            var lookPointInput = (float3)playerInput.LookPoint;
+
+            foreach (var (moveDirection, lookPoint) in SystemAPI.Query<RefRW<MoveDirection>, RefRW<LookPoint>>().WithAll<PlayerTag>())
             {
                 moveDirection.ValueRW.Value = moveDirectionInput;
+                lookPoint.ValueRW.Value = lookPointInput;
             }
         }
     }

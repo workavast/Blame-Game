@@ -1563,7 +1563,7 @@ MonoBehaviour:
   hover: {fileID: 1014432445328573254}
   groundLayers:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 8
   isGroundCheckRadius: 0.25
   stepHeight: 0.25
   stepDistance: 0.85

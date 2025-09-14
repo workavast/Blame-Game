@@ -9,6 +9,7 @@ namespace App.Authorings
     {
         [SerializeField] private WeakObjectReference<EntityView> entityViewPrefab;
         [SerializeField] private float moveSpeed;
+        [SerializeField] private float rotationSpeed;
         
         private class Baker : Baker<CharacterAuthoring>
         {
@@ -18,6 +19,8 @@ namespace App.Authorings
                 AddComponent(entity, new IsAliveTag());
                 AddComponent(entity, new PhysicsMassInitializeFlag());
                 AddComponent(entity, new MoveDirection());
+                AddComponent(entity, new LookPoint());
+                AddComponent(entity, new RotationSpeed() {Value = authoring.rotationSpeed});
                 AddComponent(entity, new MoveSpeed() { Value = authoring.moveSpeed });
                 
                 AddComponent(entity, new CharacterVisualPrefab()

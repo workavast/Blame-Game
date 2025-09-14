@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 537030509}
   - component: {fileID: 537030508}
   - component: {fileID: 537030507}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 303910047062856018, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
       propertyPath: m_Name
       value: ECS_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619416845734656769, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
+      propertyPath: rotationSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7515435142354848014, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
       propertyPath: m_LocalPosition.x
