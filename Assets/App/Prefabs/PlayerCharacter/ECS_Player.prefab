@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7515435142354848014}
   - component: {fileID: 3541772834499764439}
   - component: {fileID: 3619416845734656769}
+  - component: {fileID: 3772264454899709627}
   - component: {fileID: 6812218096001856858}
   - component: {fileID: 7237500614916515786}
   m_Layer: 2
@@ -76,6 +77,18 @@ MonoBehaviour:
   health: 100
   moveSpeed: 25
   rotationSpeed: 0.5
+--- !u!114 &3772264454899709627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303910047062856018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &6812218096001856858
 BoxCollider:
   m_ObjectHideFlags: 0
