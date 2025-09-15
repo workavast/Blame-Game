@@ -27,6 +27,7 @@ namespace App
 
         public void DestroyCallback()
         {
+            Debug.Log($"{name} is destroyed");
             _prefab.Release();
         }
     }

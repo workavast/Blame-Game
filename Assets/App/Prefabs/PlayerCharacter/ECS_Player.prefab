@@ -73,6 +73,7 @@ MonoBehaviour:
             w: 679102235
         IdentifierType: 1
       GenerationType: 1
+  health: 100
   moveSpeed: 25
   rotationSpeed: 0.5
 --- !u!65 &6812218096001856858
