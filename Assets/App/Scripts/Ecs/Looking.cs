@@ -1,7 +1,6 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs
 {
@@ -45,7 +44,6 @@ namespace App.Ecs
         {
             var cosTheta = math.dot(from.value, to.value);
             
-            Debug.Log(cosTheta);
             // if rotations almost same, return target
             if (cosTheta > 0.999999f)
                 return to;

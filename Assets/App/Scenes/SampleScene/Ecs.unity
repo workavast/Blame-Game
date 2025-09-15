@@ -676,10 +676,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3619416845734656769, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
-      propertyPath: rotationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7515435142354848014, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -725,9 +721,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
+--- !u!1001 &7547780946055133569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447750980360653091, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_Name
+      value: ECS_KamikazeBot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 3349665439711749071}
+  - {fileID: 7547780946055133569}
   - {fileID: 537030510}

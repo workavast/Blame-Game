@@ -74,6 +74,7 @@ MonoBehaviour:
         IdentifierType: 1
       GenerationType: 1
   moveSpeed: 25
+  rotationSpeed: 0.5
 --- !u!65 &6812218096001856858
 BoxCollider:
   m_ObjectHideFlags: 0
