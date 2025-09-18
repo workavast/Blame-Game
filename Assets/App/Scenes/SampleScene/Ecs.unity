@@ -448,6 +448,120 @@ Transform:
   - {fileID: 1441807489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1001 &872986995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447750980360653091, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_Name
+      value: ECS_KamikazeBot_3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+--- !u!1001 &1014586263
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447750980360653091, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_Name
+      value: ECS_KamikazeBot_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
 --- !u!1 &1441807488
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +670,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441807488}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1825955857
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549628677875805881, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447750980360653091, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+      propertyPath: m_Name
+      value: ECS_KamikazeBot_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
 --- !u!1 &2103198906
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,4 +955,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 3349665439711749071}
   - {fileID: 7547780946055133569}
+  - {fileID: 1825955857}
+  - {fileID: 1014586263}
+  - {fileID: 872986995}
   - {fileID: 537030510}
