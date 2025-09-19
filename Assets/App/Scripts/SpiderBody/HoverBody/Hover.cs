@@ -1,5 +1,6 @@
 ﻿using System;
 using App.SpiderBody.IK_Legs;
+using App.Views;
 using DCFApixels;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -10,7 +11,7 @@ namespace App.SpiderBody.HoverBody
     public partial class Hover : MonoBehaviour
     {
         [SerializeField] private RigBuilder rigBuilder;
-        [SerializeField] private EntityView entityRef;
+        [SerializeField] private CharacterView viewRef;
         [SerializeField] private SpringData[] springs;
         [Space]
         [SerializeField] private IK_LegPoint[] legs;
@@ -63,7 +64,7 @@ namespace App.SpiderBody.HoverBody
 
         private void FixedUpdate()
         {
-            CurrentLinerVelocity = entityRef.Velocity;
+            CurrentLinerVelocity = viewRef.Velocity;
             var grounded = IsGrounded();
             if (grounded)
             {

@@ -1,4 +1,5 @@
 using App.Ecs;
+using App.Views;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace App.Authorings
 {
     public class CharacterAuthoring : MonoBehaviour
     {
-        [SerializeField] private WeakObjectReference<EntityView> entityViewPrefab;
+        [SerializeField] private WeakObjectReference<CharacterView> entityViewPrefab;
         [SerializeField] private float health;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float rotationSpeed;

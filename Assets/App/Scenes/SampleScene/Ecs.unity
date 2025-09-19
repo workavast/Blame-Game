@@ -899,6 +899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_DamageZone
       objectReference: {fileID: 0}
+    - target: {fileID: 6450978080292737787, guid: 05df327d35bbab14ab6a4819fdc5e9c2, type: 3}
+      propertyPath: prefab.Id.GlobalId.SceneObjectIdentifier0
+      value: 4582370686019908126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

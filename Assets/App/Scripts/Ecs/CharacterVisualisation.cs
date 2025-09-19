@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using App.Views;
+using Unity.Entities;
 using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -8,12 +9,12 @@ namespace App.Ecs
 {
     public struct CharacterVisualPrefab : IComponentData
     {
-        public WeakObjectReference<EntityView> Prefab;
+        public WeakObjectReference<CharacterView> Prefab;
     }
     
     public struct CharacterVisual : IComponentData
     {
-        public UnityObjectRef<EntityView> Instance;
+        public UnityObjectRef<CharacterView> Instance;
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]

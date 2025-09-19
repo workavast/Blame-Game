@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 8
-  radiusFactor: 1
-  damage: 1
+  radiusFactor: 1.5
+  damage: 4
   prefab:
     Id:
       GlobalId:

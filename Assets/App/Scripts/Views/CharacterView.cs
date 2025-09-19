@@ -2,24 +2,21 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace App
+namespace App.Views
 {
-    public class EntityView : MonoBehaviour
+    public class CharacterView : CleanupView
     {
-        [SerializeField] private CleanupCallback cleanupCallback;
-
-        public CleanupCallback CleanupCallback => cleanupCallback;
-        
         public float Velocity { get; private set; }
 
-        private WeakObjectReference<EntityView> _prefab;
+        private WeakObjectReference<CharacterView> _prefab;
 
-        private void Awake()
+        protected override void DestroyCallback()
         {
-            cleanupCallback.SetCallback(DestroyCallback);
+            Debug.Log($"{name} is destroyed");
+            _prefab.Release();
         }
 
-        public void SetPrefab(WeakObjectReference<EntityView> prefab) 
+        public void SetPrefab(WeakObjectReference<CharacterView> prefab) 
             => _prefab = prefab;
 
         public void SetVelocity(float3 velocity) 
@@ -33,11 +30,5 @@ namespace App
 
         public void SetRotation(quaternion rotation) 
             => transform.rotation = rotation;
-
-        public void DestroyCallback()
-        {
-            Debug.Log($"{name} is destroyed");
-            _prefab.Release();
-        }
     }
 }

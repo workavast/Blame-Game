@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigBuilder: {fileID: 0}
-  entityRef: {fileID: 0}
+  viewRef: {fileID: 0}
   springs: []
   legs: []
   legsCountToBeGrounded: 2
