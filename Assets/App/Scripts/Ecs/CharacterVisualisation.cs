@@ -1,8 +1,8 @@
 ﻿using Unity.Entities;
 using Unity.Entities.Content;
+using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs
 {
@@ -67,7 +67,7 @@ namespace App.Ecs
     } 
     
     [UpdateAfter(typeof(TransformSystemGroup))]
-    public partial struct CharacterVisualisationUpdateSystem : ISystem
+    public partial struct PhysicsCharacterVisualisationUpdateSystem : ISystem
     {
         private EntityQuery _query;
         
@@ -82,8 +82,8 @@ namespace App.Ecs
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, physicsVelocity, characterVisual, entity) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterVisual>>().WithEntityAccess())
+            foreach (var (transform, physicsVelocity, characterVisual) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterVisual>>())
             {
                 characterVisual.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
                 characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
@@ -92,6 +92,33 @@ namespace App.Ecs
         }
     }
     
+    public partial struct CharacterVisualisationUpdateSystem : ISystem
+    {
+        private EntityQuery _query;
+        
+        public void OnCreate(ref SystemState state)
+        {
+            _query = SystemAPI.QueryBuilder()
+                .WithAll<LocalToWorld, CharacterVisual>()
+                .WithNone<PhysicsVelocity>()
+                .Build();
+
+            state.RequireForUpdate(_query);
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            foreach (var (transform, characterVisual) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterVisual>>()
+                         .WithNone<PhysicsVelocity>())
+            {
+                characterVisual.ValueRO.Instance.Value.SetVelocity(float3.zero);
+                characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
+                characterVisual.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+            }
+        }
+    }
+
     public partial struct CharacterVisualisationPrefabCleanSystem : ISystem
     {
         private EntityQuery _query;
