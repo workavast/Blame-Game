@@ -18,7 +18,7 @@ namespace App.Authorings
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
-                AddComponent(entity, new IsAliveTag());
+                AddComponent(entity, new IsActiveTag());
                 
                 AddComponent(entity, new DamageZoneTag());
                 AddComponent(entity, new DamageZoneRadius() { Value = 1 });

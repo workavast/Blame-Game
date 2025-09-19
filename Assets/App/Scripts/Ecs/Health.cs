@@ -29,7 +29,7 @@ namespace App.Ecs
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (health, damageBuffer, entity) in 
                      SystemAPI.Query<RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>()
-                         .WithAll<IsAliveTag>()
+                         .WithAll<IsActiveTag>()
                          .WithEntityAccess())
             {
                 if (damageBuffer.IsEmpty)

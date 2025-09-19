@@ -6,14 +6,12 @@ using Unity.Transforms;
 
 namespace App.Ecs
 {
-    public struct IsAliveTag : IComponentData { }
-    
     public struct CharacterVisualPrefab : IComponentData
     {
         public WeakObjectReference<EntityView> Prefab;
     }
     
-    public struct CharacterVisual : ICleanupComponentData
+    public struct CharacterVisual : IComponentData
     {
         public UnityObjectRef<EntityView> Instance;
     }
@@ -57,6 +55,10 @@ namespace App.Ecs
                         ecb.AddComponent(entity, new CharacterVisual
                         {
                             Instance = instance, 
+                        });
+                        ecb.AddComponent(entity, new CleanupCallback()
+                        {
+                            Instance = instance.CleanupCallback, 
                         });
                     }
                 }
@@ -116,35 +118,6 @@ namespace App.Ecs
                 characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
                 characterVisual.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
             }
-        }
-    }
-
-    public partial struct CharacterVisualisationPrefabCleanSystem : ISystem
-    {
-        private EntityQuery _query;
-        
-        public void OnCreate(ref SystemState state)
-        {
-            _query = SystemAPI.QueryBuilder()
-                .WithAll<CharacterVisual>()
-                .WithNone<IsAliveTag>()
-                .Build();
-    
-            state.RequireForUpdate(_query);
-        }
-    
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (visual, entity) in 
-                     SystemAPI.Query<RefRW<CharacterVisual>>().WithNone<IsAliveTag>().WithEntityAccess())
-            {
-                visual.ValueRO.Instance.Value.DestroyCallback();
-                
-                ecb.RemoveComponent<CharacterVisual>(entity);
-            }
-            
-            ecb.Playback(state.EntityManager);
         }
     }
 }

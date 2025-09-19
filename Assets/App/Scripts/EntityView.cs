@@ -6,9 +6,18 @@ namespace App
 {
     public class EntityView : MonoBehaviour
     {
+        [SerializeField] private CleanupCallback cleanupCallback;
+
+        public CleanupCallback CleanupCallback => cleanupCallback;
+        
         public float Velocity { get; private set; }
 
         private WeakObjectReference<EntityView> _prefab;
+
+        private void Awake()
+        {
+            cleanupCallback.SetCallback(DestroyCallback);
+        }
 
         public void SetPrefab(WeakObjectReference<EntityView> prefab) 
             => _prefab = prefab;

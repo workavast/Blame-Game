@@ -149,8 +149,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5092729426772534583}
   - component: {fileID: 7152393143149029622}
+  - component: {fileID: 2053432168081825806}
   m_Layer: 0
-  m_Name: DamageZone
+  m_Name: DamageZoneView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,5 +184,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77a1e45f9f474ce4aaa2ae382f051647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanupCallback: {fileID: 2053432168081825806}
+--- !u!114 &2053432168081825806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564080251355479038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323cc3557c57428c9c78f50fe92bb987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

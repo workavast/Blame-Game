@@ -16,7 +16,7 @@ namespace App.Ecs
         public float Value;
     }
     
-    public struct DamageZoneTargetRadius : IComponentData, IEnableableComponent
+    public struct DamageZoneTargetRadius : IComponentData
     {
         public float Value;
     }
@@ -63,16 +63,16 @@ namespace App.Ecs
             {
                 var radiusValue = radius.ValueRO.Value;
                 var targetRadiusValue = targetRadius.ValueRO.Value;
-                Debug.Log("Q");
-                Debug.Log(radiusValue);
-                Debug.Log(targetRadiusValue);
+                // Debug.Log("Q");
+                // Debug.Log(radiusValue);
+                // Debug.Log(targetRadiusValue);
                 if (math.abs(targetRadiusValue - radiusValue) > 0.001f)
                 {
                     var sign = math.sign(targetRadiusValue - radiusValue);
                     var radiusDelta = sign * radiusFactor.ValueRO.Value * deltaTime;
-                    Debug.Log("IF");
-                    Debug.Log(sign);
-                    Debug.Log(radiusDelta);   
+                    // Debug.Log("IF");
+                    // Debug.Log(sign);
+                    // Debug.Log(radiusDelta);   
                     if (sign > 0)
                         radius.ValueRW.Value = math.clamp(radiusValue + radiusDelta, float.MinValue, targetRadiusValue);
                     else

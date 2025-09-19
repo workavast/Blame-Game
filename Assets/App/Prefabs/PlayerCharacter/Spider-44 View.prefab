@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 566994351304006282}
   - component: {fileID: 1054006115468105067}
+  - component: {fileID: -1193697066701458380}
   m_Layer: 0
-  m_Name: Spider-44 Holder
+  m_Name: Spider-44 View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +44,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77a1e45f9f474ce4aaa2ae382f051647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanupCallback: {fileID: -1193697066701458380}
+--- !u!114 &-1193697066701458380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373908884717754748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323cc3557c57428c9c78f50fe92bb987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &9197587070072035443
