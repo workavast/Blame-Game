@@ -103,7 +103,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: e881c53b10e39454e91805e612970d54, type: 3}
+        m_Texture: {fileID: 2800000, guid: 427d54d1085418a48b81d0ddc04f0556, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:

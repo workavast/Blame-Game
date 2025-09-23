@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1772165803890836234
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,22 +7,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat
+  m_Name: SpaceBackground Toon
   m_Shader: {fileID: 4800000, guid: d116ca2fac2d87047bf2b09e72648ba5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _EMISSION
   - _LIGHTINGTYPE_VERTEX
   - _TEXTUREFILTERING_NEAREST
-  - _TOONSHADING
   m_InvalidKeywords:
   - _DITHERAMBIENT_ON
   - _DITHERDIFFUSE_ON
   - _DITHERSPEC_ON
   - _ENABLEMASKMAP_ON
-  - _NORMALMAP
-  - _SPECULARTYPE_DISABLED
-  m_LightmapFlags: 4
+  - _SPECULARTYPE_COOKTORRANCE
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -47,13 +33,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: de96296d84bfc4748b4954dcfb9d3f40, type: 3}
-        m_Scale: {x: 8, y: 8}
-        m_Offset: {x: -0, y: -8}
+        m_Texture: {fileID: 2800000, guid: f05bd0dfe0c5b254daa70bf1b61342f4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 23083a7e75787b042b66cd4eeda7990a, type: 3}
-        m_Scale: {x: 8, y: 8}
-        m_Offset: {x: -0, y: -8}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,13 +53,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f05bd0dfe0c5b254daa70bf1b61342f4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: de96296d84bfc4748b4954dcfb9d3f40, type: 3}
-        m_Scale: {x: 8, y: 8}
-        m_Offset: {x: -0, y: -8}
+        m_Texture: {fileID: 2800000, guid: f05bd0dfe0c5b254daa70bf1b61342f4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -91,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampGen:
-        m_Texture: {fileID: 2800000, guid: 427d54d1085418a48b81d0ddc04f0556, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -103,7 +89,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 427d54d1085418a48b81d0ddc04f0556, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -146,13 +132,13 @@ Material:
     - _DoubleSizeDither: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Emission: 0
+    - _Emission: 1
     - _EnableMaskMap: 1
     - _EnvironmentReflections: 1
     - _Extras: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.7210004
-    - _GlossyReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _HalfLambert: 0
     - _Lighting: 0
     - _LightingType: 1
@@ -160,44 +146,59 @@ Material:
     - _MaskNote1: 0
     - _MaskNote2: 0
     - _MaskTint: 0
-    - _Metallic: 0
-    - _Mode: 0
+    - _Metallic: 0.75
     - _NormalStrength: 1
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
+    - _PreserveSpecular: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflections: 0
-    - _Smoothness: 0.7210004
+    - _Refraction: 0
+    - _RefractionStr: 0.1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularType: 3
+    - _SpecularType: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TextureFiltering: 0
     - _TintNote: 0
-    - _ToonShading: 1
-    - _UVSec: 0
+    - _ToonShading: 0
+    - _TransparencyNote: 0
     - _VColEmissive: 0
     - _VColSmoothness: 0
     - _VertexEmissiveStr: 1
     - _VertexJitter: 0
     - _VertexJitterResX: 320
     - _VertexJitterResY: 240
-    - _VertexLightSmoothness: 0.474
+    - _VertexLightSmoothness: 0.5
     - _VertexLighting: 0
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 23.96863, g: 23.96863, b: 23.96863, a: 1}
     - _SmoothRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SmoothRemapVCol: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TilingOffset: {r: 1, g: 1, b: 0, a: 0}
-    - _VertexSpecColor: {r: 0, g: 0, b: 0, a: 1}
+    - _VertexSpecColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!114 &223623378802411525
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
