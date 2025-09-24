@@ -2,7 +2,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace App.Authorings
+namespace App.Authorings.PlayerPerks
 {
     public class ForwardShooterAuthoring : MonoBehaviour
     {

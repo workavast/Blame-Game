@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
 
-namespace App.Authorings
+namespace App.Authorings.PlayerPerks
 {
     public class DamageZoneAuthoring : MonoBehaviour
     {
