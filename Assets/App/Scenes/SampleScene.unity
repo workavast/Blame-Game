@@ -3100,6 +3100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0e1976d79d4118aa4da1455076d06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayDistance: 100
   groundLayers:
     serializedVersion: 2
     m_Bits: 8

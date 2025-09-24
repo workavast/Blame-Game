@@ -4,6 +4,7 @@ namespace App
 {
     public class InputProvider : MonoBehaviour
     {
+        [SerializeField] private float rayDistance = 100f;
         [SerializeField] private LayerMask groundLayers;
 
         public InputSystem_Actions Input { get; private set; }
@@ -27,7 +28,7 @@ namespace App
             var mouseInput = Input.Player.MousePoint.ReadValue<Vector2>();
             var ray = Camera.main.ScreenPointToRay(mouseInput);
 
-            if (Physics.Raycast(ray, out var hit, 50f, groundLayers)) 
+            if (Physics.Raycast(ray, out var hit, rayDistance, groundLayers)) 
                 LookPoint = hit.point;
         }
     }

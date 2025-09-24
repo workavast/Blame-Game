@@ -19,7 +19,7 @@ namespace App.Ecs
     
     public struct DamageZoneViewHolder : IComponentData
     {
-        public UnityObjectRef<DamageZoneView> Value;
+        public UnityObjectRef<DamageZoneView> Instance;
     }
     
     public struct DamageZoneRadius : IComponentData
@@ -37,7 +37,7 @@ namespace App.Ecs
         public float Value;
     }
     
-        [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial class DamageZoneViewSpawnerSystem : SystemBase
     {
         private EntityQuery _query;
@@ -75,7 +75,7 @@ namespace App.Ecs
                         instance.SetPrefab(prefabHolder.ValueRO.Prefab);
                         ecb.AddComponent(entity, new DamageZoneViewHolder()
                         {
-                            Value = instance, 
+                            Instance = instance, 
                         });
                         ecb.AddComponent(entity, new CleanupCallback()
                         {
@@ -114,8 +114,8 @@ namespace App.Ecs
                      SystemAPI.Query<RefRO<DamageZoneViewHolder>, RefRO<DamageZoneRadius>>()
                          .WithAll<DamageZoneTag>())
             {
-                view.ValueRO.Value.Value.SetPosition(playerTransform.Position);
-                view.ValueRO.Value.Value.SetRadius(radius.ValueRO.Value);
+                view.ValueRO.Instance.Value.SetPosition(playerTransform.Position);
+                view.ValueRO.Instance.Value.SetRadius(radius.ValueRO.Value);
             }
         }
 
