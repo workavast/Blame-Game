@@ -12,7 +12,7 @@ namespace App.Ecs
     {
         
     }
-    
+
     public struct BulletPrefab : IComponentData
     {
         public WeakObjectReference<BulletView> Prefab;
@@ -100,6 +100,30 @@ namespace App.Ecs
             {
                 view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
                 view.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+            }
+        }
+    }
+    
+    [UpdateAfter(typeof(ExistTimerSystem))]
+    public partial struct BulletExistTimeOverSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+            
+            foreach (var (existTimer, entity) in 
+                     SystemAPI.Query<RefRO<ExistTimer>>()
+                         .WithAll<BulletTag>()
+                         .WithEntityAccess())
+            {
+                if (existTimer.ValueRO.Value <= 0) 
+                    ecb.DestroyEntity(entity);
             }
         }
     }
