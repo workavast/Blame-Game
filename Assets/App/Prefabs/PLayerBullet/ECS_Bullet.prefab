@@ -146,6 +146,19 @@ MonoBehaviour:
             w: 3101851571
         IdentifierType: 1
       GenerationType: 1
+  viewPrefabV2:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 9073800070030822916
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3744815897
+            y: 1238367893
+            z: 751863185
+            w: 3101851571
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!135 &6847391715656529444
 SphereCollider:
   m_ObjectHideFlags: 0

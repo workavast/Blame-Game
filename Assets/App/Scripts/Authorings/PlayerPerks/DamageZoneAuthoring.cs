@@ -1,4 +1,5 @@
 ﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
 using App.Views;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -11,7 +12,7 @@ namespace App.Authorings.PlayerPerks
         [SerializeField] private float radius;
         [SerializeField] private float radiusFactor;
         [SerializeField] private float damage;
-        [SerializeField] private WeakObjectReference<DamageZoneView> prefab;
+        [SerializeField] private WeakObjectReference<CleanupView> prefab;
         
         private class Baker : Baker<DamageZoneAuthoring>
         {
@@ -22,7 +23,7 @@ namespace App.Authorings.PlayerPerks
                 AddComponent(entity, new IsActiveTag());
 
                 AddComponent(entity, new DamageZoneTag());
-                AddComponent(entity, new DamageZonePrefab() { Prefab = authoring.prefab });
+                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.prefab });
                 AddComponent(entity, new DamageZoneRadius() { Value = 1 });
                 AddComponent(entity, new DamageZoneTargetRadius() { Value = authoring.radius });
                 AddComponent(entity, new DamageZoneRadiusFactor() { Value = authoring.radiusFactor });

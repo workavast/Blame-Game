@@ -8,7 +8,7 @@ namespace App.Authorings
 {
     public class CharacterAuthoring : MonoBehaviour
     {
-        [SerializeField] private WeakObjectReference<CharacterView> entityViewPrefab;
+        [SerializeField] private WeakObjectReference<CleanupView> entityViewPrefab;
         [SerializeField] private float health;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float rotationSpeed;
@@ -32,7 +32,8 @@ namespace App.Authorings
 
                 AddBuffer<DamageFrameBuffer>(entity);
                 
-                AddComponent(entity, new CharacterVisualPrefab()
+                AddComponent(entity, new CharacterTag());
+                AddComponent(entity, new ViewPrefabHolder()
                 {
                     Prefab = authoring.entityViewPrefab
                 });
