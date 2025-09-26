@@ -1,0 +1,60 @@
+﻿using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+using Random = Unity.Mathematics.Random;
+
+namespace App.Ecs
+{
+    public struct KamikazeSpawnData : IComponentData
+    {
+        public Entity Prefab;
+        public float Interval;
+        public float Distance;
+    }
+    
+    public struct KamikazeSpawner : IComponentData
+    {
+        public float Timer;
+        public Random Random;
+    }
+
+    public partial struct KamikazeSpawnSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
+
+            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
+            var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
+            
+            var deltaTime = SystemAPI.Time.DeltaTime;
+            foreach (var (spawner, data) in SystemAPI.Query<RefRW<KamikazeSpawner>, RefRO<KamikazeSpawnData>>())
+            {
+                spawner.ValueRW.Timer -= deltaTime;
+                if (spawner.ValueRO.Timer > 0) 
+                    continue;
+
+                spawner.ValueRW.Timer = data.ValueRO.Interval;
+                var kamikaze = ecb.Instantiate(data.ValueRO.Prefab);
+                var spawnAngle = spawner.ValueRW.Random.NextFloat(0f, math.TAU);
+                var spawnPoint = new float3()
+                {
+                    x = math.sin(spawnAngle),
+                    y= 0f,
+                    z = math.cos(spawnAngle),
+                };
+                spawnPoint *= data.ValueRO.Distance;
+                spawnPoint += playerPosition;
+                
+                ecb.SetComponent(kamikaze, LocalTransform.FromPosition(spawnPoint));
+            }
+        }
+    }
+}

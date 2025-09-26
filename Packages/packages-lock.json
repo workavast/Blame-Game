@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "e470b229bc95be1f4abe7d6b95f1c8b37247862d"
     },
+    "com.needle.shadergraph-markdown": {
+      "version": "1.5.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
