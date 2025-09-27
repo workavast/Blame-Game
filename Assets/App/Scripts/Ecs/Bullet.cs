@@ -17,6 +17,15 @@ namespace App.Ecs
         public UnityObjectRef<BulletView> Instance;
     }
     
+    public struct BulletInitialData : IComponentData
+    {
+        public Entity BulletPrefab;
+        public float SpawnVerticalOffset;
+        public float Damage;
+        public float MoveSpeed;
+        public float ShootPause;
+    }
+    
     public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
     {
         protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
