@@ -7,6 +7,18 @@ using Unity.Transforms;
 
 namespace App.Ecs
 {
+
+    public struct BulletBuilder
+    {
+        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
+        {
+            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
+            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
+        }
+    }
+    
+    
     public struct BulletTag : IComponentData
     {
         
@@ -16,6 +28,16 @@ namespace App.Ecs
     {
         public UnityObjectRef<BulletView> Instance;
     }
+
+    public struct BulletPenetration : IComponentData
+    {
+        public int Value;
+    }
+
+    public struct BulletCollisions : IBufferElementData
+    {
+        public Entity Entity;
+    }
     
     public struct BulletInitialData : IComponentData
     {
@@ -24,6 +46,7 @@ namespace App.Ecs
         public float Damage;
         public float MoveSpeed;
         public float ShootPause;
+        public int Penetration;
     }
     
     public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
@@ -106,9 +129,11 @@ namespace App.Ecs
                 EnemyLookup = SystemAPI.GetComponentLookup<EnemyTag>(true),
                 BulletLookup = SystemAPI.GetComponentLookup<BulletTag>(true),
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
+                BulletPenetrationLookup = SystemAPI.GetComponentLookup<BulletPenetration>(),
                     
                 ECB = ecb.AsParallelWriter(),
-                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
+                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>(),
+                BulletCollisionsLookup = SystemAPI.GetBufferLookup<BulletCollisions>()
             };
 
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
@@ -121,9 +146,11 @@ namespace App.Ecs
         [ReadOnly] public ComponentLookup<EnemyTag> EnemyLookup;
         [ReadOnly] public ComponentLookup<BulletTag> BulletLookup;
         [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
+        public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
 
         public EntityCommandBuffer.ParallelWriter ECB;
         public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
+        public BufferLookup<BulletCollisions> BulletCollisionsLookup;
         
         public void Execute(TriggerEvent triggerEvent)
         {
@@ -145,11 +172,20 @@ namespace App.Ecs
                 return;
             }
 
+            var collisions = BulletCollisionsLookup[bullet];
+            for (var i = 0; i < collisions.Length; i++)
+                if (collisions[i].Entity == enemy)
+                    return;
+            
             var attack = AttackDamageLookup.GetRefRO(bullet);
+            var penetration = BulletPenetrationLookup.GetRefRW(bullet);
             var enemyDamageBuffer = DamageBufferLookup[enemy];
 
+            collisions.Add(new BulletCollisions() { Entity = enemy });
             enemyDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
-            ECB.DestroyEntity(0, bullet);
+
+            if (collisions.Length > penetration.ValueRW.Value) 
+                ECB.DestroyEntity(0, bullet);
         }
     }
 }

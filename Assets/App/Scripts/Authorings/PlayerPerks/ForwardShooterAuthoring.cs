@@ -12,6 +12,7 @@ namespace App.Authorings.PlayerPerks
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float shootPause;
+        [SerializeField] private int penetration = 1;
         
         private class Baker : Baker<ForwardShooterAuthoring>
         {
@@ -26,7 +27,8 @@ namespace App.Authorings.PlayerPerks
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    ShootPause =  authoring.shootPause
+                    ShootPause =  authoring.shootPause,
+                    Penetration = authoring.penetration
                 });
                 AddComponent(entity, new ForwardShooterPause()
                 {

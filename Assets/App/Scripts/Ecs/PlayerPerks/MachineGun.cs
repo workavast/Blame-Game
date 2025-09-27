@@ -11,16 +11,6 @@ namespace App.Ecs.PlayerPerks
         
     }
     
-    public struct MachineGunDistanceReactionData : IComponentData
-    {
-        public float Value;
-    }
-    
-    public struct MachineGunPause : IComponentData
-    {
-        public float Timer;
-    }
-
     public partial struct MachineGunSystem : ISystem
     {
         private EntityQuery _query;
@@ -70,25 +60,25 @@ namespace App.Ecs.PlayerPerks
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, pause) in
-                     SystemAPI.Query<RefRO<MachineGunDistanceReactionData>, RefRO<BulletInitialData>, RefRW<MachineGunPause>>()
+            foreach (var (distanceReaction, data, reloadTimer) in
+                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, RefRW<ShootReloadTimer>>()
                          .WithAll<MachineGunTag>())
             {
                 if (distance > distanceReaction.ValueRO.Value)
                     continue;
                 
-                pause.ValueRW.Timer -= deltaTime;
-                if (pause.ValueRO.Timer > 0)
+                reloadTimer.ValueRW.Timer -= deltaTime;
+                if (reloadTimer.ValueRO.Timer > 0)
                     continue;
 
-                pause.ValueRW.Timer = data.ValueRO.ShootPause;
+                reloadTimer.ValueRW.Timer = data.ValueRO.ShootPause;
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet,
                     LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
-                ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-                ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+                
+                BulletBuilder.Build(ref ecb, ref bullet, data);
             }
         }
     }

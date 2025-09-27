@@ -154,6 +154,7 @@ MonoBehaviour:
   moveSpeed: 15
   shootPause: 1
   distanceReaction: 15
+  penetration: 0
 --- !u!4 &276557607
 Transform:
   m_ObjectHideFlags: 0
@@ -533,6 +534,7 @@ MonoBehaviour:
   moveSpeed: 15
   shootPause: 1
   bulletsCount: 10
+  penetration: 0
 --- !u!4 &1125118028
 Transform:
   m_ObjectHideFlags: 0
@@ -738,6 +740,7 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 15
   shootPause: 1
+  penetration: 0
 --- !u!4 &1827647761
 Transform:
   m_ObjectHideFlags: 0

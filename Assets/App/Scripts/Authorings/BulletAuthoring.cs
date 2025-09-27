@@ -23,7 +23,9 @@ namespace App.Authorings
                 AddComponent(entity, new ExistTimer() {Value = authoring.existTime});
                 AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });
                 AddComponent(entity, new AttackDamage());
-                
+                AddComponent(entity, new BulletPenetration());
+                AddBuffer<BulletCollisions>(entity);
+
                 AddComponent(entity, new MoveSpeed());
             }
         }

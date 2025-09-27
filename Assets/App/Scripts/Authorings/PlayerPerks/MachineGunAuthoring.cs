@@ -13,7 +13,8 @@ namespace App.Authorings.PlayerPerks
         [SerializeField] private float moveSpeed;
         [SerializeField] private float shootPause;
         [SerializeField] private float distanceReaction;
-        
+        [SerializeField] private int penetration = 1;
+
         private class Baker : Baker<MachineGunAuthoring>
         {
             public override void Bake(MachineGunAuthoring authoring)
@@ -21,8 +22,8 @@ namespace App.Authorings.PlayerPerks
                 var entity = GetEntity(TransformUsageFlags.None);
 
                 AddComponent(entity, new MachineGunTag());
-                AddComponent(entity, new MachineGunDistanceReactionData(){Value = authoring.distanceReaction});
-                AddComponent(entity, new MachineGunPause()
+                AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
+                AddComponent(entity, new ShootReloadTimer()
                 {
                     Timer = authoring.shootPause
                 });
@@ -32,7 +33,8 @@ namespace App.Authorings.PlayerPerks
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    ShootPause =  authoring.shootPause,
+                    ShootPause = authoring.shootPause,
+                    Penetration = authoring.penetration
                 });
             }
         }
