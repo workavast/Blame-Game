@@ -151,7 +151,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5428244654589280209, guid: 9be6f7ce1274fa1469c08aaab8e35da5, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 15
+  moveSpeed: 20
   shootPause: 1
   distanceReaction: 15
   penetration: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 15
   shootPause: 1
-  bulletsCount: 10
+  bulletsCount: 7
   penetration: 0
 --- !u!4 &1125118028
 Transform:
@@ -793,7 +793,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5428244654589280209, guid: 768ee48ae6273e746ab746f06e85fb58, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 15
+  moveSpeed: 17.5
   shootPause: 1.77
   distanceReaction: 15
   penetration: 1
@@ -844,8 +844,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7432511324174601985, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 15
-  shootPause: 1
+  moveSpeed: 17.5
+  shootPause: 0.45
   penetration: 0
 --- !u!4 &1827647761
 Transform:
