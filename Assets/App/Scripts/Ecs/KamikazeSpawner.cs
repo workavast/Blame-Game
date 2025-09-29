@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Utills;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Random = Unity.Mathematics.Random;
@@ -43,15 +44,7 @@ namespace App.Ecs
 
                 spawner.ValueRW.Timer = data.ValueRO.Interval;
                 var kamikaze = ecb.Instantiate(data.ValueRO.Prefab);
-                var spawnAngle = spawner.ValueRW.Random.NextFloat(0f, math.TAU);
-                var spawnPoint = new float3()
-                {
-                    x = math.sin(spawnAngle),
-                    y= 0f,
-                    z = math.cos(spawnAngle),
-                };
-                spawnPoint *= data.ValueRO.Distance;
-                spawnPoint += playerPosition;
+                var spawnPoint = RandomPosition.GetPointOnRadius(playerPosition, data.ValueRO.Distance, ref spawner.ValueRW.Random);
                 
                 ecb.SetComponent(kamikaze, LocalTransform.FromPosition(spawnPoint));
             }
