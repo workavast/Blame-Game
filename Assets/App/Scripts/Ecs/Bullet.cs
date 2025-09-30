@@ -45,7 +45,6 @@ namespace App.Ecs
         public float SpawnVerticalOffset;
         public float Damage;
         public float MoveSpeed;
-        public float ShootPause;
         public int Penetration;
     }
     
