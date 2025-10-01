@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2740786521f943aba817512583c3abb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5051006691859829335, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
+  bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
   spawnVerticalOffset: 1
   damage: 5
   moveSpeed: 17.5

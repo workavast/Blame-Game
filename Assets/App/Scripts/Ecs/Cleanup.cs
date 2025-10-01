@@ -9,6 +9,7 @@ namespace App.Ecs
         public UnityObjectRef<App.CleanupCallback> Instance;
     }
     
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public partial struct CleanupSystem : ISystem
     {
         private EntityQuery _query;
@@ -35,6 +36,7 @@ namespace App.Ecs
             }
             
             ecb.Playback(state.EntityManager);
+            ecb.Dispose();
         }
     }
 }

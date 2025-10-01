@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace App.Ecs
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial class PlayerInputSystem : SystemBase
     {
         private readonly InputSystem_Actions _input = new();

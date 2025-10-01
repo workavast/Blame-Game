@@ -22,8 +22,8 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
     } 
     
-    [UpdateAfter(typeof(TransformSystemGroup))]
-    public partial struct PhysicsCharacterVisualisationUpdateSystem : ISystem
+    [UpdateAfter(typeof(MoveSystem))]
+    public partial struct PhysicsCharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;
         
@@ -38,17 +38,18 @@ namespace App.Ecs
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, physicsVelocity, characterVisual) in 
+            foreach (var (transform, physicsVelocity, characterViewHolder) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterViewHolder>>())
             {
-                characterVisual.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
-                characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-                characterVisual.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+                characterViewHolder.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
+                characterViewHolder.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
+                characterViewHolder.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
             }
         }
     }
     
-    public partial struct CharacterVisualisationUpdateSystem : ISystem
+    [UpdateAfter(typeof(TransformSystemGroup))]
+    public partial struct CharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;
         

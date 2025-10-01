@@ -7,6 +7,7 @@ namespace App.Ecs
         public float Value;
     }
     
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial struct ExistTimerSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

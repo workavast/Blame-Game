@@ -45,6 +45,7 @@ namespace App.Ecs
             }
             
             ecb.Playback(state.EntityManager);
+            ecb.Dispose();
         }
     }
 }

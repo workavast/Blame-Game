@@ -44,7 +44,9 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new RocketViewHolder() { Instance = instance as RocketView });
     }
     
-    public partial struct SetRocketViewExplosionRadiusSystem : ISystem
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(RocketViewInitializeSystem))]
+    public partial struct RocketViewExplosionRadiusInitializeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
@@ -76,6 +78,7 @@ namespace App.Ecs
         }
     }
     
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct RocketMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -98,6 +101,7 @@ namespace App.Ecs
         }
     }
     
+    [UpdateAfter(typeof(RocketMoveSystem))]
     public partial struct RocketViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

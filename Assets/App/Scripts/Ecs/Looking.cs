@@ -14,6 +14,7 @@ namespace App.Ecs
         public float Value;
     }
 
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct LookAtPointSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

@@ -7,7 +7,7 @@ namespace App.Authorings.PlayerPerks
 {
     public class MachineGunAuthoring : MonoBehaviour
     {
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private BulletAuthoring bulletPrefab;
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;

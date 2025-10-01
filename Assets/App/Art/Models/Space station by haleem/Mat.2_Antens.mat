@@ -32,7 +32,6 @@ Material:
   - _DITHERAMBIENT_ON
   - _DITHERDIFFUSE_ON
   - _DITHERSPEC_ON
-  - _ENABLEMASKMAP_ON
   - _SPECULARTYPE_DISABLED
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -146,7 +145,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emission: 0
-    - _EnableMaskMap: 1
+    - _EnableMaskMap: 0
     - _EnvironmentReflections: 1
     - _Extras: 0
     - _GlossMapScale: 1

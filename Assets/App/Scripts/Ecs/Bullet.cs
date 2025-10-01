@@ -7,17 +7,8 @@ using Unity.Transforms;
 
 namespace App.Ecs
 {
-
-    public struct BulletBuilder
-    {
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
-        }
-    }
     
+    #region components
     
     public struct BulletTag : IComponentData
     {
@@ -48,12 +39,25 @@ namespace App.Ecs
         public int Penetration;
     }
     
+    #endregion
+
+    public struct BulletBuilder
+    {
+        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
+        {
+            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
+            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
+        }
+    }
+
     public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
     {
         protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
             => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
     }
     
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct BulletMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -69,13 +73,14 @@ namespace App.Ecs
         }
     }
     
+    [UpdateAfter(typeof(BulletMoveSystem))]
     public partial struct BulletViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (view, transform) in 
                      SystemAPI.Query<RefRO<BulletViewHolder>, RefRO<LocalTransform>>()
-                         .WithAll<BulletTag>())
+                         .WithAll<IsActiveTag, BulletTag>())
             {
                 view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
                 view.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
