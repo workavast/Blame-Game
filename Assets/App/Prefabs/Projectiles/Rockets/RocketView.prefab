@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &905441387882263367
 Transform:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8163535348943951802
 Transform:
   m_ObjectHideFlags: 0
@@ -115,6 +115,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2844345395360114202}
   - {fileID: 905441387882263367}
   m_Father: {fileID: 8709059607738902798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,12 +145,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3715058410742303864}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8709059607738902798}
+  m_Father: {fileID: 4138757648453542522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5672532447007476503
 MeshFilter:
@@ -230,12 +231,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6744924866886962284}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 150371009969400826}
+  - {fileID: 4138757648453542522}
   - {fileID: 8163535348943951802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -252,7 +253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: 6664539335381877551}
+  rocketModelHolder: {fileID: 8747241904201155928}
   explosionSphere: {fileID: 8163535348943951802}
+  particleCallbackProvider: {fileID: 4479697179438091901}
 --- !u!114 &6664539335381877551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,5 +266,110 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 323cc3557c57428c9c78f50fe92bb987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8747241904201155928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4138757648453542522}
+  m_Layer: 0
+  m_Name: RocketModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4138757648453542522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747241904201155928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 150371009969400826}
+  m_Father: {fileID: 8709059607738902798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2533890063300071547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8163535348943951802}
+    m_Modifications:
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800427766931839533, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+      propertyPath: m_Name
+      value: Rocket AOE explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+--- !u!4 &2844345395360114202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 311604375465342561, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+  m_PrefabInstance: {fileID: 2533890063300071547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4479697179438091901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2090016915977051654, guid: dafa0967fff49214cb42551ecd8022f9, type: 3}
+  m_PrefabInstance: {fileID: 2533890063300071547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f4151bff8b4becadf6872fd0abbe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
