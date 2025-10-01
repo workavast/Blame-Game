@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3202457818985279696
+--- !u!1001 &7420520754958494171
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -48,17 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6847391715656529444, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
-      propertyPath: m_Radius
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 7432511324174601985, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
       propertyPath: m_Name
-      value: ECS_Bullet MachineGun
+      value: ECS_Bullet Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7965801388669069887, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
-      propertyPath: viewPrefab.Id.GlobalId.AssetGUID
-      value: 61e3b98f74ffc946b4c10c0ecad60325
+    - target: {fileID: 7432511324174601985, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

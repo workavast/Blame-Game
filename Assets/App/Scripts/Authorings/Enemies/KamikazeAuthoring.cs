@@ -1,8 +1,9 @@
 ﻿using App.Ecs;
+using App.Ecs.Enemies;
 using Unity.Entities;
 using UnityEngine;
 
-namespace App.Authorings
+namespace App.Authorings.Enemies
 {
     public class KamikazeAuthoring : MonoBehaviour
     {

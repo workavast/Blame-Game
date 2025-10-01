@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Physics;
 using Unity.Physics.Systems;
 
-namespace App.Ecs
+namespace App.Ecs.Enemies
 {
     public struct KamikazeTag : IComponentData
     {

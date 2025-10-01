@@ -1,25 +1,24 @@
 ﻿using App.Ecs.Utills;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 using Random = Unity.Mathematics.Random;
 
-namespace App.Ecs
+namespace App.Ecs.Enemies
 {
-    public struct KamikazeSpawnData : IComponentData
+    public struct GunnerBotSpawnData : IComponentData
     {
         public Entity Prefab;
         public float Interval;
         public float Distance;
     }
     
-    public struct KamikazeSpawner : IComponentData
+    public struct GunnerBotSpawner : IComponentData
     {
         public float Timer;
         public Random Random;
     }
 
-    public partial struct KamikazeSpawnSystem : ISystem
+    public partial struct GunnerBotSpawnSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -36,7 +35,8 @@ namespace App.Ecs
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
             
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (spawner, data) in SystemAPI.Query<RefRW<KamikazeSpawner>, RefRO<KamikazeSpawnData>>())
+            foreach (var (spawner, data) in 
+                     SystemAPI.Query<RefRW<GunnerBotSpawner>, RefRO<GunnerBotSpawnData>>())
             {
                 spawner.ValueRW.Timer -= deltaTime;
                 if (spawner.ValueRO.Timer > 0) 

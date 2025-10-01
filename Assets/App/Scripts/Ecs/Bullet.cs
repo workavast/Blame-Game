@@ -125,7 +125,7 @@ namespace App.Ecs
 
             var bulletCollisionJob = new BulletCollisionJob()
             {
-                EnemyLookup = SystemAPI.GetComponentLookup<EnemyTag>(true),
+                DamageableLookup = SystemAPI.GetComponentLookup<CurrentHealth>(true),
                 BulletLookup = SystemAPI.GetComponentLookup<BulletTag>(true),
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
                 BulletPenetrationLookup = SystemAPI.GetComponentLookup<BulletPenetration>(),
@@ -142,10 +142,10 @@ namespace App.Ecs
 
     public struct BulletCollisionJob : ITriggerEventsJob
     {
-        [ReadOnly] public ComponentLookup<EnemyTag> EnemyLookup;
+        [ReadOnly] public ComponentLookup<CurrentHealth> DamageableLookup;
         [ReadOnly] public ComponentLookup<BulletTag> BulletLookup;
         [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
-        public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
+        [ReadOnly] public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
 
         public EntityCommandBuffer.ParallelWriter ECB;
         public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
@@ -153,17 +153,17 @@ namespace App.Ecs
         
         public void Execute(TriggerEvent triggerEvent)
         {
-            Entity enemy;
+            Entity target;
             Entity bullet;
 
-            if (EnemyLookup.HasComponent(triggerEvent.EntityA) && BulletLookup.HasComponent(triggerEvent.EntityB))
+            if (DamageableLookup.HasComponent(triggerEvent.EntityA) && BulletLookup.HasComponent(triggerEvent.EntityB))
             {
-                enemy = triggerEvent.EntityA;
+                target = triggerEvent.EntityA;
                 bullet = triggerEvent.EntityB;
             } 
-            else if (EnemyLookup.HasComponent(triggerEvent.EntityB) && BulletLookup.HasComponent(triggerEvent.EntityA))
+            else if (DamageableLookup.HasComponent(triggerEvent.EntityB) && BulletLookup.HasComponent(triggerEvent.EntityA))
             {
-                enemy = triggerEvent.EntityB;
+                target = triggerEvent.EntityB;
                 bullet = triggerEvent.EntityA;
             }
             else
@@ -173,17 +173,17 @@ namespace App.Ecs
 
             var collisions = BulletCollisionsLookup[bullet];
             for (var i = 0; i < collisions.Length; i++)
-                if (collisions[i].Entity == enemy)
+                if (collisions[i].Entity == target)
                     return;
             
             var attack = AttackDamageLookup.GetRefRO(bullet);
-            var penetration = BulletPenetrationLookup.GetRefRW(bullet);
-            var enemyDamageBuffer = DamageBufferLookup[enemy];
+            var penetration = BulletPenetrationLookup.GetRefRO(bullet);
+            var enemyDamageBuffer = DamageBufferLookup[target];
 
-            collisions.Add(new BulletCollisions() { Entity = enemy });
+            collisions.Add(new BulletCollisions() { Entity = target });
             enemyDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
 
-            if (collisions.Length > penetration.ValueRW.Value) 
+            if (collisions.Length > penetration.ValueRO.Value) 
                 ECB.DestroyEntity(0, bullet);
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3772264454899709627}
   - component: {fileID: 6812218096001856858}
   - component: {fileID: 7237500614916515786}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: ECS_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 208831730439321531}
   - component: {fileID: 5652618239501581595}
   - component: {fileID: 2697718259473618124}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
