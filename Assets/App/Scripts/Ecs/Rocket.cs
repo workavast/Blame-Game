@@ -45,7 +45,7 @@ namespace App.Ecs
     }
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(RocketViewInitializeSystem))]
+    [UpdateAfter(typeof(ViewInstallSystemGroup))]
     public partial struct RocketViewExplosionRadiusInitializeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

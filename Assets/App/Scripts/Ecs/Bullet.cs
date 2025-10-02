@@ -88,6 +88,7 @@ namespace App.Ecs
         }
     }
     
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(ExistTimerSystem))]
     public partial struct BulletExistTimeOverSystem : ISystem
     {
