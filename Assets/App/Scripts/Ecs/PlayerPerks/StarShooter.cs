@@ -14,6 +14,7 @@ namespace App.Ecs.PlayerPerks
         public float BulletsCount;
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct StarShootSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

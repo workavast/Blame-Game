@@ -17,7 +17,7 @@ namespace App.Ecs.PlayerPerks
         public float Value;
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct ShootCooldownStarterSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -32,7 +32,7 @@ namespace App.Ecs.PlayerPerks
         }
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     [UpdateAfter(typeof(ShootCooldownStarterSystem))]
     public partial struct ShootCooldownTickSystem : ISystem
     {

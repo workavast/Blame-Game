@@ -57,7 +57,7 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
     }
     
-    [UpdateAfter(typeof(TransformSystemGroup))]
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct BulletMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -73,6 +73,7 @@ namespace App.Ecs
         }
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     [UpdateAfter(typeof(BulletMoveSystem))]
     public partial struct BulletViewUpdateSystem : ISystem
     {
@@ -88,7 +89,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     [UpdateAfter(typeof(ExistTimerSystem))]
     public partial struct BulletExistTimeOverSystem : ISystem
     {
@@ -113,9 +114,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
-    [UpdateBefore(typeof(AfterPhysicsSystemGroup))]
+    [UpdateInGroup(typeof(PhysicsPausableSimulationGroup))]
     public partial struct BulletCollisionSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

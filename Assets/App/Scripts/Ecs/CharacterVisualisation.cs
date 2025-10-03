@@ -22,6 +22,7 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
     } 
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     [UpdateAfter(typeof(MoveSystem))]
     public partial struct PhysicsCharacterViewUpdateSystem : ISystem
     {
@@ -48,7 +49,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateAfter(typeof(TransformSystemGroup))]
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct CharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;

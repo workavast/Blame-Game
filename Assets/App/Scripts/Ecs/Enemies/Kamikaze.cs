@@ -10,9 +10,7 @@ namespace App.Ecs.Enemies
         
     }
 
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
-    [UpdateBefore(typeof(AfterPhysicsSystemGroup))]
+    [UpdateInGroup(typeof(PhysicsPausableSimulationGroup))]
     public partial struct KamikazeExplosionSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

@@ -9,6 +9,7 @@ namespace App.Ecs.PlayerPerks
         
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct ForwardShootSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

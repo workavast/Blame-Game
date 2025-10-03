@@ -64,6 +64,7 @@ namespace App.Ecs.Enemies
         }
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct GunnerBotHoldDistanceSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -142,6 +143,7 @@ namespace App.Ecs.Enemies
         }
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct GunnerBotShootSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

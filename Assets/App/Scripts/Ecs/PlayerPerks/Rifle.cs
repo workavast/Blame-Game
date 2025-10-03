@@ -2,7 +2,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.PlayerPerks
 {
@@ -11,6 +10,7 @@ namespace App.Ecs.PlayerPerks
         
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct RifleSystem : ISystem
     {
         private EntityQuery _query;

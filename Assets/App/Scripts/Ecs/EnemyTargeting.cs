@@ -9,6 +9,7 @@ namespace App.Ecs
         
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     [UpdateBefore(typeof(LookAtPointSystem))]
     public partial struct EnemiesTargetingSystem : ISystem
     {

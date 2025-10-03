@@ -11,6 +11,7 @@ namespace App.Ecs.PlayerPerks
         
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct MachineGunSystem : ISystem
     {
         private EntityQuery _query;
