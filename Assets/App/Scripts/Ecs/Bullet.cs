@@ -1,7 +1,6 @@
 ﻿using App.Views;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Entities.Content;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Transforms;
@@ -12,69 +11,27 @@ namespace App.Ecs
     {
         
     }
-    
-    public struct BulletPrefab : IComponentData
-    {
-        public WeakObjectReference<BulletView> Prefab;
-    }
-    
+
     public struct BulletViewHolder : IComponentData
     {
         public UnityObjectRef<BulletView> Instance;
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial class BulletViewSpawnerSystem : SystemBase
+    public struct BulletInitialData : IComponentData
     {
-        private EntityQuery _query;
-
-        protected override void OnCreate()
-        {
-            _query = SystemAPI.QueryBuilder()
-                .WithAll<BulletPrefab>()
-                .WithNone<BulletViewHolder>()
-                .Build();
-            
-            RequireForUpdate(_query);
-        }
-        
-        protected override void OnUpdate()
-        {
-            var ecb = new EntityCommandBuffer(WorldUpdateAllocator);
-            foreach (var (viewPrefabHolder, entity) in 
-                     SystemAPI.Query<RefRO<BulletPrefab>>()
-                         .WithNone<BulletViewHolder>().WithEntityAccess())
-            {
-                var prefabRef = viewPrefabHolder.ValueRO.Prefab;
-                if (prefabRef.IsReferenceValid)
-                {
-                    // запускаем загрузку (если ещё не загружено)
-                    if (prefabRef.LoadingStatus != ObjectLoadingStatus.Completed 
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Loading
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
-                        prefabRef.LoadAsync();
-
-                    if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
-                    {
-                        // var view = Object.Instantiate(prefabRef.Result);
-                        var instance = ServiceLocator.Get<SpawnProvider>().Spawn(prefabRef.Result);
-                        instance.SetPrefab(viewPrefabHolder.ValueRO.Prefab);
-                        ecb.AddComponent(entity, new BulletViewHolder()
-                        {
-                            Instance = instance, 
-                        });
-                        ecb.AddComponent(entity, new CleanupCallback()
-                        {
-                            Instance = instance.CleanupCallback, 
-                        });
-                    }
-                }
-            }
-            
-            ecb.Playback(EntityManager);
-        }
+        public Entity BulletPrefab;
+        public float SpawnVerticalOffset;
+        public float Damage;
+        public float MoveSpeed;
+        public float ShootPause;
     }
-
+    
+    public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
+    {
+        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
+            => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
+    }
+    
     public partial struct BulletMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -96,10 +53,34 @@ namespace App.Ecs
         {
             foreach (var (view, transform) in 
                      SystemAPI.Query<RefRO<BulletViewHolder>, RefRO<LocalTransform>>()
-                         .WithAll<BulletViewHolder, BulletTag>())
+                         .WithAll<BulletTag>())
             {
                 view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
                 view.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+            }
+        }
+    }
+    
+    [UpdateAfter(typeof(ExistTimerSystem))]
+    public partial struct BulletExistTimeOverSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+            
+            foreach (var (existTimer, entity) in 
+                     SystemAPI.Query<RefRO<ExistTimer>>()
+                         .WithAll<BulletTag>()
+                         .WithEntityAccess())
+            {
+                if (existTimer.ValueRO.Value <= 0) 
+                    ecb.DestroyEntity(entity);
             }
         }
     }

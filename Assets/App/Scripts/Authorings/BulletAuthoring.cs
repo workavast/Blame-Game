@@ -8,7 +8,8 @@ namespace App.Authorings
 {
     public class BulletAuthoring : MonoBehaviour
     {
-        [SerializeField] private WeakObjectReference<BulletView> viewPrefab;
+        [SerializeField] private float existTime;
+        [SerializeField] private WeakObjectReference<CleanupView> viewPrefab;
         
         private class Baker : Baker<BulletAuthoring>
         {
@@ -19,8 +20,9 @@ namespace App.Authorings
                 AddComponent(entity, new IsActiveTag());
                 
                 AddComponent(entity, new BulletTag());
+                AddComponent(entity, new ExistTimer() {Value = authoring.existTime});
+                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });
                 AddComponent(entity, new AttackDamage());
-                AddComponent(entity, new BulletPrefab() { Prefab = authoring.viewPrefab });
                 
                 AddComponent(entity, new MoveSpeed());
             }

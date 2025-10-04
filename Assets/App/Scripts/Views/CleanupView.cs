@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Unity.Entities.Content;
+using UnityEngine;
 
 namespace App.Views
 {
     public class CleanupView : MonoBehaviour
     {
         [SerializeField] private CleanupCallback cleanupCallback;
+
+        protected WeakObjectReference<CleanupView> _prefab;
 
         public CleanupCallback CleanupCallback => cleanupCallback;
         
@@ -15,7 +18,11 @@ namespace App.Views
         
         protected virtual void DestroyCallback()
         {
-            Debug.Log($"{name} is destroyed");
+            _prefab.Release();
+            Destroy(gameObject);
         }
+
+        public void SetPrefab(ref WeakObjectReference<CleanupView> prefab) 
+            => _prefab = prefab;
     }
 }

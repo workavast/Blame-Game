@@ -1,5 +1,4 @@
-﻿using Unity.Entities.Content;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
 namespace App.Views
@@ -8,16 +7,12 @@ namespace App.Views
     {
         public float Velocity { get; private set; }
 
-        private WeakObjectReference<CharacterView> _prefab;
-
         protected override void DestroyCallback()
         {
             Debug.Log($"{name} is destroyed");
             _prefab.Release();
+            Destroy(gameObject);
         }
-
-        public void SetPrefab(WeakObjectReference<CharacterView> prefab) 
-            => _prefab = prefab;
 
         public void SetVelocity(float3 velocity) 
             => Velocity = ((Vector3)velocity).magnitude;

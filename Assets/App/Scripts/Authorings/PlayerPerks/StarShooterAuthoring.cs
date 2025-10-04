@@ -1,0 +1,41 @@
+﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
+using Unity.Entities;
+using UnityEngine;
+
+namespace App.Authorings.PlayerPerks
+{
+    public class StarShooterAuthoring : MonoBehaviour
+    {
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private float spawnVerticalOffset;
+        [SerializeField] private float damage;
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float shootPause;
+        [SerializeField] private float bulletsCount;
+        
+        private class Baker : Baker<StarShooterAuthoring>
+        {
+            public override void Bake(StarShooterAuthoring authoring)
+            {
+                var entity = GetEntity(TransformUsageFlags.None);
+
+                AddComponent(entity, new IsActiveTag());
+                AddComponent(entity, new StarShooterTag());
+                AddComponent(entity, new StarShooterData()
+                {
+                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
+                    SpawnVerticalOffset = authoring.spawnVerticalOffset,
+                    Damage = authoring.damage,
+                    MoveSpeed = authoring.moveSpeed,
+                    ShootPause =  authoring.shootPause,
+                    BulletsCount = authoring.bulletsCount
+                });
+                AddComponent(entity, new StarShooterPause()
+                {
+                    Timer = authoring.shootPause
+                });
+            }
+        }
+    }
+}

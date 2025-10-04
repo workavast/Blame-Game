@@ -132,7 +132,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4c3d0a55ea4bea9dd9aa176be37650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  existTime: 5
   viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 9073800070030822916
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3744815897
+            y: 1238367893
+            z: 751863185
+            w: 3101851571
+        IdentifierType: 1
+      GenerationType: 1
+  viewPrefabV2:
     Id:
       GlobalId:
         SceneObjectIdentifier0: 9073800070030822916

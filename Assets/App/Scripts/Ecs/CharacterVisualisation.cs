@@ -1,72 +1,25 @@
 ﻿using App.Views;
 using Unity.Entities;
-using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 
 namespace App.Ecs
 {
-    public struct CharacterVisualPrefab : IComponentData
+    public struct CharacterTag : IComponentData
     {
-        public WeakObjectReference<CharacterView> Prefab;
+        
     }
     
-    public struct CharacterVisual : IComponentData
+    public struct CharacterViewHolder : IComponentData
     {
         public UnityObjectRef<CharacterView> Instance;
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial class CharacterVisualisationSpawnerSystem : SystemBase
+    public partial class CharacterViewInstallerSystem : ViewInstallerSystem<CharacterTag>
     {
-        private EntityQuery _query;
-
-        protected override void OnCreate()
-        {
-            _query = SystemAPI.QueryBuilder()
-                .WithAll<CharacterVisualPrefab>()
-                .WithNone<CharacterVisual>()
-                .Build();
-            
-            RequireForUpdate(_query);
-        }
-        
-        protected override void OnUpdate()
-        {
-            var ecb = new EntityCommandBuffer(WorldUpdateAllocator);
-            foreach (var (viewPrefabHolder, entity) in 
-                     SystemAPI.Query<RefRO<CharacterVisualPrefab>>()
-                         .WithNone<CharacterVisual>().WithEntityAccess())
-            {
-                var prefabRef = viewPrefabHolder.ValueRO.Prefab;
-                if (prefabRef.IsReferenceValid)
-                {
-                    // запускаем загрузку (если ещё не загружено)
-                    if (prefabRef.LoadingStatus != ObjectLoadingStatus.Completed 
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Loading
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
-                        prefabRef.LoadAsync();
-
-                    if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
-                    {
-                        // var view = Object.Instantiate(prefabRef.Result);
-                        var instance = ServiceLocator.Get<SpawnProvider>().Spawn(prefabRef.Result);
-                        instance.SetPrefab(viewPrefabHolder.ValueRO.Prefab);
-                        ecb.AddComponent(entity, new CharacterVisual
-                        {
-                            Instance = instance, 
-                        });
-                        ecb.AddComponent(entity, new CleanupCallback()
-                        {
-                            Instance = instance.CleanupCallback, 
-                        });
-                    }
-                }
-            }
-            
-            ecb.Playback(EntityManager);
-        }
+        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
+            => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
     } 
     
     [UpdateAfter(typeof(TransformSystemGroup))]
@@ -77,7 +30,7 @@ namespace App.Ecs
         public void OnCreate(ref SystemState state)
         {
             _query = SystemAPI.QueryBuilder()
-                .WithAll<LocalToWorld, PhysicsVelocity, CharacterVisual>()
+                .WithAll<LocalToWorld, PhysicsVelocity, CharacterViewHolder>()
                 .Build();
 
             state.RequireForUpdate(_query);
@@ -86,7 +39,7 @@ namespace App.Ecs
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (transform, physicsVelocity, characterVisual) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterVisual>>())
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterViewHolder>>())
             {
                 characterVisual.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
                 characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
@@ -102,7 +55,7 @@ namespace App.Ecs
         public void OnCreate(ref SystemState state)
         {
             _query = SystemAPI.QueryBuilder()
-                .WithAll<LocalToWorld, CharacterVisual>()
+                .WithAll<LocalToWorld, CharacterViewHolder>()
                 .WithNone<PhysicsVelocity>()
                 .Build();
 
@@ -112,7 +65,7 @@ namespace App.Ecs
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (transform, characterVisual) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterVisual>>()
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterViewHolder>>()
                          .WithNone<PhysicsVelocity>())
             {
                 characterVisual.ValueRO.Instance.Value.SetVelocity(float3.zero);

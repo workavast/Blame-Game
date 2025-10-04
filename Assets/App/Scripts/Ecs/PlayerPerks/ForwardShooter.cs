@@ -8,15 +8,6 @@ namespace App.Ecs.PlayerPerks
     {
         
     }
-
-    public struct ForwardShooterData : IComponentData
-    {
-        public Entity BulletPrefab;
-        public float SpawnVerticalOffset;
-        public float Damage;
-        public float MoveSpeed;
-        public float ShootPause;
-    }
     
     public struct ForwardShooterPause : IComponentData
     {
@@ -42,7 +33,7 @@ namespace App.Ecs.PlayerPerks
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (data, pause) in 
-                     SystemAPI.Query<RefRO<ForwardShooterData>, RefRW<ForwardShooterPause>>()
+                     SystemAPI.Query<RefRO<BulletInitialData>, RefRW<ForwardShooterPause>>()
                          .WithAll<ForwardShooterTag>())
             {
                 pause.ValueRW.Timer -= deltaTime;

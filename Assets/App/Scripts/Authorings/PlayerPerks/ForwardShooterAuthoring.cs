@@ -1,8 +1,9 @@
-﻿using App.Ecs.PlayerPerks;
+﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
 using Unity.Entities;
 using UnityEngine;
 
-namespace App.Authorings
+namespace App.Authorings.PlayerPerks
 {
     public class ForwardShooterAuthoring : MonoBehaviour
     {
@@ -19,7 +20,7 @@ namespace App.Authorings
                 var entity = GetEntity(TransformUsageFlags.None);
 
                 AddComponent(entity, new ForwardShooterTag());
-                AddComponent(entity, new ForwardShooterData()
+                AddComponent(entity, new BulletInitialData()
                 {
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,

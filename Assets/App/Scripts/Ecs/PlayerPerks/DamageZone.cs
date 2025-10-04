@@ -1,22 +1,16 @@
 ﻿using App.Views;
 using Unity.Entities;
-using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 
-namespace App.Ecs
+namespace App.Ecs.PlayerPerks
 {
     public struct DamageZoneTag : IComponentData
     {
         
     }
 
-    public struct DamageZonePrefab : IComponentData
-    {
-        public WeakObjectReference<DamageZoneView> Prefab;
-    }
-    
     public struct DamageZoneViewHolder : IComponentData
     {
         public UnityObjectRef<DamageZoneView> Instance;
@@ -37,56 +31,10 @@ namespace App.Ecs
         public float Value;
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial class DamageZoneViewSpawnerSystem : SystemBase
+    public partial class DamageZoneViewInstallerSystem : ViewInstallerSystem<DamageZoneTag>
     {
-        private EntityQuery _query;
-
-        protected override void OnCreate()
-        {
-            _query = SystemAPI.QueryBuilder()
-                .WithAll<DamageZonePrefab>()
-                .WithNone<DamageZoneViewHolder>()
-                .Build();
-            
-            RequireForUpdate(_query);
-        }
-        
-        protected override void OnUpdate()
-        {
-            var ecb = new EntityCommandBuffer(WorldUpdateAllocator);
-            foreach (var (prefabHolder, entity) in 
-                     SystemAPI.Query<RefRO<DamageZonePrefab>>()
-                         .WithNone<DamageZoneViewHolder>().WithEntityAccess())
-            {
-                var prefabRef = prefabHolder.ValueRO.Prefab;
-                if (prefabRef.IsReferenceValid)
-                {
-                    // запускаем загрузку (если ещё не загружено)
-                    if (prefabRef.LoadingStatus != ObjectLoadingStatus.Completed 
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Loading
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
-                        prefabRef.LoadAsync();
-
-                    if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
-                    {
-                        // var view = Object.Instantiate(prefabRef.Result);
-                        var instance = ServiceLocator.Get<SpawnProvider>().Spawn(prefabRef.Result);
-                        instance.SetPrefab(prefabHolder.ValueRO.Prefab);
-                        ecb.AddComponent(entity, new DamageZoneViewHolder()
-                        {
-                            Instance = instance, 
-                        });
-                        ecb.AddComponent(entity, new CleanupCallback()
-                        {
-                            Instance = instance.CleanupCallback, 
-                        });
-                    }
-                }
-            }
-            
-            ecb.Playback(EntityManager);
-        }
+        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
+            => ecb.AddComponent(entity, new DamageZoneViewHolder() { Instance = instance as DamageZoneView });
     } 
     
     public partial struct DamageZoneUpdateSystem : ISystem
