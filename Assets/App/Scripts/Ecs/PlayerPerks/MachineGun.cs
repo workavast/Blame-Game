@@ -29,8 +29,6 @@ namespace App.Ecs.PlayerPerks
 
         public void OnUpdate(ref SystemState state)
         {
-            var deltaTime = SystemAPI.Time.DeltaTime;
-
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
 
