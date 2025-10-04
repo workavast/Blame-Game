@@ -18,6 +18,7 @@ namespace App.Ecs.Enemies
         public Random Random;
     }
 
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct KamikazeSpawnSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

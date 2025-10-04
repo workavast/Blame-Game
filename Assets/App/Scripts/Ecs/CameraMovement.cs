@@ -38,7 +38,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateAfter(typeof(PhysicsCharacterViewUpdateSystem))]
+    [UpdateAfter(typeof(AfterTransformPausableSimulationGroup))]
     public partial class MoveCameraSystem : SystemBase 
     {
         protected override void OnUpdate()

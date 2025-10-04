@@ -17,7 +17,7 @@ namespace App.Ecs
         public float Value;
     }
     
-    [UpdateAfter(typeof(TransformSystemGroup))]
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct MoveSystem : ISystem
     {
         [BurstCompile]

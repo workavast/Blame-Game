@@ -28,6 +28,7 @@ namespace App.Ecs.PlayerPerks
         public float MoveSpeed;
     }
     
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct RocketLauncherSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

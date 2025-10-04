@@ -857,6 +857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_DamageZone
       objectReference: {fileID: 0}
+    - target: {fileID: 3815417730963370890, guid: 05df327d35bbab14ab6a4819fdc5e9c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -976,6 +980,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03dddf8e282959d4d825341df6560277, type: 3}
+--- !u!1001 &4396633474061411287
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431939016917287168, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937188809304990329, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
+      propertyPath: m_Name
+      value: ECS_Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad8f0330de902424da82afd7981b7a8e, type: 3}
 --- !u!1001 &4535111359884113909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1027,6 +1088,10 @@ PrefabInstance:
     - target: {fileID: 8116665741028914375, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}
       propertyPath: m_Name
       value: ECS_MachineGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116665741028914375, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1085,6 +1150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_RocketLauncher
       objectReference: {fileID: 0}
+    - target: {fileID: 5165562416961467058, guid: ec379fb35d59cb449b42b20de4bdf20f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1142,6 +1211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_ForwardShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 8888059500304821474, guid: af77cccc8298ec74dabad64c238fe73c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1271,10 @@ PrefabInstance:
     - target: {fileID: 719000234346042645, guid: d080d6ca390497a4c8dd7a589847fe5b, type: 3}
       propertyPath: m_Name
       value: ECS_StarShooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 719000234346042645, guid: d080d6ca390497a4c8dd7a589847fe5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1313,6 +1390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 1856451364952303405, guid: 3aa35584f855127418713718ec08e18a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1322,6 +1403,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 4396633474061411287}
   - {fileID: 3349665439711749071}
   - {fileID: 85511682}
   - {fileID: 327773765}
