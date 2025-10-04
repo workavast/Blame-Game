@@ -10,8 +10,14 @@ namespace App.Ecs
         public WeakObjectReference<CleanupView> Prefab;
         public bool Loaded;
     }
-    
+
     [UpdateInGroup(typeof(InitializationSystemGroup))]
+    public partial class ViewInstallSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
+    [UpdateInGroup(typeof(ViewInstallSystemGroup))]
     public abstract partial class ViewInstallerSystem<TTag> : SystemBase
         where TTag : unmanaged, IComponentData
     {
@@ -83,6 +89,7 @@ namespace App.Ecs
             }
             
             ecb.Playback(EntityManager);
+            ecb.Dispose();
         }
 
         protected abstract void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb);

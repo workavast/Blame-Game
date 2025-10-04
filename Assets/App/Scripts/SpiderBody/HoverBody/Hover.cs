@@ -18,11 +18,6 @@ namespace App.SpiderBody.HoverBody
         [SerializeField] private int legsCountToBeGrounded = 2;
         [Space]
         [SerializeField] private LayerMask groundLayers;
-        [SerializeField] private float power = 5000f;
-        [SerializeField] private float damping = 100f;
-        [SerializeField] private float dampingVerticalVelocityLimit = 10f;
-        [SerializeField] private float hoverAngleLimit = 30f;
-        [SerializeField] private float heightChangeSpeed = 1f;
         [SerializeField] private float minHoverHeight = 2f;
         [SerializeField] private float maxHoverHeight = 3f;
         [Space]

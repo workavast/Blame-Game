@@ -2,6 +2,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace App.Ecs
@@ -16,6 +17,7 @@ namespace App.Ecs
         public float Value;
     }
     
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct MoveSystem : ISystem
     {
         [BurstCompile]

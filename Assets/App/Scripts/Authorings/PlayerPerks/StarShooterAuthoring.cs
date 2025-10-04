@@ -7,7 +7,7 @@ namespace App.Authorings.PlayerPerks
 {
     public class StarShooterAuthoring : MonoBehaviour
     {
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private BulletAuthoring bulletPrefab;
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
@@ -22,23 +22,23 @@ namespace App.Authorings.PlayerPerks
                 var entity = GetEntity(TransformUsageFlags.None);
 
                 AddComponent(entity, new IsActiveTag());
+
                 AddComponent(entity, new StarShooterTag());
                 AddComponent(entity, new StarShooterData()
                 {
                     BulletsCount = authoring.bulletsCount
                 });
+                
+                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
+                
                 AddComponent(entity, new BulletInitialData()
                 {
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    ShootPause =  authoring.shootPause,
                     Penetration = authoring.penetration
-                });
-                AddComponent(entity, new StarShooterPause()
-                {
-                    Timer = authoring.shootPause
                 });
             }
         }

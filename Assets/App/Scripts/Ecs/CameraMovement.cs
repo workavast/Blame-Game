@@ -34,10 +34,11 @@ namespace App.Ecs
             }
             
             ecb.Playback(state.EntityManager);
+            ecb.Dispose();
         }
     }
     
-    [UpdateAfter(typeof(PhysicsCharacterVisualisationUpdateSystem))]
+    [UpdateAfter(typeof(PhysicsCharacterViewUpdateSystem))]
     public partial class MoveCameraSystem : SystemBase 
     {
         protected override void OnUpdate()

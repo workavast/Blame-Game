@@ -28,7 +28,8 @@ namespace App.Authorings.PlayerPerks
 
                 AddComponent(entity, new IsActiveTag());
 
-                AddComponent(entity, new ShootReloadTimer() { Timer = authoring.interval });
+                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.interval });
+                AddComponent(entity, new ShootCooldown() { Timer = authoring.interval });
 
                 AddComponent(entity, new RocketLauncherTag());
                 AddComponent(entity, new RocketLauncherRandom() { Random =  Random.CreateFromIndex(authoring.seed)});
@@ -37,7 +38,6 @@ namespace App.Authorings.PlayerPerks
                     RocketPrefab = GetEntity(authoring.rocketPrefab, TransformUsageFlags.Dynamic),
                     RocketsCount = authoring.rocketsCount,
                     Damage = authoring.damage,
-                    ReloadTime = authoring.interval,
                     RandomInterval = authoring.randomInterval,
                     MinDistance = authoring.minDistance,
                     MaxDistance = authoring.maxDistance,

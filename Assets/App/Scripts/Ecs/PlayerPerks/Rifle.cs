@@ -28,8 +28,6 @@ namespace App.Ecs.PlayerPerks
 
         public void OnUpdate(ref SystemState state)
         {
-            var deltaTime = SystemAPI.Time.DeltaTime;
-
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
 
@@ -60,18 +58,16 @@ namespace App.Ecs.PlayerPerks
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, pause) in
-                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, RefRW<ShootReloadTimer>>()
-                         .WithAll<RifleTag>())
+            foreach (var (distanceReaction, data, entity) in
+                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>>()
+                         .WithAll<RifleTag>()
+                         .WithDisabled<ShootCooldown>()
+                         .WithEntityAccess())
             {
                 if (distance > distanceReaction.ValueRO.Value)
                     continue;
-                
-                pause.ValueRW.Timer -= deltaTime;
-                if (pause.ValueRO.Timer > 0)
-                    continue;
 
-                pause.ValueRW.Timer = data.ValueRO.ShootPause;
+                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);

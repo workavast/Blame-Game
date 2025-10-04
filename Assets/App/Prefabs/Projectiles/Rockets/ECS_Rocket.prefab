@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721b519a17514e13bea57bd128f6300c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  existTime: 100
   viewPrefab:
     Id:
       GlobalId:

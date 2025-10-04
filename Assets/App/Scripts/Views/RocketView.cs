@@ -5,16 +5,24 @@ namespace App.Views
 {
     public class RocketView : CleanupView
     {
+        [SerializeField] private GameObject rocketModelHolder;
         [SerializeField] private Transform explosionSphere;
+        [SerializeField] private ParticleCallbackProvider particleCallbackProvider;
         
         private float _explosionRadius;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            particleCallbackProvider.OnStopped += DestroyInternal;
+        }
+
         protected override void DestroyCallback()
         {
-            explosionSphere.gameObject.SetActive(true);
             explosionSphere.localScale = Vector3.one * _explosionRadius;
-            
-            Invoke(nameof(DestroyInternal), 0.5f);
+            explosionSphere.gameObject.SetActive(true);
+            rocketModelHolder.SetActive(false);
         }
 
         private void DestroyInternal() 

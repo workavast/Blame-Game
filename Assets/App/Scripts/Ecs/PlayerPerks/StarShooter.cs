@@ -14,11 +14,6 @@ namespace App.Ecs.PlayerPerks
         public float BulletsCount;
     }
     
-    public struct StarShooterPause : IComponentData
-    {
-        public float Timer;
-    }
-    
     public partial struct StarShootSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -37,15 +32,13 @@ namespace App.Ecs.PlayerPerks
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, bulletData, pause) in 
-                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<BulletInitialData>, RefRW<StarShooterPause>>()
-                         .WithAll<StarShooterTag>())
+            foreach (var (data, bulletData, entity) in 
+                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<BulletInitialData>>()
+                         .WithAll<StarShooterTag>()
+                         .WithDisabled<ShootCooldown>()
+                         .WithEntityAccess())
             {
-                pause.ValueRW.Timer -= deltaTime;
-                if (pause.ValueRO.Timer > 0)
-                     continue;
-
-                pause.ValueRW.Timer = bulletData.ValueRO.ShootPause;
+                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
                 var bulletsCount = data.ValueRO.BulletsCount;
                 var angleStep = math.TAU / bulletsCount;

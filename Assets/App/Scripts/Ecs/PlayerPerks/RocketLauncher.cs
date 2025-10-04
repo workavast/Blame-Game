@@ -20,7 +20,6 @@ namespace App.Ecs.PlayerPerks
         public Entity RocketPrefab;
         public int RocketsCount;
         public float Damage;
-        public float ReloadTime;
         public float RandomInterval;
         public float MinDistance;
         public float MaxDistance;
@@ -45,16 +44,13 @@ namespace App.Ecs.PlayerPerks
             var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             
-            var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (reloadTimer, data, random) in 
-                     SystemAPI.Query<RefRW<ShootReloadTimer>, RefRO<RocketLauncherData>, RefRW<RocketLauncherRandom>>()
-                         .WithAll<RocketLauncherTag>())
+            foreach (var (data, random, entity) in 
+                     SystemAPI.Query<RefRO<RocketLauncherData>, RefRW<RocketLauncherRandom>>()
+                         .WithAll<RocketLauncherTag>()
+                         .WithDisabled<ShootCooldown>()
+                         .WithEntityAccess())
             {
-                reloadTimer.ValueRW.Timer -= deltaTime;
-                if (reloadTimer.ValueRO.Timer > 0)
-                    continue;
-
-                reloadTimer.ValueRW.Timer = data.ValueRO.ReloadTime;
+                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
                 for (int i = 0; i < data.ValueRO.RocketsCount; i++)
                 {

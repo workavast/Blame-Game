@@ -9,6 +9,7 @@ namespace App.Ecs
         
     }
     
+    [UpdateBefore(typeof(LookAtPointSystem))]
     public partial struct EnemiesTargetingSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

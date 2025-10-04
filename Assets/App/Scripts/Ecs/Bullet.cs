@@ -7,17 +7,8 @@ using Unity.Transforms;
 
 namespace App.Ecs
 {
-
-    public struct BulletBuilder
-    {
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
-        }
-    }
     
+    #region components
     
     public struct BulletTag : IComponentData
     {
@@ -45,16 +36,28 @@ namespace App.Ecs
         public float SpawnVerticalOffset;
         public float Damage;
         public float MoveSpeed;
-        public float ShootPause;
         public int Penetration;
     }
     
+    #endregion
+
+    public struct BulletBuilder
+    {
+        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
+        {
+            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
+            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
+        }
+    }
+
     public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
     {
         protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
             => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
     }
     
+    [UpdateAfter(typeof(TransformSystemGroup))]
     public partial struct BulletMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -70,13 +73,14 @@ namespace App.Ecs
         }
     }
     
+    [UpdateAfter(typeof(BulletMoveSystem))]
     public partial struct BulletViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (view, transform) in 
                      SystemAPI.Query<RefRO<BulletViewHolder>, RefRO<LocalTransform>>()
-                         .WithAll<BulletTag>())
+                         .WithAll<IsActiveTag, BulletTag>())
             {
                 view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
                 view.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
@@ -84,6 +88,7 @@ namespace App.Ecs
         }
     }
     
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(ExistTimerSystem))]
     public partial struct BulletExistTimeOverSystem : ISystem
     {
@@ -126,7 +131,7 @@ namespace App.Ecs
 
             var bulletCollisionJob = new BulletCollisionJob()
             {
-                EnemyLookup = SystemAPI.GetComponentLookup<EnemyTag>(true),
+                DamageableLookup = SystemAPI.GetComponentLookup<CurrentHealth>(true),
                 BulletLookup = SystemAPI.GetComponentLookup<BulletTag>(true),
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
                 BulletPenetrationLookup = SystemAPI.GetComponentLookup<BulletPenetration>(),
@@ -143,10 +148,10 @@ namespace App.Ecs
 
     public struct BulletCollisionJob : ITriggerEventsJob
     {
-        [ReadOnly] public ComponentLookup<EnemyTag> EnemyLookup;
+        [ReadOnly] public ComponentLookup<CurrentHealth> DamageableLookup;
         [ReadOnly] public ComponentLookup<BulletTag> BulletLookup;
         [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
-        public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
+        [ReadOnly] public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
 
         public EntityCommandBuffer.ParallelWriter ECB;
         public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
@@ -154,17 +159,17 @@ namespace App.Ecs
         
         public void Execute(TriggerEvent triggerEvent)
         {
-            Entity enemy;
+            Entity target;
             Entity bullet;
 
-            if (EnemyLookup.HasComponent(triggerEvent.EntityA) && BulletLookup.HasComponent(triggerEvent.EntityB))
+            if (DamageableLookup.HasComponent(triggerEvent.EntityA) && BulletLookup.HasComponent(triggerEvent.EntityB))
             {
-                enemy = triggerEvent.EntityA;
+                target = triggerEvent.EntityA;
                 bullet = triggerEvent.EntityB;
             } 
-            else if (EnemyLookup.HasComponent(triggerEvent.EntityB) && BulletLookup.HasComponent(triggerEvent.EntityA))
+            else if (DamageableLookup.HasComponent(triggerEvent.EntityB) && BulletLookup.HasComponent(triggerEvent.EntityA))
             {
-                enemy = triggerEvent.EntityB;
+                target = triggerEvent.EntityB;
                 bullet = triggerEvent.EntityA;
             }
             else
@@ -174,17 +179,17 @@ namespace App.Ecs
 
             var collisions = BulletCollisionsLookup[bullet];
             for (var i = 0; i < collisions.Length; i++)
-                if (collisions[i].Entity == enemy)
+                if (collisions[i].Entity == target)
                     return;
             
             var attack = AttackDamageLookup.GetRefRO(bullet);
-            var penetration = BulletPenetrationLookup.GetRefRW(bullet);
-            var enemyDamageBuffer = DamageBufferLookup[enemy];
+            var penetration = BulletPenetrationLookup.GetRefRO(bullet);
+            var enemyDamageBuffer = DamageBufferLookup[target];
 
-            collisions.Add(new BulletCollisions() { Entity = enemy });
+            collisions.Add(new BulletCollisions() { Entity = target });
             enemyDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
 
-            if (collisions.Length > penetration.ValueRW.Value) 
+            if (collisions.Length > penetration.ValueRO.Value) 
                 ECB.DestroyEntity(0, bullet);
         }
     }

@@ -7,7 +7,7 @@ namespace App.Authorings.PlayerPerks
 {
     public class ForwardShooterAuthoring : MonoBehaviour
     {
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private BulletAuthoring bulletPrefab;
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
@@ -20,6 +20,8 @@ namespace App.Authorings.PlayerPerks
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
+                AddComponent(entity, new IsActiveTag());
+              
                 AddComponent(entity, new ForwardShooterTag());
                 AddComponent(entity, new BulletInitialData()
                 {
@@ -27,13 +29,11 @@ namespace App.Authorings.PlayerPerks
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    ShootPause =  authoring.shootPause,
                     Penetration = authoring.penetration
                 });
-                AddComponent(entity, new ForwardShooterPause()
-                {
-                    Timer = authoring.shootPause
-                });
+
+                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
             }
         }
     }

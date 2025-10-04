@@ -60,18 +60,16 @@ namespace App.Ecs.PlayerPerks
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, reloadTimer) in
-                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, RefRW<ShootReloadTimer>>()
-                         .WithAll<MachineGunTag>())
+            foreach (var (distanceReaction, data, entity) in
+                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>>()
+                         .WithAll<MachineGunTag>()
+                         .WithDisabled<ShootCooldown>()
+                         .WithEntityAccess())
             {
                 if (distance > distanceReaction.ValueRO.Value)
                     continue;
                 
-                reloadTimer.ValueRW.Timer -= deltaTime;
-                if (reloadTimer.ValueRO.Timer > 0)
-                    continue;
-
-                reloadTimer.ValueRW.Timer = data.ValueRO.ShootPause;
+                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
