@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace App.Ecs.PlayerPerks
 {
-    public struct MachineGunTag : IComponentData
+    public struct RifleTag : IComponentData
     {
         
     }
     
-    public partial struct MachineGunSystem : ISystem
+    public partial struct RifleSystem : ISystem
     {
         private EntityQuery _query;
         
@@ -60,18 +60,18 @@ namespace App.Ecs.PlayerPerks
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, reloadTimer) in
+            foreach (var (distanceReaction, data, pause) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, RefRW<ShootReloadTimer>>()
-                         .WithAll<MachineGunTag>())
+                         .WithAll<RifleTag>())
             {
                 if (distance > distanceReaction.ValueRO.Value)
                     continue;
                 
-                reloadTimer.ValueRW.Timer -= deltaTime;
-                if (reloadTimer.ValueRO.Timer > 0)
+                pause.ValueRW.Timer -= deltaTime;
+                if (pause.ValueRO.Timer > 0)
                     continue;
 
-                reloadTimer.ValueRW.Timer = data.ValueRO.ShootPause;
+                pause.ValueRW.Timer = data.ValueRO.ShootPause;
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);

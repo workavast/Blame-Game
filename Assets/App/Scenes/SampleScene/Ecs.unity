@@ -148,12 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f757ae73c1b4c8ab500cd500b2d3611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7432511324174601985, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
+  bulletPrefab: {fileID: 5428244654589280209, guid: 9be6f7ce1274fa1469c08aaab8e35da5, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 15
+  moveSpeed: 20
   shootPause: 1
   distanceReaction: 15
+  penetration: 0
 --- !u!4 &276557607
 Transform:
   m_ObjectHideFlags: 0
@@ -498,6 +499,61 @@ Transform:
   - {fileID: 1441807489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &634878990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634878992}
+  - component: {fileID: 634878991}
+  m_Layer: 0
+  m_Name: ECS_RocketLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &634878991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634878990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08f6ac9592548359fbd55f8a5c76a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketPrefab: {fileID: 5047102358424169268, guid: f0e12bb08cde19a408b78ccaa4a6316a, type: 3}
+  rocketsCount: 5
+  damage: 25
+  interval: 5
+  randomInterval: 0.5
+  minDistance: 5
+  maxDistance: 15
+  height: 25
+  explosionRadius: 5
+  moveSpeed: 35
+  seed: 0
+--- !u!4 &634878992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634878990}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1125118025
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +588,8 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 15
   shootPause: 1
-  bulletsCount: 10
+  bulletsCount: 7
+  penetration: 0
 --- !u!4 &1125118028
 Transform:
   m_ObjectHideFlags: 0
@@ -704,6 +761,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1740491636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740491638}
+  - component: {fileID: 1740491637}
+  m_Layer: 0
+  m_Name: ECS_Rifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1740491637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740491636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2740786521f943aba817512583c3abb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5428244654589280209, guid: 768ee48ae6273e746ab746f06e85fb58, type: 3}
+  spawnVerticalOffset: 1
+  damage: 5
+  moveSpeed: 17.5
+  shootPause: 1.77
+  distanceReaction: 15
+  penetration: 1
+--- !u!4 &1740491638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740491636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827647759
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,8 +844,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7432511324174601985, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 15
-  shootPause: 1
+  moveSpeed: 17.5
+  shootPause: 0.45
+  penetration: 0
 --- !u!4 &1827647761
 Transform:
   m_ObjectHideFlags: 0
@@ -985,7 +1094,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1827647761}
   - {fileID: 276557607}
+  - {fileID: 1740491638}
   - {fileID: 1125118028}
+  - {fileID: 634878992}
   - {fileID: 1586851987}
   - {fileID: 3349665439711749071}
   - {fileID: 537030510}

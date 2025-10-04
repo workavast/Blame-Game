@@ -6,25 +6,26 @@ using UnityEngine;
 
 namespace App.Authorings
 {
-    public class BulletAuthoring : MonoBehaviour
+    public class RocketAuthoring : MonoBehaviour
     {
-        [SerializeField] private float existTime;
         [SerializeField] private WeakObjectReference<CleanupView> viewPrefab;
         
-        private class Baker : Baker<BulletAuthoring>
+        private class Baker : Baker<RocketAuthoring>
         {
-            public override void Bake(BulletAuthoring authoring)
+            public override void Bake(RocketAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
                 AddComponent(entity, new IsActiveTag());
                 
-                AddComponent(entity, new BulletTag());
-                AddComponent(entity, new ExistTimer() {Value = authoring.existTime});
+                AddComponent(entity, new RocketTag());
+                AddComponent(entity, new RocketTargetHeight());
+                AddComponent(entity, new RocketAwaitTimer());
+                AddComponent(entity, new RocketExplosionRadius());
+                AddComponent(entity, new RocketViewExplosionRadiusSetFlag());
+                
                 AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });
                 AddComponent(entity, new AttackDamage());
-                AddComponent(entity, new BulletPenetration());
-                AddBuffer<BulletCollisions>(entity);
 
                 AddComponent(entity, new MoveSpeed());
             }

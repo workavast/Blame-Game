@@ -98,10 +98,10 @@ GameObject:
   - component: {fileID: 3001960104340552425}
   - component: {fileID: 7105407583576499244}
   - component: {fileID: 4055582178204184918}
-  - component: {fileID: 8088228753832042094}
+  - component: {fileID: 2492843180082056845}
   - component: {fileID: 5203261625526861583}
   - component: {fileID: 2618203283829962398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ECS_KamikazeBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   health: 20
   moveSpeed: 10
   rotationSpeed: 0.5
---- !u!114 &8088228753832042094
+--- !u!114 &2492843180082056845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

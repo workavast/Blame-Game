@@ -45,8 +45,8 @@ namespace App.Ecs.PlayerPerks
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
-                ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-                ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+
+                BulletBuilder.Build(ref ecb, ref bullet, data);
             }
         }
     }

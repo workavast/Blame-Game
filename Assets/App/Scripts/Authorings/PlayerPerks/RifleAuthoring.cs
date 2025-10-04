@@ -5,34 +5,36 @@ using UnityEngine;
 
 namespace App.Authorings.PlayerPerks
 {
-    public class ForwardShooterAuthoring : MonoBehaviour
+    public class RifleAuthoring : MonoBehaviour
     {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float shootPause;
+        [SerializeField] private float distanceReaction;
         [SerializeField] private int penetration = 1;
-        
-        private class Baker : Baker<ForwardShooterAuthoring>
+
+        private class Baker : Baker<RifleAuthoring>
         {
-            public override void Bake(ForwardShooterAuthoring authoring)
+            public override void Bake(RifleAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new ForwardShooterTag());
+                AddComponent(entity, new RifleTag());
+                AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
+                AddComponent(entity, new ShootReloadTimer()
+                {
+                    Timer = authoring.shootPause
+                });
                 AddComponent(entity, new BulletInitialData()
                 {
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    ShootPause =  authoring.shootPause,
+                    ShootPause = authoring.shootPause,
                     Penetration = authoring.penetration
-                });
-                AddComponent(entity, new ForwardShooterPause()
-                {
-                    Timer = authoring.shootPause
                 });
             }
         }

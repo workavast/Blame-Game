@@ -11,11 +11,6 @@ namespace App.Ecs.PlayerPerks
 
     public struct StarShooterData : IComponentData
     {
-        public Entity BulletPrefab;
-        public float SpawnVerticalOffset;
-        public float Damage;
-        public float MoveSpeed;
-        public float ShootPause;
         public float BulletsCount;
     }
     
@@ -42,15 +37,15 @@ namespace App.Ecs.PlayerPerks
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, pause) in 
-                     SystemAPI.Query<RefRO<StarShooterData>, RefRW<StarShooterPause>>()
+            foreach (var (data, bulletData, pause) in 
+                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<BulletInitialData>, RefRW<StarShooterPause>>()
                          .WithAll<StarShooterTag>())
             {
                 pause.ValueRW.Timer -= deltaTime;
                 if (pause.ValueRO.Timer > 0)
                      continue;
 
-                pause.ValueRW.Timer = data.ValueRO.ShootPause;
+                pause.ValueRW.Timer = bulletData.ValueRO.ShootPause;
 
                 var bulletsCount = data.ValueRO.BulletsCount;
                 var angleStep = math.TAU / bulletsCount;
@@ -67,11 +62,11 @@ namespace App.Ecs.PlayerPerks
                     angle += angleStep;
 
                     var spawnRotation = quaternion.LookRotation(spawnDirection, new float3(0, 1, 0));
-                    var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
-                    var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
+                    var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
+                    var bulletSpawnPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
                     ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, spawnRotation));
-                    ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-                    ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });   
+                  
+                    BulletBuilder.Build(ref ecb, ref bullet, bulletData);
                 }
             }
         }
