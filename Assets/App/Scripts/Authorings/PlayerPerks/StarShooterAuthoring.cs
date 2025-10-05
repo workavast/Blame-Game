@@ -21,8 +21,6 @@ namespace App.Authorings.PlayerPerks
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new IsActiveTag());
-
                 AddComponent(entity, new StarShooterTag());
                 AddComponent(entity, new StarShooterData()
                 {

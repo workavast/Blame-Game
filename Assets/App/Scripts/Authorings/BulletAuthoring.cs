@@ -17,8 +17,6 @@ namespace App.Authorings
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
-                AddComponent(entity, new IsActiveTag());
-                
                 AddComponent(entity, new BulletTag());
                 AddComponent(entity, new ExistTimer() {Value = authoring.existTime});
                 AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });

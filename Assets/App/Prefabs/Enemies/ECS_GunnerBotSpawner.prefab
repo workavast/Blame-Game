@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7904990777123456044}
   - component: {fileID: 384654807581537462}
+  - component: {fileID: -8385712637364568811}
   m_Layer: 0
   m_Name: ECS_GunnerBotSpawner
   m_TagString: Untagged
@@ -48,3 +49,15 @@ MonoBehaviour:
   interval: 5
   distance: 35
   seed: 321
+--- !u!114 &-8385712637364568811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638936274295055004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

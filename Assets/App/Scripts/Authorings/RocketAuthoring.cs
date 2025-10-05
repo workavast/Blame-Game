@@ -16,8 +16,6 @@ namespace App.Authorings
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
-                AddComponent(entity, new IsActiveTag());
-                
                 AddComponent(entity, new RocketTag());
                 AddComponent(entity, new RocketTargetHeight());
                 AddComponent(entity, new RocketAwaitTimer());

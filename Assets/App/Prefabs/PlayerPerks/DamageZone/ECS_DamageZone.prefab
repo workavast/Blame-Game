@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1400830749089235023}
   - component: {fileID: 6450978080292737787}
+  - component: {fileID: 6847017654185076457}
+  - component: {fileID: -5428802117278905021}
   - component: {fileID: 5260437685003879534}
   m_Layer: 8
   m_Name: ECS_DamageZone
@@ -46,8 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d340180566264a6099b60726d5435cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 8
-  radiusFactor: 1.5
   damage: 4
   prefab:
     Id:
@@ -62,6 +62,33 @@ MonoBehaviour:
             w: 4261224002
         IdentifierType: 1
       GenerationType: 1
+--- !u!114 &6847017654185076457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815417730963370890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 749d9dc6499d482183063088829f449b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialRadius: 0
+  targetRadius: 8
+  radiusFactor: 1.5
+--- !u!114 &-5428802117278905021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815417730963370890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &5260437685003879534
 SphereCollider:
   m_ObjectHideFlags: 0

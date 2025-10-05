@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093511760864310696}
   - component: {fileID: 8210490951117237937}
+  - component: {fileID: 8757219123589616268}
   m_Layer: 0
   m_Name: ECS_MachineGun
   m_TagString: Untagged
@@ -51,3 +52,15 @@ MonoBehaviour:
   shootPause: 1
   distanceReaction: 15
   penetration: 0
+--- !u!114 &8757219123589616268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
