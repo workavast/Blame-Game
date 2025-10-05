@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5120785661382401772}
   - component: {fileID: 7962342114739726347}
   - component: {fileID: 5987560476787775990}
+  - component: {fileID: -4264640145348063920}
   - component: {fileID: 3110858220160575887}
   - component: {fileID: -2275416758596283564}
   - component: {fileID: 2664439719164777870}
@@ -189,6 +190,19 @@ MonoBehaviour:
   health: 20
   moveSpeed: 10
   rotationSpeed: 0.5
+--- !u!114 &-4264640145348063920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539452127399808908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddffd55fd3f45d9b2ce8861c0ae248a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbsCount: 3
 --- !u!114 &3110858220160575887
 MonoBehaviour:
   m_ObjectHideFlags: 0

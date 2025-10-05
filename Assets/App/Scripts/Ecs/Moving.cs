@@ -7,6 +7,11 @@ using UnityEngine;
 
 namespace App.Ecs
 {
+    public struct AutoMoveTag : IComponentData
+    {
+        
+    }
+    
     public struct MoveDirection : IComponentData
     {
         public float2 Value;
@@ -18,16 +23,34 @@ namespace App.Ecs
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct MoveSystem : ISystem
+    public partial struct PhysicsMoveSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (physicsVelocity,direction,speed) 
-                     in SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>())
+            foreach (var (physicsVelocity,direction,speed) in 
+                     SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>()
+                         .WithAll<IsActiveTag>())
             {
                 var step2D = direction.ValueRO.Value * speed.ValueRO.Value * Time.deltaTime;
                 physicsVelocity.ValueRW.Linear += new float3(step2D.x, 0, step2D.y);
+            }
+        }
+    }
+    
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    public partial struct AutoMoveSystem : ISystem
+    {
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            foreach (var (transform, direction,speed) 
+                     in SystemAPI.Query<RefRW<LocalTransform>, RefRO<MoveDirection>, RefRO<MoveSpeed>>()
+                         .WithAll<AutoMoveTag>()
+                         .WithNone<PhysicsVelocity>())
+            {
+                var step2D = direction.ValueRO.Value * speed.ValueRO.Value * Time.deltaTime;
+                transform.ValueRW.Position += new float3(step2D.x, 0, step2D.y);
             }
         }
     }

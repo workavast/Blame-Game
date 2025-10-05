@@ -17,6 +17,7 @@ namespace App.Authorings.Enemies
                 
                 AddComponent(entity, new KamikazeTag());
                 AddComponent(entity, new AttackDamage() { Value = authoring.explosionDamage });
+                AddComponent(entity, new AutoMoveTag());
             }
         }
     }
