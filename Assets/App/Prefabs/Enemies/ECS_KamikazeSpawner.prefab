@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6243289181657771591}
   - component: {fileID: 5193957859383615895}
+  - component: {fileID: -9099009325826874080}
   m_Layer: 0
   m_Name: ECS_KamikazeSpawner
   m_TagString: Untagged
@@ -48,3 +49,15 @@ MonoBehaviour:
   interval: 5
   distance: 35
   seed: 123
+--- !u!114 &-9099009325826874080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969112924376949529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

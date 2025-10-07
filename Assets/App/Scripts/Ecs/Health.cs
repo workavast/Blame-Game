@@ -1,4 +1,6 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Experience;
+using Unity.Entities;
+using Unity.Transforms;
 
 namespace App.Ecs
 {
@@ -24,11 +26,19 @@ namespace App.Ecs
 
     public partial struct ApplyDamage : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<ExpTag>();
+        }
+
         public void OnUpdate(ref SystemState state)
         {
+            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var requestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
+            
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (health, damageBuffer, entity) in 
-                     SystemAPI.Query<RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>()
+            foreach (var (transform, health, damageBuffer, entity) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>()
                          .WithAll<IsActiveTag>()
                          .WithEntityAccess())
             {
@@ -40,8 +50,20 @@ namespace App.Ecs
                 
                 damageBuffer.Clear();
 
-                if (health.ValueRO.Value <= 0) 
+                if (health.ValueRO.Value <= 0)
+                {
+                    if (SystemAPI.HasComponent<ExpOrbDropper>(entity))
+                    {
+                        var expOrbDropper = SystemAPI.GetComponent<ExpOrbDropper>(entity);
+                        requestsBuffer.Add(new ExpOrbsDropRequest()
+                        {
+                            OrbsCount = expOrbDropper.OrbsCount,
+                            Position = transform.ValueRO.Position
+                        });
+                    }
+                    
                     ecb.DestroyEntity(entity);
+                }
             }
             
             ecb.Playback(state.EntityManager);

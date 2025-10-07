@@ -26,8 +26,6 @@ namespace App.Authorings.PlayerPerks
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new IsActiveTag());
-
                 AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.interval });
                 AddComponent(entity, new ShootCooldown() { Timer = authoring.interval });
 

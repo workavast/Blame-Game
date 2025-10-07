@@ -23,7 +23,7 @@ namespace App.Ecs
     } 
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(MoveSystem))]
+    [UpdateAfter(typeof(PhysicsMoveSystem))]
     public partial struct PhysicsCharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;

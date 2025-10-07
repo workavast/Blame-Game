@@ -9,8 +9,6 @@ namespace App.Authorings.PlayerPerks
 {
     public class DamageZoneAuthoring : MonoBehaviour
     {
-        [SerializeField] private float radius;
-        [SerializeField] private float radiusFactor;
         [SerializeField] private float damage;
         [SerializeField] private WeakObjectReference<CleanupView> prefab;
         
@@ -20,13 +18,8 @@ namespace App.Authorings.PlayerPerks
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
-                AddComponent(entity, new IsActiveTag());
-
                 AddComponent(entity, new DamageZoneTag());
                 AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.prefab });
-                AddComponent(entity, new DamageZoneRadius() { Value = 1 });
-                AddComponent(entity, new DamageZoneTargetRadius() { Value = authoring.radius });
-                AddComponent(entity, new DamageZoneRadiusFactor() { Value = authoring.radiusFactor });
                 
                 AddComponent(entity, new AttackDamage() { Value = authoring.damage });
 

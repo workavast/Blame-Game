@@ -86,7 +86,8 @@ namespace App.Ecs.Enemies
             foreach (var (transform, moveDirection, data, inZoneFlag) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
-                         .WithAll<GunnerBotTag, GunnerBotInZoneFlag>())
+                         .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
+                         .WithNone<AutoMoveTag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
 
@@ -119,6 +120,7 @@ namespace App.Ecs.Enemies
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag>()
+                         .WithNone<AutoMoveTag>()
                          .WithDisabled<GunnerBotInZoneFlag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
