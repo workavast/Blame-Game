@@ -25,7 +25,7 @@ namespace App.Ecs
         public float Value;
     }
 
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
     public partial struct AoeZonePositionUpdateSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -48,8 +48,7 @@ namespace App.Ecs
         }
     }
 
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(AoeZonePositionUpdateSystem))]
+    [UpdateInGroup(typeof(BeforeTransformPauseSimulationGroup))]
     public partial struct AoeZoneSizeUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

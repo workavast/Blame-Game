@@ -2,6 +2,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.Systems;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -22,23 +23,24 @@ namespace App.Ecs
         public float Value;
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(FixedBeforePhysicsPauseGroup))]
     public partial struct PhysicsMoveSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            var deltaTime = SystemAPI.Time.fixedDeltaTime;
             foreach (var (physicsVelocity,direction,speed) in 
                      SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>()
                          .WithAll<IsActiveTag>())
             {
-                var step2D = direction.ValueRO.Value * speed.ValueRO.Value * Time.deltaTime;
+                var step2D = direction.ValueRO.Value * speed.ValueRO.Value * deltaTime;
                 physicsVelocity.ValueRW.Linear += new float3(step2D.x, 0, step2D.y);
             }
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
     public partial struct AutoMoveSystem : ISystem
     {
         [BurstCompile]

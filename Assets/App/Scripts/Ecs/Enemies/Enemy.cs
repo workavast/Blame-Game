@@ -2,14 +2,15 @@
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace App.Ecs
+namespace App.Ecs.Enemies
 {
     public struct EnemyTag : IComponentData
     {
         
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(BeforeTransformPauseSimulationGroup))]
+    [UpdateAfter(typeof(DependentMoveSystemGroup))]
     [UpdateBefore(typeof(LookAtPointSystem))]
     public partial struct EnemiesLookAtPlayerSystem : ISystem
     {
@@ -31,8 +32,8 @@ namespace App.Ecs
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateBefore(typeof(LookAtPointSystem))]
+    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
+    [UpdateBefore(typeof(AutoMoveSystem))]
     public partial struct EnemiesAutoMoveToPlayerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -43,7 +44,7 @@ namespace App.Ecs
         public void OnUpdate(ref SystemState state)
         {
             var player = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalToWorld>(player);
+            var playerTransform = SystemAPI.GetComponent<LocalTransform>(player);
 
             foreach (var (transform, moveDirection) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>>()

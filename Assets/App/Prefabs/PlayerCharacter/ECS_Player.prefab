@@ -76,7 +76,7 @@ MonoBehaviour:
         IdentifierType: 1
       GenerationType: 1
   health: 100
-  moveSpeed: 25
+  moveSpeed: 20
   rotationSpeed: 0.5
 --- !u!114 &3772264454899709627
 MonoBehaviour:

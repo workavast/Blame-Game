@@ -23,7 +23,7 @@ namespace App.Ecs.Experience
         
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct ExpOrbUpdateMoveDampingSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

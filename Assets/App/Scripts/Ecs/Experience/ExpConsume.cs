@@ -1,6 +1,9 @@
-﻿using Unity.Entities;
+﻿using Unity.Burst;
+using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace App.Ecs.Experience
 {
@@ -10,6 +13,11 @@ namespace App.Ecs.Experience
     }
     
     public struct PlayerExp : IComponentData
+    {
+        public float Value;
+    }
+    
+    public struct ExpOrbConsumeDistanceError : IComponentData
     {
         public float Value;
     }
@@ -25,7 +33,8 @@ namespace App.Ecs.Experience
         public Entity OrbPrefab;
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
+    [UpdateBefore(typeof(AutoMoveSystem))]
     public partial struct ExpOrbsConsumeMoveToPlayerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -40,7 +49,7 @@ namespace App.Ecs.Experience
             var deltaTime = SystemAPI.Time.DeltaTime;
             
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
+            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
             
             var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
             var expOrbConsumeData = SystemAPI.GetComponent<ExpOrbConsumeMoveSpeed>(expEntity);
@@ -49,7 +58,7 @@ namespace App.Ecs.Experience
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRW<MoveSpeed>>()
                          .WithAll<ExpOrbTag, ExpOrbIsConsumeTag>())
             {
-                moveDirection.ValueRW.Value = math.normalize(playerTransform.Position - transform.ValueRO.Position).xz;
+                moveDirection.ValueRW.Value = math.normalize(playerTransform.Position.xz - transform.ValueRO.Position.xz);
 
                 var moveSpeedValue = math.clamp(moveSpeed.ValueRO.Value + expOrbConsumeData.Acceleration * deltaTime, 0, expOrbConsumeData.MoveSpeed);
                 moveSpeed.ValueRW.Value = moveSpeedValue;
@@ -58,7 +67,6 @@ namespace App.Ecs.Experience
     }
 
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(ExpOrbsConsumeMoveToPlayerSystem))]
     public partial struct ExpOrbsConsumeOverSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -73,18 +81,20 @@ namespace App.Ecs.Experience
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
-            var playerExpEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(playerExpEntity);
-
-            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
+            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(expEntity);
+            var expOrbConsumeDistanceError = SystemAPI.GetComponent<ExpOrbConsumeDistanceError>(expEntity);
             
+            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
+            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
+
             foreach (var (transform, expAmount, entity) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<ExpOrbAmount>>()
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<ExpOrbAmount>>()
                          .WithAll<ExpOrbTag, ExpOrbIsConsumeTag>()
                          .WithEntityAccess())
             {
-                if (math.distance(playerTransform.Position.xz, transform.ValueRO.Position.xz) <= 0.1f)
+                var dist = math.distance(playerTransform.Position.xz, transform.ValueRO.Position.xz);
+                if (dist <= expOrbConsumeDistanceError.Value)
                 {
                     playerExp.ValueRW.Value += expAmount.ValueRO.Value;
                     ecb.DestroyEntity(entity); 

@@ -1,7 +1,6 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
-using Unity.Physics.Systems;
 
 namespace App.Ecs.Enemies
 {
@@ -33,7 +32,7 @@ namespace App.Ecs.Enemies
             state.Dependency = kamikazeExplosionJob.Schedule(simulationSingleton, state.Dependency);
         }
     }
-
+    
     public struct KamikazeExplosionJob : ICollisionEventsJob
     {
         [ReadOnly] public ComponentLookup<PlayerTag> PlayerLookup;

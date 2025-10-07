@@ -22,8 +22,6 @@ namespace App.Ecs.Experience
     } 
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(AoeZonePositionUpdateSystem))]
-    [UpdateAfter(typeof(AoeZoneSizeUpdateSystem))]
     public partial struct ExpConsumeZoneViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -39,8 +37,6 @@ namespace App.Ecs.Experience
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(AoeZonePositionUpdateSystem))]
-    [UpdateAfter(typeof(AoeZoneSizeUpdateSystem))]
     public partial struct ExpConsumeZoneStartConsumeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

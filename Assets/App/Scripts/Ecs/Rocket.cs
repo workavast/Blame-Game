@@ -60,7 +60,7 @@ namespace App.Ecs
         }
     }
 
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct RocketAwaitTimerTickSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -79,7 +79,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct RocketMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -103,7 +103,6 @@ namespace App.Ecs
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(RocketMoveSystem))]
     public partial struct RocketViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -117,8 +116,7 @@ namespace App.Ecs
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(RocketMoveSystem))]
+    [UpdateInGroup(typeof(PhysicsPausableSimulationGroup))]
     public partial struct RocketExplosionSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

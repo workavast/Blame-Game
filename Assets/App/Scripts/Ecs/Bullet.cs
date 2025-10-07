@@ -2,7 +2,6 @@
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
-using Unity.Physics.Systems;
 using Unity.Transforms;
 
 namespace App.Ecs
@@ -57,7 +56,7 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct BulletMoveSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -74,7 +73,6 @@ namespace App.Ecs
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(BulletMoveSystem))]
     public partial struct BulletViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

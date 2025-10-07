@@ -1,4 +1,5 @@
-﻿using App.Views;
+﻿using App.Ecs.Enemies;
+using App.Views;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -23,8 +24,6 @@ namespace App.Ecs.PlayerPerks
     } 
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(AoeZonePositionUpdateSystem))]
-    [UpdateAfter(typeof(AoeZoneSizeUpdateSystem))]
     public partial struct DamageZoneViewUpdateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -40,8 +39,6 @@ namespace App.Ecs.PlayerPerks
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    [UpdateAfter(typeof(AoeZonePositionUpdateSystem))]
-    [UpdateAfter(typeof(AoeZoneSizeUpdateSystem))]
     public partial struct DamageZoneDamageSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

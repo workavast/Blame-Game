@@ -1,4 +1,4 @@
-﻿using App.Ecs;
+﻿using App.Ecs.Enemies;
 using Unity.Entities;
 using UnityEngine;
 

@@ -16,12 +16,16 @@ namespace App
             }
 
             var pausableInitialization = world.GetExistingSystemManaged<PausableInitializationSystemGroup>();
+            var fixedBeforeTransformPause = world.GetExistingSystemManaged<FixedBeforePhysicsPauseGroup>();
             var pausablePhysics = world.GetExistingSystemManaged<PhysicsPausableSimulationGroup>();
+            var beforeTransformPause = world.GetExistingSystemManaged<BeforeTransformPauseSimulationGroup>();
             var pausableAfterTransform = world.GetExistingSystemManaged<AfterTransformPausableSimulationGroup>();
             var pausableLate = world.GetExistingSystemManaged<PausableLateSimulationSystemGroup>();
-            
+
+            fixedBeforeTransformPause.Enabled = isPause;
             pausableInitialization.Enabled = isPause;
             pausablePhysics.Enabled = isPause;
+            beforeTransformPause.Enabled = isPause;
             pausableAfterTransform.Enabled = isPause;
             pausableLate.Enabled = isPause;
         }
