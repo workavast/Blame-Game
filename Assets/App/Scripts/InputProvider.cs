@@ -15,12 +15,12 @@ namespace App
             Input = new InputSystem_Actions();
             Input.Enable();
             
-            ServiceLocator.Add(this);
+            ServicesBridge.Add(this);
         }
 
         private void OnDestroy()
         {
-            ServiceLocator.Remove(this);
+            ServicesBridge.Remove(this);
         }
 
         private void Update()

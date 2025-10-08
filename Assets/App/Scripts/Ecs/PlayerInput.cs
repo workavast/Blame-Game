@@ -16,7 +16,7 @@ namespace App.Ecs
 
         protected override void OnUpdate()
         {
-            var playerInput = ServiceLocator.Get<InputProvider>();
+            var playerInput = ServicesBridge.Get<InputProvider>();
             if (playerInput == null)
                 return;
             

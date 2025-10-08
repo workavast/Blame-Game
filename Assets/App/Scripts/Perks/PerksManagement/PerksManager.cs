@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace App.Perks
+namespace App.Perks.PerksManagement
 {
-    public class PerksManager : MonoBehaviour
+    public class PerksManager
     {
-        [SerializeField] private List<PerkCell> initialPerks;
-
         private readonly List<PerkCell> _activatedPerks = new();
         private readonly List<PerkCell> _availablePerks = new();
 
         public int CountOfAvailablePerks => _availablePerks.Count;
         public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
 
-        private void Awake()
+        public PerksManager(IReadOnlyList<PerkCell> initialPerks)
         {
             _availablePerks.AddRange(initialPerks);
         }
@@ -49,7 +46,14 @@ namespace App.Perks
             
             _activatedPerks.Add(perkCell);
             _availablePerks.Remove(perkCell);
-            _availablePerks.AddRange(perkCell.ChildPerks);
+
+            foreach (var childPerk in perkCell.ChildPerks)
+            {
+                if (_activatedPerks.Contains(childPerk) || _availablePerks.Contains(childPerk))
+                    continue;
+                
+                _availablePerks.Add(childPerk);
+            }
         }
     }
 }

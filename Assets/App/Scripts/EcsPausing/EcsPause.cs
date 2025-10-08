@@ -2,11 +2,13 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace App
+namespace App.EcsPausing
 {
-    public static class EcsPause
+    public class EcsPause
     {
-        public static void SetPauseState(bool isPause)
+        private int _pauseRequestCount;
+        
+        public void SetPauseState(bool isPause)
         {
             var world = World.DefaultGameObjectInjectionWorld;
             if (world == null)
@@ -15,6 +17,20 @@ namespace App
                 return;
             }
 
+            if (isPause)
+                _pauseRequestCount++;
+            else
+                _pauseRequestCount--;
+
+            if (_pauseRequestCount > 1)
+                return;
+
+            if (_pauseRequestCount < 0)
+            {
+                Debug.LogWarning("Ypu try unset pause when it already un active");
+                return;
+            }
+            
             var pausableInitialization = world.GetExistingSystemManaged<PausableInitializationSystemGroup>();
             var fixedBeforeTransformPause = world.GetExistingSystemManaged<FixedBeforePhysicsPauseGroup>();
             var pausablePhysics = world.GetExistingSystemManaged<PhysicsPausableSimulationGroup>();

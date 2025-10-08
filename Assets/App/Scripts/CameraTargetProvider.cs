@@ -10,12 +10,12 @@ namespace App
 
         private void Awake()
         {
-            ServiceLocator.Add(this);
+            ServicesBridge.Add(this);
         }
 
         private void OnDestroy()
         {
-            ServiceLocator.Remove(this);
+            ServicesBridge.Remove(this);
         }
     }
 }

@@ -65,7 +65,7 @@ namespace App.Ecs
 
                     if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
                     {
-                        var instance = ServiceLocator.Get<SpawnProvider>().Spawn(prefabRef.Result);
+                        var instance = ServicesBridge.Get<SpawnProvider>().Spawn(prefabRef.Result);
 
                         instance.SetPrefab(ref prefabRef);
                         
