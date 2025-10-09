@@ -51,7 +51,7 @@ namespace App.Ecs.Enemies
                          .WithAll<IsActiveTag, EnemyTag, AutoMoveTag>())
             {
                 var moveDirectionV3 = playerTransform.Position - transform.ValueRO.Position;
-                moveDirection.ValueRW.Value = math.normalize(moveDirectionV3.xz);
+                moveDirection.ValueRW.Value = math.normalizesafe(moveDirectionV3.xz);
             }
         }
     }

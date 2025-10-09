@@ -2,7 +2,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace App.EcsPausing
+namespace App.GamePausing.EcsPausing
 {
     public class EcsPause
     {
@@ -27,7 +27,8 @@ namespace App.EcsPausing
 
             if (_pauseRequestCount < 0)
             {
-                Debug.LogWarning("Ypu try unset pause when it already un active");
+                _pauseRequestCount = 0;
+                Debug.LogWarning("Ypu try unset pause ECS when it already paused");
                 return;
             }
             
@@ -38,12 +39,12 @@ namespace App.EcsPausing
             var pausableAfterTransform = world.GetExistingSystemManaged<AfterTransformPausableSimulationGroup>();
             var pausableLate = world.GetExistingSystemManaged<PausableLateSimulationSystemGroup>();
 
-            fixedBeforeTransformPause.Enabled = isPause;
-            pausableInitialization.Enabled = isPause;
-            pausablePhysics.Enabled = isPause;
-            beforeTransformPause.Enabled = isPause;
-            pausableAfterTransform.Enabled = isPause;
-            pausableLate.Enabled = isPause;
+            fixedBeforeTransformPause.Enabled = !isPause;
+            pausableInitialization.Enabled = !isPause;
+            pausablePhysics.Enabled = !isPause;
+            beforeTransformPause.Enabled = !isPause;
+            pausableAfterTransform.Enabled = !isPause;
+            pausableLate.Enabled = !isPause;
         }
     }
 }

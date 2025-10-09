@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using App.EcsPausing;
+using App.GamePausing;
+using App.GamePausing.EcsPausing;
 using App.Perks.PerksManagement;
 using UnityEngine;
 using Zenject;
@@ -12,12 +13,10 @@ namespace App.Perks
         [SerializeField] private List<PerkCard> perkCards;
 
         [Inject] private readonly PerksManager _perksManager;
-        [Inject] private readonly EcsPause _ecsPause;
+        [Inject] private readonly GamePause _gamePause;
         
         public int CardsCount => perkCards.Count;
 
-        private float _levelTimer;
-        
         private void Awake()
         {
             foreach (var perkCard in perkCards) 
@@ -45,7 +44,7 @@ namespace App.Perks
         private void Hide()
         {
             cardsHolder.gameObject.SetActive(false);
-            _ecsPause.SetPauseState(true);
+            _gamePause.SetPauseState(false);
         }
         
         private void Perform(PerkCell perkCell)

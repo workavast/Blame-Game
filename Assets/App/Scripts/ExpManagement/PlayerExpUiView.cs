@@ -1,12 +1,11 @@
-﻿using App.ExpManagement;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.UI
+namespace App.ExpManagement
 {
-    public class PlayerExpView : MonoBehaviour
+    public class PlayerExpUiView : MonoBehaviour
     {
         [SerializeField] private Slider expBarView;
         [SerializeField] private TMP_Text expTxtView;

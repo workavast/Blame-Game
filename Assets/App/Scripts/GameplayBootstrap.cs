@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using App.EcsPausing;
 using App.LevelUpManagement;
 using App.Perks;
 using App.Perks.PerksManagement;

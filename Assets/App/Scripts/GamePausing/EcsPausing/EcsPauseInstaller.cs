@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace App.EcsPausing
+namespace App.GamePausing.EcsPausing
 {
     public class EcsPauseInstaller : MonoInstaller
     {

@@ -1,7 +1,7 @@
-﻿using System;
-using App.EcsPausing;
+﻿using App.GamePausing;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.UI
 {
@@ -11,7 +11,7 @@ namespace App.UI
         [SerializeField] private Button backInMenuBtn;
         [SerializeField] private Button quitBtn;
 
-        private EcsPause _ecsPause;
+        [Inject] private readonly GamePause _gamePause;
         
         private void Awake()
         {
@@ -20,19 +20,14 @@ namespace App.UI
             quitBtn.onClick.AddListener(QuitGame);
         }
 
-        private void Start()
-        {
-            _ecsPause = ServicesBridge.Get<EcsPause>();
-        }
-
         public void Open()
         {
-            _ecsPause.SetPauseState(true);
+            _gamePause.SetPauseState(true);
         }
         
         private void ContinueGame()
         {
-            _ecsPause.SetPauseState(false);
+            _gamePause.SetPauseState(false);
         }
 
         private void BackInMenu()

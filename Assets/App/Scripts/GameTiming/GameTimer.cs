@@ -1,0 +1,18 @@
+﻿namespace App.GameTiming
+{
+    public class GameTimer
+    {
+        public float Time { get; private set; }
+        
+        public float Minutes { get; private set; }
+        public float Seconds { get; private set; }
+        
+        public void IncreaseTime(float deltaTime)
+        {
+            Time += deltaTime;
+            
+            Minutes = Time / 60;
+            Seconds = Time % 60;
+        }
+    }
+}

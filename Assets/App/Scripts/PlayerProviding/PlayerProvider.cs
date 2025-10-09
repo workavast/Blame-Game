@@ -13,18 +13,19 @@ namespace App.PlayerProviding
             if (EcsSingletons.TryGetComponentOfSingletonRO<PlayerTag, MaxHealth>(out var maxHealth))
             {
                 MaxHealth = maxHealth.Value;
-                
+
                 if (EcsSingletons.TryGetComponentOfSingletonRO<PlayerTag, CurrentHealth>(out var health))
+                {
                     CurrentHealth = health.Value;
+                    FillPercentage = CurrentHealth / MaxHealth;
+                }
                 else
-                    MaxHealth = CurrentHealth = 0;
+                    FillPercentage = CurrentHealth = 0;
             }
             else
             {
-                MaxHealth = CurrentHealth = 0;
+                FillPercentage = MaxHealth = CurrentHealth = 0;
             }
-
-            FillPercentage = CurrentHealth / MaxHealth;
         }
     }
 }
