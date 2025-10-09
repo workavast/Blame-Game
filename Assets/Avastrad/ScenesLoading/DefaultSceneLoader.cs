@@ -30,7 +30,6 @@ namespace Avastrad.ScenesLoading
 
         public void LoadScene(int index, bool showLoadScreenInstantly = false, bool skipLoadingScreen = false)
         {
-            Debug.Log($"{_targetSceneIndex} | {index}");
             _targetSceneIndex = index;
             
             OnLoadingStarted?.Invoke();
