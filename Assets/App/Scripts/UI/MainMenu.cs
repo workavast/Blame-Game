@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using App.ScenesReferencing;
+using Avastrad.ScenesLoading;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.UI
 {
@@ -8,8 +11,10 @@ namespace App.UI
     {
         [SerializeField] private Button startGameBtn;
         [SerializeField] private Button quitBtn;
-        [SerializeField] private int gameplaySceneIndex;
+        [SerializeField] private SceneReference gameplaySceneRef;
 
+        [Inject] private readonly ISceneLoader _sceneLoader;
+        
         private void Awake()
         {
             startGameBtn.onClick.AddListener(StartGame);
@@ -18,7 +23,7 @@ namespace App.UI
 
         private void StartGame()
         {
-            SceneManager.LoadScene(gameplaySceneIndex);
+            _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
         }
 
         private void Quit()

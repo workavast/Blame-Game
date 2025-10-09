@@ -5,6 +5,21 @@ namespace App
 {
     public static class EcsSingletons
     {
+        public static bool Exist<TSingleton>()
+            where TSingleton: unmanaged, IComponentData
+        {
+            var world = World.DefaultGameObjectInjectionWorld;
+            if (world == null)
+            {
+                Debug.LogError("World is null");
+                return false;
+            }
+            
+            var query = world.EntityManager.CreateEntityQuery(typeof(TSingleton));
+            
+            return query.HasSingleton<TSingleton>();
+        }
+        
         public static bool TryGetSingletonRO<TSingleton>(out TSingleton component)
             where TSingleton: unmanaged, IComponentData
         {

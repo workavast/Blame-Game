@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using App.LevelUpManagement;
-using App.Perks;
-using App.Perks.PerksManagement;
+using Avastrad.ScenesLoading;
 using UnityEngine;
 using Zenject;
 
@@ -9,13 +8,15 @@ namespace App
 {
     public class GameplayBootstrap : MonoBehaviour
     {
-        [SerializeField] private PerksChooseWindow perksChooseWindow;
-
         [Inject] private readonly LevelUpManager _levelUpManager;
+        [Inject] private readonly ISceneLoader _sceneLoader;
         
-        private void Start()
+        private async void Start()
         {
             _levelUpManager.LevelUp();
+
+            await Task.Delay(2000);
+            _sceneLoader.HideLoadScreen(false);
         }
     }
 }
