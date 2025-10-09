@@ -28,7 +28,7 @@ namespace App.GamePausing.EcsPausing
             if (_pauseRequestCount < 0)
             {
                 _pauseRequestCount = 0;
-                Debug.LogWarning("Ypu try unset pause ECS when it already paused");
+                Debug.LogWarning("Ypu try unset pause ECS when it already unpaused");
                 return;
             }
             

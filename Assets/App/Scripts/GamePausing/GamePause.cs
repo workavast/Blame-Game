@@ -27,7 +27,7 @@ namespace App.GamePausing
             if (_pauseRequestCount < 0)
             {
                 _pauseRequestCount = 0;
-                Debug.LogWarning("Ypu try unset pause game when it already paused");
+                Debug.LogWarning("Ypu try unset pause game when it already unpaused");
                 return;
             }
             

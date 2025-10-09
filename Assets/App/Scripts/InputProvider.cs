@@ -20,6 +20,9 @@ namespace App
 
         private void OnDestroy()
         {
+            Input.Disable();
+            Input.Dispose();
+            
             ServicesBridge.Remove(this);
         }
 
