@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e5b2eab9bcc4bc38c40bfa8ef5732e8, type: 3}
-  m_Name: ForwardShooter PerkCardConfig
+  m_Name: MachineGun PerkCardConfig
   m_EditorClassIdentifier: 
-  title: Forward Shooter
-  description: forward
-  icon: {fileID: 0}
-  ecsPerkPrefab: {fileID: 6457018778090849523, guid: af77cccc8298ec74dabad64c238fe73c, type: 3}
+  title: Machine Gun
+  description: Machine Gun
+  icon: {fileID: 21300000, guid: f2b927b066c29004c8e187e403fdce5f, type: 3}
+  ecsPerkPrefab: {fileID: 8210490951117237937, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}
+  childPerks: []

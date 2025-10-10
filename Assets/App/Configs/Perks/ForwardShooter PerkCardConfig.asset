@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e5b2eab9bcc4bc38c40bfa8ef5732e8, type: 3}
-  m_Name: DamageZone PerkCardConfig
+  m_Name: ForwardShooter PerkCardConfig
   m_EditorClassIdentifier: 
-  title: Damage Zone
-  description: Damage Zone
-  icon: {fileID: 0}
-  ecsPerkPrefab: {fileID: 6450978080292737787, guid: 05df327d35bbab14ab6a4819fdc5e9c2, type: 3}
+  title: Forward Shooter
+  description: forward
+  icon: {fileID: 21300000, guid: 208fadd1e0552c24eafd4b07759aeaa6, type: 3}
+  ecsPerkPrefab: {fileID: 6457018778090849523, guid: af77cccc8298ec74dabad64c238fe73c, type: 3}
   childPerks: []

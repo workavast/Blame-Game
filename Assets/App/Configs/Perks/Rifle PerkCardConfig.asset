@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e5b2eab9bcc4bc38c40bfa8ef5732e8, type: 3}
-  m_Name: MachineGun PerkCardConfig
+  m_Name: Rifle PerkCardConfig
   m_EditorClassIdentifier: 
-  title: Machine Gun
-  description: Machine Gun
-  icon: {fileID: 0}
-  ecsPerkPrefab: {fileID: 8210490951117237937, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}
+  title: Rifle
+  description: Rifle
+  icon: {fileID: 21300000, guid: 42aea7937f374874280dfe012acd785b, type: 3}
+  ecsPerkPrefab: {fileID: 149804519188190474, guid: 3aa35584f855127418713718ec08e18a, type: 3}
   childPerks: []
