@@ -8,13 +8,16 @@ namespace App.PlayerDeath
 {
     public class PlayerDeadUi : MonoBehaviour
     {
+        [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;
+        [SerializeField] private SceneReference gameplaySceneRef;
         [SerializeField] private SceneReference mainMenuSceneRef;
 
         [Inject] private readonly ISceneLoader _sceneLoader;
         
         private void Awake()
         {
+            restartBtn?.onClick.AddListener(Restart);
             backInMenuBtn?.onClick.AddListener(LoadMenu);
         }
 
@@ -28,6 +31,11 @@ namespace App.PlayerDeath
             gameObject.SetActive(false);
         }
 
+        private void Restart()
+        {
+            _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
+        }
+        
         private void LoadMenu()
         {
             _sceneLoader.LoadScene(mainMenuSceneRef.SceneIndex);
