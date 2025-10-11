@@ -17,7 +17,7 @@ namespace App.GameTiming
             if (!Mathf.Approximately(_lastTimeValue, _gameTimer.Time))
             {
                 _lastTimeValue = _gameTimer.Time;
-                timeViewTxt.text = $"{_gameTimer.Minutes:00}:{_gameTimer.Seconds:00}";
+                timeViewTxt.text = $"{Mathf.Floor(_gameTimer.Minutes):00}:{Mathf.Floor(_gameTimer.Seconds):00}";
             }
         }
     }

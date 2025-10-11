@@ -8,7 +8,7 @@ namespace App.Authorings.Enemies
     public class GunnerBotSpawnAuthority : MonoBehaviour
     {
         [SerializeField] private GunnerBotAuthoring prefab;
-        [SerializeField] private float interval;
+        [SerializeField] private float interval = 1;
         [SerializeField] private float distance;
         [SerializeField] private uint seed;
 
@@ -18,6 +18,8 @@ namespace App.Authorings.Enemies
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
+                AddComponent(entity, new GunnerBotSpawnerTag());
+                AddComponent(entity, new EnemiesSpawnCountPerSecond());
                 AddComponent(entity, new GunnerBotSpawnData()
                 {
                     Prefab = GetEntity(authoring.prefab, TransformUsageFlags.Dynamic),
@@ -26,7 +28,7 @@ namespace App.Authorings.Enemies
                 });
                 AddComponent(entity, new GunnerBotSpawner()
                 {
-                    Timer = 0f,
+                    Timer = authoring.interval,
                     Random = Random.CreateFromIndex(authoring.seed)
                 });
             }

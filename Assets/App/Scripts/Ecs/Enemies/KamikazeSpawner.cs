@@ -5,6 +5,10 @@ using Random = Unity.Mathematics.Random;
 
 namespace App.Ecs.Enemies
 {
+    public struct KamikazeSpawnerTag : IComponentData
+    {
+    }
+    
     public struct KamikazeSpawnData : IComponentData
     {
         public Entity Prefab;
@@ -23,6 +27,7 @@ namespace App.Ecs.Enemies
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<EnemiesSpawnCountPerSecond>();
             state.RequireForUpdate<PlayerTag>();
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
         }
@@ -36,10 +41,12 @@ namespace App.Ecs.Enemies
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
             
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (spawner, data) in SystemAPI.Query<RefRW<KamikazeSpawner>, RefRO<KamikazeSpawnData>>())
+            foreach (var (spawner, data, countPerSecond) in 
+                     SystemAPI.Query<RefRW<KamikazeSpawner>, RefRO<KamikazeSpawnData>, RefRO<EnemiesSpawnCountPerSecond>>()
+                         .WithAll<KamikazeSpawnerTag>())
             {
-                spawner.ValueRW.Timer -= deltaTime;
-                if (spawner.ValueRO.Timer > 0) 
+                spawner.ValueRW.Timer -= deltaTime * countPerSecond.ValueRO.Value;
+                if (spawner.ValueRO.Timer > 0)
                     continue;
 
                 spawner.ValueRW.Timer = data.ValueRO.Interval;
