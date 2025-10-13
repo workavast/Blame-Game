@@ -3,7 +3,6 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.PlayerPerks
 {
@@ -60,8 +59,10 @@ namespace App.Ecs.PlayerPerks
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, entity) in
-                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>>()
+            foreach (var (distanceReaction, data,
+                         damageScale, additionalPenetration, entity) in
+                     SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, 
+                             RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
                          .WithAll<MachineGunTag>()
                          .WithDisabled<ShootCooldown>()
                          .WithEntityAccess())
@@ -73,10 +74,9 @@ namespace App.Ecs.PlayerPerks
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet,
-                    LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
+                ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
                 
-                BulletBuilder.Build(ref ecb, ref bullet, data);
+                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, additionalPenetration);
             }
         }
     }

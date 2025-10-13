@@ -13,7 +13,7 @@ namespace App.Authorings.PlayerPerks
         [SerializeField] private float moveSpeed;
         [SerializeField] private float shootPause;
         [SerializeField] private float distanceReaction;
-        [SerializeField] private int penetration = 1;
+        [SerializeField] private int penetration;
 
         private class Baker : Baker<MachineGunAuthoring>
         {
@@ -24,9 +24,13 @@ namespace App.Authorings.PlayerPerks
                 AddComponent(entity, new MachineGunTag());
                 AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
 
+                AddComponent(entity, new DamageScale() { Value = 1 });
+                AddComponent(entity, new AdditionalPenetration());
+                
                 AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
                 AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
-                
+                AddComponent(entity, new FireRateScale() { Value = 1 });
+
                 AddComponent(entity, new BulletInitialData()
                 {
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),

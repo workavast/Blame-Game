@@ -15,6 +15,11 @@ namespace App.Ecs
         public float Value;
     }
     
+    public struct AoeZoneRadiusScale : IComponentData
+    {
+        public float Value;
+    }
+    
     public struct AoeZoneTargetRadius : IComponentData
     {
         public float Value;
@@ -54,14 +59,14 @@ namespace App.Ecs
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (transform, radius, targetRadius, radiusFactor) in
+            foreach (var (transform, radius, radiusScale, targetRadius, radiusFactor) in
                      SystemAPI
-                         .Query<RefRW<LocalTransform>, RefRW<AoeZoneRadius>, RefRO<AoeZoneTargetRadius>,
+                         .Query<RefRW<LocalTransform>, RefRW<AoeZoneRadius>, RefRW<AoeZoneRadiusScale>, RefRO<AoeZoneTargetRadius>,
                              RefRO<AoeZoneRadiusFactor>>()
                          .WithAll<AoeZoneTag>())
             {
                 var radiusValue = radius.ValueRO.Value;
-                var targetRadiusValue = targetRadius.ValueRO.Value;
+                var targetRadiusValue = targetRadius.ValueRO.Value * radiusScale.ValueRO.Value;
                 if (math.abs(targetRadiusValue - radiusValue) > 0.001f)
                 {
                     var sign = math.sign(targetRadiusValue - radiusValue);

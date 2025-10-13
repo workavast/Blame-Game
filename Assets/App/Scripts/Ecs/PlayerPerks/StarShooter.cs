@@ -25,23 +25,23 @@ namespace App.Ecs.PlayerPerks
 
         public void OnUpdate(ref SystemState state)
         {
-            var deltaTime = SystemAPI.Time.DeltaTime;
-
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
 
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, bulletData, entity) in 
-                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<BulletInitialData>>()
+            foreach (var (data, starShooterAdditionalBulletsCount, 
+                         bulletData, damageScale, entity) in 
+                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
+                             RefRO<BulletInitialData>, RefRO<DamageScale>>()
                          .WithAll<StarShooterTag>()
                          .WithDisabled<ShootCooldown>()
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
-                var bulletsCount = data.ValueRO.BulletsCount;
+                var bulletsCount = data.ValueRO.BulletsCount + starShooterAdditionalBulletsCount.ValueRO.Value;
                 var angleStep = math.TAU / bulletsCount;
                 var angle = 0f;
                 
@@ -60,7 +60,7 @@ namespace App.Ecs.PlayerPerks
                     var bulletSpawnPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
                     ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, spawnRotation));
                   
-                    BulletBuilder.Build(ref ecb, ref bullet, bulletData);
+                    BulletBuilder.Build(ref ecb, ref bullet, bulletData, damageScale);
                 }
             }
         }

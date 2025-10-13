@@ -28,7 +28,11 @@ namespace App.Authorings.PlayerPerks
 
                 AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.interval });
                 AddComponent(entity, new ShootCooldown() { Timer = authoring.interval });
+                AddComponent(entity, new FireRateScale() { Value = 1 });
 
+                AddComponent(entity, new DamageScale() { Value = 1 });
+                AddComponent(entity, new AdditionalProjectilesCount());
+                
                 AddComponent(entity, new RocketLauncherTag());
                 AddComponent(entity, new RocketLauncherRandom() { Random =  Random.CreateFromIndex(authoring.seed)});
                 AddComponent(entity, new RocketLauncherData()
