@@ -14,7 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 609897343643812836, guid: 2e5aaf766f17bf345b6d8c6ca41e7b10, type: 3}
       propertyPath: viewPrefab.Id.GlobalId.AssetGUID
-      value: 61e3b98f74ffc946b4c10c0ecad60325
+      value: 29bf057d0b8a1248b84e65232be698ea
+      objectReference: {fileID: 0}
+    - target: {fileID: 609897343643812836, guid: 2e5aaf766f17bf345b6d8c6ca41e7b10, type: 3}
+      propertyPath: viewPrefab.Id.GlobalId.SceneObjectIdentifier0
+      value: 1311673715882623762
       objectReference: {fileID: 0}
     - target: {fileID: 4178265351376478207, guid: 2e5aaf766f17bf345b6d8c6ca41e7b10, type: 3}
       propertyPath: m_Radius
