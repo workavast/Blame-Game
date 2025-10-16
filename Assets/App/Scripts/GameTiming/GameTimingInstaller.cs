@@ -6,7 +6,7 @@ namespace App.GameTiming
     {
         public override void InstallBindings()
         {
-            Container.Bind<GameTimer>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameTimer>().FromNew().AsSingle();
         }
     }
 }

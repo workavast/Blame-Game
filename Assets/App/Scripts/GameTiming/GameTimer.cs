@@ -1,9 +1,8 @@
 ﻿namespace App.GameTiming
 {
-    public class GameTimer
+    public class GameTimer : IGameTimerRO
     {
         public float Time { get; private set; }
-        
         public float Minutes { get; private set; }
         public float Seconds { get; private set; }
         

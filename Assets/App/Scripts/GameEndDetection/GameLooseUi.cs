@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.PlayerDeath
+namespace App.GameEndDetection
 {
-    public class PlayerDeadUi : MonoBehaviour
+    public class GameLooseUi : MonoBehaviour
     {
         [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;

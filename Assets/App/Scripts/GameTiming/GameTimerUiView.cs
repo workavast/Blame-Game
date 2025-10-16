@@ -8,7 +8,7 @@ namespace App.GameTiming
     {
         [SerializeField] private TMP_Text timeViewTxt;
 
-        [Inject] private readonly GameTimer _gameTimer;
+        [Inject] private readonly IGameTimerRO _gameTimer;
         
         private float _lastTimeValue;
 
