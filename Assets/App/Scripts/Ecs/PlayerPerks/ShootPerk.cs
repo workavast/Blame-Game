@@ -51,6 +51,11 @@ namespace App.Ecs.PlayerPerks
     [UpdateAfter(typeof(ShootCooldownStarterSystem))]
     public partial struct ShootCooldownTickSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<PlayerTag>();
+        }
+
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
@@ -61,11 +66,14 @@ namespace App.Ecs.PlayerPerks
 
         private void TickWithScale(ref SystemState state, float deltaTime)
         {
+            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
+            var globalFireRateScale = SystemAPI.GetComponent<FireRateScale>(playerEntity);
+            
             foreach (var (shootCooldown, scale, shootCooldownToggler)  in
                      SystemAPI.Query<RefRW<ShootCooldown>, RefRO<FireRateScale>, EnabledRefRW<ShootCooldown>>()
                          .WithAll<IsActiveTag>())
             {
-                shootCooldown.ValueRW.Timer -= deltaTime * scale.ValueRO.Value;
+                shootCooldown.ValueRW.Timer -= deltaTime * (scale.ValueRO.Value + globalFireRateScale.Value);
                 if (shootCooldown.ValueRO.Timer <= 0) 
                     shootCooldownToggler.ValueRW = false;
             }

@@ -11,6 +11,11 @@ namespace App.Ecs.Experience
     {
         
     }
+
+    public struct ExpScale : IComponentData
+    {
+        public float Value;
+    }
     
     public struct PlayerExp : IComponentData
     {
@@ -87,6 +92,7 @@ namespace App.Ecs.Experience
             
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
+            var globalExpScale = SystemAPI.GetComponent<ExpScale>(playerEntity);
 
             foreach (var (transform, expAmount, entity) in 
                      SystemAPI.Query<RefRO<LocalTransform>, RefRO<ExpOrbAmount>>()
@@ -96,7 +102,7 @@ namespace App.Ecs.Experience
                 var dist = math.distance(playerTransform.Position.xz, transform.ValueRO.Position.xz);
                 if (dist <= expOrbConsumeDistanceError.Value)
                 {
-                    playerExp.ValueRW.Value += expAmount.ValueRO.Value;
+                    playerExp.ValueRW.Value += expAmount.ValueRO.Value * globalExpScale.Value;
                     ecb.DestroyEntity(entity); 
                 }
             }

@@ -22,7 +22,7 @@ namespace App.Authorings.PlayerPerks
                 AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.prefab });
                 
                 AddComponent(entity, new AttackDamage() { Value = authoring.damage });
-                AddComponent(entity, new DamageScale() {Value = 1});
+                AddComponent(entity, new DamageScale());
                 
                 AddBuffer<DamageFrameBuffer>(entity);
             }

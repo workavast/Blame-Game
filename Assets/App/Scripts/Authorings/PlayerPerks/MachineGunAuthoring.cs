@@ -24,12 +24,12 @@ namespace App.Authorings.PlayerPerks
                 AddComponent(entity, new MachineGunTag());
                 AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
 
-                AddComponent(entity, new DamageScale() { Value = 1 });
+                AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalPenetration());
                 
                 AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
                 AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new FireRateScale() { Value = 1 });
+                AddComponent(entity, new FireRateScale());
 
                 AddComponent(entity, new BulletInitialData()
                 {

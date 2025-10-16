@@ -65,6 +65,14 @@ namespace App.Ecs
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
             ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value});
         }
+        
+        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
+            RefRO<DamageScale> damageScale, DamageScale globalDamageScale, RefRO<AdditionalPenetration> additionalPenetration)
+        {
+            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value)});
+            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value});
+        }
     }
 
     public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>

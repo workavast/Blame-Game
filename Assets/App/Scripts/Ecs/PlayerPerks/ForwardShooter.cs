@@ -22,12 +22,13 @@ namespace App.Ecs.PlayerPerks
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-
+            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, damageScale, entity) in 
-                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>>()
+            foreach (var (data, damageScale, additionalPenetration, entity) in 
+                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
                          .WithAll<ForwardShooterTag>()
                          .WithDisabled<ShootCooldown>()
                          .WithEntityAccess())
@@ -38,7 +39,7 @@ namespace App.Ecs.PlayerPerks
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
                 
-                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale);
+                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
             }
         }
     }

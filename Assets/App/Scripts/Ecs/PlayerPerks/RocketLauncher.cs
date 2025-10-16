@@ -41,7 +41,8 @@ namespace App.Ecs.PlayerPerks
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
-            
+            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+
             var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             
@@ -54,7 +55,7 @@ namespace App.Ecs.PlayerPerks
                 SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
 
                 var rocketsCount = data.ValueRO.RocketsCount + additionalProjectilesCount.ValueRO.Value;
-                var damage = data.ValueRO.Damage * damageScale.ValueRO.Value;
+                var damage = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value);
                 for (var i = 0; i < rocketsCount; i++)
                 {
                     var spawnPoint = RandomPosition.GetPointInRadius(playerPosition, data.ValueRO.MinDistance, data.ValueRO.MaxDistance, ref random.ValueRW.Random);

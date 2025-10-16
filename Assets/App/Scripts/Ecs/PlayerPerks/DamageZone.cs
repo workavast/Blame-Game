@@ -40,14 +40,22 @@ namespace App.Ecs.PlayerPerks
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct DamageZoneDamageSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<PlayerTag>();
+        }
+
         public void OnUpdate(ref SystemState state)
         {
+            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
+            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            
             var deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var (zoneTransform, radius, damage, damageScale) in 
                      SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<DamageScale>>()
                          .WithAll<DamageZoneTag>())
             {
-                var damageValue = damage.ValueRO.Value * damageScale.ValueRO.Value * deltaTime;
+                var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value) * deltaTime;
                 foreach (var (enemyTransform, damageBuffer) in SystemAPI
                              .Query<RefRO<LocalTransform>, DynamicBuffer<DamageFrameBuffer>>()
                              .WithAll<EnemyTag>())

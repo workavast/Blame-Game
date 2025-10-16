@@ -2,6 +2,7 @@
 {
     public static class PerkConst
     {
+        public const string GlobalPath = Consts.AppName + "/Perks/Global/";
         public const string ExpZonePath = Consts.AppName + "/Perks/ExpZone/";
         public const string DamageZonePath = Consts.AppName + "/Perks/DamageZone/";
         public const string ForwardShooterPath = Consts.AppName + "/Perks/ForwardShooter/";

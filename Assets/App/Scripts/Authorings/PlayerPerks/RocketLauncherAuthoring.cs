@@ -28,9 +28,9 @@ namespace App.Authorings.PlayerPerks
 
                 AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.interval });
                 AddComponent(entity, new ShootCooldown() { Timer = authoring.interval });
-                AddComponent(entity, new FireRateScale() { Value = 1 });
+                AddComponent(entity, new FireRateScale());
 
-                AddComponent(entity, new DamageScale() { Value = 1 });
+                AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalProjectilesCount());
                 
                 AddComponent(entity, new RocketLauncherTag());

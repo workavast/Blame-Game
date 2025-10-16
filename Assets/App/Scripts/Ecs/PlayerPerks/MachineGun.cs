@@ -31,7 +31,8 @@ namespace App.Ecs.PlayerPerks
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
-
+            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
@@ -76,7 +77,7 @@ namespace App.Ecs.PlayerPerks
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
                 
-                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, additionalPenetration);
+                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
             }
         }
     }
