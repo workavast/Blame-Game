@@ -393,7 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2913a2015847549a754c2d7f7f2ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perksChooseWindow: {fileID: 1799702841}
 --- !u!4 &402262279
 Transform:
   m_ObjectHideFlags: 0
@@ -702,6 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPerksConfig: {fileID: 11400000, guid: 9bdb74d142d867a45a5ed9ea19393fc0, type: 2}
+  perksChooseWindow: {fileID: 1799702841}
 --- !u!4 &549674994
 Transform:
   m_ObjectHideFlags: 0
@@ -1431,6 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1f6a2a196a4990a6e316250c966a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 3c685f38dee911141b7419777ca3a4c5, type: 2}
 --- !u!4 &1423725768
 Transform:
   m_ObjectHideFlags: 0

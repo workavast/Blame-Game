@@ -29,6 +29,8 @@ namespace App.Perks
             if (perks.Count <= 0)
                 return;
 
+            _gamePause.SetPauseState(true);
+            
             cardsHolder.gameObject.SetActive(true);
 
             foreach (var perkCard in perkCards) 

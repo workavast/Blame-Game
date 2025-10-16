@@ -3,22 +3,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.ExpManagement
+namespace App.LevelManagement.ExpManagement
 {
     public class PlayerExpUiView : MonoBehaviour
     {
         [SerializeField] private Slider expBarView;
         [SerializeField] private TMP_Text expTxtView;
 
-        [Inject] private readonly ExpManager _expManager;
+        [Inject] private readonly IExpStorageRO _expStorage;
         
         private void Update()
         {
-            var currentFillPercentage = _expManager.FillTargetPercentage;
+            var currentFillPercentage = _expStorage.FillTargetPercentage;
             if (!Mathf.Approximately(expBarView.value, currentFillPercentage))
             {
                 expBarView.value = currentFillPercentage;
-                expTxtView.text = $"{_expManager.ExpAmount}/{_expManager.ExpTarget}";
+                expTxtView.text = $"{_expStorage.ExpAmount}/{_expStorage.ExpTarget}";
             }
         }
     }

@@ -11,6 +11,7 @@ namespace App.Perks.PerksManagement
         private readonly List<PerkCell> _availablePerks = new();
 
         public int CountOfAvailablePerks => _availablePerks.Count;
+        public IReadOnlyList<PerkCell> AvailablePerks => _availablePerks;
         public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
 
         public PerksManager(IReadOnlyList<PerkCell> initialPerks)

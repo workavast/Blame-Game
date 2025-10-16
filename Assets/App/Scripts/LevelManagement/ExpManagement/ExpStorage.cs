@@ -1,17 +1,26 @@
 ﻿using App.Ecs.Experience;
+using UnityEngine;
 
-namespace App.ExpManagement
+namespace App.LevelManagement.ExpManagement
 {
-    public class ExpManager
+    public class ExpStorage : IExpStorageRO
     {
         public float ExpAmount { get; private set; }
-        public float ExpTarget { get; private set; } = 10;
+        public float ExpTarget { get; private set; }
         public float ExpPrevTarget { get; private set; }
 
         public float FillPercentage => ExpAmount / ExpTarget;
         public float FillTargetPercentage => (ExpAmount - ExpPrevTarget) / (ExpTarget - ExpPrevTarget);
 
-        public bool IsReachExpLimit()
+        private readonly ExpConfig _config;
+        
+        public ExpStorage(ExpConfig config)
+        {
+            _config = config;
+            ExpTarget = config.InitialExpLevel;
+        }
+        
+        public bool IsReachExpTarget()
         {
             if (EcsSingletons.TryGetSingletonRO<PlayerExp>(out var playerExp))
             {
@@ -23,10 +32,10 @@ namespace App.ExpManagement
             return false;
         }
         
-        public void IncreaseExpLimit()
+        public void IncreaseExpTarget()
         {
             ExpPrevTarget = ExpTarget;
-            ExpTarget *= 1.35f;
+            ExpTarget *= _config.ScalePerLevel;
         }
     }
 }
