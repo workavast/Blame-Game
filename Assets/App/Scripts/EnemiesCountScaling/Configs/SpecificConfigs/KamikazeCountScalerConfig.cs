@@ -1,4 +1,4 @@
-﻿using App.Ecs.Enemies;
+﻿using App.Ecs.Enemies.Kamikaze;
 using UnityEngine;
 
 namespace App.EnemiesCountScaling.Configs

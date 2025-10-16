@@ -1,8 +1,8 @@
-﻿using Unity.Burst;
+﻿using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Physics.Systems;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -31,8 +31,7 @@ namespace App.Ecs
         {
             var deltaTime = SystemAPI.Time.fixedDeltaTime;
             foreach (var (physicsVelocity,direction,speed) in 
-                     SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>()
-                         .WithAll<IsActiveTag>())
+                     SystemAPI.Query<RefRW<PhysicsVelocity>, RefRO<MoveDirection>, RefRO<MoveSpeed>>())
             {
                 var step2D = direction.ValueRO.Value * speed.ValueRO.Value * deltaTime;
                 physicsVelocity.ValueRW.Linear += new float3(step2D.x, 0, step2D.y);

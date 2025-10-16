@@ -1,5 +1,7 @@
 ﻿using App.Ecs;
 using App.Ecs.Experience;
+using App.Ecs.Experience.ExpOrb;
+using App.Ecs.Player;
 using App.Perks.PerksManagement;
 using UnityEngine;
 
@@ -15,7 +17,7 @@ namespace App.Perks.Configs.Upgrades.Global
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<PlayerTag, ExpScale>();
             currentScale.Value += scale;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<PlayerTag, ExpScale>(currentScale);
+            EcsSingletons.TrySetComponentOfSingleton<PlayerTag, ExpScale>(currentScale);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Player;
+using App.Ecs.SystemGroups;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
@@ -30,7 +32,7 @@ namespace App.Ecs.Enemies
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(player);
 
             foreach (var lookPoint in SystemAPI.Query<RefRW<LookPoint>>()
-                         .WithAll<IsActiveTag, EnemyTag>())
+                         .WithAll<EnemyTag>())
             {
                 lookPoint.ValueRW.Value = playerTransform.Position;
             }
@@ -53,7 +55,7 @@ namespace App.Ecs.Enemies
 
             foreach (var (transform, moveDirection) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>>()
-                         .WithAll<IsActiveTag, EnemyTag, AutoMoveTag>())
+                         .WithAll<EnemyTag, AutoMoveTag>())
             {
                 var moveDirectionV3 = playerTransform.Position - transform.ValueRO.Position;
                 moveDirection.ValueRW.Value = math.normalizesafe(moveDirectionV3.xz);

@@ -15,7 +15,7 @@ namespace App.Perks.Configs.Upgrades
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, DamageScale>();
             currentScale.Value += damageScale;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<TTag, DamageScale>(currentScale);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, DamageScale>(currentScale);
         }
     }
 }

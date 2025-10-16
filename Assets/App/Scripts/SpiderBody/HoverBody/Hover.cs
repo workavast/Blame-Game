@@ -1,6 +1,6 @@
 ﻿using System;
+using App.Ecs.Characters;
 using App.SpiderBody.IK_Legs;
-using App.Views;
 using DCFApixels;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;

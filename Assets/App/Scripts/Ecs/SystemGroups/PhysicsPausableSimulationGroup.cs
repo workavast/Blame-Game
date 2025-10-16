@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Physics.Systems;
 
-namespace App.Ecs
+namespace App.Ecs.SystemGroups
 {
     [UpdateInGroup(typeof(PhysicsSystemGroup))]
     [UpdateAfter(typeof(PhysicsSimulationGroup))]

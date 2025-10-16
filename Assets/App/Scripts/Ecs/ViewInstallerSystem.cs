@@ -1,4 +1,4 @@
-﻿using App.Views;
+﻿using App.Ecs.Clenuping;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -70,7 +70,7 @@ namespace App.Ecs
                         instance.SetPrefab(ref prefabRef);
                         
                         AddViewHolder(entity, instance, ref ecb);
-                        ecb.AddComponent(entity, new CleanupCallback()
+                        ecb.AddComponent(entity, new Clenuping.CleanupCallback()
                         {
                             Instance = instance.CleanupCallback, 
                         });

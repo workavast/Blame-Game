@@ -1,4 +1,5 @@
 ﻿using App.Ecs;
+using App.Ecs.Player;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.Global

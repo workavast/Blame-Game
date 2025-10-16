@@ -1,4 +1,5 @@
 ﻿using App.Ecs.PlayerPerks;
+using App.Ecs.PlayerPerks.MachineGun;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.MachineGun

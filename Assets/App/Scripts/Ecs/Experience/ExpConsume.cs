@@ -1,9 +1,9 @@
-﻿using Unity.Burst;
+﻿using App.Ecs.Experience.ExpOrb;
+using App.Ecs.Player;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.Experience
 {

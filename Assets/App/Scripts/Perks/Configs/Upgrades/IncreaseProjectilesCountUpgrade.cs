@@ -1,4 +1,5 @@
-﻿using App.Ecs.PlayerPerks;
+﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace App.Perks.Configs.Upgrades
             var currentCount = EcsSingletons.GetComponentOfSingletonRO<TTag, AdditionalProjectilesCount>();
             currentCount.Value += additionalProjectilesCount;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<TTag, AdditionalProjectilesCount>(currentCount);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, AdditionalProjectilesCount>(currentCount);
         }
     }
 }

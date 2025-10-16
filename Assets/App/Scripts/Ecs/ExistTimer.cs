@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.SystemGroups;
+using Unity.Entities;
 
 namespace App.Ecs
 {
@@ -14,8 +15,7 @@ namespace App.Ecs
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var existTimer in 
-                     SystemAPI.Query<RefRW<ExistTimer>>()
-                         .WithAll<IsActiveTag>())
+                     SystemAPI.Query<RefRW<ExistTimer>>())
             {
                 existTimer.ValueRW.Value -= deltaTime;
             }

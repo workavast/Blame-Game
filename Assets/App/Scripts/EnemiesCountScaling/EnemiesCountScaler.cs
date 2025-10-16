@@ -17,7 +17,7 @@ namespace App.EnemiesCountScaling
         public void UpdateEnemiesScaling(float timeInMinutes)
         {
             var scale = _config.GetCountPerSecond(timeInMinutes);
-            EcsSingletons.TrySetComponentOfSingletonRW<TSpawnerTag, EnemiesSpawnCountPerSecond>(new EnemiesSpawnCountPerSecond()
+            EcsSingletons.TrySetComponentOfSingleton<TSpawnerTag, EnemiesSpawnCountPerSecond>(new EnemiesSpawnCountPerSecond()
             {
                 Value = scale
             });
