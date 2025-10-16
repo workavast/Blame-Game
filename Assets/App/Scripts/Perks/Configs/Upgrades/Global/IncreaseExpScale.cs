@@ -10,7 +10,7 @@ namespace App.Perks.Configs.Upgrades.Global
     {
         [SerializeField] private float scale;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<PlayerTag, ExpScale>();
             currentScale.Value += scale;

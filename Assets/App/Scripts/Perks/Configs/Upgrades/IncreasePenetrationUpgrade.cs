@@ -10,7 +10,7 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private int additionalPenetration;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, AdditionalPenetration>();
             currentScale.Value += additionalPenetration;

@@ -16,6 +16,6 @@ namespace App.Perks.Configs
         public Sprite Icon => icon;
         public IReadOnlyList<PerkCell> ChildPerks => childPerks;
 
-        public abstract void Perform(PerksManager perksManager);
+        public abstract void Perform(PerksActivator perksActivator);
     }
 }

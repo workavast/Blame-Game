@@ -10,7 +10,7 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private float additionalFireRate;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, FireRateScale>();
             currentScale.Value += additionalFireRate;

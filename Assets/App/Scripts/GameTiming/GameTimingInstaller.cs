@@ -2,7 +2,7 @@
 
 namespace App.GameTiming
 {
-    public class GameTimerInstaller : MonoInstaller
+    public class GameTimingInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

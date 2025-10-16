@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 402262279}
   - component: {fileID: 402262278}
   m_Layer: 0
-  m_Name: LevelUpManager
+  m_Name: LevelManagement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 549674994}
   - component: {fileID: 549674993}
   m_Layer: 0
-  m_Name: PerksManager
+  m_Name: PerksManagement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 1423725768}
   - component: {fileID: 1423725767}
   m_Layer: 0
-  m_Name: ExpManager
+  m_Name: ExpManagement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1852,7 +1852,7 @@ GameObject:
   - component: {fileID: 1976570538}
   - component: {fileID: 1976570539}
   m_Layer: 0
-  m_Name: GameTimer
+  m_Name: GameTiming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.LevelManagement.ExpManagement
 {
-    public class ExpStorageInstaller : MonoInstaller
+    public class ExpManagementInstaller : MonoInstaller
     {
         [SerializeField] private ExpConfig config;
         

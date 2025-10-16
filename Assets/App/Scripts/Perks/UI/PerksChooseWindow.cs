@@ -5,14 +5,14 @@ using App.Perks.PerksManagement;
 using UnityEngine;
 using Zenject;
 
-namespace App.Perks
+namespace App.Perks.UI
 {
     public class PerksChooseWindow : MonoBehaviour
     {
         [SerializeField] private RectTransform cardsHolder;
         [SerializeField] private List<PerkCard> perkCards;
 
-        [Inject] private readonly PerksManager _perksManager;
+        [Inject] private readonly PerksActivator _perksActivator;
         [Inject] private readonly GamePause _gamePause;
         
         public int CardsCount => perkCards.Count;
@@ -51,7 +51,7 @@ namespace App.Perks
         
         private void Perform(PerkCell perkCell)
         {
-            _perksManager.ActivatePerk(perkCell);
+            _perksActivator.ActivatePerk(perkCell);
             Hide();
         }
     }

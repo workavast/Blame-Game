@@ -10,7 +10,7 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private int additionalProjectilesCount;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentCount = EcsSingletons.GetComponentOfSingletonRO<TTag, AdditionalProjectilesCount>();
             currentCount.Value += additionalProjectilesCount;

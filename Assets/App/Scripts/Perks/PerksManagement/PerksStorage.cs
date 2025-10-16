@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace App.Perks.PerksManagement
 {
-    public class PerksManager
+    public class PerksStorage
     {
         private readonly List<PerkCell> _activatedPerks = new();
         private readonly List<PerkCell> _availablePerks = new();
@@ -14,7 +14,7 @@ namespace App.Perks.PerksManagement
         public IReadOnlyList<PerkCell> AvailablePerks => _availablePerks;
         public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
 
-        public PerksManager(IReadOnlyList<PerkCell> initialPerks)
+        public PerksStorage(IReadOnlyList<PerkCell> initialPerks)
         {
             _availablePerks.AddRange(initialPerks);
         }
@@ -41,11 +41,6 @@ namespace App.Perks.PerksManagement
 
         public void ActivatePerk(PerkCell perkCell)
         {
-            if (!_availablePerks.Contains(perkCell))
-                throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkCell.name}], perk.title[{perkCell.Title}]");
-            
-            perkCell.Perform(this);
-            
             _activatedPerks.Add(perkCell);
             _availablePerks.Remove(perkCell);
 
