@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3001960104340552425, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
   interval: 1
-  distance: 35
+  distance: 40
   seed: 123
 --- !u!114 &-9099009325826874080
 MonoBehaviour:

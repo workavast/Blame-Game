@@ -15,3 +15,4 @@ MonoBehaviour:
   initialPerks:
   - {fileID: 11400000, guid: da8d8678bc5a3ad4887fd2461daaa7e9, type: 2}
   - {fileID: 11400000, guid: 8cef47727d5d19842b42c516904bb2ce, type: 2}
+  - {fileID: 11400000, guid: d49f86048d053da41aff7931318a8132, type: 2}

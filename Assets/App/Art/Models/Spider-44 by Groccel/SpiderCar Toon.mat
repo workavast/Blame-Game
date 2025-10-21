@@ -16,11 +16,10 @@ Material:
   - _TEXTUREFILTERING_NEAREST
   - _TOONSHADING
   m_InvalidKeywords:
-  - _DITHERDIFFUSE_ON
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OCCLUSIONMAP
-  - _SPECULARTYPE_COOKTORRANCE
+  - _SPECULARTYPE_DISABLED
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -127,7 +126,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DitherAmbient: 0
-    - _DitherDiffuse: 1
+    - _DitherDiffuse: 0
     - _DitherSpec: 0
     - _DoubleSizeDither: 0
     - _DstBlend: 0
@@ -156,7 +155,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularType: 0
+    - _SpecularType: 3
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -176,7 +175,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SmoothRemap: {r: 0, g: 0, b: 0, a: 0}
     - _SmoothRemapVCol: {r: 0.21084346, g: 0.74397594, b: 0, a: 0}

@@ -16,7 +16,6 @@ Material:
   - _TEXTUREFILTERING_NEAREST
   - _TOONSHADING
   m_InvalidKeywords:
-  - _DITHERDIFFUSE_ON
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OCCLUSIONMAP
@@ -127,7 +126,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DitherAmbient: 0
-    - _DitherDiffuse: 1
+    - _DitherDiffuse: 0
     - _DitherSpec: 0
     - _DoubleSizeDither: 0
     - _DstBlend: 0
