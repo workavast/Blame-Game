@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: -5879120631750415190}
+  lighting: {fileID: 7912787468319499858}
+  fadeTime: 0.4
 --- !u!114 &-5879120631750415190
 MonoBehaviour:
   m_ObjectHideFlags: 0

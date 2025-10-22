@@ -5,6 +5,11 @@
         public float Time { get; private set; }
         public float Minutes { get; private set; }
         public float Seconds { get; private set; }
+
+        public GameTimer(float initialTimeInSeconds)
+        {
+            IncreaseTime(initialTimeInSeconds);
+        }
         
         public void IncreaseTime(float deltaTime)
         {
