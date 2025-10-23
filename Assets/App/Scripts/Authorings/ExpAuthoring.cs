@@ -12,6 +12,7 @@ namespace App.Authorings
         [SerializeField] private float consumeAcceleration;
         [SerializeField] private float consumeMoveSpeed;
         [SerializeField] private float expOrbVerticalOffset;
+        [SerializeField] private float expOrbConsumeDistanceError;
  
         private class Baker : Baker<ExpAuthoring>
         {
@@ -24,6 +25,7 @@ namespace App.Authorings
                 AddComponent(entity, new ExpOrbPrefabHolder() { OrbPrefab = GetEntity(authoring.expOrbPrefab, TransformUsageFlags.Dynamic) });
                 AddComponent(entity, new ExpOrbDropImpulse() { Value = authoring.impulse });
                 AddComponent(entity, new ExpOrbDropHeight() { Value = authoring.expOrbVerticalOffset });
+                AddComponent(entity, new ExpOrbConsumeDistanceError() { Value = authoring.expOrbConsumeDistanceError });
                 AddComponent(entity, new ExpOrbConsumeMoveSpeed()
                 {
                     MoveSpeed = authoring.consumeMoveSpeed,

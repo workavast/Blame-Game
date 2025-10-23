@@ -21,7 +21,7 @@ namespace App.Ecs
 
         public void OnUpdate(ref SystemState state)
         {
-            var target = ServiceLocator.Get<CameraTargetProvider>().CameraTarget;
+            var target = ServicesBridge.Get<CameraTargetProvider>().CameraTarget;
 
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (cameraTarget, entity) in 

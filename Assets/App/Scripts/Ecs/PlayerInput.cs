@@ -16,10 +16,10 @@ namespace App.Ecs
 
         protected override void OnUpdate()
         {
-            var playerInput = ServiceLocator.Get<InputProvider>();
-            if (playerInput == null)
+            if (!ServicesBridge.Exist<InputProvider>())
                 return;
             
+            var playerInput = ServicesBridge.Get<InputProvider>();
             var moveDirectionInput = (float2)playerInput.Input.Player.Move.ReadValue<Vector2>();
             var lookPointInput = (float3)playerInput.LookPoint;
 

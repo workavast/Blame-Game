@@ -30,7 +30,8 @@ namespace App.Ecs
             foreach (var (visual, entity) in 
                      SystemAPI.Query<RefRW<CleanupCallback>>().WithNone<IsActiveTag>().WithEntityAccess())
             {
-                visual.ValueRO.Instance.Value.Callback();
+                if (visual.ValueRW.Instance.IsValid()) 
+                    visual.ValueRO.Instance.Value.Callback();
                 
                 ecb.RemoveComponent<CleanupCallback>(entity);
             }

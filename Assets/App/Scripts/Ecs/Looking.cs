@@ -14,7 +14,8 @@ namespace App.Ecs
         public float Value;
     }
 
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(BeforeTransformPauseSimulationGroup))]
+    [UpdateAfter(typeof(DependentMoveSystemGroup))]
     public partial struct LookAtPointSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

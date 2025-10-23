@@ -64,7 +64,8 @@ namespace App.Ecs.Enemies
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
+    [UpdateBefore(typeof(AutoMoveSystem))]
     public partial struct GunnerBotHoldDistanceSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -74,48 +75,15 @@ namespace App.Ecs.Enemies
 
         public void OnUpdate(ref SystemState state)
         {
-            MoveToTargetZone(ref state);
-            StayInZone(ref state);
-        }
-
-        private void StayInZone(ref SystemState state)
-        {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
+            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
             
-            foreach (var (transform, moveDirection, data, inZoneFlag) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
-                             EnabledRefRW<GunnerBotInZoneFlag>>()
-                         .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
-                         .WithNone<AutoMoveTag>())
-            {
-                var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
-
-                if (distance < data.ValueRO.MinDistance)
-                {
-                    var directionFromPlayer = transform.ValueRO.Position - playerTransform.Position;
-                    moveDirection.ValueRW.Value = math.normalize(directionFromPlayer.xz);
-                    inZoneFlag.ValueRW = false;
-                    continue;
-                }
-
-                if (data.ValueRO.MaxDistance < distance)
-                {
-                    var directionToPlayer = playerTransform.Position - transform.ValueRO.Position;
-                    moveDirection.ValueRW.Value = math.normalize(directionToPlayer.xz);
-                    inZoneFlag.ValueRW = false;
-                    continue;
-                }
-                
-                moveDirection.ValueRW.Value = float2.zero;
-            }            
+            MoveToTargetZone(ref state, playerTransform);
+            StayInZone(ref state, playerTransform);
         }
         
-        private void MoveToTargetZone(ref SystemState state)
+        private void MoveToTargetZone(ref SystemState state, LocalTransform playerTransform)
         {
-            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
-            
             foreach (var (transform, moveDirection, data, inZone) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
@@ -142,6 +110,36 @@ namespace App.Ecs.Enemies
                 inZone.ValueRW = true;
                 moveDirection.ValueRW.Value = float2.zero;
             }
+        }
+
+        private void StayInZone(ref SystemState state, LocalTransform playerTransform)
+        {
+            foreach (var (transform, moveDirection, data, inZoneFlag) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
+                             EnabledRefRW<GunnerBotInZoneFlag>>()
+                         .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
+                         .WithNone<AutoMoveTag>())
+            {
+                var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
+
+                if (distance < data.ValueRO.MinDistance)
+                {
+                    var directionFromPlayer = transform.ValueRO.Position - playerTransform.Position;
+                    moveDirection.ValueRW.Value = math.normalize(directionFromPlayer.xz);
+                    inZoneFlag.ValueRW = false;
+                    continue;
+                }
+
+                if (data.ValueRO.MaxDistance < distance)
+                {
+                    var directionToPlayer = playerTransform.Position - transform.ValueRO.Position;
+                    moveDirection.ValueRW.Value = math.normalize(directionToPlayer.xz);
+                    inZoneFlag.ValueRW = false;
+                    continue;
+                }
+                
+                moveDirection.ValueRW.Value = float2.zero;
+            }            
         }
     }
     
