@@ -1,4 +1,5 @@
-﻿using App.Ecs.PlayerPerks;
+﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -10,12 +11,12 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private float additionalFireRate;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, FireRateScale>();
+            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, AttackRateScale>();
             currentScale.Value += additionalFireRate;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<TTag, FireRateScale>(currentScale);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, AttackRateScale>(currentScale);
         }
     }
 }

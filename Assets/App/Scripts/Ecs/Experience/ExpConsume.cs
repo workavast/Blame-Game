@@ -1,15 +1,20 @@
-﻿using Unity.Burst;
+﻿using App.Ecs.Experience.ExpOrb;
+using App.Ecs.Player;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.Experience
 {
     public struct ExpTag : IComponentData
     {
         
+    }
+
+    public struct ExpScale : IComponentData
+    {
+        public float Value;
     }
     
     public struct PlayerExp : IComponentData
@@ -87,6 +92,7 @@ namespace App.Ecs.Experience
             
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
+            var globalExpScale = SystemAPI.GetComponent<ExpScale>(playerEntity);
 
             foreach (var (transform, expAmount, entity) in 
                      SystemAPI.Query<RefRO<LocalTransform>, RefRO<ExpOrbAmount>>()
@@ -96,7 +102,7 @@ namespace App.Ecs.Experience
                 var dist = math.distance(playerTransform.Position.xz, transform.ValueRO.Position.xz);
                 if (dist <= expOrbConsumeDistanceError.Value)
                 {
-                    playerExp.ValueRW.Value += expAmount.ValueRO.Value;
+                    playerExp.ValueRW.Value += expAmount.ValueRO.Value * globalExpScale.Value;
                     ecb.DestroyEntity(entity); 
                 }
             }

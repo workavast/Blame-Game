@@ -1,4 +1,6 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Player;
+using App.Ecs.SystemGroups;
+using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 

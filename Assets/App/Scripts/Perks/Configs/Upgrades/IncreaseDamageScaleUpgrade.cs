@@ -10,12 +10,12 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private float damageScale;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, DamageScale>();
             currentScale.Value += damageScale;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<TTag, DamageScale>(currentScale);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, DamageScale>(currentScale);
         }
     }
 }

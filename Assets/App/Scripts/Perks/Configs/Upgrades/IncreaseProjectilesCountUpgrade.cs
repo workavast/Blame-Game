@@ -1,4 +1,5 @@
-﻿using App.Ecs.PlayerPerks;
+﻿using App.Ecs;
+using App.Ecs.PlayerPerks;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -10,12 +11,12 @@ namespace App.Perks.Configs.Upgrades
     {
         [SerializeField] private int additionalProjectilesCount;
         
-        public override void Perform(PerksManager perksManager)
+        public override void Perform(PerksActivator perksActivator)
         {
             var currentCount = EcsSingletons.GetComponentOfSingletonRO<TTag, AdditionalProjectilesCount>();
             currentCount.Value += additionalProjectilesCount;
             
-            EcsSingletons.TrySetComponentOfSingletonRW<TTag, AdditionalProjectilesCount>(currentCount);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, AdditionalProjectilesCount>(currentCount);
         }
     }
 }

@@ -1,0 +1,72 @@
+﻿using App.Ecs.Bullets;
+using App.Ecs.Player;
+using App.Ecs.SystemGroups;
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+
+namespace App.Ecs.PlayerPerks.StarShooter
+{
+    public struct StarShooterTag : IComponentData
+    {
+        
+    }
+
+    public struct StarShooterData : IComponentData
+    {
+        public float BulletsCount;
+    }
+    
+    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    public partial struct StarShootSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<PlayerTag>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
+            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            
+            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
+            
+            foreach (var (data, starShooterAdditionalBulletsCount, 
+                         bulletData, damageScale, additionalPenetration, entity) in 
+                     SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
+                             RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
+                         .WithAll<StarShooterTag>()
+                         .WithDisabled<AttackCooldown>()
+                         .WithEntityAccess())
+            {
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
+
+                var bulletsCount = data.ValueRO.BulletsCount + starShooterAdditionalBulletsCount.ValueRO.Value;
+                var angleStep = math.TAU / bulletsCount;
+                var angle = 0f;
+                
+                for (int i = 0; i < bulletsCount; i++)
+                {
+                    var spawnDirection = new float3()
+                    {
+                        x = math.sin(angle),
+                        y= 0f,
+                        z = math.cos(angle),
+                    };
+                    angle += angleStep;
+
+                    var spawnRotation = quaternion.LookRotation(spawnDirection, new float3(0, 1, 0));
+                    var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
+                    var bulletSpawnPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
+                    ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, spawnRotation));
+                  
+                    BulletBuilder.Build(ref ecb, ref bullet, bulletData, damageScale, globalDamageScale, additionalPenetration);
+                }
+            }
+        }
+    }
+}

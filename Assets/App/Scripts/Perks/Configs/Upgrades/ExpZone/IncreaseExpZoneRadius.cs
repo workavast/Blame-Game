@@ -1,4 +1,5 @@
-﻿using App.Ecs.Experience;
+﻿using App.Ecs.Experience.ExpConsumeZone;
+using App.Ecs.Experience.ExpOrb;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.ExpZone

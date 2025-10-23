@@ -138,6 +138,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBulletView Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 6283055833936415459, guid: 91b553fd59effc9419580dc23bf72e8b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283055833936415459, guid: 91b553fd59effc9419580dc23bf72e8b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283055833936415459, guid: 91b553fd59effc9419580dc23bf72e8b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7944673221126844791, guid: 91b553fd59effc9419580dc23bf72e8b, type: 3}
       propertyPath: m_Enabled
       value: 0

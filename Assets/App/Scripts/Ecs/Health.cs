@@ -1,4 +1,6 @@
 ﻿using App.Ecs.Experience;
+using App.Ecs.Experience.ExpDropping;
+using App.Ecs.Experience.ExpOrb;
 using Unity.Entities;
 using Unity.Transforms;
 
@@ -44,7 +46,6 @@ namespace App.Ecs
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (transform, health, damageBuffer, entity) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>()
-                         .WithAll<IsActiveTag>()
                          .WithEntityAccess())
             {
                 if (damageBuffer.IsEmpty)

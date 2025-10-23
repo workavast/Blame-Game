@@ -10,7 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 78255121319495919, guid: a8f00f828d57e9d45a9e38e078e82cdf, type: 3}
       propertyPath: m_Name
-      value: Kikoken Red
+      value: Bullet Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 90034280888168587, guid: a8f00f828d57e9d45a9e38e078e82cdf, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 90034280888168587, guid: a8f00f828d57e9d45a9e38e078e82cdf, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 90034280888168587, guid: a8f00f828d57e9d45a9e38e078e82cdf, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1006509755377393118, guid: a8f00f828d57e9d45a9e38e078e82cdf, type: 3}
       propertyPath: m_LocalPosition.x

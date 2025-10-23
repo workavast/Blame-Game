@@ -1,4 +1,5 @@
 ﻿using App.Ecs.PlayerPerks;
+using App.Ecs.PlayerPerks.RocektLauncher;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.RocketLauncher

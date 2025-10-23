@@ -4,6 +4,8 @@ namespace Avastrad.ScenesLoading
 {
     public interface ISceneLoader
     {
+        public int PrevTargetSceneIndex { get; }
+
         public event Action OnLoadingStarted;
         public event Action OnLoadingScreenHided;
 

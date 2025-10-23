@@ -1,11 +1,15 @@
 ﻿namespace App.GameTiming
 {
-    public class GameTimer
+    public class GameTimer : IGameTimerRO
     {
         public float Time { get; private set; }
-        
         public float Minutes { get; private set; }
         public float Seconds { get; private set; }
+
+        public GameTimer(float initialTimeInSeconds)
+        {
+            IncreaseTime(initialTimeInSeconds);
+        }
         
         public void IncreaseTime(float deltaTime)
         {

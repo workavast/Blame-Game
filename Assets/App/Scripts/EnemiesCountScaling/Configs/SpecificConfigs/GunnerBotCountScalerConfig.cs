@@ -1,4 +1,4 @@
-﻿using App.Ecs.Enemies;
+﻿using App.Ecs.Enemies.GunnerBot;
 using UnityEngine;
 
 namespace App.EnemiesCountScaling.Configs

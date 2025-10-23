@@ -6,10 +6,10 @@ namespace App.EnemiesCountScaling
 {
     public class EnemiesCountScalersHolder
     {
-        private readonly GameTimer _gameTimer;
+        private readonly IGameTimerRO _gameTimer;
         private readonly List<IEnemiesScaler> _scalers;
         
-        public EnemiesCountScalersHolder(GameTimer gameTimer, EnemiesCountScalersConfig config)
+        public EnemiesCountScalersHolder(IGameTimerRO gameTimer, EnemiesCountScalersConfig config)
         {
             _gameTimer = gameTimer;
             

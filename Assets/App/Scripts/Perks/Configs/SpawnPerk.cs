@@ -11,7 +11,7 @@ namespace App.Perks.Configs
         public int Key => ecsPerkPrefab.name.GetHashCode();
         public MonoBehaviour EcsPerkPrefab => ecsPerkPrefab;
 
-        public override void Perform(PerksManager perksManager) 
-            => perksManager.ActivateSpawnPerk(this);
+        public override void Perform(PerksActivator perksActivator) 
+            => perksActivator.ActivateSpawnPerk(this);
     }
 }
