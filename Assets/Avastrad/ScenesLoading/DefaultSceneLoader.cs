@@ -6,12 +6,14 @@ namespace Avastrad.ScenesLoading
 {
     public class DefaultSceneLoader : ISceneLoader
     {
-        private readonly int _loadingSceneIndex;
+        private const int InitialIndex = -1;
         
+        private readonly int _loadingSceneIndex;
         private readonly ILoadingScreen _loadingScreen;
-        private int _targetSceneIndex = -1;
+        
+        private int _targetSceneIndex = InitialIndex;
 
-        public int PrevTargetSceneIndex { get; private set; }
+        public int PrevTargetSceneIndex { get; private set; } = InitialIndex;
         
         public event Action OnLoadingStarted;
         public event Action OnLoadingScreenHided;
