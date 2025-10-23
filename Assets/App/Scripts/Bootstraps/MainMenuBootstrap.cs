@@ -13,7 +13,7 @@ namespace App.Bootstraps
         private void Start()
         {
             _gamePause.SetPauseState(false);
-            _sceneLoader.HideLoadScreen(false);
+            _sceneLoader.HideLoadScreen(_sceneLoader.PrevTargetSceneIndex <= -1);
         }
     }
 }

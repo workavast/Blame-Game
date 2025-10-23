@@ -10,6 +10,8 @@ namespace Avastrad.ScenesLoading
         
         private readonly ILoadingScreen _loadingScreen;
         private int _targetSceneIndex = -1;
+
+        public int PrevTargetSceneIndex { get; private set; }
         
         public event Action OnLoadingStarted;
         public event Action OnLoadingScreenHided;
@@ -30,6 +32,7 @@ namespace Avastrad.ScenesLoading
 
         public void LoadScene(int index, bool showLoadScreenInstantly = false, bool skipLoadingScreen = false)
         {
+            PrevTargetSceneIndex = _targetSceneIndex;
             _targetSceneIndex = index;
             
             OnLoadingStarted?.Invoke();
