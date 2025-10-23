@@ -32,9 +32,9 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
                 AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalPenetration());
                 
-                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new FireRateScale());
+                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new AttackCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new AttackRateScale());
             }
         }
     }

@@ -55,8 +55,8 @@ namespace App.Ecs.Enemies.GunnerBot
                     SpawnVerticalOffset = authoring.spawnVerticalOffset
                 });
                 
-                AddComponent(entity, new DefaultShootCooldown() {Timer = authoring.shootCooldown});
-                AddComponent(entity, new ShootCooldown() {Timer = authoring.shootCooldown});
+                AddComponent(entity, new DefaultAttackCooldown() {Timer = authoring.shootCooldown});
+                AddComponent(entity, new AttackCooldown() {Timer = authoring.shootCooldown});
             }
         }
     }

@@ -52,10 +52,10 @@ namespace App.Ecs.PlayerPerks.RocektLauncher
             foreach (var (data, additionalProjectilesCount, damageScale, random, entity) in 
                      SystemAPI.Query<RefRO<RocketLauncherData>, RefRO<AdditionalProjectilesCount>, RefRO<DamageScale>, RefRW<RocketLauncherRandom>>()
                          .WithAll<RocketLauncherTag>()
-                         .WithDisabled<ShootCooldown>()
+                         .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
             {
-                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var rocketsCount = data.ValueRO.RocketsCount + additionalProjectilesCount.ValueRO.Value;
                 var damage = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value);

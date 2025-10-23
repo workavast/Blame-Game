@@ -22,7 +22,7 @@ namespace App.Ecs.Player
                 AddComponent(entity, new CameraTarget());
                 
                 AddComponent(entity, new DamageScale() { Value = authoring.initialDamageScale });
-                AddComponent(entity, new FireRateScale() { Value = authoring.initialFireScale });
+                AddComponent(entity, new AttackRateScale() { Value = authoring.initialFireScale });
                 AddComponent(entity, new ExpScale() { Value = authoring.initialExpScale });
             }
         }

@@ -33,10 +33,10 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
             foreach (var (data, damageScale, additionalPenetration, entity) in 
                      SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
                          .WithAll<ForwardShooterTag>()
-                         .WithDisabled<ShootCooldown>()
+                         .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
             {
-                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
                 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);

@@ -40,10 +40,10 @@ namespace App.Ecs.PlayerPerks.StarShooter
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
                              RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
                          .WithAll<StarShooterTag>()
-                         .WithDisabled<ShootCooldown>()
+                         .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
             {
-                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var bulletsCount = data.ValueRO.BulletsCount + starShooterAdditionalBulletsCount.ValueRO.Value;
                 var angleStep = math.TAU / bulletsCount;

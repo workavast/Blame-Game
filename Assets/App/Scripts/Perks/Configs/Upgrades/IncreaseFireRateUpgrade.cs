@@ -13,10 +13,10 @@ namespace App.Perks.Configs.Upgrades
         
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, FireRateScale>();
+            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, AttackRateScale>();
             currentScale.Value += additionalFireRate;
             
-            EcsSingletons.TrySetComponentOfSingleton<TTag, FireRateScale>(currentScale);
+            EcsSingletons.TrySetComponentOfSingleton<TTag, AttackRateScale>(currentScale);
         }
     }
 }

@@ -26,9 +26,9 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     BulletsCount = authoring.bulletsCount
                 });
                 
-                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new ShootCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new FireRateScale());
+                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new AttackCooldown() { Timer = authoring.shootPause });
+                AddComponent(entity, new AttackRateScale());
 
                 AddComponent(entity, new AdditionalProjectilesCount());
                 AddComponent(entity, new DamageScale());

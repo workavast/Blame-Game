@@ -67,13 +67,13 @@ namespace App.Ecs.PlayerPerks.Rifle
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
                             RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
                          .WithAll<RifleTag>()
-                         .WithDisabled<ShootCooldown>()
+                         .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
             {
                 if (distance > distanceReaction.ValueRO.Value)
                     continue;
 
-                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);

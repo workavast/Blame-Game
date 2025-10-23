@@ -25,9 +25,9 @@ namespace App.Ecs.PlayerPerks.RocektLauncher
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new DefaultShootCooldown() { Timer = authoring.interval });
-                AddComponent(entity, new ShootCooldown() { Timer = authoring.interval });
-                AddComponent(entity, new FireRateScale());
+                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.interval });
+                AddComponent(entity, new AttackCooldown() { Timer = authoring.interval });
+                AddComponent(entity, new AttackRateScale());
 
                 AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalProjectilesCount());

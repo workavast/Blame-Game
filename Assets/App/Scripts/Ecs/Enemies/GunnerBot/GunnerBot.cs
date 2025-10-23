@@ -161,10 +161,10 @@ namespace App.Ecs.Enemies.GunnerBot
             foreach (var (transform, bulletData, entity) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<BulletInitialData>>()
                          .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
-                         .WithDisabled<ShootCooldown>()
+                         .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
             {
-                SystemAPI.SetComponentEnabled<ShootCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
                 
                 var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
                 var bulletSpawnPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
