@@ -18,6 +18,7 @@ namespace App.Authorings
                 
                 AddComponent(entity, new AoeZoneTag());
                 AddComponent(entity, new AoeZoneRadius() { Value = authoring.initialRadius });
+                AddComponent(entity, new AoeZoneRadiusScale() { Value = 1 });
                 AddComponent(entity, new AoeZoneTargetRadius() { Value = authoring.targetRadius });
                 AddComponent(entity, new AoeZoneRadiusFactor() { Value = authoring.radiusFactor });
             }

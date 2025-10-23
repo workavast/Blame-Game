@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Perks.Configs;
 using Random = UnityEngine.Random;
 
 namespace App.Perks.PerksManagement
@@ -42,7 +43,7 @@ namespace App.Perks.PerksManagement
             if (!_availablePerks.Contains(perkCell))
                 throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkCell.name}], perk.title[{perkCell.Title}]");
             
-            EcsSpawner.Spawn(perkCell.Key);
+            perkCell.Perform(this);
             
             _activatedPerks.Add(perkCell);
             _availablePerks.Remove(perkCell);
@@ -55,5 +56,8 @@ namespace App.Perks.PerksManagement
                 _availablePerks.Add(childPerk);
             }
         }
+
+        public void ActivateSpawnPerk(SpawnPerk spawnPerk) 
+            => EcsSpawner.Spawn(spawnPerk.Key);
     }
 }

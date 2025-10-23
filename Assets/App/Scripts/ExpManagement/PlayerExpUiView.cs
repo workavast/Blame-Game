@@ -14,7 +14,7 @@ namespace App.ExpManagement
         
         private void Update()
         {
-            var currentFillPercentage = _expManager.FillPercentage;
+            var currentFillPercentage = _expManager.FillTargetPercentage;
             if (!Mathf.Approximately(expBarView.value, currentFillPercentage))
             {
                 expBarView.value = currentFillPercentage;

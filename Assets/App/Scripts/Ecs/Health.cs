@@ -18,6 +18,11 @@ namespace App.Ecs
     {
         public float Value;
     }
+
+    public struct DamageScale : IComponentData
+    {
+        public float Value;
+    }
     
     public struct DamageFrameBuffer : IBufferElementData
     {

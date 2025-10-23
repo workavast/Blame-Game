@@ -5,6 +5,10 @@ using Random = Unity.Mathematics.Random;
 
 namespace App.Ecs.Enemies
 {
+    public struct GunnerBotSpawnerTag : IComponentData
+    {
+    }
+    
     public struct GunnerBotSpawnData : IComponentData
     {
         public Entity Prefab;
@@ -23,6 +27,7 @@ namespace App.Ecs.Enemies
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<EnemiesSpawnCountPerSecond>();
             state.RequireForUpdate<PlayerTag>();
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
         }
@@ -34,12 +39,13 @@ namespace App.Ecs.Enemies
 
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
-            
+
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (spawner, data) in 
-                     SystemAPI.Query<RefRW<GunnerBotSpawner>, RefRO<GunnerBotSpawnData>>())
+            foreach (var (spawner, data, countPerSecond) in 
+                     SystemAPI.Query<RefRW<GunnerBotSpawner>, RefRO<GunnerBotSpawnData>, RefRO<EnemiesSpawnCountPerSecond>>()
+                         .WithAll<GunnerBotSpawnerTag>())
             {
-                spawner.ValueRW.Timer -= deltaTime;
+                spawner.ValueRW.Timer -= deltaTime * countPerSecond.ValueRO.Value;
                 if (spawner.ValueRO.Timer > 0) 
                     continue;
 

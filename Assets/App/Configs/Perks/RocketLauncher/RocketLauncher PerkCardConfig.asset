@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40012cf817d04bdb96070f4e5cefe68c, type: 3}
+  m_Name: RocketLauncher PerkCardConfig
+  m_EditorClassIdentifier: 
+  title: Rocket Launcher
+  description: rocket
+  icon: {fileID: 21300000, guid: 452989ed2eb5f70418dcad659026821a, type: 3}
+  childPerks:
+  - {fileID: 11400000, guid: 8736cbcd9e1bda444b3453d6d0b4aa93, type: 2}
+  - {fileID: 11400000, guid: de7418d0afd782446951fa2d03f08852, type: 2}
+  - {fileID: 11400000, guid: 74688d002134632449e494c30152674a, type: 2}
+  - {fileID: 11400000, guid: 15d2700de5f7afb4585140e43742ce09, type: 2}
+  ecsPerkPrefab: {fileID: 7488058628797259467, guid: ec379fb35d59cb449b42b20de4bdf20f, type: 3}

@@ -12,6 +12,21 @@ namespace App.Ecs.PlayerPerks
         public float Timer;
     }
     
+    public struct FireRateScale : IComponentData
+    {
+        public float Value;
+    }
+    
+    public struct AdditionalProjectilesCount : IComponentData
+    {
+        public int Value;
+    }
+    
+    public struct AdditionalPenetration : IComponentData
+    {
+        public int Value;
+    }
+    
     public struct ShootDistanceReaction : IComponentData
     {
         public float Value;
@@ -39,9 +54,29 @@ namespace App.Ecs.PlayerPerks
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
+            
+            TickWithScale(ref state, deltaTime);
+            TickWithoutScale(ref state, deltaTime);
+        }
+
+        private void TickWithScale(ref SystemState state, float deltaTime)
+        {
+            foreach (var (shootCooldown, scale, shootCooldownToggler)  in
+                     SystemAPI.Query<RefRW<ShootCooldown>, RefRO<FireRateScale>, EnabledRefRW<ShootCooldown>>()
+                         .WithAll<IsActiveTag>())
+            {
+                shootCooldown.ValueRW.Timer -= deltaTime * scale.ValueRO.Value;
+                if (shootCooldown.ValueRO.Timer <= 0) 
+                    shootCooldownToggler.ValueRW = false;
+            }
+        }
+        
+        private void TickWithoutScale(ref SystemState state, float deltaTime)
+        {
             foreach (var (shootCooldown, shootCooldownToggler)  in
                      SystemAPI.Query<RefRW<ShootCooldown>, EnabledRefRW<ShootCooldown>>()
-                         .WithAll<IsActiveTag>())
+                         .WithAll<IsActiveTag>()
+                         .WithNone<FireRateScale>())
             {
                 shootCooldown.ValueRW.Timer -= deltaTime;
                 if (shootCooldown.ValueRO.Timer <= 0) 

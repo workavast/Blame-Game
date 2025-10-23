@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cd3df0b0d4afb074bb6a9e479ade437b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 302142
+  packageName: VFX Graph - Kikoken
+  packageVersion: 1.1
+  assetPath: Assets/TwoUncleVFX/_Effect/Mesh/Sphere.prefab
+  uploadId: 760011

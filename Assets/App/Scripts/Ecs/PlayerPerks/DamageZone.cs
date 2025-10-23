@@ -2,7 +2,6 @@
 using App.Views;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
 
 namespace App.Ecs.PlayerPerks
@@ -44,11 +43,11 @@ namespace App.Ecs.PlayerPerks
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (zoneTransform, radius, damage) in 
-                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>>()
+            foreach (var (zoneTransform, radius, damage, damageScale) in 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<DamageScale>>()
                          .WithAll<DamageZoneTag>())
             {
-                var damageValue = damage.ValueRO.Value * deltaTime;
+                var damageValue = damage.ValueRO.Value * damageScale.ValueRO.Value * deltaTime;
                 foreach (var (enemyTransform, damageBuffer) in SystemAPI
                              .Query<RefRO<LocalTransform>, DynamicBuffer<DamageFrameBuffer>>()
                              .WithAll<EnemyTag>())

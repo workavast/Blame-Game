@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Perks.Configs;
+using UnityEngine;
 using Zenject;
 
 namespace App.Perks.PerksManagement

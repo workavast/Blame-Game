@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40012cf817d04bdb96070f4e5cefe68c, type: 3}
+  m_Name: ForwardShooter PerkCardConfig
+  m_EditorClassIdentifier: 
+  title: Forward Shooter
+  description: forward
+  icon: {fileID: 21300000, guid: 208fadd1e0552c24eafd4b07759aeaa6, type: 3}
+  childPerks:
+  - {fileID: 11400000, guid: b2e796203da6a2e4fbba25871f5200f1, type: 2}
+  - {fileID: 11400000, guid: 58643a2f921e5b645bbdd430001e63c0, type: 2}
+  - {fileID: 11400000, guid: 15d2700de5f7afb4585140e43742ce09, type: 2}
+  ecsPerkPrefab: {fileID: 6457018778090849523, guid: af77cccc8298ec74dabad64c238fe73c, type: 3}

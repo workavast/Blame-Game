@@ -26,8 +26,8 @@ namespace App.Ecs.PlayerPerks
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, entity) in 
-                     SystemAPI.Query<RefRO<BulletInitialData>>()
+            foreach (var (data, damageScale, entity) in 
+                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>>()
                          .WithAll<ForwardShooterTag>()
                          .WithDisabled<ShootCooldown>()
                          .WithEntityAccess())
@@ -38,7 +38,7 @@ namespace App.Ecs.PlayerPerks
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
                 
-                BulletBuilder.Build(ref ecb, ref bullet, data);
+                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale);
             }
         }
     }
