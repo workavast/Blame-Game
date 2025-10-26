@@ -19,8 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67a17278860bf574f91a7dbe9b79dd47, type: 2}
   - {fileID: 11400000, guid: 767d83e683dd012419e413108deb954c, type: 2}
   - {fileID: 11400000, guid: 2cbc1a48311a4b84ab6d7994c1c3206d, type: 2}
-  - {fileID: 11400000, guid: 15d2700de5f7afb4585140e43742ce09, type: 2}
-  - {fileID: 11400000, guid: 7ce2e14b7273dbf4d8bfa659f0590b32, type: 2}
-  - {fileID: 11400000, guid: 9c528f286cdf8074e83271972a39f903, type: 2}
-  - {fileID: 11400000, guid: 736aea8f90399a54f87b641e83052442, type: 2}
   ecsPerkPrefab: {fileID: 8210490951117237937, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}

@@ -18,5 +18,4 @@ MonoBehaviour:
   childPerks:
   - {fileID: 11400000, guid: b2e796203da6a2e4fbba25871f5200f1, type: 2}
   - {fileID: 11400000, guid: 58643a2f921e5b645bbdd430001e63c0, type: 2}
-  - {fileID: 11400000, guid: 15d2700de5f7afb4585140e43742ce09, type: 2}
   ecsPerkPrefab: {fileID: 6457018778090849523, guid: af77cccc8298ec74dabad64c238fe73c, type: 3}
