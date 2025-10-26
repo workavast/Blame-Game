@@ -2,7 +2,7 @@
 
 namespace App
 {
-    public class InputProvider : MonoBehaviour
+    public class PlayerInputProvider : MonoBehaviour
     {
         [SerializeField] private float rayDistance = 100f;
         [SerializeField] private LayerMask groundLayers;

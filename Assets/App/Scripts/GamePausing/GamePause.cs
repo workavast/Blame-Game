@@ -16,14 +16,11 @@ namespace App.GamePausing
 
         public void SetPauseState(bool isPause)
         {
-
-            Debug.Log($"Prev: {isPause} | {_pauseRequestCount}");
             var prevValue = _pauseRequestCount;
             if (isPause)
                 _pauseRequestCount++;
             else
                 _pauseRequestCount--;
-            Debug.Log($"Post: {isPause} | {_pauseRequestCount}");
 
             if (_pauseRequestCount >= 1 && prevValue > 1)
                 return;
