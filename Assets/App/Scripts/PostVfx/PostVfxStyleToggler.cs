@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-namespace App
+namespace App.PostVfx
 {
     public class PostVfxStyleToggler : MonoBehaviour
     {
@@ -18,7 +18,7 @@ namespace App
         private readonly Dictionary<string, ScriptableRendererFeature> _renderFeatures = new();
         private bool _effIsActive = false;
         
-        public void Start()
+        private void Start()
         {
             foreach (var feature in rendererData.rendererFeatures) 
                 _renderFeatures[feature.name] = feature;
@@ -30,7 +30,6 @@ namespace App
                 return;
             
             var floatValue = input.ReadValue<float>();
-            Debug.Log($"Float type: {floatValue}");
 
             var index = ((int)floatValue) - 1;
             if (index < 0 || postProcMaterials.Count <= index) 
