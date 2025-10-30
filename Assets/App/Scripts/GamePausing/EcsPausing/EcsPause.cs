@@ -1,5 +1,4 @@
-﻿using App.Ecs;
-using App.Ecs.SystemGroups;
+﻿using App.Ecs.SystemGroups;
 using Unity.Entities;
 using UnityEngine;
 
@@ -15,21 +14,6 @@ namespace App.GamePausing.EcsPausing
             if (world == null)
             {
                 Debug.LogError("World is null");
-                return;
-            }
-
-            if (isPause)
-                _pauseRequestCount++;
-            else
-                _pauseRequestCount--;
-
-            if (_pauseRequestCount > 1)
-                return;
-
-            if (_pauseRequestCount < 0)
-            {
-                _pauseRequestCount = 0;
-                Debug.LogWarning("Ypu try unset pause ECS when it already unpaused");
                 return;
             }
             

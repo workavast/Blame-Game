@@ -24,6 +24,12 @@ namespace App.GameEndDetection
             gameLooseUi.Hide();
             gameWinUi.Hide();
         }
+        
+        private void OnDestroy()
+        {
+            if (_gameIsOver) 
+                _gamePause.SetPauseState(false);
+        }
 
         private void Update()
         {
@@ -36,6 +42,12 @@ namespace App.GameEndDetection
 
         private void GameWin()
         {
+            if (_gameIsOver)
+            {
+                Debug.LogError("Game Already overed");
+                return;
+            }
+            
             _gameIsOver = true;
             gameWinUi.Show();
             _gamePause.SetPauseState(true);
@@ -43,6 +55,12 @@ namespace App.GameEndDetection
         
         private void GameLoose()
         {
+            if (_gameIsOver)
+            {
+                Debug.LogError("Game Already overed");
+                return;
+            }
+            
             _gameIsOver = true;
             gameLooseUi.Show();
             _gamePause.SetPauseState(true);

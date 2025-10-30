@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: 8176448482098108948}
+  deathPitchRange: {x: 0.9, y: 1.1}
 --- !u!114 &8176448482098108948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7695783383538253158, guid: 653bdf0fbeb2fc6479e8a392dae08d2a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 653bdf0fbeb2fc6479e8a392dae08d2a, type: 3}

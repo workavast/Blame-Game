@@ -36,9 +36,11 @@ namespace App.Ecs.PlayerPerks.StarShooter
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (data, starShooterAdditionalBulletsCount, 
-                         bulletData, damageScale, additionalPenetration, entity) in 
+                         bulletData, damageScale, additionalPenetration, 
+                         sfxView, entity) in 
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
-                             RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
+                             RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>,
+                             RefRO<ShooterSfxViewHolder>>()
                          .WithAll<StarShooterTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -66,6 +68,8 @@ namespace App.Ecs.PlayerPerks.StarShooter
                   
                     BulletBuilder.Build(ref ecb, ref bullet, bulletData, damageScale, globalDamageScale, additionalPenetration);
                 }
+                
+                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
             }
         }
     }

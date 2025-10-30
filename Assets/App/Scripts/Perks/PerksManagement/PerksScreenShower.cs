@@ -28,11 +28,11 @@ namespace App.Perks.PerksManagement
 
         private void TryShowPerksScreen()
         {
-            if (_perksStorage.CountOfAvailablePerks <= 0)
+            if (_perksStorage.CountOfAvailableMainPerks <= 0)
                 return;
 
-            var perkCardCount = Mathf.Min(_perksChooseWindow.CardsCount, _perksStorage.CountOfAvailablePerks);
-            var randomPerks = _perksStorage.GetRandomPerks(perkCardCount);
+            var perkCardCount = Mathf.Min(_perksChooseWindow.CardsCount, _perksStorage.CountOfAvailableMainPerks);
+            var randomPerks = _perksStorage.GetRandomPerks(perkCardCount, _levelStorage.Level > 1);
 
             _perksChooseWindow.ShowPerksVariants(randomPerks);
         }

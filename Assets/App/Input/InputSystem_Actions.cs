@@ -198,6 +198,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""550a143f-fe46-4234-80bf-f5224236661c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -715,6 +724,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""EffectToggler"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6719fc9c-8f7b-4f18-a8ae-5c457fc112f5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1314,6 +1334,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_MousePoint = m_Player.FindAction("MousePoint", throwIfNotFound: true);
         m_Player_nums = m_Player.FindAction("nums", throwIfNotFound: true);
         m_Player_EffectToggler = m_Player.FindAction("EffectToggler", throwIfNotFound: true);
+        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1419,6 +1440,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MousePoint;
     private readonly InputAction m_Player_nums;
     private readonly InputAction m_Player_EffectToggler;
+    private readonly InputAction m_Player_Esc;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1478,6 +1500,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/EffectToggler".
         /// </summary>
         public InputAction @EffectToggler => m_Wrapper.m_Player_EffectToggler;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Esc".
+        /// </summary>
+        public InputAction @Esc => m_Wrapper.m_Player_Esc;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1540,6 +1566,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @EffectToggler.started += instance.OnEffectToggler;
             @EffectToggler.performed += instance.OnEffectToggler;
             @EffectToggler.canceled += instance.OnEffectToggler;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         /// <summary>
@@ -1587,6 +1616,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @EffectToggler.started -= instance.OnEffectToggler;
             @EffectToggler.performed -= instance.OnEffectToggler;
             @EffectToggler.canceled -= instance.OnEffectToggler;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         /// <summary>
@@ -1971,6 +2003,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEffectToggler(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Esc" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEsc(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

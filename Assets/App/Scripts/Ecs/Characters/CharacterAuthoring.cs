@@ -1,3 +1,4 @@
+using App.Audio.Sources;
 using App.Ecs.Clenuping;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -8,6 +9,7 @@ namespace App.Ecs.Characters
     public class CharacterAuthoring : MonoBehaviour
     {
         [SerializeField] private WeakObjectReference<CleanupView> entityViewPrefab;
+        [SerializeField] private WeakObjectReference<AudioPoolRelease> deathSfxRef;
         [SerializeField] private float health;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float rotationSpeed;
@@ -19,6 +21,8 @@ namespace App.Ecs.Characters
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
                 AddComponent(entity, new PhysicsMassInitializeFlag());
+
+                AddComponent(entity, new CharacterSfxData() { DeathSfxRef = authoring.deathSfxRef });
                 
                 AddComponent(entity, new MoveDirection());
                 AddComponent(entity, new MoveSpeed() { Value = authoring.moveSpeed });

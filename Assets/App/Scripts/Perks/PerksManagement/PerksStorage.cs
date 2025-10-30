@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Perks.Configs;
+using Avastrad.Extensions;
 using Random = UnityEngine.Random;
 
 namespace App.Perks.PerksManagement
@@ -9,23 +10,39 @@ namespace App.Perks.PerksManagement
     {
         private readonly List<PerkCell> _activatedPerks = new();
         private readonly List<PerkCell> _availablePerks = new();
-
-        public int CountOfAvailablePerks => _availablePerks.Count;
+        private readonly List<PerkCell> _globalAvailablePerks = new();
+        
+        public int CountOfAllAvailablePerks => _availablePerks.Count + _globalAvailablePerks.Count;
+        public int CountOfAvailableMainPerks => _availablePerks.Count;
         public IReadOnlyList<PerkCell> AvailablePerks => _availablePerks;
         public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
 
-        public PerksStorage(IReadOnlyList<PerkCell> initialPerks)
+        public PerksStorage(IReadOnlyList<PerkCell> initialPerks, IReadOnlyList<PerkCell> initialGlobalPerks)
         {
             _availablePerks.AddRange(initialPerks);
+            _globalAvailablePerks.AddRange(initialGlobalPerks);
         }
 
-        public IReadOnlyList<PerkCell> GetRandomPerks(int perksCount)
+        public IReadOnlyList<PerkCell> GetRandomPerks(int perksCount, bool withGlobalPerks = true)
         {
-            if (perksCount > CountOfAvailablePerks)
-                throw new InvalidOperationException($"You request more perks than available: requested [{perksCount}], available[{{CountOfAvailablePerks}}]");
+            if (withGlobalPerks)
+            {
+                if (perksCount > CountOfAllAvailablePerks)
+                    throw new InvalidOperationException($"You request more perks than available: requested [{perksCount}], " +
+                                                        $"available[{CountOfAllAvailablePerks}]");                
+            }
+            else
+            {
+                if (perksCount > CountOfAvailableMainPerks)
+                    throw new InvalidOperationException($"You request more perks than available: requested [{perksCount}], " +
+                                                        $"available[{CountOfAvailableMainPerks}]");
+            }
             
             var perks = new List<PerkCell>();
+
             var availablePerksBuffer = new List<PerkCell>(_availablePerks);
+            if (withGlobalPerks) 
+                availablePerksBuffer.AddRange(_globalAvailablePerks);
 
             for (int i = 0; i < perksCount; i++)
             {
@@ -39,10 +56,14 @@ namespace App.Perks.PerksManagement
             return perks;
         }
 
+        public bool IsAvailable(PerkCell perkCell) 
+            => _availablePerks.Contains(perkCell) || _globalAvailablePerks.Contains(perkCell);
+
         public void ActivatePerk(PerkCell perkCell)
         {
             _activatedPerks.Add(perkCell);
             _availablePerks.Remove(perkCell);
+            _globalAvailablePerks.Remove(perkCell);
 
             foreach (var childPerk in perkCell.ChildPerks)
             {

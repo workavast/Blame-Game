@@ -1,6 +1,9 @@
-﻿using App.Ecs.Clenuping;
+﻿using App.Audio.Sources;
+using App.Ecs.Clenuping;
+using App.Ecs.Sound;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
+using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
@@ -10,6 +13,11 @@ namespace App.Ecs.Characters
     public struct CharacterTag : IComponentData
     {
         
+    }
+
+    public struct CharacterSfxData : IComponentData
+    {
+        public WeakObjectReference<AudioPoolRelease> DeathSfxRef;
     }
     
     public struct CharacterViewHolder : IComponentData
@@ -21,7 +29,40 @@ namespace App.Ecs.Characters
     {
         protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
             => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
-    } 
+    }
+    
+    public partial class CharacterSfxInitializer : SfxInitializeSystem<CharacterSfxData, CharacterTag>
+    {
+        protected override void StartLoading(CharacterSfxData sfxData)
+        {
+            sfxData.DeathSfxRef.LoadAsync();
+        }
+    }
+    
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    public partial struct CharacterSfxSetSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+            
+            foreach (var (viewHolder, sfx, entity)  in 
+                     SystemAPI.Query<RefRO<CharacterViewHolder>, RefRO<CharacterSfxData>>()
+                         .WithAll<CharacterTag>()
+                         .WithNone<SfxInitedTag>()
+                         .WithEntityAccess())
+            {
+                ecb.AddComponent(entity, new SfxInitedTag());
+                viewHolder.ValueRO.Instance.Value.SetDeathSfx(sfx.ValueRO.DeathSfxRef);
+            }
+        }
+    }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct PhysicsCharacterViewUpdateSystem : ISystem

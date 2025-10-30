@@ -63,9 +63,10 @@ namespace App.Ecs.PlayerPerks.Rifle
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             
-            foreach (var (distanceReaction, data, damageScale, additionalPenetration, entity) in
+            foreach (var (distanceReaction, data, damageScale
+                         , additionalPenetration, sfxView, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
-                            RefRO<DamageScale>, RefRO<AdditionalPenetration>>()
+                            RefRO<DamageScale>, RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
                          .WithAll<RifleTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -81,6 +82,8 @@ namespace App.Ecs.PlayerPerks.Rifle
                     LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
                 
                 BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
+                
+                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
             }
         }
     }

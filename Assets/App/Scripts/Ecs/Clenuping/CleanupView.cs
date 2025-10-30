@@ -1,4 +1,5 @@
-﻿using Unity.Entities.Content;
+﻿using App.Utils;
+using Unity.Entities.Content;
 using UnityEngine;
 
 namespace App.Ecs.Clenuping
@@ -15,10 +16,14 @@ namespace App.Ecs.Clenuping
         {
             cleanupCallback.SetCallback(DestroyCallback);
         }
-        
+
+        protected virtual void OnDestroy()
+        {
+            _prefab.TryRelease();
+        }
+
         protected virtual void DestroyCallback()
         {
-            _prefab.Release();
             Destroy(gameObject);
         }
 

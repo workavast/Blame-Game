@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfc57e1a0544b7980b12578c8ece06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDamageScale: 1
+  initialFireScale: 1
+  initialExpScale: 1
 --- !u!114 &3619416845734656769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +76,19 @@ MonoBehaviour:
             y: 1332468945
             z: 3286310590
             w: 679102235
+        IdentifierType: 1
+      GenerationType: 1
+  deathSfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -758675528668472863
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 2516042599
+            y: 1200917388
+            z: 1686091904
+            w: 2830124188
         IdentifierType: 1
       GenerationType: 1
   health: 100

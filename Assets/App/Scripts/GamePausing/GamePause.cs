@@ -16,18 +16,19 @@ namespace App.GamePausing
 
         public void SetPauseState(bool isPause)
         {
+            var prevValue = _pauseRequestCount;
             if (isPause)
                 _pauseRequestCount++;
             else
                 _pauseRequestCount--;
 
-            if (_pauseRequestCount > 1)
+            if (_pauseRequestCount >= 1 && prevValue > 1)
                 return;
 
             if (_pauseRequestCount < 0)
             {
                 _pauseRequestCount = 0;
-                Debug.LogWarning("Ypu try unset pause game when it already unpaused");
+                Debug.LogWarning("You try unset pause game when it already unpaused");
                 return;
             }
             

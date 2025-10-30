@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8116665741028914375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1093511760864310696}
+  - component: {fileID: 8210490951117237937}
+  - component: {fileID: 6522583797870812275}
+  - component: {fileID: 8757219123589616268}
+  m_Layer: 0
+  m_Name: ECS_MachineGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1093511760864310696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8210490951117237937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f757ae73c1b4c8ab500cd500b2d3611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5742481295489709929, guid: ff166bcc51f652d4186baf758c84f9a4, type: 3}
+  spawnVerticalOffset: 1
+  damage: 5
+  moveSpeed: 20
+  shootPause: 1
+  distanceReaction: 15
+  penetration: 0
+--- !u!114 &6522583797870812275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aca0bfac5445279c3f0e0fb4a4d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooterSfxView: {fileID: 8534289003875197159, guid: db5382d4587f0f24db84f28bd46da7d8, type: 3}
+  shootSfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -8523166520005946569
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 1500909776
+            y: 1321883660
+            z: 200381097
+            w: 3492685712
+        IdentifierType: 1
+      GenerationType: 1
+--- !u!114 &8757219123589616268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,6 +1,5 @@
 ﻿using App.Ecs.Experience;
 using App.Ecs.Experience.ExpDropping;
-using App.Ecs.Experience.ExpOrb;
 using Unity.Entities;
 using Unity.Transforms;
 
