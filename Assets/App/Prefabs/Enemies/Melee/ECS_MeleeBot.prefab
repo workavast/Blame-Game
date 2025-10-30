@@ -177,6 +177,19 @@ MonoBehaviour:
             w: 500630828
         IdentifierType: 1
       GenerationType: 1
+  deathSfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -758675528668472863
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 2516042599
+            y: 1200917388
+            z: 1686091904
+            w: 2830124188
+        IdentifierType: 1
+      GenerationType: 1
   health: 20
   moveSpeed: 10
   rotationSpeed: 0.5

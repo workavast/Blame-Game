@@ -587,6 +587,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECS_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3619416845734656769, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
+      propertyPath: health
+      value: 2.2222223e+19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619416845734656769, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
+      propertyPath: deathSfxRef.Id.GlobalId.AssetGUID
+      value: 67c3f7958c8b944780b87f649c44b0a8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619416845734656769, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
+      propertyPath: deathSfxRef.Id.GlobalId.SceneObjectIdentifier0
+      value: -758675528668472863
+      objectReference: {fileID: 0}
     - target: {fileID: 7515435142354848014, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

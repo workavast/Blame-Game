@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471696479103966725}
   - component: {fileID: 926852454929210646}
+  - component: {fileID: 1384335209961638700}
   - component: {fileID: -8812144846451714992}
   m_Layer: 0
   m_Name: ECS_StarShooter
@@ -52,6 +53,32 @@ MonoBehaviour:
   shootPause: 1
   bulletsCount: 7
   penetration: 0
+--- !u!114 &1384335209961638700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aca0bfac5445279c3f0e0fb4a4d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooterSfxView: {fileID: 8534289003875197159, guid: 0c89ec017b732dc4d8356c8e43f17b47, type: 3}
+  shootSfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -1465399079000597387
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 1655850855
+            y: 1120401742
+            z: 3490418850
+            w: 3239049381
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &-8812144846451714992
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,10 @@
-﻿using App.Ecs.Clenuping;
+﻿using App.Audio.Sources;
+using App.Ecs.Clenuping;
+using App.Ecs.Sound;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
@@ -11,6 +14,11 @@ namespace App.Ecs.Rockets
     public struct RocketTag : IComponentData
     {
         
+    }
+    
+    public struct RocketSfxData : IComponentData
+    {
+        public WeakObjectReference<AudioPoolRelease> SfxPrefab;
     }
     
     public struct RocketViewHolder : IComponentData
@@ -45,6 +53,40 @@ namespace App.Ecs.Rockets
             => ecb.AddComponent(entity, new RocketViewHolder() { Instance = instance as RocketView });
     }
     
+    public partial class RockSfxInitializeSystem : SfxInitializeSystem<RocketSfxData, RocketTag>
+    {
+        protected override void StartLoading(RocketSfxData comp)
+        {
+            comp.SfxPrefab.LoadAsync();
+        }
+    }
+    
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(RockSfxInitializeSystem))]
+    public partial struct RocketSfxSetSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+            
+            foreach (var (viewHolder, sfx, entity)  in 
+                     SystemAPI.Query<RefRO<RocketViewHolder>, RefRO<RocketSfxData>>()
+                         .WithAll<RocketTag>()
+                         .WithNone<SfxInitedTag>()
+                         .WithEntityAccess())
+            {
+                ecb.AddComponent(entity, new SfxInitedTag());
+                viewHolder.ValueRO.Instance.Value.SetSfxView(sfx.ValueRO.SfxPrefab);
+            }
+        }
+    }
+    
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(ViewInstallSystemGroup))]
     public partial struct RocketViewExplosionRadiusInitializeSystem : ISystem
@@ -60,7 +102,7 @@ namespace App.Ecs.Rockets
             }
         }
     }
-
+    
     [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct RocketAwaitTimerTickSystem : ISystem
     {

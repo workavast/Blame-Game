@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6650199570408404775}
   - component: {fileID: 6457018778090849523}
+  - component: {fileID: -1824187482667274526}
   - component: {fileID: 4555591645750962821}
   m_Layer: 0
   m_Name: ECS_ForwardShooter
@@ -51,6 +52,32 @@ MonoBehaviour:
   moveSpeed: 17.5
   shootPause: 0.45
   penetration: 0
+--- !u!114 &-1824187482667274526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8888059500304821474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aca0bfac5445279c3f0e0fb4a4d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooterSfxView: {fileID: 7549063232015799321, guid: 61ab0d101bb3b4147a1c1d26399295a4, type: 3}
+  shootSfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -2590750260403879804
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3163302951
+            y: 1192912240
+            z: 2467357885
+            w: 2256630807
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &4555591645750962821
 MonoBehaviour:
   m_ObjectHideFlags: 0

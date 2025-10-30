@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1856451364952303405
+--- !u!1 &5620775436016632829
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 335520474355232990}
-  - component: {fileID: 149804519188190474}
-  - component: {fileID: -2710938929339213163}
+  - component: {fileID: 5086404599561293257}
+  - component: {fileID: 1146601655354514938}
+  - component: {fileID: 7583880803962719508}
   m_Layer: 0
-  m_Name: ECS_Rifle
+  m_Name: ShootView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &335520474355232990
+--- !u!4 &5086404599561293257
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856451364952303405}
+  m_GameObject: {fileID: 5620775436016632829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,34 +33,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &149804519188190474
+--- !u!114 &1146601655354514938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856451364952303405}
+  m_GameObject: {fileID: 5620775436016632829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2740786521f943aba817512583c3abb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 15cdaf3c6fde49d09036ca988141602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
-  spawnVerticalOffset: 1
-  damage: 5
-  moveSpeed: 17.5
-  shootPause: 1.77
-  distanceReaction: 15
-  penetration: 1
---- !u!114 &-2710938929339213163
+  cleanupCallback: {fileID: 7583880803962719508}
+  pitchRange: {x: 0.9, y: 1.1}
+  shootSfx: {fileID: 8335031281253095714, guid: 72c2c8cb0756a174db4e013971471868, type: 3}
+--- !u!114 &7583880803962719508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856451364952303405}
+  m_GameObject: {fileID: 5620775436016632829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Script: {fileID: 11500000, guid: 323cc3557c57428c9c78f50fe92bb987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

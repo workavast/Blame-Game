@@ -145,6 +145,19 @@ MonoBehaviour:
             w: 1335141720
         IdentifierType: 1
       GenerationType: 1
+  explosionPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -758675528668472863
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 1251695918
+            y: 1285390927
+            z: 1696775859
+            w: 1271443647
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &-1887703281519550341
 MonoBehaviour:
   m_ObjectHideFlags: 0
