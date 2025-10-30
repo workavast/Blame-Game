@@ -12,7 +12,6 @@ namespace App.PostVfx
         [SerializeField] private string featureName1 = "Outline1";
         [Space]
         [SerializeField] private List<Material> postProcMaterials;
-        [SerializeField] private GameObject postProcessUi;
         [SerializeField] private RawImage rawImage;
         
         private readonly Dictionary<string, ScriptableRendererFeature> _renderFeatures = new();
@@ -33,12 +32,9 @@ namespace App.PostVfx
 
             var index = ((int)floatValue) - 1;
             if (index < 0 || postProcMaterials.Count <= index) 
-                postProcessUi.SetActive(false);
+                rawImage.material = null;
             else
-            {
-                postProcessUi.SetActive(true);
                 rawImage.material = postProcMaterials[index];
-            }
         }
         
         public void ToggleEff(InputAction.CallbackContext input)

@@ -35,6 +35,9 @@ namespace App.UI
 
         private void OnDestroy()
         {
+            if (gameObject.activeSelf)
+                _gamePause.SetPauseState(false);
+
             _escProvider.UnSub(this);
         }
 
