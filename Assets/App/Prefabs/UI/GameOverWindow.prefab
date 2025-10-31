@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3166864735076432093}
   - component: {fileID: 2910379338369833597}
+  - component: {fileID: 49394793632346575}
   m_Layer: 5
   m_Name: GameOverWindow
   m_TagString: Untagged
@@ -264,6 +265,18 @@ MonoBehaviour:
   backInMenuBtn: {fileID: 5374844320320733477}
   gameplaySceneRef: {fileID: 11400000, guid: 4d79c5046c7b30747a17138936b2c867, type: 2}
   mainMenuSceneRef: {fileID: 11400000, guid: 3d035d974fb8cae4faadb4dd6c2d0ad5, type: 2}
+--- !u!114 &49394793632346575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067609831126714519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c37971601b8496e877cea0890511c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2148410038988786491
 GameObject:
   m_ObjectHideFlags: 0

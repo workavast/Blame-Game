@@ -787,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6566216523931660013}
   - component: {fileID: 2854573758233556146}
+  - component: {fileID: 7819731602801390455}
   m_Layer: 5
   m_Name: GameWinWindow
   m_TagString: Untagged
@@ -830,6 +831,18 @@ MonoBehaviour:
   backInMenuBtn: {fileID: 5832666997389763030}
   gameplaySceneRef: {fileID: 11400000, guid: 4d79c5046c7b30747a17138936b2c867, type: 2}
   mainMenuSceneRef: {fileID: 11400000, guid: 3d035d974fb8cae4faadb4dd6c2d0ad5, type: 2}
+--- !u!114 &7819731602801390455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6997651918269785168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c37971601b8496e877cea0890511c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7848688574287070927
 GameObject:
   m_ObjectHideFlags: 0

@@ -167,6 +167,8 @@ Transform:
   - {fileID: 255546249329783089}
   - {fileID: 6951610144774829613}
   - {fileID: 7707983158663779576}
+  - {fileID: 5207711321689595256}
+  - {fileID: 2402758713231634015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3086672170570023435
@@ -188,6 +190,8 @@ MonoBehaviour:
   - {fileID: 4918047705920109154}
   - {fileID: 2832790015799583657}
   - {fileID: 3460268914440102037}
+  - {fileID: 8179381023955484961}
+  - {fileID: 6906647123963167298}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -202,6 +206,54 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
+--- !u!1 &7686702181069444153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5207711321689595256}
+  - component: {fileID: 8179381023955484961}
+  m_Layer: 0
+  m_Name: RollingBands
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5207711321689595256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686702181069444153}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2501659365829847254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8179381023955484961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686702181069444153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cc87f5ce2547c48047b236e0ad96bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rollingBandsMaterial: {fileID: 2100000, guid: 95aa71c7c38ca43ce955583595659d4e, type: 2}
+  config: {fileID: 11400000, guid: 7451eb822cb400143b1b96dae3d84e6e, type: 2}
+  rendererData: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  rollingBandsName: RollingBandsFeature
 --- !u!1 &7787792178369391883
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,4 +344,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f3229723d44b81b1e8667adfc477a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambienceConfig: {fileID: 11400000, guid: 89516298d6eb0fe4d8c06d0e859fdb8d, type: 2}
+--- !u!1 &8845997652791796183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2402758713231634015}
+  - component: {fileID: 6906647123963167298}
+  m_Layer: 0
+  m_Name: MonoBehProviding
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2402758713231634015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845997652791796183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2501659365829847254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6906647123963167298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845997652791796183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfb2f1abb2e48968853b9223295c02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -191,15 +191,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""EffectToggler"",
-                    ""type"": ""Button"",
-                    ""id"": ""2baf9a9b-4902-46ba-88eb-cd3a44f3f8f2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Esc"",
                     ""type"": ""Button"",
                     ""id"": ""550a143f-fe46-4234-80bf-f5224236661c"",
@@ -713,17 +704,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=0)"",
                     ""groups"": """",
                     ""action"": ""nums"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""838ecf1d-8254-4eda-8e1e-793763ada7c2"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EffectToggler"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1333,7 +1313,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_MousePoint = m_Player.FindAction("MousePoint", throwIfNotFound: true);
         m_Player_nums = m_Player.FindAction("nums", throwIfNotFound: true);
-        m_Player_EffectToggler = m_Player.FindAction("EffectToggler", throwIfNotFound: true);
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1439,7 +1418,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_MousePoint;
     private readonly InputAction m_Player_nums;
-    private readonly InputAction m_Player_EffectToggler;
     private readonly InputAction m_Player_Esc;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1496,10 +1474,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/nums".
         /// </summary>
         public InputAction @nums => m_Wrapper.m_Player_nums;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/EffectToggler".
-        /// </summary>
-        public InputAction @EffectToggler => m_Wrapper.m_Player_EffectToggler;
         /// <summary>
         /// Provides access to the underlying input action "Player/Esc".
         /// </summary>
@@ -1563,9 +1537,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @nums.started += instance.OnNums;
             @nums.performed += instance.OnNums;
             @nums.canceled += instance.OnNums;
-            @EffectToggler.started += instance.OnEffectToggler;
-            @EffectToggler.performed += instance.OnEffectToggler;
-            @EffectToggler.canceled += instance.OnEffectToggler;
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
@@ -1613,9 +1584,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @nums.started -= instance.OnNums;
             @nums.performed -= instance.OnNums;
             @nums.canceled -= instance.OnNums;
-            @EffectToggler.started -= instance.OnEffectToggler;
-            @EffectToggler.performed -= instance.OnEffectToggler;
-            @EffectToggler.canceled -= instance.OnEffectToggler;
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
@@ -1996,13 +1964,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNums(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "EffectToggler" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEffectToggler(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Esc" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -2027,8 +2027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c37afb74a3cf34a95af6198016926a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rendererData: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-  featureName1: FullScreenPassRendererFeature
   postProcMaterials:
   - {fileID: 2100000, guid: 4c744ae276cc32042a49eb5ca47fa81c, type: 2}
   - {fileID: 2100000, guid: dadda570d0df5d945a36584d75c6f5dd, type: 2}
@@ -2176,22 +2174,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 909366751}
-        m_TargetAssemblyTypeName: App.StyleToggler, Assembly-CSharp
-        m_MethodName: ToggleEff
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2baf9a9b-4902-46ba-88eb-cd3a44f3f8f2
-    m_ActionName: 'Player/EffectToggler[/Keyboard/q]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 550a143f-fe46-4234-80bf-f5224236661c
@@ -4635,6 +4617,10 @@ PrefabInstance:
     - target: {fileID: 2777330180747950673, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764915228387073855, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5520376201679331861, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
       propertyPath: perksChooseWindow

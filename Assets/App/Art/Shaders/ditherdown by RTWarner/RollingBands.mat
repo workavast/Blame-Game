@@ -37,9 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Frequency: 600
-    - _Speed: 0
+    - _Frequency: 500
+    - _Speed: 0.0075
+    - _UnscaledTime: 2.5094216
     m_Colors:
-    - _Remap: {r: 0.96, g: 1, b: 0, a: 0}
+    - _Remap: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
