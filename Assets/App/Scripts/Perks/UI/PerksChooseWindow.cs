@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using App.GamePausing;
 using App.Perks.Configs;
 using App.Perks.PerksManagement;
 using UnityEngine;
@@ -13,7 +12,6 @@ namespace App.Perks.UI
         [SerializeField] private List<PerkCard> perkCards;
 
         [Inject] private readonly PerksActivator _perksActivator;
-        [Inject] private readonly GamePause _gamePause;
         
         public int CardsCount => perkCards.Count;
 
@@ -29,8 +27,6 @@ namespace App.Perks.UI
             if (perks.Count <= 0)
                 return;
 
-            _gamePause.SetPauseState(true);
-            
             cardsHolder.gameObject.SetActive(true);
 
             foreach (var perkCard in perkCards) 
@@ -46,7 +42,6 @@ namespace App.Perks.UI
         private void Hide()
         {
             cardsHolder.gameObject.SetActive(false);
-            _gamePause.SetPauseState(false);
         }
         
         private void Perform(PerkCell perkCell)

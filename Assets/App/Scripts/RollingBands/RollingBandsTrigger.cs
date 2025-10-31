@@ -7,14 +7,10 @@ namespace App.RollingBands
     {
         [Inject] private readonly RollingBandsToggler _rollingBandsToggler;
         
-        private void OnEnable()
-        {
-            _rollingBandsToggler.SetVisibilityState(true);
-        }
+        private void OnEnable() 
+            => _rollingBandsToggler.SetVisibilityState(true);
 
-        private void OnDisable()
-        {
-            _rollingBandsToggler.SetVisibilityState(false);
-        }
+        private void OnDisable() 
+            => _rollingBandsToggler.SetVisibilityState(false);
     }
 }

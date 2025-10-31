@@ -28,10 +28,9 @@ namespace App.RollingBands
         
         public void Toggle(bool isVisible)
         {
-            Debug.LogWarning("Toggle");
             if (_monoBehProvider.IsAnyNull())
             {
-                Debug.LogWarning("monoBeh is null");
+                Debug.LogWarning("monoBeh provider is null");
                 return;
             }
             

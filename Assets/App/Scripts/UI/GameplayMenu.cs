@@ -1,5 +1,4 @@
 ﻿using App.EscProviding;
-using App.GamePausing;
 using App.ScenesReferencing;
 using Avastrad.ScenesLoading;
 using UnityEngine;
@@ -18,7 +17,6 @@ namespace App.UI
 
         [Inject] private readonly ISceneLoader _sceneLoader;
         [Inject] private readonly EscProvider _escProvider;
-        [Inject] private readonly GamePause _gamePause;
         
         private void Awake()
         {
@@ -35,15 +33,11 @@ namespace App.UI
 
         private void OnDestroy()
         {
-            if (gameObject.activeSelf)
-                _gamePause.SetPauseState(false);
-
             _escProvider.UnSub(this);
         }
 
         public void OnEscPressed()
         {
-            _gamePause.SetPauseState(!gameObject.activeSelf);
             gameObject.SetActive(!gameObject.activeSelf);
         }
         
