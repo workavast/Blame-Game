@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using App.Audio.Ambience.Effects;
 using UnityEngine;
 
 namespace App.Audio.Ambience
@@ -8,10 +9,18 @@ namespace App.Audio.Ambience
     public class AmbienceManager : MonoBehaviour
     {
         private readonly List<AmbienceSource> _activeAmbiences = new(2);
+        private AmbienceSource _mainAmbience;
+        
         private Coroutine _transitionCoroutine;
 
         private void Awake()
             => DontDestroyOnLoad(gameObject);
+
+        public void ApplyEffect(IAmbientEffector ambientEffector) 
+            => ambientEffector.Apply(_mainAmbience);
+
+        public void RevertEffect(IAmbientEffector ambientEffector) 
+            => ambientEffector.Revert(_mainAmbience);
 
         public void Activate(AmbienceSource ambiencePrefab, float transitionTime = 1f)
         {
@@ -21,17 +30,19 @@ namespace App.Audio.Ambience
                 return;
             }
 
-            if (_activeAmbiences.Any(a => a.name == ambiencePrefab.name))
-                return;
-
             if (_transitionCoroutine != null)
                 StopCoroutine(_transitionCoroutine);
 
-            var newAmbience = Instantiate(ambiencePrefab, transform);
-            newAmbience.name = ambiencePrefab.name;
-            _activeAmbiences.Add(newAmbience);
+            var ambience = _activeAmbiences.FirstOrDefault(a => a.name == ambiencePrefab.name);
+            if (ambience == null)
+            {
+                ambience = Instantiate(ambiencePrefab, transform);
+                ambience.name = ambiencePrefab.name;
+                _activeAmbiences.Add(ambience);
+            }
 
-            _transitionCoroutine = StartCoroutine(TransitionAmbience(newAmbience, transitionTime));
+            _mainAmbience = ambience;
+            _transitionCoroutine = StartCoroutine(TransitionAmbience(ambience, transitionTime));   
         }
 
         private IEnumerator TransitionAmbience(AmbienceSource newAmbience, float duration)

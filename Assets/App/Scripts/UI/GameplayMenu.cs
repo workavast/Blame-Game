@@ -10,8 +10,10 @@ namespace App.UI
     public class GameplayMenu : MonoBehaviour, IEscListener
     {
         [SerializeField] private SceneReference mainMenuRef;
+        [SerializeField] private SceneReference gameplayRef;
         [Space]
         [SerializeField] private Button continueBtn;
+        [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;
         [SerializeField] private Button quitBtn;
 
@@ -21,6 +23,7 @@ namespace App.UI
         private void Awake()
         {
             continueBtn.onClick.AddListener(ContinueGame);
+            restartBtn.onClick.AddListener(RestartGame);
             backInMenuBtn.onClick.AddListener(BackInMenu);
             quitBtn.onClick.AddListener(QuitGame);
             _escProvider.Sub(this);
@@ -39,6 +42,11 @@ namespace App.UI
         public void OnEscPressed()
         {
             gameObject.SetActive(!gameObject.activeSelf);
+        }
+        
+        private void RestartGame()
+        {
+            _sceneLoader.LoadScene(gameplayRef.SceneIndex);
         }
         
         private void ContinueGame()

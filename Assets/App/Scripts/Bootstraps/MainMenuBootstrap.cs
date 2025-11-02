@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using App.Audio.Ambience;
 using App.GamePausing;
 using Avastrad.ScenesLoading;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace App.Bootstraps
 {
     public class MainMenuBootstrap : MonoBehaviour
     {
+        [SerializeField] private AmbienceBootstrap ambienceBootstrap;
         [SerializeField] private int delayBeforeHideLoadingScreenInMilliseconds = 1000;
         
         [Inject] private readonly GamePause _gamePause;
@@ -15,6 +17,7 @@ namespace App.Bootstraps
         
         private async void Start()
         {
+            ambienceBootstrap.Initialize();
             _gamePause.SetPauseState(false);
 
             var initialLoading = _sceneLoader.PrevTargetSceneIndex <= -1;
