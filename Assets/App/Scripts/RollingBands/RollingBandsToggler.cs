@@ -7,9 +7,8 @@ namespace App.RollingBands
     {
         private readonly RollingBandsVisibilityChanger _rollingBandsVisibilityChanger;
         private readonly ScriptableRendererFeature _rendererFeature;
-
-        private int _visibilityRequestCount;
-
+        private readonly RequestCounter _requestCounter;
+        
         public RollingBandsToggler(RollingBandsVisibilityChanger rollingBandsVisibilityChanger, UniversalRendererData rendererData, string linesEffectName)
         {
             _rollingBandsVisibilityChanger = rollingBandsVisibilityChanger;
@@ -21,28 +20,14 @@ namespace App.RollingBands
             if (_rendererFeature == null) 
                 Debug.LogError($"Cant find render feature with this name: [{linesEffectName}]");
             
-            _rollingBandsVisibilityChanger.Toggle(false);
+            _requestCounter = new RequestCounter(ApplyVisibilityState);
+            ApplyVisibilityState(true);
         }
 
-        public void SetVisibilityState(bool isVisible)
-        {
-            var prevValue = _visibilityRequestCount;
-            if (isVisible)
-                _visibilityRequestCount++;
-            else
-                _visibilityRequestCount--;
+        public void SetVisibilityState(bool isVisible) 
+            => _requestCounter.ChangeRequests(isVisible);
 
-            if (_visibilityRequestCount >= 1 && prevValue > 1)
-                return;
-
-            if (_visibilityRequestCount < 0)
-            {
-                _visibilityRequestCount = 0;
-                Debug.LogWarning("You try hide lines effect when it already hided");
-                return;
-            }
-            
-            _rollingBandsVisibilityChanger.Toggle(_visibilityRequestCount > 0);
-        }
+        private void ApplyVisibilityState(bool isVisible) 
+            => _rollingBandsVisibilityChanger.Toggle(isVisible);
     }
 }

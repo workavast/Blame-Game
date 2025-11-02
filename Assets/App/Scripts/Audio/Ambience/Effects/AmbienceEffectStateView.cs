@@ -13,8 +13,8 @@ namespace App.Audio.Ambience.Effects
 
         private void Update()
         {
-            isReduceAudio = _ambienceEffectsState.ApplyEffects;
-            reduceVolumeRequestCount = _ambienceEffectsState.ApplyEffectsRequestCount;
+            isReduceAudio = _ambienceEffectsState.ApplyEffect;
+            reduceVolumeRequestCount = _ambienceEffectsState.ApplyEffectRequestCount;
         }
     }
 }

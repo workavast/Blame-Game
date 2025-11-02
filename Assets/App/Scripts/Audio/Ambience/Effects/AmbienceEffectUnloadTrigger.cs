@@ -22,8 +22,8 @@ namespace App.Audio.Ambience.Effects
 
         private void SceneUnloaded()
         {
-            if (_ambienceEffectsState.ApplyEffects) 
-                _ambienceEffectsState.SetState(_ambienceEffectsState.ApplyEffects);
+            if (_ambienceEffectsState.ApplyEffect) 
+                _ambienceEffectsState.SetState(_ambienceEffectsState.ApplyEffect);
         }
     }
 }

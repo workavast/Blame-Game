@@ -27,7 +27,7 @@ namespace App.Audio.Ambience.Effects.LowPass
 
         private void Toggle()
         {
-            if (_effectState.ApplyEffects)
+            if (_effectState.ApplyEffect)
             {
                 _lowPassFilterEffector = new LowPassFilterEffector(targetLowPassValue, defaultLowPass, transitionTime);
                 _ambienceManager.ApplyEffect(_lowPassFilterEffector);
