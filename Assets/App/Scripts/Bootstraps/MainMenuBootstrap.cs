@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using App.Audio.Ambience;
-using App.GamePausing;
 using Avastrad.ScenesLoading;
 using UnityEngine;
 using Zenject;
@@ -12,13 +11,11 @@ namespace App.Bootstraps
         [SerializeField] private AmbienceBootstrap ambienceBootstrap;
         [SerializeField] private int delayBeforeHideLoadingScreenInMilliseconds = 1000;
         
-        [Inject] private readonly GamePause _gamePause;
         [Inject] private readonly ISceneLoader _sceneLoader;
         
         private async void Start()
         {
             ambienceBootstrap.Initialize();
-            _gamePause.SetPauseState(false);
 
             var initialLoading = _sceneLoader.PrevTargetSceneIndex <= -1;
             if (!initialLoading)
