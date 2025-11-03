@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using App.Audio.Ambience;
+using App.Localization;
 using Avastrad.ScenesLoading;
 using UnityEngine;
 using Zenject;
@@ -8,6 +9,7 @@ namespace App.Bootstraps
 {
     public class MainMenuBootstrap : MonoBehaviour
     {
+        [SerializeField] private StringTablesPreloader stringTablesPreloader;
         [SerializeField] private AmbienceBootstrap ambienceBootstrap;
         [SerializeField] private int delayBeforeHideLoadingScreenInMilliseconds = 1000;
         
@@ -15,6 +17,8 @@ namespace App.Bootstraps
         
         private async void Start()
         {
+            await stringTablesPreloader.Preload();
+            
             ambienceBootstrap.Initialize();
 
             var initialLoading = _sceneLoader.PrevTargetSceneIndex <= -1;
@@ -22,6 +26,11 @@ namespace App.Bootstraps
                 await AwaitLagOnSceneLoading();
             
             _sceneLoader.HideLoadScreen(initialLoading);
+        }
+
+        private void OnDestroy()
+        {
+            stringTablesPreloader.Release();
         }
 
         /// <summary>
