@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using App.Audio.Ambience.Effects;
+using App.Bootstraps;
 using UnityEngine;
 
 namespace App.Audio.Ambience
 {
-    public class AmbienceBootstrap : MonoBehaviour
+    public class AmbienceBootstrap : Bootstrap
     {
         [SerializeField] private AmbienceInitializer ambienceInitializer;
         [SerializeField] private List<AmbienceEffectorToggler> effectorTogglers; 
 
-        private void Start()
-        {
-            Initialize();
-        }
-
-        public void Initialize()
+        protected override Task SelfInitialization()
         {
             ambienceInitializer.Init();
             foreach (var effectorToggler in effectorTogglers)
                 effectorToggler.Init();
+            
+            return Task.CompletedTask;
         }
     }
 }
