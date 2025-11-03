@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 
 namespace App.ScenesReferencing
 {
@@ -20,3 +21,4 @@ namespace App.ScenesReferencing
         }
     }
 }
+#endif

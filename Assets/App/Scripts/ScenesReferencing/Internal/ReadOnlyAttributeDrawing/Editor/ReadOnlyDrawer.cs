@@ -1,15 +1,9 @@
-﻿namespace App.ScenesReferencing
+﻿#if UNITY_EDITOR
+using UnityEditor;
+using UnityEngine;
+
+namespace App.ScenesReferencing.ReadOnlyAttributeDrawing
 {
-    using UnityEngine;
-#if UNITY_EDITOR
-    using UnityEditor;
-#endif
-
-// Атрибут
-    internal class ReadOnlyAttribute : PropertyAttribute { }
-
-#if UNITY_EDITOR
-// Property Drawer
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     internal class ReadOnlyDrawer : PropertyDrawer
     {
@@ -25,5 +19,5 @@
             GUI.enabled = true;
         }
     }
-#endif
 }
+#endif
