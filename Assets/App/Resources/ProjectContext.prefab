@@ -132,6 +132,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7247ed1f4145e89aea3ddbe108727d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4821659251266537266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97056149273644044}
+  - component: {fileID: 4112233653744060671}
+  m_Layer: 0
+  m_Name: Settigns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97056149273644044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821659251266537266}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2501659365829847254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4112233653744060671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821659251266537266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2207a55940643718db663b923b4ca7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsConfigsRepository: {fileID: 11400000, guid: 8d87dbcf5c5d3bd4da81bb2af5d245d6, type: 2}
 --- !u!1 &7147802875001922952
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +214,7 @@ Transform:
   - {fileID: 7707983158663779576}
   - {fileID: 5207711321689595256}
   - {fileID: 2402758713231634015}
+  - {fileID: 97056149273644044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3086672170570023435
@@ -192,6 +238,7 @@ MonoBehaviour:
   - {fileID: 3460268914440102037}
   - {fileID: 8179381023955484961}
   - {fileID: 6906647123963167298}
+  - {fileID: 4112233653744060671}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -344,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f3229723d44b81b1e8667adfc477a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeSettingsConfig: {fileID: 11400000, guid: b6c282326d80370439e151cecd263e42, type: 2}
 --- !u!1 &8845997652791796183
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea51f3d9b274459aa6b5f2c2a61c83ef, type: 3}
+  m_Name: VolumeSettingsConfig
+  m_EditorClassIdentifier: 
+  <Priority>k__BackingField: 0
+  audioMixer: {fileID: 24100000, guid: a870d6a42f69c3e49892a3776459e3bb, type: 2}
+  masterParam: MasterVolume
+  effectsParam: EffectsVolume
+  musicParam: MusicVolume
+  defaultMasterVolume: 1
+  defaultMusicVolume: 0.9
+  defaultEffectsVolume: 0.9

@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using App.MonoBehProviding;
 using Avastrad.Libs.CheckOnNullLib;
 using UnityEngine;
 
 namespace App.RollingBands
 {
-    public class RollingBandsVisibilityChanger 
+    public class RollingBandsVisibilityChanger : IDisposable
     {
         private static readonly int Remap = Shader.PropertyToID("_Remap");
         
@@ -67,6 +68,11 @@ namespace App.RollingBands
             } while (_timer > 0);
 
             _timer = 0;
+        }
+
+        public void Dispose()
+        {
+            Material.SetVector(Remap, Vector2.one);
         }
     }
 }

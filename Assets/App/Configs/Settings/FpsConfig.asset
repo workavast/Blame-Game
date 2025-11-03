@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2a47bd3d484100b9d36c4133d50c14, type: 3}
+  m_Name: FpsConfig
+  m_EditorClassIdentifier: 
+  <Priority>k__BackingField: 0
+  fpsOptions: 1e0000003c0000005a0000007800000090000000f000000068010000
+  defaultOptionIndex: 1

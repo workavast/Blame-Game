@@ -21,7 +21,7 @@ namespace App.RollingBands
                 Debug.LogError($"Cant find render feature with this name: [{linesEffectName}]");
             
             _requestCounter = new RequestCounter(ApplyVisibilityState);
-            ApplyVisibilityState(true);
+            ApplyVisibilityState(false);
         }
 
         public void SetVisibilityState(bool isVisible) 

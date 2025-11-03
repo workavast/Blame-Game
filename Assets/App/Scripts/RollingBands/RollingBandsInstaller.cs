@@ -15,7 +15,7 @@ namespace App.RollingBands
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<RollingBandsTimeUpdater>().FromNew().AsSingle().WithArguments(rollingBandsMaterial).NonLazy();
-            Container.Bind<RollingBandsVisibilityChanger>().FromNew().AsSingle().WithArguments(config);
+            Container.BindInterfacesAndSelfTo<RollingBandsVisibilityChanger>().FromNew().AsSingle().WithArguments(config);
             Container.Bind<RollingBandsToggler>().FromNew().AsSingle().WithArguments(rendererData, rollingBandsName).NonLazy();
         }
     }
