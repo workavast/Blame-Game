@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreenPrefab: {fileID: 466151459714505478, guid: 0f2543db0f4d384429ccc05c33fd7ce1, type: 3}
-  loadingSceneIndex: 2
+  loadingSceneIndex: 3
 --- !u!1 &8267229734157661223
 GameObject:
   m_ObjectHideFlags: 0

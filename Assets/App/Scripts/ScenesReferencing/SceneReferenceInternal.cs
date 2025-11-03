@@ -9,11 +9,11 @@ namespace App.ScenesReferencing
     {
         [SerializeField] private SceneAsset sceneAsset;
         
-        private void OnValidate()
+        internal void OnValidate()
         {
             if (sceneAsset != null)
             {
-                string scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+                var scenePath = AssetDatabase.GetAssetPath(sceneAsset);
                 bakedSceneIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
 
                 if (bakedSceneIndex == -1)

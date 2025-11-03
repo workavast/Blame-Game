@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13890c2f94194695bf99bcb7c2b365db, type: 3}
   m_Name: LoadingSceneRef
   m_EditorClassIdentifier: 
+  bakedSceneIndex: 3
   sceneAsset: {fileID: 102900000, guid: 120f83f8fd85f6143bf96de7ede362de, type: 3}
-  bakedSceneIndex: 2
