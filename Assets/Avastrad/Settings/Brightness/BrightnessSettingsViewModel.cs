@@ -9,12 +9,13 @@ namespace Avastrad.Settings.Brightness
         [Inject] private SettingsModel _settingsModel;
 
         private BrightnessSettingsModel Model => _settingsModel.BrightnessSettingsModel;
-        
+
+        public bool HasChanged => !Mathf.Approximately(Model.Value, Value);
         public float Value { get; private set; }
         public float MinValue => Model.MinValue;
         public float MaxValue => Model.MaxValue;
 
-        public Action OnChanged;
+        public event Action OnChanged;
         
         public void Initialize()
         {
@@ -30,7 +31,8 @@ namespace Avastrad.Settings.Brightness
         {
             Value = Model.Value;
             ApplySettings();
-            
+            Model.Apply();
+
             OnChanged?.Invoke();
         }
 

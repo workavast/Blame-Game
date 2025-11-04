@@ -13,6 +13,7 @@ namespace Avastrad.Settings.Localization
         public int SelectedOptionIndex { get; private set; }
         public IReadOnlyList<Locale> Options => Model.Options;
         public int DefaultOptionIndex => Model.DefaultOptionIndex;
+        public bool HasChanged => Model.SelectedOptionIndex != SelectedOptionIndex;
 
         private LocalizationSettingsModel Model => _settingsModel.LocalizationSettingsModel;
 

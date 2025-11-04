@@ -14,9 +14,10 @@ namespace Avastrad.Settings.AntiAliasing
         
         public IReadOnlyList<AntialiasingMode> AntiAliasingModes => Model.AntiAliasingModes;
         public int SelectedAntiAliasingIndex { get; private set; }
+        public bool HasChanged => Model.SelectedAntiAliasingIndex != SelectedAntiAliasingIndex;
 
         public Action OnChanged;
-        
+
         public void Initialize()
         {
             SelectedAntiAliasingIndex = Model.SelectedAntiAliasingIndex;

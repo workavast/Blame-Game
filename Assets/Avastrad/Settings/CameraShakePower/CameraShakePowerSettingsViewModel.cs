@@ -9,11 +9,12 @@ namespace Avastrad.Settings.CameraShakePower
         [Inject] private SettingsModel _settingsModel;
 
         private CameraShakePowerSettingsModel Model => _settingsModel.CameraShakePowerSettingsModel;
-        
+
         public float ShakePower { get; private set; }
+        public bool HasChanged => !Mathf.Approximately(Model.ShakePower, ShakePower);
 
         public Action OnChanged;
-        
+
         public void Initialize()
         {
             ShakePower = Model.ShakePower;

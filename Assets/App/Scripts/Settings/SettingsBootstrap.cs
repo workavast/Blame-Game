@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
+using App.Bootstraps;
 using Avastrad.Settings;
 using Zenject;
 
-namespace App.Bootstraps
+namespace App.Settings
 {
     public class SettingsBootstrap : Bootstrap
     {

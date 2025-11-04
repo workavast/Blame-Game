@@ -12,7 +12,7 @@ namespace Avastrad.Settings.Fps
         public int SelectedOptionIndex { get; private set; }
         public IReadOnlyList<int> FpsOptions => Model.FpsOptions;
         public int DefaultOptionIndex => Model.DefaultOptionIndex;
-        public bool IsChanged => Model.SelectedOptionIndex != SelectedOptionIndex;
+        public bool HasChanged => Model.SelectedOptionIndex != SelectedOptionIndex;
 
         private FpsSettingsModel Model => _settingsModel.FpsSettingsModel;
 
@@ -25,7 +25,7 @@ namespace Avastrad.Settings.Fps
 
         public void ApplySettings()
         {
-            if (IsChanged)
+            if (HasChanged)
                 Model.Set(SelectedOptionIndex);
         }
 
@@ -38,7 +38,7 @@ namespace Avastrad.Settings.Fps
 
         public void ResetSettings()
         {
-            if (!IsChanged)
+            if (!HasChanged)
                 return;
 
             SelectedOptionIndex = Model.SelectedOptionIndex;

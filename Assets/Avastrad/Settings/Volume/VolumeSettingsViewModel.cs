@@ -9,7 +9,12 @@ namespace Avastrad.Settings.Volume
         [Inject] private SettingsModel _settingsModel;
 
         private VolumeSettingsModel Model => _settingsModel.VolumeSettingsModel;
-        
+
+        public bool HasChanged
+            => !Mathf.Approximately(Model.MasterVolume, MasterVolume) ||
+               !Mathf.Approximately(Model.MusicVolume, MusicVolume) ||
+               !Mathf.Approximately(Model.EffectsVolume, EffectsVolume);
+
         public float MasterVolume { get; private set; }
         public float MusicVolume { get; private set; }
         public float EffectsVolume { get; private set; }

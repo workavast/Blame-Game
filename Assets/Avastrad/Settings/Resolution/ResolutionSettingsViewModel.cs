@@ -11,7 +11,7 @@ namespace Avastrad.Settings.Resolution
         
         public int SelectedResolutionIndex { get; private set; }
         public IReadOnlyList<InspectorResolution> Resolutions => Model.Resolutions;
-        public bool IsChanged => SelectedResolutionIndex != Model.SelectedResolutionIndex;
+        public bool HasChanged => SelectedResolutionIndex != Model.SelectedResolutionIndex;
         
         private ResolutionSettingsModel Model => _settingsModel.ResolutionSettingsModel;
         private int DefaultResolutionIndex => Model.DefaultResolutionIndex;
@@ -25,7 +25,7 @@ namespace Avastrad.Settings.Resolution
 
         public void ApplySettings()
         {
-            if (!IsChanged)
+            if (!HasChanged)
                 return;
             
             Model.Set(SelectedResolutionIndex);

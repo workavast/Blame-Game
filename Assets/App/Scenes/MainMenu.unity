@@ -921,6 +921,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 884158243}
     m_Modifications:
+    - target: {fileID: 519013056317067382, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519013056317067382, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519013056317067382, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519013056317067382, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519013056317067382, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3208309242812511266, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -929,6 +949,97 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 676792427}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: screen.typeName
+      value: App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: screen.updateTimer
+      value: 1.4015048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: screenV2.updateTimer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: screen.cashedDerivedTypes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: screenV2.cashedDerivedTypes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[0]'
+      value: App.UI.GameplayMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[1]'
+      value: App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[2]'
+      value: App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[3]'
+      value: App.Perks.UI.PerksScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[4]'
+      value: App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[5]'
+      value: App.GameEndDetection.GameWinUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screenV2.cashedDerivedTypes.Array.data[2]'
+      value: App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screenV2.cashedDerivedTypes.Array.data[3]'
+      value: App.Perks.UI.PerksScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screenV2.cashedDerivedTypes.Array.data[4]'
+      value: App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658419695132728446, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: 'screenV2.cashedDerivedTypes.Array.data[5]'
+      value: App.GameEndDetection.GameWinUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667710187673183549, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667710187673183549, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667710187673183549, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667710187673183549, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667710187673183549, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7029919958524498855, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1007,6 +1118,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7029919958524498855, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132590623574101348, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132590623574101348, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132590623574101348, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132590623574101348, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132590623574101348, guid: a45279d1f6a64b748a3f883f94e19682, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1138,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 1171911924734349519, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835349560954780814, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: screen.updateTimer
+      value: 1.3917192
       objectReference: {fileID: 0}
     - target: {fileID: 1977849117101285178, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1842,6 +1977,44 @@ PrefabInstance:
     - target: {fileID: 8653208542849741265, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: screen.updateTimer
+      value: 0.1502132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: screen.cashedDerivedTypes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[0]'
+      value: App.UI.GameplayMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[1]'
+      value: App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[2]'
+      value: App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[3]'
+      value: App.Perks.UI.PerksScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[4]'
+      value: App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
+      propertyPath: 'screen.cashedDerivedTypes.Array.data[5]'
+      value: App.GameEndDetection.GameWinUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
       objectReference: {fileID: 0}
     - target: {fileID: 8936945455076748968, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
       propertyPath: m_AnchorMax.y

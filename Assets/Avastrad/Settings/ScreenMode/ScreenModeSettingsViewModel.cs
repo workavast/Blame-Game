@@ -8,13 +8,13 @@ namespace Avastrad.Settings.ScreenMode
     {
         [Inject] private readonly SettingsModel _settingsModel;
 
-        public bool IsChanged => Model.IsFullScreen != IsFullScreen;
+        public bool HasChanged => Model.IsFullScreen != IsFullScreen;
         public bool IsFullScreen { get; private set; }
 
         private ScreenModeSettingsModel Model => _settingsModel.ScreenModeSettingsModel;
 
         public event Action OnChanged;
-
+        
         public void Initialize()
         {
             IsFullScreen = Model.IsFullScreen;
@@ -22,7 +22,7 @@ namespace Avastrad.Settings.ScreenMode
 
         public void ApplySettings()
         {
-            if (!IsChanged)
+            if (!HasChanged)
                 return;
 
             Model.Set(IsFullScreen);

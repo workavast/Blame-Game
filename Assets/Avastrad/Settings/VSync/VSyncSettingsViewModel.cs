@@ -11,6 +11,7 @@ namespace Avastrad.Settings.VSync
         private VSyncSettingsModel Model => _settingsModel.VSyncSettingsModel;
         
         public bool UseVSync { get; private set; }
+        public bool HasChanged => Model.UseVSync != UseVSync;
 
         public Action OnChanged;
         

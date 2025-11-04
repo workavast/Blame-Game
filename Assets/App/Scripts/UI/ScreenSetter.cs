@@ -10,11 +10,11 @@ namespace App.UI
     [RequireComponent(typeof(Button))]
     public class ScreenSetter : MonoBehaviour
     {
-        [SerializeField] private TypeReference<ScreenBase> screenV2;
+        [SerializeField] private TypeReference<ScreenBase> screen;
         
         [Inject] private readonly ScreensController _screensController;
 
         private void Awake() 
-            => GetComponent<Button>().onClick.AddListener(()=>_screensController.SetScreen(screenV2.Type));
+            => GetComponent<Button>().onClick.AddListener(()=>_screensController.SetScreen(screen.Type));
     }
 }

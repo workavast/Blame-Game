@@ -6,7 +6,7 @@ namespace Avastrad.Settings
     public class SettingsPresenter : MonoBehaviour
     {
         [Inject] private readonly SettingsModel _settingsModel;
-
+        
         private ISettingsViewModel[] _settingsViewModels;
         private ISettingsView[] _settingsViews;
 
@@ -34,6 +34,15 @@ namespace Avastrad.Settings
                 view.OnDisabledManual();
         }
 
+        public bool HasChangedAny()
+        {
+            foreach (var viewModel in _settingsViewModels)
+                if (viewModel.HasChanged)
+                    return true;
+
+            return false;
+        }
+        
         public void ApplySettings()
         {
             foreach (var viewModel in _settingsViewModels)

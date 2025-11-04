@@ -20,7 +20,7 @@ namespace Avastrad.Extensions
         /// <returns> return true if value removed, else false </returns>
         public static bool TryRemove<T>(this List<T> list, T value)
         {
-            if (list.Contains(value))
+            if (!list.Contains(value))
                 return false;
 
             list.Remove(value);
