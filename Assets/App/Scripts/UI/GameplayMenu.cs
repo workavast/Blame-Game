@@ -1,13 +1,14 @@
 ﻿using App.EscProviding;
 using App.ScenesReferencing;
 using Avastrad.ScenesLoading;
+using Avastrad.UI.UiSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace App.UI
 {
-    public class GameplayMenu : MonoBehaviour, IEscListener
+    public class GameplayMenu : ScreenBase, IEscListener
     {
         [SerializeField] private SceneReference mainMenuRef;
         [SerializeField] private SceneReference gameplayRef;
@@ -17,10 +18,11 @@ namespace App.UI
         [SerializeField] private Button backInMenuBtn;
         [SerializeField] private Button quitBtn;
 
+        [Inject] private readonly ScreensController _screensController;
         [Inject] private readonly ISceneLoader _sceneLoader;
         [Inject] private readonly EscProvider _escProvider;
-        
-        private void Awake()
+
+        public override void Initialize()
         {
             continueBtn.onClick.AddListener(ContinueGame);
             restartBtn.onClick.AddListener(RestartGame);
@@ -29,39 +31,24 @@ namespace App.UI
             _escProvider.Sub(this);
         }
 
-        private void Start()
-        {
-            gameObject.SetActive(false);
-        }
-
         private void OnDestroy()
         {
             _escProvider.UnSub(this);
         }
 
-        public void OnEscPressed()
-        {
-            gameObject.SetActive(!gameObject.activeSelf);
-        }
-        
-        private void RestartGame()
-        {
-            _sceneLoader.LoadScene(gameplayRef.SceneIndex);
-        }
-        
-        private void ContinueGame()
-        {
-            OnEscPressed();
-        }
+        public void OnEscPressed() 
+            => _screensController.ToggleScreen(GetType());
 
-        private void BackInMenu()
-        {
-            _sceneLoader.LoadScene(mainMenuRef.SceneIndex);
-        }
+        private void RestartGame() 
+            => _sceneLoader.LoadScene(gameplayRef.SceneIndex);
 
-        private void QuitGame()
-        {
-            Application.Quit();
-        }
+        private void ContinueGame() 
+            => _screensController.ToggleScreen(GetType(), false);
+
+        private void BackInMenu() 
+            => _sceneLoader.LoadScene(mainMenuRef.SceneIndex);
+
+        private void QuitGame() 
+            => Application.Quit();
     }
 }

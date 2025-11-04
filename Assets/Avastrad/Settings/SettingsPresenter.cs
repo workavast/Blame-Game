@@ -10,7 +10,7 @@ namespace Avastrad.Settings
         private ISettingsViewModel[] _settingsViewModels;
         private ISettingsView[] _settingsViews;
 
-        private void Awake()
+        public void Initialize()
         {
             _settingsViewModels = GetComponentsInChildren<ISettingsViewModel>(true);
             _settingsViews = GetComponentsInChildren<ISettingsView>(true);
@@ -19,9 +19,9 @@ namespace Avastrad.Settings
                 viewModel.Initialize();
 
             foreach (var view in _settingsViews)
-                view.Initialize();
+                view.Initialize(); 
         }
-
+        
         private void OnEnable()
         {
             foreach (var view in _settingsViews)

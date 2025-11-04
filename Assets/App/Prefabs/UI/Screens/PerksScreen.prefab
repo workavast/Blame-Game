@@ -9,9 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4459304702933906043}
+  - component: {fileID: 2591457273141919013}
   - component: {fileID: 1403055353152987288}
+  - component: {fileID: 4814431540001364731}
+  - component: {fileID: 5420125940300112469}
+  - component: {fileID: 2141740464618806484}
+  - component: {fileID: 3664456955459223781}
+  - component: {fileID: 3788799768678446436}
   m_Layer: 5
-  m_Name: PerksWindow
+  m_Name: PerksScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +43,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2591457273141919013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a25733736b49fdacbe184e89a976ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perksChooseWindow: {fileID: 1403055353152987288}
 --- !u!114 &1403055353152987288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,11 +68,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8923441aab0c4d80857127994ac5e833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsHolder: {fileID: 7227280025555282133}
   perkCards:
   - {fileID: 8273058580646134398}
   - {fileID: 1111020668402277004}
   - {fileID: 1478564468047162150}
+--- !u!114 &4814431540001364731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c37971601b8496e877cea0890511c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5420125940300112469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2341fad423be44b9b2516b9b8851b58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2141740464618806484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2935a4aafb347eb9969411599469221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!223 &3664456955459223781
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &3788799768678446436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768856828768040609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6646942128886371888
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,9 +157,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7227280025555282133}
-  - component: {fileID: 8466580098086659628}
-  - component: {fileID: 8704618746181063485}
-  - component: {fileID: 8323672696281467317}
   m_Layer: 5
   m_Name: CardsHolder
   m_TagString: Untagged
@@ -95,42 +186,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8466580098086659628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646942128886371888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c37971601b8496e877cea0890511c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8704618746181063485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646942128886371888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2341fad423be44b9b2516b9b8851b58b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8323672696281467317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646942128886371888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2935a4aafb347eb9969411599469221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &727133602014149548
 PrefabInstance:
   m_ObjectHideFlags: 0

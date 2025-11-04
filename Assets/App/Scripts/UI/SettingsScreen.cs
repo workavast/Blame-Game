@@ -1,21 +1,17 @@
 ﻿using Avastrad.Settings;
+using Avastrad.UI.UiSystem;
 using UnityEngine;
-using Zenject;
 
 namespace App.UI
 {
-    public class SettingsScreen : MonoBehaviour
+    public class SettingsScreen : ScreenBase
     {
-        [Inject] private SettingsModel _settingsModel;
-        
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
+        [SerializeField] private SettingsPresenter settingsPresenter;
 
-        public void Hide()
+        public override void Initialize()
         {
-            gameObject.SetActive(false);
+            settingsPresenter.Initialize();
+            base.Initialize();
         }
     }
 }
