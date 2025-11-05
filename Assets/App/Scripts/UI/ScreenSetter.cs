@@ -1,4 +1,4 @@
-﻿using App.TypedReferencing;
+﻿using App.TypeReferencing;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
 using UnityEngine.UI;

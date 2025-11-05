@@ -1978,44 +1978,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: screen.updateTimer
-      value: 0.1502132
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: screen.cashedDerivedTypes.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[0]'
-      value: App.UI.GameplayMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[1]'
-      value: App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[2]'
-      value: App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[3]'
-      value: App.Perks.UI.PerksScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[4]'
-      value: App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 8818347501356715237, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
-      propertyPath: 'screen.cashedDerivedTypes.Array.data[5]'
-      value: App.GameEndDetection.GameWinUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
     - target: {fileID: 8936945455076748968, guid: 012e0bb2509478e4c9f6d36a9429c2e1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

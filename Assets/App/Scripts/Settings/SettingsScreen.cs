@@ -1,5 +1,5 @@
 ﻿using App.EscProviding;
-using App.TypedReferencing;
+using App.TypeReferencing;
 using Avastrad.Settings;
 using Avastrad.UI.UiSystem;
 using UnityEngine;

@@ -123,17 +123,17 @@ MonoBehaviour:
   screen:
     typeName: App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    updateTimer: 0.33333334
+    updateTimer: 0
     cashedDerivedTypes:
-    - App.UI.GameplayMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    - App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - App.Settings.SettingsScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     - App.Perks.UI.PerksScreen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    - App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
     - App.GameEndDetection.GameWinUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    - App.UI.MainMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - App.UI.GameplayMenu, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - App.GameEndDetection.GameLooseUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   settingsPresenter: {fileID: 2532614794539834083}
   closeWarningWindow: {fileID: 3008060784186185988}
