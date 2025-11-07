@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37e9d18fd9a46c3988944363943e9ee, type: 3}
   m_Name: IncreaseStarShooterFireRate
   m_EditorClassIdentifier: 
-  title: StarShooter
-  description: Increase firea rate for 25%
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 12836369494016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 5942473027584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 96364c1d4a3cb7b41a612113fec51f86, type: 3}
   childPerks: []
   additionalFireRate: 0.25
+  references:
+    version: 2
+    RefIds: []

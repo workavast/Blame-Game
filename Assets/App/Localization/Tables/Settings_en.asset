@@ -38,6 +38,50 @@ MonoBehaviour:
     m_Localized: Window
     m_Metadata:
       m_Items: []
+  - m_Id: 1442995467350016
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443031576113152
+    m_Localized: Fps Limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443194956836864
+    m_Localized: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443243833061376
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443347021328384
+    m_Localized: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443430425063424
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443413446520832
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444482218094592
+    m_Localized: Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444629878566912
+    m_Localized: Detected unsaved changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444849093865472
+    m_Localized: Save And Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444926722043904
+    m_Localized: Cancel And Close
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

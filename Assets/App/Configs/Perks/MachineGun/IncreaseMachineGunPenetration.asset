@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fd13f6e4344dc1855b425a1cb70501, type: 3}
   m_Name: IncreaseMachineGunPenetration
   m_EditorClassIdentifier: 
-  title: Machine Gun
-  description: penetration +1
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 11895289311232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 6005656023040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: f2b927b066c29004c8e187e403fdce5f, type: 3}
   childPerks: []
   additionalPenetration: 1
+  references:
+    version: 2
+    RefIds: []

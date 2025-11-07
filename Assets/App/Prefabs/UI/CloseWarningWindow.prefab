@@ -213,6 +213,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4471962825994675794}
     m_Modifications:
+    - target: {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 1444629878566912
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:b9cad0ae026143a4bacc9da52faf384c
+      objectReference: {fileID: 0}
     - target: {fileID: 6102328638956915887, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
       propertyPath: m_text
       value: Detected unsaved changes
@@ -403,6 +411,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Cancel And Close
       objectReference: {fileID: 0}
+    - target: {fileID: 3779324769352738079, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 1444926722043904
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779324769352738079, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:b9cad0ae026143a4bacc9da52faf384c
+      objectReference: {fileID: 0}
     - target: {fileID: 8045136650381198763, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_Name
       value: CancelAndCloseBtn
@@ -519,6 +535,14 @@ PrefabInstance:
     - target: {fileID: 2965072126872467041, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_text
       value: Save And Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779324769352738079, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 1444849093865472
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779324769352738079, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:b9cad0ae026143a4bacc9da52faf384c
       objectReference: {fileID: 0}
     - target: {fileID: 8045136650381198763, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_Name

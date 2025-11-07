@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: WeaponPerks Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: WeaponPerks
+  m_TableCollectionNameGuidString: a9fd30968dbcbb343988bb634e6f0ee8
+  m_Entries:
+  - m_Id: 10984779776
+    m_Key: ForwradShooterTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 349284757504
+    m_Key: ForwradShooterDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10605498888192
+    m_Key: DamageZoneTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10684058202112
+    m_Key: DamageZoneDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10915306958848
+    m_Key: RifleTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11407613390848
+    m_Key: RifleDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11895289311232
+    m_Key: MachineGunTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11937261711360
+    m_Key: MachineGunDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12463181295616
+    m_Key: RocketLauncherTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12510262358016
+    m_Key: RocketLauncherDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12836369494016
+    m_Key: StarShooterTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12896301903872
+    m_Key: StarShooterDescription
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5585034334353490028
+  references:
+    version: 2
+    RefIds:
+    - rid: 5585034334353490028
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1762440698786

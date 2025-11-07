@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb293b8ae20d48b6aaf0ca5faae6c545, type: 3}
   m_Name: IncreaseStarShooterBulletsCount
   m_EditorClassIdentifier: 
-  title: Star Shooter
-  description: Add 2 bullets
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 12836369494016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 6096978604032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 96364c1d4a3cb7b41a612113fec51f86, type: 3}
   childPerks: []
   additionalProjectilesCount: 2
+  references:
+    version: 2
+    RefIds: []

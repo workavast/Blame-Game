@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b108186ee064a00b6c40e743fd89a51, type: 3}
   m_Name: IncreaseDamageZoneRadius
   m_EditorClassIdentifier: 
-  title: Damage Zone Radius
-  description: Radius +15%
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 10605498888192
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 6047263518720
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 94178aee168d5094391c118561a284be, type: 3}
   childPerks: []
   additionalScale: 0.15
+  references:
+    version: 2
+    RefIds: []

@@ -15,8 +15,33 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 7fa966e1ebb1c9f49b0c19f584778df6
   m_SerializeEntries:
+  - m_GUID: 200e92d70960f664bacff3b48008262b
+    m_Address: Assets/App/Localization/Tables/MainMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ce567600914a404f82a1fac03cf4238
+    m_Address: Assets/App/Localization/Tables/GameplayMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 798d47e854956b04782b2f3b7188019d
+    m_Address: Assets/App/Localization/Tables/CommonPerks Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9fd30968dbcbb343988bb634e6f0ee8
+    m_Address: Assets/App/Localization/Tables/ForwardShooter Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9cad0ae026143a4bacc9da52faf384c
     m_Address: Assets/App/Localization/Tables/Settings Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ded5e46bcbbb66b4f95cab7cd471673c
+    m_Address: Assets/App/Localization/Tables/GameEnd Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

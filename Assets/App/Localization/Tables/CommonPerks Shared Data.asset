@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: CommonPerks Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: CommonPerks
+  m_TableCollectionNameGuidString: 798d47e854956b04782b2f3b7188019d
+  m_Entries:
+  - m_Id: 12062715904
+    m_Key: IncreaseDamageDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5942473027584
+    m_Key: IncreaseFireRateDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6005656023040
+    m_Key: IncreasePenetrationDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6047263518720
+    m_Key: IncreaseAoeZoneRadiusDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6096978604032
+    m_Key: IncreaseProjectilesCountDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12083802304512
+    m_Key: ExpTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12203839090688
+    m_Key: GlobalDamageTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12334781067264
+    m_Key: GlobalFireRateTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12483364286464
+    m_Key: ExpScaleDescription
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5585034334353490037
+  references:
+    version: 2
+    RefIds:
+    - rid: 5585034334353490037
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1762441250237

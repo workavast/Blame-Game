@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a228b2288be64577807c6077bb298bfb, type: 3}
-  m_Name: StringTablesConfig
+  m_Name: MainMenuTablesConfig
   m_EditorClassIdentifier: 
   tableReferences:
+  - m_TableCollectionName: MainMenu
   - m_TableCollectionName: Settings
   tables:
+  - {fileID: 11400000, guid: 79e669b2b77785c408024257d7571d34, type: 2}
   - {fileID: 11400000, guid: 6e458aabc4b38e341927c044fc39675d, type: 2}

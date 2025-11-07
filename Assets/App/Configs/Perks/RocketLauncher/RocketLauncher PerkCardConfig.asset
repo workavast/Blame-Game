@@ -12,11 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40012cf817d04bdb96070f4e5cefe68c, type: 3}
   m_Name: RocketLauncher PerkCardConfig
   m_EditorClassIdentifier: 
-  title: Rocket Launcher
-  description: rocket
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 12463181295616
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 12510262358016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 452989ed2eb5f70418dcad659026821a, type: 3}
   childPerks:
   - {fileID: 11400000, guid: 8736cbcd9e1bda444b3453d6d0b4aa93, type: 2}
   - {fileID: 11400000, guid: de7418d0afd782446951fa2d03f08852, type: 2}
   - {fileID: 11400000, guid: 74688d002134632449e494c30152674a, type: 2}
   ecsPerkPrefab: {fileID: 7488058628797259467, guid: ec379fb35d59cb449b42b20de4bdf20f, type: 3}
+  references:
+    version: 2
+    RefIds: []

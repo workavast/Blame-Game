@@ -26,8 +26,8 @@ namespace App.Perks.UI
         {
             _perkCell = perkCell;
 
-            title.text = _perkCell.Title;
-            description.text = _perkCell.Description;
+            title.text = _perkCell.GetTitle();
+            description.text = _perkCell.GetDescription();
             icon.sprite = _perkCell.Icon;
         }
     }

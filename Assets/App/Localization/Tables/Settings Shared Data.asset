@@ -35,6 +35,50 @@ MonoBehaviour:
     m_Key: Window
     m_Metadata:
       m_Items: []
+  - m_Id: 1442995467350016
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443031576113152
+    m_Key: FpsLimit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443194956836864
+    m_Key: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443243833061376
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443347021328384
+    m_Key: Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443413446520832
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443430425063424
+    m_Key: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444482218094592
+    m_Key: Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444629878566912
+    m_Key: CloseWarningWindowTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444849093865472
+    m_Key: SaveAndClose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444926722043904
+    m_Key: CancelAndClose
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

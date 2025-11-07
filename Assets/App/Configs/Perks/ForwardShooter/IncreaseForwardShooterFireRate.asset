@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1470cc740b2e4ca2868e391d06151dcb, type: 3}
   m_Name: IncreaseForwardShooterFireRate
   m_EditorClassIdentifier: 
-  title: Forward Shooter Fire Rate
-  description: Increase fire rate for 30%
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 10984779776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 5942473027584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 208fadd1e0552c24eafd4b07759aeaa6, type: 3}
   childPerks: []
   additionalFireRate: 0.3
+  references:
+    version: 2
+    RefIds: []

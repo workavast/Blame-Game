@@ -15,6 +15,36 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Russian (ru)
   m_GUID: 2ce9ffb6a44a5a74c8f19c42073f4c6d
   m_SerializeEntries:
+  - m_GUID: 01f1d71477eeb5c4f88db37988fdc07d
+    m_Address: CommonPerks_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 211d0fe570608eb4798905fd211d576f
+    m_Address: WeaponPerks_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 255027694ec8b2b408ede290ae642270
+    m_Address: GameplayMenu_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9064f2e673fd1ac42bf512c7bd336ad0
+    m_Address: MainMenu_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d35c5345599337748bc41ff2675deca6
+    m_Address: GameEnd_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eeb1b219e85d99641bee2e7798cb5c2d
     m_Address: Settings_ru
     m_ReadOnly: 1

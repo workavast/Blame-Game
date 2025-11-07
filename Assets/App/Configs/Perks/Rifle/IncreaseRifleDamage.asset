@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca5b29bef194090b62c7f62038760ed, type: 3}
   m_Name: IncreaseRifleDamage
   m_EditorClassIdentifier: 
-  title: Rifle
-  description: damage +50%
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 10915306958848
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 12062715904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 42aea7937f374874280dfe012acd785b, type: 3}
   childPerks: []
   damageScale: 0.5
+  references:
+    version: 2
+    RefIds: []

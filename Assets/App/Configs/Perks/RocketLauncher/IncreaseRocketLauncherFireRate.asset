@@ -12,8 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4672453b0a00441c9c488f5acddb89a9, type: 3}
   m_Name: IncreaseRocketLauncherFireRate
   m_EditorClassIdentifier: 
-  title: Rocket Launcher
-  description: fire rate +25%
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 12463181295616
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d
+    m_TableEntryReference:
+      m_KeyId: 5942473027584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 452989ed2eb5f70418dcad659026821a, type: 3}
   childPerks: []
   additionalFireRate: 0.25
+  references:
+    version: 2
+    RefIds: []

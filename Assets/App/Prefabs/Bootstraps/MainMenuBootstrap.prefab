@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childBootstraps: []
   preloader:
-    config: {fileID: 11400000, guid: 64327ab706a1bac4fa8bddb0ac3c3989, type: 2}
+    config: {fileID: 11400000, guid: ff2aa04f4a14a04478cfd82425bbce77, type: 2}
 --- !u!1 &803417093581652720
 GameObject:
   m_ObjectHideFlags: 0

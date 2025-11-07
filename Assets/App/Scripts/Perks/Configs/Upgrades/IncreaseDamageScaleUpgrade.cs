@@ -9,7 +9,10 @@ namespace App.Perks.Configs.Upgrades
         where TTag : unmanaged, IComponentData
     {
         [SerializeField] private float damageScale;
-        
+
+        protected override object[] GetDescriptionParams()
+            => new object[] { damageScale };
+
         public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, DamageScale>();
