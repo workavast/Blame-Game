@@ -16,12 +16,12 @@ MonoBehaviour:
   configsRepositoryCell:
     autoFill: 1
     configs:
-    - {fileID: 11400000, guid: 1342cdd56ad2f2a43947c9a48372acb8, type: 2}
-    - {fileID: 11400000, guid: ec536341284808d4ba4eca24a3726171, type: 2}
     - {fileID: 11400000, guid: fbfa67fee3815164a8ca97afb1fe58fa, type: 2}
-    - {fileID: 11400000, guid: b6c282326d80370439e151cecd263e42, type: 2}
-    - {fileID: 11400000, guid: 14ae4d9b24b69074f93375edbed16de3, type: 2}
-    - {fileID: 11400000, guid: 822a114be10159c47aa4f0ffa0acfffe, type: 2}
     - {fileID: 11400000, guid: 50fde4e136866b246a7c0b54b204bd11, type: 2}
+    - {fileID: 11400000, guid: 14ae4d9b24b69074f93375edbed16de3, type: 2}
+    - {fileID: 11400000, guid: ec536341284808d4ba4eca24a3726171, type: 2}
+    - {fileID: 11400000, guid: 1342cdd56ad2f2a43947c9a48372acb8, type: 2}
+    - {fileID: 11400000, guid: 822a114be10159c47aa4f0ffa0acfffe, type: 2}
+    - {fileID: 11400000, guid: b6c282326d80370439e151cecd263e42, type: 2}
     - {fileID: 11400000, guid: 17aaabb33d6e90f4a8c44325cee90af6, type: 2}
     - {fileID: 11400000, guid: 8ab93b0ad9c13434c89e12d0d3e142bd, type: 2}
