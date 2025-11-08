@@ -12,10 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40012cf817d04bdb96070f4e5cefe68c, type: 3}
   m_Name: DamageZone PerkCardConfig
   m_EditorClassIdentifier: 
-  title: Damage Zone
-  description: Damage Zone
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 10605498888192
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
+    m_TableEntryReference:
+      m_KeyId: 10684058202112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 21300000, guid: 94178aee168d5094391c118561a284be, type: 3}
   childPerks:
   - {fileID: 11400000, guid: 4ec0a809f4a45e14f8601d9c68434d3d, type: 2}
   - {fileID: 11400000, guid: 7deb41939744c7945b5b404dcc5044bd, type: 2}
   ecsPerkPrefab: {fileID: 6450978080292737787, guid: 05df327d35bbab14ab6a4819fdc5e9c2, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -1,5 +1,4 @@
-﻿using App.Ecs;
-using App.Ecs.AoeZones;
+﻿using App.Ecs.AoeZones;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -10,6 +9,9 @@ namespace App.Perks.Configs.Upgrades
         where TTag : unmanaged, IComponentData
     {
         [SerializeField] private float additionalScale;
+        
+        protected override object[] GetDescriptionParams()
+            => new object[] { additionalScale };
         
         public override void Perform(PerksActivator perksActivator)
         {

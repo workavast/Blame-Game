@@ -1,5 +1,4 @@
-﻿using App.Ecs.PlayerPerks;
-using App.Ecs.PlayerPerks.DamageZone;
+﻿using App.Ecs.PlayerPerks.DamageZone;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.DamageZone

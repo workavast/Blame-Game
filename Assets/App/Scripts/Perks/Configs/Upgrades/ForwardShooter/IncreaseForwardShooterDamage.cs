@@ -1,5 +1,4 @@
-﻿using App.Ecs.PlayerPerks;
-using App.Ecs.PlayerPerks.ForwardShooter;
+﻿using App.Ecs.PlayerPerks.ForwardShooter;
 using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.ForwardShooter

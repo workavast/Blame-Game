@@ -5,35 +5,22 @@ namespace App.GamePausing
 {
     public class GamePause
     {
+        private readonly RequestCounter _requestCounter;
         private readonly EcsPause _ecsPause;
-     
-        private int _pauseRequestCount;
         
         public GamePause(EcsPause ecsPause)
         {
+            _requestCounter = new RequestCounter(ApplyPauseState);
             _ecsPause = ecsPause;
         }
 
-        public void SetPauseState(bool isPause)
+        public void SetPauseState(bool isPause) 
+            => _requestCounter.ChangeRequests(isPause);
+
+        private void ApplyPauseState(bool pause)
         {
-            var prevValue = _pauseRequestCount;
-            if (isPause)
-                _pauseRequestCount++;
-            else
-                _pauseRequestCount--;
-
-            if (_pauseRequestCount >= 1 && prevValue > 1)
-                return;
-
-            if (_pauseRequestCount < 0)
-            {
-                _pauseRequestCount = 0;
-                Debug.LogWarning("You try unset pause game when it already unpaused");
-                return;
-            }
-            
-            _ecsPause.SetPauseState(isPause);
-            Time.timeScale = isPause ? 0 : 1;
+            _ecsPause.SetPauseState(pause);
+            Time.timeScale = pause ? 0 : 1;  
         }
     }
 }

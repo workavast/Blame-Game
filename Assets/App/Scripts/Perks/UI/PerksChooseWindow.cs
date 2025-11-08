@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using App.GamePausing;
+﻿using System;
+using System.Collections.Generic;
 using App.Perks.Configs;
 using App.Perks.PerksManagement;
 using UnityEngine;
@@ -9,29 +9,24 @@ namespace App.Perks.UI
 {
     public class PerksChooseWindow : MonoBehaviour
     {
-        [SerializeField] private RectTransform cardsHolder;
         [SerializeField] private List<PerkCard> perkCards;
 
         [Inject] private readonly PerksActivator _perksActivator;
-        [Inject] private readonly GamePause _gamePause;
         
         public int CardsCount => perkCards.Count;
 
-        private void Awake()
+        public event Action OnPerkChoose;
+
+        public void Initialize()
         {
             foreach (var perkCard in perkCards) 
                 perkCard.OnActivate += Perform;
-            Hide();
         }
 
         public void ShowPerksVariants(IReadOnlyList<PerkCell> perks)
         {
             if (perks.Count <= 0)
                 return;
-
-            _gamePause.SetPauseState(true);
-            
-            cardsHolder.gameObject.SetActive(true);
 
             foreach (var perkCard in perkCards) 
                 perkCard.gameObject.SetActive(false);
@@ -43,16 +38,10 @@ namespace App.Perks.UI
             }
         }
         
-        private void Hide()
-        {
-            cardsHolder.gameObject.SetActive(false);
-            _gamePause.SetPauseState(false);
-        }
-        
         private void Perform(PerkCell perkCell)
         {
             _perksActivator.ActivatePerk(perkCell);
-            Hide();
+            OnPerkChoose?.Invoke();
         }
     }
 }

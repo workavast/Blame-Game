@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a228b2288be64577807c6077bb298bfb, type: 3}
+  m_Name: GameplayStringTablesConfig
+  m_EditorClassIdentifier: 
+  tableReferences:
+  - m_TableCollectionName: GameplayMenu
+  - m_TableCollectionName: Settings
+  - m_TableCollectionName: CommonPerks
+  - m_TableCollectionName: WeaponPerks
+  - m_TableCollectionName: GameEnd
+  tables:
+  - {fileID: 11400000, guid: 8b8ef3871893143409bbf94b2416be0c, type: 2}
+  - {fileID: 11400000, guid: 6e458aabc4b38e341927c044fc39675d, type: 2}
+  - {fileID: 11400000, guid: 98557a37bbd33b1489596faa7a9f53d3, type: 2}
+  - {fileID: 11400000, guid: c6e1c3714fbf07e43b5872e376978ba6, type: 2}
+  - {fileID: 11400000, guid: 548b9d0e2b89d774d917c2d32926dc5c, type: 2}

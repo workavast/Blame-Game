@@ -105,15 +105,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "EffectToggler",
-                    "type": "Button",
-                    "id": "2baf9a9b-4902-46ba-88eb-cd3a44f3f8f2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Esc",
                     "type": "Button",
                     "id": "550a143f-fe46-4234-80bf-f5224236661c",
@@ -627,17 +618,6 @@
                     "processors": "Scale(factor=0)",
                     "groups": "",
                     "action": "nums",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "838ecf1d-8254-4eda-8e1e-793763ada7c2",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EffectToggler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

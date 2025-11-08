@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: WeaponPerks_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: a9fd30968dbcbb343988bb634e6f0ee8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10984779776
+    m_Localized: Forwrad Shooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 349284757504
+    m_Localized: Shoot Forwrard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10605498888192
+    m_Localized: Damage Zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10684058202112
+    m_Localized: Zone witch damage all enemies in it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10915306958848
+    m_Localized: Rifle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11407613390848
+    m_Localized: Have auto aim to nearest enemy. Big cooldown, but big damage with
+      penetration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11895289311232
+    m_Localized: Machine Gun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11937261711360
+    m_Localized: Have auto aim to nearest enemy. Low cooldown, but low damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12463181295616
+    m_Localized: Rocket Launcher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12510262358016
+    m_Localized: Lucnh few rocket for random points around player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12836369494016
+    m_Localized: Round Shooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12896301903872
+    m_Localized: Shoot few projectiles around player
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

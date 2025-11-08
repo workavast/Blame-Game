@@ -1,6 +1,4 @@
-﻿using App.Ecs;
-using App.Ecs.Experience;
-using App.Ecs.Experience.ExpOrb;
+﻿using App.Ecs.Experience;
 using App.Ecs.Player;
 using App.Perks.PerksManagement;
 using UnityEngine;
@@ -11,7 +9,10 @@ namespace App.Perks.Configs.Upgrades.Global
     public class IncreaseExpScale : PerformPerk
     {
         [SerializeField] private float scale;
-        
+
+        protected override object[] GetDescriptionParams() 
+            => new object[] { scale };
+
         public override void Perform(PerksActivator perksActivator)
         {
             var currentScale = EcsSingletons.GetComponentOfSingletonRO<PlayerTag, ExpScale>();

@@ -9,8 +9,8 @@ namespace App.Audio.Ambience
         [SerializeField] private float transitionTime = 1;
         
         [Inject] private readonly AmbienceManager _ambienceManager;
-
-        private void Start() 
+        
+        public void Init()
             => _ambienceManager.Activate(ambienceSourcePrefab, transitionTime);
     }
 }

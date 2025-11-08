@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Perks.Configs;
-using Avastrad.Extensions;
 using Random = UnityEngine.Random;
 
 namespace App.Perks.PerksManagement

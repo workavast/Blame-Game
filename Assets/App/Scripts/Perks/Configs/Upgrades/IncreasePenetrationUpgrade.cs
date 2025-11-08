@@ -1,5 +1,4 @@
 ﻿using App.Ecs;
-using App.Ecs.PlayerPerks;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -10,6 +9,9 @@ namespace App.Perks.Configs.Upgrades
         where TTag : unmanaged, IComponentData
     {
         [SerializeField] private int additionalPenetration;
+        
+        protected override object[] GetDescriptionParams()
+            => new object[] { additionalPenetration };
         
         public override void Perform(PerksActivator perksActivator)
         {

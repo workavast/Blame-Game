@@ -1,12 +1,13 @@
 ﻿using App.ScenesReferencing;
 using Avastrad.ScenesLoading;
+using Avastrad.UI.UiSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace App.GameEndDetection
 {
-    public class GameWinUi : MonoBehaviour
+    public class GameWinUi : ScreenBase
     {
         [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;
@@ -14,31 +15,18 @@ namespace App.GameEndDetection
         [SerializeField] private SceneReference mainMenuSceneRef;
 
         [Inject] private readonly ISceneLoader _sceneLoader;
-        
-        private void Awake()
+
+        public override void Initialize()
         {
             restartBtn?.onClick.AddListener(Restart);
             backInMenuBtn?.onClick.AddListener(LoadMenu);
+            base.Initialize();
         }
 
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-        
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
+        private void Restart() 
+            => _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
 
-        private void Restart()
-        {
-            _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
-        }
-        
-        private void LoadMenu()
-        {
-            _sceneLoader.LoadScene(mainMenuSceneRef.SceneIndex);
-        }
+        private void LoadMenu() 
+            => _sceneLoader.LoadScene(mainMenuSceneRef.SceneIndex);
     }
 }

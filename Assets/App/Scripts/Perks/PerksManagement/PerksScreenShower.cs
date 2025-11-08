@@ -1,20 +1,21 @@
 ﻿using System;
 using App.LevelManagement;
 using App.Perks.UI;
+using Avastrad.UI.UiSystem;
 using UnityEngine;
 
 namespace App.Perks.PerksManagement
 {
     public class PerksScreenShower : IDisposable
     {
-        private readonly PerksChooseWindow _perksChooseWindow;
+        private readonly ScreensController _screensController;
         private readonly PerksStorage _perksStorage;
         private readonly ILevelStorageRO _levelStorage;
 
-        public PerksScreenShower(PerksChooseWindow perksChooseWindow, PerksStorage perksStorage,
+        public PerksScreenShower(ScreensController screensController, PerksStorage perksStorage,
             ILevelStorageRO levelStorage)
         {
-            _perksChooseWindow = perksChooseWindow;
+            _screensController = screensController;
             _perksStorage = perksStorage;
             _levelStorage = levelStorage;
 
@@ -31,10 +32,10 @@ namespace App.Perks.PerksManagement
             if (_perksStorage.CountOfAvailableMainPerks <= 0)
                 return;
 
-            var perkCardCount = Mathf.Min(_perksChooseWindow.CardsCount, _perksStorage.CountOfAvailableMainPerks);
+            var perksScreen = _screensController.ToggleScreen<PerksScreen>(true);
+            var perkCardCount = Mathf.Min(perksScreen.CardsCount, _perksStorage.CountOfAvailableMainPerks);
             var randomPerks = _perksStorage.GetRandomPerks(perkCardCount, _levelStorage.Level > 1);
-
-            _perksChooseWindow.ShowPerksVariants(randomPerks);
+            perksScreen.ShowPerksVariants(randomPerks);
         }
     }
 }

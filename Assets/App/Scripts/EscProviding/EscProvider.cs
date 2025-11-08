@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Avastrad.Extensions;
 using Avastrad.Libs.CheckOnNullLib;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,17 +13,15 @@ namespace App.EscProviding
         {
             if (_listeners.Contains(listener))
             {
-                Debug.LogError("");
+                Debug.LogError("Duplicate subscription");
                 return;
             }
             
             _listeners.Add(listener);
         }
         
-        public void UnSub(IEscListener listener)
-        {
-            _listeners.TryRemove(listener);
-        }
+        public void UnSub(IEscListener listener) 
+            => _listeners.Remove(listener);
 
         public void OnEscPressed(InputAction.CallbackContext input)
         {
@@ -32,8 +29,8 @@ namespace App.EscProviding
                 return;
             
             ClearNulls();
-            if (_listeners.Count > 0) 
-                _listeners[0].OnEscPressed();
+            if (_listeners.Count > 0)
+                _listeners[^1].OnEscPressed();
         }
 
         private void ClearNulls()

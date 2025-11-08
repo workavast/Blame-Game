@@ -1,6 +1,7 @@
 ﻿using App.GamePausing;
 using App.GameTiming;
 using App.PlayerProviding;
+using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;
 
@@ -8,10 +9,9 @@ namespace App.GameEndDetection
 {
     public class GameEndDetector : MonoBehaviour
     {
-        [SerializeField] private GameWinUi gameWinUi;
-        [SerializeField] private GameLooseUi gameLooseUi;
-        [SerializeField] private float gameTimeToWin; 
+        [SerializeField] private float gameTimeToWin;
 
+        [Inject] private readonly ScreensController _screensController;
         [Inject] private readonly PlayerProvider _playerProvider;
         [Inject] private readonly IGameTimerRO _gameTimer;
         [Inject] private readonly GamePause _gamePause;
@@ -21,8 +21,6 @@ namespace App.GameEndDetection
         private void Awake()
         {
             _playerProvider.OnPlayerDied += GameLoose;
-            gameLooseUi.Hide();
-            gameWinUi.Hide();
         }
         
         private void OnDestroy()
@@ -49,7 +47,7 @@ namespace App.GameEndDetection
             }
             
             _gameIsOver = true;
-            gameWinUi.Show();
+            _screensController.ToggleScreen<GameWinUi>(true);
             _gamePause.SetPauseState(true);
         }
         
@@ -62,7 +60,7 @@ namespace App.GameEndDetection
             }
             
             _gameIsOver = true;
-            gameLooseUi.Show();
+            _screensController.ToggleScreen<GameLooseUi>(true);
             _gamePause.SetPauseState(true);
         }
     }

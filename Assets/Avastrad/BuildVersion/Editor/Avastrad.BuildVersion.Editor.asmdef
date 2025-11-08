@@ -1,0 +1,18 @@
+{
+    "name": "Avastrad.BuildVersion.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6d651fb07d57e65438c8905e769ab56b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
