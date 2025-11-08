@@ -54,6 +54,10 @@ MonoBehaviour:
     m_Localized: Increase Expireance Cunsuming Scale for {0:#%}
     m_Metadata:
       m_Items: []
+  - m_Id: 693619430158336
+    m_Localized: Select
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

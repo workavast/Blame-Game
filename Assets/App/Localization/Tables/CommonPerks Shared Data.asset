@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: ExpScaleDescription
     m_Metadata:
       m_Items: []
+  - m_Id: 693619430158336
+    m_Key: Select
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

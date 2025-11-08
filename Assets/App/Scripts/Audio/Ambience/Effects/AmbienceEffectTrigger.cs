@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.Audio.Ambience.Effects
 {
-    public abstract class AmbienceEffectToggleTrigger<TAmbienceEffectsState> : MonoBehaviour
+    public abstract class AmbienceEffectTrigger<TAmbienceEffectsState> : MonoBehaviour
         where TAmbienceEffectsState : AmbienceEffectState
     {
         [Inject] private readonly TAmbienceEffectsState _ambienceEffectsState;
