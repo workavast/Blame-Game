@@ -1,3 +1,4 @@
+using Avastrad.Settings.Save;
 using UnityEditor;
 
 namespace Avastrad.Settings.Editor

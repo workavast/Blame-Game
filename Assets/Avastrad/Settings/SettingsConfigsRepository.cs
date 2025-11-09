@@ -6,9 +6,9 @@ namespace Avastrad.Settings
 {
     [CreateAssetMenu(fileName = nameof(SettingsConfigsRepository),
         menuName = Consts.ConfigsPath + "Settings/" + nameof(SettingsConfigsRepository))]
-    public class SettingsConfigsRepository : ConfigsRepository<SettingsConfig>
+    public class SettingsConfigsRepository : ConfigsRepository<SettingConfig>
     {
-        public T GetConfig<T>() where T : SettingsConfig
+        public T GetConfig<T>() where T : SettingConfig
         {
             var targetType = typeof(T);
 
@@ -19,7 +19,7 @@ namespace Avastrad.Settings
             throw new NullReferenceException($"Cant find config of type: {targetType}");
         }
 
-        protected override int Comparison(SettingsConfig a, SettingsConfig b)
+        protected override int Comparison(SettingConfig a, SettingConfig b)
         {
             if (a == null)
             {

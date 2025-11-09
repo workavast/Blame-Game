@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Avastrad.Settings.Fps
 {
     [CreateAssetMenu(fileName = nameof(FpsConfig), menuName = Consts.ConfigsPath + "Settings/" + nameof(FpsConfig))]
-    public class FpsConfig : SettingsConfig
+    public class FpsConfig : SettingConfig
     {
         [Space]
         [SerializeField] private List<int> fpsOptions = new() { 30, 60, 90, 120, 144, 240, 360 };
@@ -27,5 +27,8 @@ namespace Avastrad.Settings.Fps
 
             return optionIndex;
         }
+        
+        public override ISettingModel CreateModel() 
+            => new FpsSettingModel(this);
     }
 }

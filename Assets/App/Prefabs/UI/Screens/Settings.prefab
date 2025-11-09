@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen:
     typeName: 
-  settingsPresenter: {fileID: 2532614794539834083}
+  settingsWindow: {fileID: 2532614794539834083}
   closeWarningWindow: {fileID: 3008060784186185988}
   closeScreenBtn: {fileID: 2901448527427967801}
 --- !u!114 &2532614794539834083

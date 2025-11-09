@@ -1,28 +1,27 @@
 using System;
-using UnityEngine;
 
-namespace Avastrad.Settings.Template
+namespace Avastrad.Settings.VSync
 {
-    public class TemplateSettingsViewModel : SettingViewModel<TemplateSettingsModel>
+    public class VSyncSettingViewModel : SettingViewModel<VSyncSettingModel>
     {
-        public override bool HasChanged => !Mathf.Approximately(Value, _model.Value);
-        public float Value { get; private set; }
+        public bool UseVSync { get; private set; }
+        public override bool HasChanged => _model.UseVSync != UseVSync;
 
         public event Action OnChanged;
 
         protected override void Initialize()
         {
-            Value = _model.Value;
+            UseVSync = _model.UseVSync;
         }
 
         public override void ApplySettings()
         {
-            _model.SetValue(Value);
+            _model.SetValue(UseVSync);
         }
 
         public override void ResetSettings()
         {
-            Value = _model.Value;
+            UseVSync = _model.UseVSync;
             
             ApplySettings();
             
@@ -31,16 +30,16 @@ namespace Avastrad.Settings.Template
 
         public override void ResetToDefault()
         {
-            Value = _model.DefaultValue;
+            UseVSync = _model.DefaultValue;
 
             ApplySettings();
             
             OnChanged?.Invoke();
         }
 
-        public void SetValue(float value, bool notify)
+        public void SetValue(bool value, bool notify)
         {
-            Value = value;
+            UseVSync = value;
 
             if (notify)
                 OnChanged?.Invoke();

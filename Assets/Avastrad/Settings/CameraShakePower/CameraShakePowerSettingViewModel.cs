@@ -1,28 +1,28 @@
 using System;
 using UnityEngine;
 
-namespace Avastrad.Settings.Template
+namespace Avastrad.Settings.CameraShakePower
 {
-    public class TemplateSettingsViewModel : SettingViewModel<TemplateSettingsModel>
+    public class CameraShakePowerSettingViewModel : SettingViewModel<CameraShakePowerSettingModel>
     {
-        public override bool HasChanged => !Mathf.Approximately(Value, _model.Value);
-        public float Value { get; private set; }
+        public float ShakePower { get; private set; }
+        public override bool HasChanged => !Mathf.Approximately(_model.ShakePower, ShakePower);
 
         public event Action OnChanged;
 
         protected override void Initialize()
         {
-            Value = _model.Value;
+            ShakePower = _model.ShakePower;
         }
 
         public override void ApplySettings()
         {
-            _model.SetValue(Value);
+            _model.SetValue(ShakePower);
         }
 
         public override void ResetSettings()
         {
-            Value = _model.Value;
+            ShakePower = _model.ShakePower;
             
             ApplySettings();
             
@@ -31,16 +31,16 @@ namespace Avastrad.Settings.Template
 
         public override void ResetToDefault()
         {
-            Value = _model.DefaultValue;
+            ShakePower = _model.DefaultShakePower;
 
             ApplySettings();
             
             OnChanged?.Invoke();
         }
-
-        public void SetValue(float value, bool notify)
+        
+        public void SetValue(float shakePower, bool notify)
         {
-            Value = value;
+            ShakePower = shakePower;
 
             if (notify)
                 OnChanged?.Invoke();

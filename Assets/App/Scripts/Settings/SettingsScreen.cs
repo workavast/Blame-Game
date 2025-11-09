@@ -11,7 +11,7 @@ namespace App.Settings
     public class SettingsScreen : ScreenBase, IEscListener
     {
         [SerializeField] private TypeReference<ScreenBase> screen;
-        [SerializeField] private SettingsPresenter settingsPresenter;
+        [SerializeField] private SettingsWindow settingsWindow;
         [SerializeField] private CloseWarningWindow closeWarningWindow;
         [SerializeField] private Button closeScreenBtn;
 
@@ -20,7 +20,7 @@ namespace App.Settings
 
         public override void Initialize()
         {
-            settingsPresenter.Initialize();
+            settingsWindow.Initialize();
             closeScreenBtn.onClick.AddListener(TryCloseScreen);
 
             closeWarningWindow.OnClose += CloseScreen;
@@ -44,7 +44,7 @@ namespace App.Settings
 
         private void TryCloseScreen()
         {
-            if (settingsPresenter.HasChangedAny())
+            if (settingsWindow.HasChangedAny())
                 closeWarningWindow.gameObject.SetActive(true);
             else
                 _screensController.SetScreen(screen.Type);
@@ -60,13 +60,13 @@ namespace App.Settings
         
         private void SaveAndClose()
         {
-            settingsPresenter.ApplySettings();
+            settingsWindow.ApplySettings();
             _screensController.SetScreen(screen.Type); 
         }
 
         private void CancelAndClose()
         {
-            settingsPresenter.ResetSettings();
+            settingsWindow.ResetSettings();
             _screensController.SetScreen(screen.Type); 
         }
     }

@@ -8,8 +8,8 @@ namespace Avastrad.Settings.Template.Editor
     {
         private string _settingsName = "MySettings";
         
-        private const string TemplateFolder = "Assets/App/Scripts/Settings/Template/";
-        private static readonly string DefaultOutputFolder = Application.dataPath + "/App/Scripts/Settings";
+        private const string TemplateFolder = "Assets/Avastrad/Settings/Template/";
+        private static readonly string DefaultOutputFolder = Application.dataPath + "/Avastrad/Settings";
         private static string _customOutputFolder = DefaultOutputFolder;
 
         private const string EditorPrefsSaveKey = "SettingsGenerator_OutputPath";
@@ -34,7 +34,7 @@ namespace Avastrad.Settings.Template.Editor
         {
             GUILayout.Label("Settings Generator", EditorStyles.boldLabel);
             _settingsName = EditorGUILayout.TextField("Settings Name", _settingsName);
-
+            
             GUILayout.Space(8);
             
             EditorGUILayout.LabelField("Output Folder:", EditorStyles.boldLabel);
