@@ -11,15 +11,9 @@ namespace App.Bootstraps
 
         [Inject] private readonly ISceneLoader _sceneLoader;
 
-        protected override Task SelfInitialization()
-        {
-            var initialLoading = _sceneLoader.PrevTargetSceneIndex <= -1;
-            if (!initialLoading)
-                return Await();
-            else
-                return Task.CompletedTask;
-        }
-        
+        protected override Task SelfInitialization() 
+            => Await();
+
         private async Task Await() 
             => await Task.Delay(awaitDelay);
     }
