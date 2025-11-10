@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 8493680392624954158}
   - component: {fileID: 2492843180082056845}
   - component: {fileID: 4467299890213140103}
-  - component: {fileID: 5203261625526861583}
+  - component: {fileID: 4401291017922943541}
   - component: {fileID: 2618203283829962398}
   m_Layer: 6
   m_Name: ECS_KamikazeBot
@@ -191,7 +191,7 @@ MonoBehaviour:
       GenerationType: 1
   health: 20
   moveSpeed: 10
-  rotationSpeed: 0.5
+  rotationSpeed: 5
 --- !u!114 &8493680392624954158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5203261625526861583
+--- !u!65 &4401291017922943541
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

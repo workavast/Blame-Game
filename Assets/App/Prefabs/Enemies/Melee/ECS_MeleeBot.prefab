@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1283775126065587771}
   - component: {fileID: 2063136403930931532}
   - component: {fileID: 5271953253588198509}
-  - component: {fileID: 5330898994984112278}
+  - component: {fileID: 4882858298617865117}
   - component: {fileID: 4990772333180942775}
   m_Layer: 6
   m_Name: ECS_MeleeBot
@@ -192,7 +192,7 @@ MonoBehaviour:
       GenerationType: 1
   health: 20
   moveSpeed: 10
-  rotationSpeed: 0.5
+  rotationSpeed: 5
 --- !u!114 &1283775126065587771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5330898994984112278
+--- !u!65 &4882858298617865117
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
