@@ -172,6 +172,7 @@ MonoBehaviour:
   cleanupCallback: {fileID: -5879120631750415190}
   lighting: {fileID: 6283055833936415459}
   fadeTime: 0.4
+  showTime: 0.2
 --- !u!114 &-5879120631750415190
 MonoBehaviour:
   m_ObjectHideFlags: 0
