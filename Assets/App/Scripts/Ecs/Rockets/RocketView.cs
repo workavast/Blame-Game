@@ -12,7 +12,7 @@ namespace App.Ecs.Rockets
     {
         [SerializeField] private GameObject rocketModelHolder;
         [SerializeField] private Transform explosionSphere;
-        [SerializeField] private ParticleCallbackProvider particleCallbackProvider;
+        [SerializeField] private ParticleProvider particleProvider;
         [Header("SFX")]
         [SerializeField] private Vector2 explosionPitchRange;
 
@@ -30,7 +30,7 @@ namespace App.Ecs.Rockets
         {
             base.Awake();
             
-            particleCallbackProvider.OnStopped += DestroyInternal;
+            particleProvider.OnStopped += DestroyInternal;
         }
 
         protected override void OnDestroy()

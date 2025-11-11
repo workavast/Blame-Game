@@ -1,5 +1,4 @@
-﻿using App.Audio;
-using App.Audio.Sources;
+﻿using App.Audio.Sources;
 using App.Ecs.Clenuping;
 using Unity.Entities.Content;
 using Unity.Mathematics;
@@ -10,7 +9,9 @@ namespace App.Ecs.Characters
 {
     public class CharacterView : CleanupView
     {
+        [SerializeField] private GameObject model;
         [SerializeField] private Vector2 deathPitchRange;
+        [SerializeField] private ParticleProvider particleProvider;
         
         private SfxHolder _sfxHolder;
         
@@ -22,6 +23,14 @@ namespace App.Ecs.Characters
             _sfxHolder = new SfxHolder(audioFactory);
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (particleProvider != null)
+                particleProvider.OnStopped += () => Destroy(gameObject);;
+        }
+
         protected override void OnDestroy()
         {
             _sfxHolder.ReleaseIfUnused();
@@ -31,8 +40,15 @@ namespace App.Ecs.Characters
         protected override void DestroyCallback()
         {
             _sfxHolder.Play(transform.position, deathPitchRange);
+
             
-            Destroy(gameObject);
+            if (particleProvider == null)
+                Destroy(gameObject);
+            else
+            {
+                model.SetActive(false);
+                particleProvider.Play();
+            }
         }
 
         public void SetDeathSfx(WeakObjectReference<AudioPoolRelease> deathSfxRef)
