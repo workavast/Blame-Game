@@ -36,7 +36,7 @@ namespace App.LevelManagement.ExpManagement
         public void IncreaseExpTarget()
         {
             ExpPrevTarget = ExpTarget;
-            ExpTarget *= _config.ScalePerLevel;
+            ExpTarget += ExpTarget * _config.ScalePerLevel;
         }
     }
 }

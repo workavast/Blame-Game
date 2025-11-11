@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199b928db48649f7bc730cf90ad7f87a, type: 3}
   m_Name: ExpConfig
   m_EditorClassIdentifier: 
-  initialExpValue: 10
-  scalePerLevel: 1.5
+  initialExpValue: 6
+  scalePerLevel: 0.5
