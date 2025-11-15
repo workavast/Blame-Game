@@ -49,7 +49,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
   spawnVerticalOffset: 1
   damage: 5
-  moveSpeed: 17.5
+  moveSpeed: 25
   shootPause: 1.77
   distanceReaction: 15
   penetration: 1
