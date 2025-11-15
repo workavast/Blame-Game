@@ -53,7 +53,7 @@ namespace App.Ecs.Rockets
             => ecb.AddComponent(entity, new RocketViewHolder() { Instance = instance as RocketView });
     }
     
-    public partial class RockSfxInitializeSystem : SfxInitializeSystem<RocketSfxData, RocketTag>
+    public partial class RockSfxInitializeSystem : SfxInitializeSystem<RocketSfxData>
     {
         protected override void StartLoading(RocketSfxData comp)
         {

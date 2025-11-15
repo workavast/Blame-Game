@@ -1,5 +1,6 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
+using UnityEngine;
 
 namespace App.Ecs.Sound
 {
@@ -15,9 +16,8 @@ namespace App.Ecs.Sound
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(ViewInstallSystemGroup))]
-    public abstract partial class SfxInitializeSystem<TSfxData, TTag> : SystemBase
+    public abstract partial class SfxInitializeSystem<TSfxData> : SystemBase
         where TSfxData : unmanaged, IComponentData
-        where TTag : unmanaged, IComponentData
     {
         protected override void OnCreate()
         {
@@ -31,7 +31,6 @@ namespace App.Ecs.Sound
             
             var query = GetEntityQuery(
                 ComponentType.ReadWrite<TSfxData>(),
-                ComponentType.ReadOnly<TTag>(),
                 ComponentType.Exclude<SfxLoadStartedTag>()
             );
             

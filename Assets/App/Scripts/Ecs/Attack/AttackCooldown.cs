@@ -2,7 +2,7 @@
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 
-namespace App.Ecs
+namespace App.Ecs.Attack
 {
     public struct DefaultAttackCooldown : IComponentData
     {

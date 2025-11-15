@@ -255,7 +255,7 @@ MonoBehaviour:
   cleanupCallback: {fileID: 6664539335381877551}
   rocketModelHolder: {fileID: 8747241904201155928}
   explosionSphere: {fileID: 8163535348943951802}
-  particleCallbackProvider: {fileID: 4479697179438091901}
+  particleProvider: {fileID: 4479697179438091901}
   explosionPitchRange: {x: 0.9, y: 1.1}
 --- !u!114 &6664539335381877551
 MonoBehaviour:

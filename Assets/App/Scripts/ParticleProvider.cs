@@ -6,6 +6,8 @@ namespace App
     [RequireComponent(typeof(ParticleSystem))]
     public class ParticleProvider : MonoBehaviour
     {
+        public bool IsPlay => _particleSystem.isPlaying;
+        
         private ParticleSystem _particleSystem;
         
         public event Action OnStopped;

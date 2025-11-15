@@ -29,8 +29,27 @@ namespace App.Ecs
     {
         public float Value;
     }
+    
+    public partial struct ApplyDamageToHealth : ISystem
+    {
+        public void OnUpdate(ref SystemState state)
+        {
+            foreach (var (health, damageBuffer) in 
+                     SystemAPI.Query<RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>())
+            {
+                if (damageBuffer.IsEmpty)
+                    continue;
 
-    public partial struct ApplyDamage : ISystem
+                foreach (var damage in damageBuffer) 
+                    health.ValueRW.Value -= damage.Value;
+                
+                damageBuffer.Clear();
+            }
+        }
+    }
+
+    [UpdateAfter(typeof(ApplyDamageToHealth))]
+    public partial struct DestroyDeadEntities : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -40,27 +59,19 @@ namespace App.Ecs
         public void OnUpdate(ref SystemState state)
         {
             var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var requestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
+            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
             
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (transform, health, damageBuffer, entity) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>()
+            foreach (var (transform, health, entity) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>>()
                          .WithEntityAccess())
             {
-                if (damageBuffer.IsEmpty)
-                    continue;
-
-                foreach (var damage in damageBuffer) 
-                    health.ValueRW.Value -= damage.Value;
-                
-                damageBuffer.Clear();
-
                 if (health.ValueRO.Value <= 0)
                 {
                     if (SystemAPI.HasComponent<ExpOrbDropper>(entity))
                     {
                         var expOrbDropper = SystemAPI.GetComponent<ExpOrbDropper>(entity);
-                        requestsBuffer.Add(new ExpOrbsDropRequest()
+                        expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
                         {
                             OrbsCount = expOrbDropper.OrbsCount,
                             Position = transform.ValueRO.Position
@@ -73,6 +84,6 @@ namespace App.Ecs
             
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
-        }
+        }   
     }
 }

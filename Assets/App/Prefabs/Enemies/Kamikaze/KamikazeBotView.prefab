@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1798664553200853719}
   - component: {fileID: 350588431722163739}
+  - component: {fileID: -2031663277452808022}
+  - component: {fileID: 7913959854531929160}
   - component: {fileID: 8176448482098108948}
   m_Layer: 0
   m_Name: KamikazeBotView
@@ -50,7 +52,33 @@ MonoBehaviour:
   cleanupCallback: {fileID: 8176448482098108948}
   model: {fileID: 5139432117494492287}
   deathPitchRange: {x: 0.9, y: 1.1}
-  particleProvider: {fileID: 3702136133701802709}
+  deathVfxView: {fileID: -2031663277452808022}
+--- !u!114 &-2031663277452808022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376885262701076366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c38cb79eb447a2b46ae0d3c43e27a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVfx: {fileID: 3702136133701802709}
+--- !u!114 &7913959854531929160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376885262701076366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff16a30f5d2a413290a261b9f185e15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathPitchRange: {x: 0.9, y: 1.1}
 --- !u!114 &8176448482098108948
 MonoBehaviour:
   m_ObjectHideFlags: 0

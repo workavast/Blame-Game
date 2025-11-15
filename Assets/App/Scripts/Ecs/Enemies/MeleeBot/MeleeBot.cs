@@ -1,4 +1,5 @@
-﻿using App.Ecs.Player;
+﻿using App.Ecs.Attack;
+using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -26,54 +27,58 @@ namespace App.Ecs.Enemies.MeleeBot
                 PlayerLookup = SystemAPI.GetComponentLookup<PlayerTag>(true),
                 MeleeBotLookup = SystemAPI.GetComponentLookup<MeleeBotTag>(true),
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
-                    
+                
                 ShootCooldownLookup = SystemAPI.GetComponentLookup<AttackCooldown>(),
+                AttackViews = SystemAPI.GetComponentLookup<AttackViewActivateFlag>(),
                 DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
             };
 
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
             state.Dependency = meleeAttackJob.Schedule(simulationSingleton, state.Dependency);
         }
-    }
-    
-    public struct MeleeAttackJob : ICollisionEventsJob
-    {
-        [ReadOnly] public ComponentLookup<PlayerTag> PlayerLookup;
-        [ReadOnly] public ComponentLookup<MeleeBotTag> MeleeBotLookup;
-        [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
-        
-        public ComponentLookup<AttackCooldown> ShootCooldownLookup;
-        public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
-        
-        public void Execute(CollisionEvent collisionEvent)
+
+        private struct MeleeAttackJob : ICollisionEventsJob
         {
-            Entity player;
-            Entity meleeBot;
+            [ReadOnly] public ComponentLookup<PlayerTag> PlayerLookup;
+            [ReadOnly] public ComponentLookup<MeleeBotTag> MeleeBotLookup;
+            [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
+        
+            public ComponentLookup<AttackCooldown> ShootCooldownLookup;
+            public ComponentLookup<AttackViewActivateFlag> AttackViews;
+            public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
+        
+            public void Execute(CollisionEvent collisionEvent)
+            {
+                Entity player;
+                Entity meleeBot;
 
-            if (PlayerLookup.HasComponent(collisionEvent.EntityA) && MeleeBotLookup.HasComponent(collisionEvent.EntityB))
-            {
-                player = collisionEvent.EntityA;
-                meleeBot = collisionEvent.EntityB;
-            } 
-            else if (PlayerLookup.HasComponent(collisionEvent.EntityB) && MeleeBotLookup.HasComponent(collisionEvent.EntityA))
-            {
-                player = collisionEvent.EntityB;
-                meleeBot = collisionEvent.EntityA;
+                if (PlayerLookup.HasComponent(collisionEvent.EntityA) && MeleeBotLookup.HasComponent(collisionEvent.EntityB))
+                {
+                    player = collisionEvent.EntityA;
+                    meleeBot = collisionEvent.EntityB;
+                } 
+                else if (PlayerLookup.HasComponent(collisionEvent.EntityB) && MeleeBotLookup.HasComponent(collisionEvent.EntityA))
+                {
+                    player = collisionEvent.EntityB;
+                    meleeBot = collisionEvent.EntityA;
+                }
+                else
+                {
+                    return;
+                }
+
+                var cooldown = ShootCooldownLookup.GetEnabledRefRW<AttackCooldown>(meleeBot);
+                if (cooldown.ValueRO)//in cooldown process
+                    return;
+
+                cooldown.ValueRW = true;
+                var attack = AttackDamageLookup.GetRefRO(meleeBot);
+                var playerDamageBuffer = DamageBufferLookup[player];
+                if (AttackViews.HasComponent(meleeBot)) 
+                    AttackViews.SetComponentEnabled(meleeBot, true);
+                
+                playerDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
             }
-            else
-            {
-                return;
-            }
-
-            var cooldown = ShootCooldownLookup.GetEnabledRefRW<AttackCooldown>(meleeBot);
-            if (cooldown.ValueRO)//in cooldown process
-                return;
-
-            cooldown.ValueRW = true;
-            var attack = AttackDamageLookup.GetRefRO(meleeBot);
-            var playerDamageBuffer = DamageBufferLookup[player];
-
-            playerDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
         }
     }
 }

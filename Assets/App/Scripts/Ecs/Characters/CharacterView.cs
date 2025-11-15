@@ -1,9 +1,7 @@
-﻿using App.Audio.Sources;
-using App.Ecs.Clenuping;
-using Unity.Entities.Content;
+﻿using App.Ecs.Clenuping;
+using App.Ecs.Death;
 using Unity.Mathematics;
 using UnityEngine;
-using Zenject;
 
 namespace App.Ecs.Characters
 {
@@ -11,51 +9,23 @@ namespace App.Ecs.Characters
     {
         [SerializeField] private GameObject model;
         [SerializeField] private Vector2 deathPitchRange;
-        [SerializeField] private ParticleProvider particleProvider;
-        
-        private SfxHolder _sfxHolder;
+        [SerializeField] private DeathVfxView deathVfxView;
         
         public float Velocity { get; private set; }
-
-        [Inject]
-        public void Construct(AudioFactory audioFactory)
-        {
-            _sfxHolder = new SfxHolder(audioFactory);
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            if (particleProvider != null)
-                particleProvider.OnStopped += () => Destroy(gameObject);;
-        }
-
-        protected override void OnDestroy()
-        {
-            _sfxHolder.ReleaseIfUnused();
-            base.OnDestroy();
-        }
-
+        
         protected override void DestroyCallback()
         {
-            _sfxHolder.Play(transform.position, deathPitchRange);
-
-            
-            if (particleProvider == null)
-                Destroy(gameObject);
-            else
+            if (deathVfxView != null && deathVfxView.IsPlay)
             {
                 model.SetActive(false);
-                particleProvider.Play();
+                deathVfxView.OnOver += () => Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
-        public void SetDeathSfx(WeakObjectReference<AudioPoolRelease> deathSfxRef)
-        {
-            _sfxHolder.SetSfx(deathSfxRef);
-        }
-        
         public void SetVelocity(float3 velocity) 
             => Velocity = ((Vector3)velocity).magnitude;
 

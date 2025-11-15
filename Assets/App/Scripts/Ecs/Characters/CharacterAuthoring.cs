@@ -22,16 +22,14 @@ namespace App.Ecs.Characters
 
                 AddComponent(entity, new PhysicsMassInitializeFlag());
 
-                AddComponent(entity, new CharacterSfxData() { DeathSfxRef = authoring.deathSfxRef });
-                
                 AddComponent(entity, new MoveDirection());
                 AddComponent(entity, new MoveSpeed() { Value = authoring.moveSpeed });
                 
                 AddComponent(entity, new LookPoint());
-                AddComponent(entity, new RotationSpeed() {Value = authoring.rotationSpeed});
-                
-                AddComponent(entity, new MaxHealth(){Value = authoring.health});
-                AddComponent(entity, new CurrentHealth(){Value = authoring.health});
+                AddComponent(entity, new RotationSpeed() { Value = authoring.rotationSpeed });
+
+                AddComponent(entity, new MaxHealth() { Value = authoring.health });
+                AddComponent(entity, new CurrentHealth() { Value = authoring.health });
 
                 AddBuffer<DamageFrameBuffer>(entity);
                 

@@ -43,7 +43,7 @@ namespace App.Ecs
             => ecb.AddComponent(entity, new ShooterSfxViewHolder() { Instance = instance as ShooterSfxView });
     }
     
-    public partial class ShooterSfxInitializeSystem : SfxInitializeSystem<ShooterSfxDataHolder, ShooterSfxTag>
+    public partial class ShooterSfxInitializeSystem : SfxInitializeSystem<ShooterSfxDataHolder>
     {
         protected override void StartLoading(ShooterSfxDataHolder sfxData)
         {
@@ -67,7 +67,6 @@ namespace App.Ecs
             
             foreach (var (viewHolder, sfxData, entity)  in 
                      SystemAPI.Query<RefRO<ShooterSfxViewHolder>, RefRO<ShooterSfxDataHolder>>()
-                         .WithAll<ShooterSfxTag>()
                          .WithNone<SfxInitedTag>()
                          .WithEntityAccess())
             {
