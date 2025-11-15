@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace App.Ecs.Death
+namespace App.Ecs.Death.Vfx
 {
     public class DeathVfxAuthoring : MonoBehaviour
     {
@@ -11,9 +11,9 @@ namespace App.Ecs.Death
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                AddComponent(entity, new DeathVfxViewInitializeFlag());
+                AddComponent(entity, new DeathVfxInitializeFlag());
                 AddComponent(entity, new DeathVfxViewHolderInitializeFlag());
-                AddComponent(entity, new DeathVfxViewActivateFlag());
+                AddComponent(entity, new DeathVfxActivateFlag());
             }
         }
     }

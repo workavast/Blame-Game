@@ -1,5 +1,5 @@
 ﻿using App.Ecs.Clenuping;
-using App.Ecs.Death;
+using App.Ecs.Death.Vfx;
 using Unity.Mathematics;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace App.Ecs.Death
+namespace App.Ecs.Death.Vfx
 {
     public class DeathVfxView : MonoBehaviour
     {

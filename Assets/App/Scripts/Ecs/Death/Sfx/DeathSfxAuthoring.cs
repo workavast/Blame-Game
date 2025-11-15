@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
 
-namespace App.Ecs.Death
+namespace App.Ecs.Death.Sfx
 {
     public class DeathSfxAuthoring : MonoBehaviour
     {

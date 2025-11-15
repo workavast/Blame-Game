@@ -9,7 +9,7 @@ namespace App.Ecs.Characters
 {
     public struct CharacterTag : IComponentData
     {
-        
+
     }
 
     public struct CharacterViewHolder : IComponentData
@@ -19,15 +19,15 @@ namespace App.Ecs.Characters
 
     public partial class CharacterViewInstallerSystem : ViewInstallerSystem<CharacterTag>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
+        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb)
             => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
     }
-    
+
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct PhysicsCharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;
-        
+
         public void OnCreate(ref SystemState state)
         {
             _query = SystemAPI.QueryBuilder()
@@ -39,7 +39,7 @@ namespace App.Ecs.Characters
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, physicsVelocity, characterViewHolder) in 
+            foreach (var (transform, physicsVelocity, characterViewHolder) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterViewHolder>>())
             {
                 characterViewHolder.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
@@ -48,12 +48,12 @@ namespace App.Ecs.Characters
             }
         }
     }
-    
+
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct CharacterViewUpdateSystem : ISystem
     {
         private EntityQuery _query;
-        
+
         public void OnCreate(ref SystemState state)
         {
             _query = SystemAPI.QueryBuilder()
@@ -66,7 +66,7 @@ namespace App.Ecs.Characters
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, characterVisual) in 
+            foreach (var (transform, characterVisual) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterViewHolder>>()
                          .WithNone<PhysicsVelocity>())
             {
