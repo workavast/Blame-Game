@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace App.Ecs.Attack
+namespace App.Ecs.Attack.Vfx
 {
-    public class AttackView : MonoBehaviour
+    public class AttackVfxView : MonoBehaviour
     {
         [SerializeField] private ParticleProvider attackVfx;
-        
-        public void PerformAttack() 
+
+        public void PerformAttack()
             => attackVfx.Play();
     }
 }

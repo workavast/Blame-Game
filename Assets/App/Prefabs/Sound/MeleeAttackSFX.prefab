@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 173660474086087743}
   - component: {fileID: -758675528668472863}
   - component: {fileID: 6001898014230717571}
+  - component: {fileID: 2980770219511126169}
   m_Layer: 0
-  m_Name: KamikazzeExplosionSFX
+  m_Name: MeleeAttackSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,11 +55,11 @@ AudioSource:
   m_GameObject: {fileID: 937162278626525170}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6764584582172354222, guid: a870d6a42f69c3e49892a3776459e3bb, type: 2}
+  OutputAudioMixerGroup: {fileID: -2487083833925166331, guid: a870d6a42f69c3e49892a3776459e3bb, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0f48a099c14fc2a4e91d9f8ee118b580, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5e14338d1049c43df828db3a32202bce, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.225
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -133,6 +134,31 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!169 &2980770219511126169
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937162278626525170}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 2
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.4542974
       inSlope: 0
       outSlope: 0
       tangentMode: 0

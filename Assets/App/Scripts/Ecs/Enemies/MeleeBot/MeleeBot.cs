@@ -1,4 +1,6 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Sfx;
+using App.Ecs.Attack.Vfx;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
@@ -29,7 +31,8 @@ namespace App.Ecs.Enemies.MeleeBot
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
                 
                 ShootCooldownLookup = SystemAPI.GetComponentLookup<AttackCooldown>(),
-                AttackViews = SystemAPI.GetComponentLookup<AttackViewActivateFlag>(),
+                AttackVfxActivateRequests = SystemAPI.GetComponentLookup<AttackVfxActivateFlag>(),
+                AttackSfxActivateRequests = SystemAPI.GetComponentLookup<AttackSfxActivateFlag>(),
                 DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
             };
 
@@ -44,7 +47,8 @@ namespace App.Ecs.Enemies.MeleeBot
             [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
         
             public ComponentLookup<AttackCooldown> ShootCooldownLookup;
-            public ComponentLookup<AttackViewActivateFlag> AttackViews;
+            public ComponentLookup<AttackVfxActivateFlag> AttackVfxActivateRequests;
+            public ComponentLookup<AttackSfxActivateFlag> AttackSfxActivateRequests;
             public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
         
             public void Execute(CollisionEvent collisionEvent)
@@ -74,8 +78,12 @@ namespace App.Ecs.Enemies.MeleeBot
                 cooldown.ValueRW = true;
                 var attack = AttackDamageLookup.GetRefRO(meleeBot);
                 var playerDamageBuffer = DamageBufferLookup[player];
-                if (AttackViews.HasComponent(meleeBot)) 
-                    AttackViews.SetComponentEnabled(meleeBot, true);
+                
+                if (AttackVfxActivateRequests.HasComponent(meleeBot)) 
+                    AttackVfxActivateRequests.SetComponentEnabled(meleeBot, true);
+                
+                if (AttackSfxActivateRequests.HasComponent(meleeBot)) 
+                    AttackSfxActivateRequests.SetComponentEnabled(meleeBot, true);
                 
                 playerDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
             }
