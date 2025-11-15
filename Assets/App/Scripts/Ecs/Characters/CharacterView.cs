@@ -8,7 +8,6 @@ namespace App.Ecs.Characters
     public class CharacterView : CleanupView
     {
         [SerializeField] private GameObject model;
-        [SerializeField] private Vector2 deathPitchRange;
         [SerializeField] private DeathVfxView deathVfxView;
         
         public float Velocity { get; private set; }

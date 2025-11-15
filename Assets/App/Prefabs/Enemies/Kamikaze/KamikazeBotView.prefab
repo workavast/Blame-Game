@@ -51,7 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: 8176448482098108948}
   model: {fileID: 5139432117494492287}
-  deathPitchRange: {x: 0.9, y: 1.1}
   deathVfxView: {fileID: -2031663277452808022}
 --- !u!114 &-2031663277452808022
 MonoBehaviour:
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16a30f5d2a413290a261b9f185e15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathPitchRange: {x: 0.9, y: 1.1}
+  deathPitchRange: {x: 1.15, y: 1.35}
 --- !u!114 &8176448482098108948
 MonoBehaviour:
   m_ObjectHideFlags: 0
