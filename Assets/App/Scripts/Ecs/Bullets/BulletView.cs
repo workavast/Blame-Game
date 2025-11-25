@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using App.Ecs.Clenuping;
+﻿using System;
+using System.Collections;
+using App.Ecs.EntityViews;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace App.Ecs.Bullets
 {
-    public class BulletView : CleanupView
+    public class BulletView : MonoBehaviour, IEntityViewElement
     {
         [SerializeField] private Light lighting;
         [SerializeField] private float fadeTime;
@@ -13,11 +14,10 @@ namespace App.Ecs.Bullets
 
         private Vector3 _initialScale;
         private float _initialLightIntensity;
-        
-        protected override void Awake()
-        {
-            base.Awake();
+        public event Action<IEntityViewElement> OnCleanupCompleted;
 
+        private void Awake()
+        {
             _initialScale = transform.localScale;
             _initialLightIntensity = lighting.intensity;
         }
@@ -34,12 +34,13 @@ namespace App.Ecs.Bullets
             StartCoroutine(Show());
         }
 
-        protected override void DestroyCallback()
+        public bool OnDestroyCallback()
         {
             StopAllCoroutines();
             StartCoroutine(Fade());
+            return false;
         }
-
+        
         private IEnumerator Show()
         {
             var showTimer = showTime;
@@ -71,7 +72,7 @@ namespace App.Ecs.Bullets
                 yield return new WaitForEndOfFrame();
             }
             
-            base.DestroyCallback();
+            OnCleanupCompleted?.Invoke(this);
         }
     }
 }

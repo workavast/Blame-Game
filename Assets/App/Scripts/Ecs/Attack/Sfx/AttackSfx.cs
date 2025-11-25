@@ -40,12 +40,10 @@ namespace App.Ecs.Attack.Sfx
         }
     }
 
-    public partial class AttackSfxStartLoadingSystem : SfxInitializeSystem<AttackSfxData>
+    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData>
     {
-        protected override void StartLoading(AttackSfxData sfxData)
-        {
-            sfxData.AttackSfxRef.LoadAsync();
-        }
+        protected override void StartLoading(AttackSfxData sfxData) 
+            => sfxData.AttackSfxRef.LoadAsync();
     }
 
     public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
@@ -53,16 +51,14 @@ namespace App.Ecs.Attack.Sfx
 
     }
 
-    [UpdateAfter(typeof(AttackSfxStartLoadingSystem))]
-    public partial class AttackSfxViewHolderInitializeSystem
+    public partial class AttackSfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
     {
         protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackSfxView view)
             => ecb.AddComponent(entity, new AttackSfxViewHolder() { Instance = view });
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(AttackSfxViewHolderInitializeSystem))]
+    [UpdateInGroup(typeof(SfxSetSystemGroup))]
     public partial struct AttackSfxSetSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

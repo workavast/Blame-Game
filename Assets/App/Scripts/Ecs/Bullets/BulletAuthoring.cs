@@ -1,6 +1,4 @@
-﻿using App.Ecs.Clenuping;
-using Unity.Entities;
-using Unity.Entities.Content;
+﻿using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Bullets
@@ -8,7 +6,6 @@ namespace App.Ecs.Bullets
     public class BulletAuthoring : MonoBehaviour
     {
         [SerializeField] private float existTime;
-        [SerializeField] private WeakObjectReference<CleanupView> viewPrefab;
         
         private class Baker : Baker<BulletAuthoring>
         {
@@ -18,7 +15,6 @@ namespace App.Ecs.Bullets
 
                 AddComponent(entity, new BulletTag());
                 AddComponent(entity, new ExistTimer() {Value = authoring.existTime});
-                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring.viewPrefab });
                 AddComponent(entity, new AttackDamage());
                 AddComponent(entity, new BulletPenetration());
                 AddBuffer<BulletCollisions>(entity);

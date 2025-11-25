@@ -40,12 +40,10 @@ namespace App.Ecs.Death.Sfx
         }
     }
 
-    public partial class DeathSfxStartLoadingSystem : SfxInitializeSystem<DeathSfxData>
+    public partial class DeathSfxStartLoadingSystem : SfxStartLoadSystem<DeathSfxData>
     {
-        protected override void StartLoading(DeathSfxData sfxData)
-        {
-            sfxData.DeathSfxRef.LoadAsync();
-        }
+        protected override void StartLoading(DeathSfxData sfxData) 
+            => sfxData.DeathSfxRef.LoadAsync();
     }
 
     public struct DeathSfxHolderInitializeFlag : IComponentData, IEnableableComponent
@@ -53,16 +51,14 @@ namespace App.Ecs.Death.Sfx
 
     }
 
-    [UpdateAfter(typeof(DeathSfxStartLoadingSystem))]
-    public partial class DeathSfxViewHolderInitializeSystem
+    public partial class DeathSfxViewHolderInitSystem
         : ViewHolderInitializeSystem<DeathSfxHolderInitializeFlag, DeathSfxView, DeathSfxViewHolder>
     {
         protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DeathSfxView view)
             => ecb.AddComponent(entity, new DeathSfxViewHolder() { Instance = view });
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(DeathSfxViewHolderInitializeSystem))]
+    [UpdateInGroup(typeof(SfxSetSystemGroup))]
     public partial struct DeathSfxSetSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

@@ -1,4 +1,4 @@
-﻿using App.Ecs.Clenuping;
+﻿using App.Ecs.EntityViews;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -7,9 +7,6 @@ using Unity.Transforms;
 
 namespace App.Ecs.Bullets
 {
-    
-    #region components
-    
     public struct BulletTag : IComponentData
     {
         
@@ -38,47 +35,11 @@ namespace App.Ecs.Bullets
         public float MoveSpeed;
         public int Penetration;
     }
-    
-    #endregion
 
-    public struct BulletBuilder
+    public partial class BulletViewHolderInitSystem : ViewHolderInitializeSystem<BulletTag, BulletView, BulletViewHolder>
     {
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
-        }
-        
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * damageScale.ValueRO.Value});
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
-        }
-        
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale, RefRO<AdditionalPenetration> additionalPenetration)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * damageScale.ValueRO.Value});
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value});
-        }
-        
-        public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale, DamageScale globalDamageScale, RefRO<AdditionalPenetration> additionalPenetration)
-        {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value)});
-            ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value});
-        }
-    }
-
-    public partial class BulletViewInstallerSystem : ViewInstallerSystem<BulletTag>
-    {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new BulletViewHolder() { Instance = instance as BulletView });
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, BulletView view) 
+            => ecb.AddComponent(entity, new BulletViewHolder() { Instance = view });
     }
     
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]

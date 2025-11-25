@@ -1,6 +1,5 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
-using UnityEngine;
 
 namespace App.Ecs.Sound
 {
@@ -16,7 +15,20 @@ namespace App.Ecs.Sound
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(ViewInstallSystemGroup))]
-    public abstract partial class SfxInitializeSystem<TSfxData> : SystemBase
+    public partial class SfxStartLoadSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(SfxStartLoadSystemGroup))]
+    public partial class SfxSetSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
+    [UpdateInGroup(typeof(SfxStartLoadSystemGroup))]
+    public abstract partial class SfxStartLoadSystem<TSfxData> : SystemBase
         where TSfxData : unmanaged, IComponentData
     {
         protected override void OnCreate()

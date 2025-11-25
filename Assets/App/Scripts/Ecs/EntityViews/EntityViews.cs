@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using App.Ecs.Sound;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
@@ -16,8 +17,15 @@ namespace App.Ecs.EntityViews
         public UnityObjectRef<EntityView> Instance;
     }
     
-    [UpdateInGroup(typeof(ViewInstallSystemGroup))]
-    public partial class EntityViewInstallerSystem : SystemBase
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(SfxStartLoadSystemGroup))]
+    public partial class ViewsInitializationSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
+    [UpdateInGroup(typeof(ViewsInitializationSystemGroup))]
+    public sealed partial class EntityViewInstallerSystem : SystemBase
     {
         protected override void OnCreate()
         {
@@ -89,7 +97,8 @@ namespace App.Ecs.EntityViews
         }
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(ViewsInitializationSystemGroup))]
+    [UpdateAfter(typeof(EntityViewInstallerSystem))]
     public abstract partial class ViewHolderInitializeSystem<TInitializeFlag, TView, TViewHolder> : SystemBase
         where TInitializeFlag : unmanaged, IComponentData
         where TView : MonoBehaviour, IEntityViewElement

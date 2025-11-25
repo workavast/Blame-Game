@@ -23,7 +23,7 @@ namespace App.Ecs.Attack.Vfx
         public UnityObjectRef<AttackVfxView> Instance;
     }
 
-    public partial class AttackVfxViewHolderInitializeSystem
+    public partial class AttackVfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackVfxViewHolderInitializeFlag, AttackVfxView, AttackVfxViewHolder>
     {
         protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackVfxView view)

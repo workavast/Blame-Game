@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b69ee3a9d4ec838498414a9fa7ad04b1, type: 2}
+    - target: {fileID: 4417966588439006837, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
+      propertyPath: viewPrefab.Id.GlobalId.AssetGUID
+      value: 2447f11baa46e14ab7e853cef382bbe6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417966588439006837, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
+      propertyPath: viewPrefab.Id.GlobalId.SceneObjectIdentifier0
+      value: -5086342510940552535
+      objectReference: {fileID: 0}
     - target: {fileID: 4547866011227875303, guid: ade2cf6b26d48e74b9ac1ec61a4099bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

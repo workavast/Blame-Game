@@ -37,7 +37,7 @@ namespace App.Ecs.Death.Vfx
         }
     }
 
-    public partial class DeathVfxViewHolderInitializeSystem
+    public partial class DeathVfxViewHolderInitSystem
         : ViewHolderInitializeSystem<DeathVfxViewHolderInitializeFlag, DeathVfxView, DeathVfxViewHolder>
     {
         protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DeathVfxView view)

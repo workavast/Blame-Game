@@ -17,7 +17,7 @@ namespace App.Ecs.Characters
         public UnityObjectRef<CharacterView> Instance;
     }
 
-    public partial class CharacterViewInstallerSystemV2
+    public partial class CharacterViewHolderInitSystem
         : ViewHolderInitializeSystem<CharacterTag, CharacterView, CharacterViewHolder>
     {
         protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, CharacterView view)

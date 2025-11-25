@@ -2,6 +2,7 @@
 using App.Ecs.Bullets;
 using App.Ecs.Enemies;
 using App.Ecs.Player;
+using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;

@@ -1,12 +1,11 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.Bullets;
-using App.Ecs.Clenuping;
 using App.Ecs.Player;
+using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.PlayerPerks.ForwardShooter
 {
