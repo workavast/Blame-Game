@@ -16,7 +16,7 @@ namespace App.Ecs.Experience.ExpConsumeZone
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent(entity, new ExpConsumeZoneTag());
-                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });
+                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring.viewPrefab });
             }
         }
     }

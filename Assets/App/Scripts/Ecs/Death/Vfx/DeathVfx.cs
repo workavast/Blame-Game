@@ -1,4 +1,4 @@
-﻿using App.Ecs.Characters;
+﻿using App.Ecs.EntityViews;
 using Unity.Entities;
 
 namespace App.Ecs.Death.Vfx
@@ -37,25 +37,11 @@ namespace App.Ecs.Death.Vfx
         }
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial struct DeathVfxViewHolderInitializeSystem : ISystem
+    public partial class DeathVfxViewHolderInitializeSystem
+        : ViewHolderInitializeSystem<DeathVfxViewHolderInitializeFlag, DeathVfxView, DeathVfxViewHolder>
     {
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-
-            foreach (var (characterView, deathViewHolderInitializedFlag, entity) in
-                     SystemAPI.Query<RefRO<CharacterViewHolder>, EnabledRefRW<DeathVfxViewHolderInitializeFlag>>()
-                         .WithEntityAccess())
-            {
-                if (characterView.ValueRO.Instance.Value.TryGetComponent(out DeathVfxView deathView))
-                    ecb.AddComponent(entity, new DeathVfxViewHolder() { Instance = deathView });
-                deathViewHolderInitializedFlag.ValueRW = false;
-            }
-
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-        }
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DeathVfxView view)
+            => ecb.AddComponent(entity, new DeathVfxViewHolder() { Instance = view });
     }
 
     [UpdateInGroup(typeof(DeathSystemGroup))]

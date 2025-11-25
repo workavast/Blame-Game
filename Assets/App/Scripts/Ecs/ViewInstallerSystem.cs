@@ -5,7 +5,7 @@ using Unity.Entities.Content;
 
 namespace App.Ecs
 {
-    public struct ViewPrefabHolder : IComponentData, IEnableableComponent
+    public struct CleanupViewPrefabHolder : IComponentData, IEnableableComponent
     {
         public WeakObjectReference<CleanupView> Prefab;
         public bool Loaded;
@@ -26,7 +26,7 @@ namespace App.Ecs
         protected override void OnCreate()
         {
             _query = GetEntityQuery(
-                ComponentType.ReadWrite<ViewPrefabHolder>(),
+                ComponentType.ReadWrite<CleanupViewPrefabHolder>(),
                 ComponentType.ReadOnly<TTag>()
             );
             
@@ -38,12 +38,12 @@ namespace App.Ecs
             var ecb = new EntityCommandBuffer(WorldUpdateAllocator);
             
             var query = GetEntityQuery(
-                ComponentType.ReadWrite<ViewPrefabHolder>(),
+                ComponentType.ReadWrite<CleanupViewPrefabHolder>(),
                 ComponentType.ReadOnly<TTag>()
             );
             
             var entities = query.ToEntityArray(Allocator.Temp);
-            var holders  = query.ToComponentDataArray<ViewPrefabHolder>(Allocator.Temp);
+            var holders  = query.ToComponentDataArray<CleanupViewPrefabHolder>(Allocator.Temp);
             
             for (int i = 0; i < entities.Length; i++)
             {
@@ -56,7 +56,7 @@ namespace App.Ecs
                         && prefabRef.LoadingStatus != ObjectLoadingStatus.Loading
                         && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
                     {
-                        var viewHolder = EntityManager.GetComponentData<ViewPrefabHolder>(entity);
+                        var viewHolder = EntityManager.GetComponentData<CleanupViewPrefabHolder>(entity);
                         viewHolder.Loaded = true;
                         ecb.SetComponent(entity, viewHolder);
                         
@@ -78,12 +78,12 @@ namespace App.Ecs
                         if (!holders[i].Loaded)
                         {
                             prefabRef.LoadAsync();
-                            var viewHolder = EntityManager.GetComponentData<ViewPrefabHolder>(entity);
+                            var viewHolder = EntityManager.GetComponentData<CleanupViewPrefabHolder>(entity);
                             viewHolder.Loaded = true;
-                            ecb.SetComponent(entity, viewHolder); 
+                            ecb.SetComponent(entity, viewHolder);
                         }
                         
-                        ecb.SetComponentEnabled<ViewPrefabHolder>(entity, false);
+                        ecb.SetComponentEnabled<CleanupViewPrefabHolder>(entity, false);
                     }
                 }
             }

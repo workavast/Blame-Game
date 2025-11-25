@@ -1,4 +1,4 @@
-﻿using App.Ecs.Characters;
+﻿using App.Ecs.EntityViews;
 using Unity.Entities;
 
 namespace App.Ecs.Attack.Vfx
@@ -23,25 +23,11 @@ namespace App.Ecs.Attack.Vfx
         public UnityObjectRef<AttackVfxView> Instance;
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial struct AttackVfxViewHolderInitializeSystem : ISystem
+    public partial class AttackVfxViewHolderInitializeSystem
+        : ViewHolderInitializeSystem<AttackVfxViewHolderInitializeFlag, AttackVfxView, AttackVfxViewHolder>
     {
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-
-            foreach (var (characterView, attackViewHolderInitializedFlag, entity) in
-                     SystemAPI.Query<RefRO<CharacterViewHolder>, EnabledRefRW<AttackVfxViewHolderInitializeFlag>>()
-                         .WithEntityAccess())
-            {
-                if (characterView.ValueRO.Instance.Value.TryGetComponent(out AttackVfxView attackViewMb))
-                    ecb.AddComponent(entity, new AttackVfxViewHolder() { Instance = attackViewMb });
-                attackViewHolderInitializedFlag.ValueRW = false;
-            }
-
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-        }
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackVfxView view)
+            => ecb.AddComponent(entity, new AttackVfxViewHolder() { Instance = view });
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]

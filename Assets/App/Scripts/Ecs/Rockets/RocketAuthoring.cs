@@ -25,7 +25,7 @@ namespace App.Ecs.Rockets
                 
                 AddComponent(entity, new RocketSfxData(){SfxPrefab = authoring.explosionPrefab});    
                     
-                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.viewPrefab });
+                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring.viewPrefab });
                 AddComponent(entity, new AttackDamage());
 
                 AddComponent(entity, new MoveSpeed());

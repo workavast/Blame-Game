@@ -95,11 +95,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4549628677875805881}
+  - component: {fileID: 2696401394642927009}
   - component: {fileID: 3001960104340552425}
   - component: {fileID: 7105407583576499244}
+  - component: {fileID: 4055582178204184918}
   - component: {fileID: 5602794807299290904}
   - component: {fileID: 3109268065557665478}
-  - component: {fileID: 4055582178204184918}
   - component: {fileID: 8493680392624954158}
   - component: {fileID: 2492843180082056845}
   - component: {fileID: 4467299890213140103}
@@ -128,6 +129,31 @@ Transform:
   - {fileID: 7022594629600565485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2696401394642927009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447750980360653091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 180305115793307962
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3780550859
+            y: 1239895506
+            z: 3816280721
+            w: 1481268683
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &3001960104340552425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +179,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00171f2a03bd4010909dbbfc091eb2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4055582178204184918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447750980360653091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  moveSpeed: 10
+  rotationSpeed: 5
 --- !u!114 &5602794807299290904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,47 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3228330e3cc4456a7aa5e7560fcffe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4055582178204184918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8447750980360653091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityViewPrefab:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: 350588431722163739
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 3780550859
-            y: 1239895506
-            z: 3816280721
-            w: 1481268683
-        IdentifierType: 1
-      GenerationType: 1
-  deathSfxRef:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: -758675528668472863
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 2516042599
-            y: 1200917388
-            z: 1686091904
-            w: 2830124188
-        IdentifierType: 1
-      GenerationType: 1
-  health: 20
-  moveSpeed: 10
-  rotationSpeed: 5
 --- !u!114 &8493680392624954158
 MonoBehaviour:
   m_ObjectHideFlags: 0

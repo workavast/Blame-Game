@@ -1,5 +1,4 @@
 using App.Audio.Sources;
-using App.Ecs.Clenuping;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
@@ -8,8 +7,6 @@ namespace App.Ecs.Characters
 {
     public class CharacterAuthoring : MonoBehaviour
     {
-        [SerializeField] private WeakObjectReference<CleanupView> entityViewPrefab;
-        [SerializeField] private WeakObjectReference<AudioPoolRelease> deathSfxRef;
         [SerializeField] private float health;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float rotationSpeed;
@@ -34,10 +31,6 @@ namespace App.Ecs.Characters
                 AddBuffer<DamageFrameBuffer>(entity);
                 
                 AddComponent(entity, new CharacterTag());
-                AddComponent(entity, new ViewPrefabHolder()
-                {
-                    Prefab = authoring.entityViewPrefab
-                });
             }
         }
     }

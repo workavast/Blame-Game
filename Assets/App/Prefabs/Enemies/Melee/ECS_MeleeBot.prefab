@@ -95,10 +95,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165640344155064361}
+  - component: {fileID: -8130247287595296169}
   - component: {fileID: 5445998171043606013}
+  - component: {fileID: 6030792426865596637}
   - component: {fileID: 1593248158783211833}
   - component: {fileID: 1283775126065587771}
-  - component: {fileID: 6030792426865596637}
   - component: {fileID: -135082464952418873}
   - component: {fileID: -1223041920009513085}
   - component: {fileID: 7783301245421215506}
@@ -129,6 +130,31 @@ Transform:
   - {fileID: 3908576109553688434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8130247287595296169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 5536540975207653805
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3279851138
+            y: 1220161054
+            z: 3954053250
+            w: 500630828
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &5445998171043606013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +169,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   attackCooldown: 2
+--- !u!114 &6030792426865596637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00171f2a03bd4010909dbbfc091eb2cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1593248158783211833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,32 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityViewPrefab:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: 350588431722163739
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 3279851138
-            y: 1220161054
-            z: 3954053250
-            w: 500630828
-        IdentifierType: 1
-      GenerationType: 1
-  deathSfxRef:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: -758675528668472863
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 2516042599
-            y: 1200917388
-            z: 1686091904
-            w: 2830124188
-        IdentifierType: 1
-      GenerationType: 1
   health: 20
   moveSpeed: 10
   rotationSpeed: 5
@@ -197,18 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbsCount: 2
---- !u!114 &6030792426865596637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394460037251805814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00171f2a03bd4010909dbbfc091eb2cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-135082464952418873
 MonoBehaviour:
   m_ObjectHideFlags: 0

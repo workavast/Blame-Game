@@ -1,4 +1,4 @@
-﻿using App.Ecs.Clenuping;
+﻿using App.Ecs.EntityViews;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -17,10 +17,11 @@ namespace App.Ecs.Characters
         public UnityObjectRef<CharacterView> Instance;
     }
 
-    public partial class CharacterViewInstallerSystem : ViewInstallerSystem<CharacterTag>
+    public partial class CharacterViewInstallerSystemV2
+        : ViewHolderInitializeSystem<CharacterTag, CharacterView, CharacterViewHolder>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb)
-            => ecb.AddComponent(entity, new CharacterViewHolder { Instance = instance as CharacterView });
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, CharacterView view)
+            => ecb.AddComponent(entity, new CharacterViewHolder() { Instance = view });
     }
 
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]

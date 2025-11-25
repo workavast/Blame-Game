@@ -17,7 +17,7 @@ namespace App.Ecs.PlayerPerks.DamageZone
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent(entity, new DamageZoneTag());
-                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring.prefab });
+                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring.prefab });
                 
                 AddComponent(entity, new AttackDamage() { Value = authoring.damage });
                 AddComponent(entity, new DamageScale());

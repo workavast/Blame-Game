@@ -20,7 +20,7 @@ namespace App.Ecs.Shooting
                 var entity = GetEntity(TransformUsageFlags.None);
 
                 AddComponent(entity, new ShooterSfxTag());
-                AddComponent(entity, new ViewPrefabHolder() { Prefab = authoring._sfxViewPrefab });
+                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring._sfxViewPrefab });
                 AddComponent(entity, new ShooterSfxDataHolder() { ShootSfxRef = authoring.shootSfxRef });
             }
         }

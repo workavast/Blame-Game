@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8620598099285086044}
+  - component: {fileID: 5324052048430321285}
   - component: {fileID: 5120785661382401772}
   - component: {fileID: 7962342114739726347}
   - component: {fileID: 5987560476787775990}
@@ -120,13 +121,38 @@ Transform:
   m_GameObject: {fileID: 7539452127399808908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.36, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1765605993890928799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5324052048430321285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539452127399808908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 6118622345551306013
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 3190661081
+            y: 1296633920
+            z: 3568256905
+            w: 900339577
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &5120785661382401772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,32 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityViewPrefab:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: 350588431722163739
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 3190661081
-            y: 1296633920
-            z: 3568256905
-            w: 900339577
-        IdentifierType: 1
-      GenerationType: 1
-  deathSfxRef:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: -758675528668472863
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 2516042599
-            y: 1200917388
-            z: 1686091904
-            w: 2830124188
-        IdentifierType: 1
-      GenerationType: 1
   health: 20
   moveSpeed: 10
   rotationSpeed: 5

@@ -1,5 +1,5 @@
 ﻿using App.Audio.Sources;
-using App.Ecs.Characters;
+using App.Ecs.EntityViews;
 using App.Ecs.Sound;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -53,26 +53,12 @@ namespace App.Ecs.Attack.Sfx
 
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(AttackSfxStartLoadingSystem))]
-    public partial struct AttackSfxViewHolderInitializeSystem : ISystem
+    public partial class AttackSfxViewHolderInitializeSystem
+        : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
     {
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-
-            foreach (var (characterView, attackSfxHolderInitializedFlag, entity) in
-                     SystemAPI.Query<RefRO<CharacterViewHolder>, EnabledRefRW<AttackSfxHolderInitializeFlag>>()
-                         .WithEntityAccess())
-            {
-                if (characterView.ValueRO.Instance.Value.TryGetComponent(out AttackSfxView attackSfx))
-                    ecb.AddComponent(entity, new AttackSfxViewHolder() { Instance = attackSfx });
-                attackSfxHolderInitializedFlag.ValueRW = false;
-            }
-
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-        }
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackSfxView view)
+            => ecb.AddComponent(entity, new AttackSfxViewHolder() { Instance = view });
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]

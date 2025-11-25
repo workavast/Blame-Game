@@ -1,5 +1,5 @@
 ﻿using App.Audio.Sources;
-using App.Ecs.Characters;
+using App.Ecs.EntityViews;
 using App.Ecs.Sound;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -53,26 +53,12 @@ namespace App.Ecs.Death.Sfx
 
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(DeathSfxStartLoadingSystem))]
-    public partial struct DeathSfxViewHolderInitializeSystem : ISystem
+    public partial class DeathSfxViewHolderInitializeSystem
+        : ViewHolderInitializeSystem<DeathSfxHolderInitializeFlag, DeathSfxView, DeathSfxViewHolder>
     {
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-
-            foreach (var (characterView, deathSfxHolderInitializedFlag, entity) in
-                     SystemAPI.Query<RefRO<CharacterViewHolder>, EnabledRefRW<DeathSfxHolderInitializeFlag>>()
-                         .WithEntityAccess())
-            {
-                if (characterView.ValueRO.Instance.Value.TryGetComponent(out DeathSfxView deathSfx))
-                    ecb.AddComponent(entity, new DeathSfxViewHolder() { Instance = deathSfx });
-                deathSfxHolderInitializedFlag.ValueRW = false;
-            }
-
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-        }
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DeathSfxView view)
+            => ecb.AddComponent(entity, new DeathSfxViewHolder() { Instance = view });
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
