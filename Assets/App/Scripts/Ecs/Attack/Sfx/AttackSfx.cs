@@ -1,22 +1,11 @@
 ﻿using App.Audio.Sources;
 using App.Ecs.EntityViews;
 using App.Ecs.Sound;
-using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Entities.Content;
 
 namespace App.Ecs.Attack.Sfx
 {
-    public struct AttackSfxInitializeFlag : IComponentData, IEnableableComponent
-    {
-
-    }
-
-    public struct AttackSfxActivateFlag : IComponentData, IEnableableComponent
-    {
-
-    }
-
     public struct AttackSfxData : IComponentData
     {
         public WeakObjectReference<AudioPoolRelease> AttackSfxRef;
@@ -25,20 +14,6 @@ namespace App.Ecs.Attack.Sfx
     public struct AttackSfxViewHolder : IComponentData
     {
         public UnityObjectRef<AttackSfxView> Instance;
-    }
-
-    [UpdateInGroup(typeof(InitOffSystemGroup))]
-    public partial struct AttackSfxInitOffSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (viewFlag, initializedFlag) in
-                     SystemAPI.Query<EnabledRefRW<AttackSfxActivateFlag>, EnabledRefRW<AttackSfxInitializeFlag>>())
-            {
-                viewFlag.ValueRW = false;
-                initializedFlag.ValueRW = false;
-            }
-        }
     }
 
     public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData>
@@ -84,30 +59,13 @@ namespace App.Ecs.Attack.Sfx
     }
 
     [UpdateInGroup(typeof(AttackSystemGroup))]
-    public partial struct CallAttackSfxSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (health, attackSfxActivateFlag) in
-                     SystemAPI.Query<RefRW<CurrentHealth>, EnabledRefRW<AttackSfxActivateFlag>>()
-                         .WithDisabled<AttackSfxActivateFlag>())
-            {
-                if (health.ValueRO.Value <= 0)
-                    attackSfxActivateFlag.ValueRW = true;
-            }
-        }
-    }
-
-    [UpdateInGroup(typeof(AttackSystemGroup))]
-    [UpdateAfter(typeof(CallAttackSfxSystem))]
     public partial struct AttackSfxActivateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (attackSfx, attackPerformViewFlag) in
-                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, EnabledRefRW<AttackSfxActivateFlag>>())
+            foreach (var (attackSfx, _) in
+                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, EnabledRefRO<AttackRequested>>())
             {
-                attackPerformViewFlag.ValueRW = false;
                 attackSfx.ValueRO.Instance.Value.Activate();
             }
         }

@@ -1,5 +1,4 @@
-﻿using App.Ecs.Attack;
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Enemies.MeleeBot
@@ -16,10 +15,8 @@ namespace App.Ecs.Enemies.MeleeBot
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent(entity, new MeleeBotTag());
-                AddComponent(entity, new AttackDamage() { Value = authoring.damage });
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.attackCooldown });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.attackCooldown });
                 AddComponent(entity, new AutoMoveTag());
+                AddComponent(entity, new AttackDamage() { Value = authoring.damage });
             }
         }
     }

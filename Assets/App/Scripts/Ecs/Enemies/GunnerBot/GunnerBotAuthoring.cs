@@ -1,5 +1,4 @@
-﻿using App.Ecs.Attack;
-using App.Ecs.Bullets;
+﻿using App.Ecs.Bullets;
 using Unity.Entities;
 using UnityEngine;
 
@@ -55,9 +54,6 @@ namespace App.Ecs.Enemies.GunnerBot
                     Penetration = authoring.penetration,
                     SpawnVerticalOffset = authoring.spawnVerticalOffset
                 });
-                
-                AddComponent(entity, new DefaultAttackCooldown() {Timer = authoring.shootCooldown});
-                AddComponent(entity, new AttackCooldown() {Timer = authoring.shootCooldown});
             }
         }
     }

@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5120785661382401772}
   - component: {fileID: 7962342114739726347}
   - component: {fileID: 5987560476787775990}
+  - component: {fileID: -5055788461443472159}
   - component: {fileID: -695167198949303347}
   - component: {fileID: -4264640145348063920}
   - component: {fileID: 3110858220160575887}
@@ -203,6 +204,19 @@ MonoBehaviour:
   health: 20
   moveSpeed: 10
   rotationSpeed: 5
+--- !u!114 &-5055788461443472159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539452127399808908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 2
 --- !u!114 &-695167198949303347
 MonoBehaviour:
   m_ObjectHideFlags: 0

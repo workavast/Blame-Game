@@ -12,7 +12,6 @@ namespace App.Ecs.PlayerPerks.StarShooter
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float shootPause;
         [SerializeField] private float bulletsCount;
         [SerializeField] private int penetration;
         
@@ -28,10 +27,6 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     BulletsCount = authoring.bulletsCount
                 });
                 
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackRateScale());
-
                 AddComponent(entity, new AdditionalProjectilesCount());
                 AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalPenetration());

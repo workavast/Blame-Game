@@ -61,7 +61,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8986ca1bd12c4edf828a4034c90bfda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5120785661382401772, guid: 6b57eddda69219144a854a844d693a24, type: 3}
-  interval: 1
-  distance: 40
-  seed: 321

@@ -12,7 +12,6 @@ namespace App.Ecs.PlayerPerks.RocektLauncher
         [SerializeField] private RocketAuthoring rocketPrefab;
         [SerializeField] private int rocketsCount;
         [SerializeField] private float damage;
-        [SerializeField] private float interval;
         [SerializeField] private float randomInterval;
         [SerializeField] private float minDistance;
         [SerializeField] private float maxDistance;
@@ -26,10 +25,6 @@ namespace App.Ecs.PlayerPerks.RocektLauncher
             public override void Bake(RocketLauncherAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.None);
-
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.interval });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.interval });
-                AddComponent(entity, new AttackRateScale());
 
                 AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalProjectilesCount());

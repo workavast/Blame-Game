@@ -12,7 +12,6 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
         [SerializeField] private float spawnVerticalOffset;
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float shootPause;
         [SerializeField] private int penetration = 1;
         
         private class Baker : Baker<ForwardShooterAuthoring>
@@ -33,10 +32,6 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
 
                 AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalPenetration());
-                
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackRateScale());
             }
         }
     }
