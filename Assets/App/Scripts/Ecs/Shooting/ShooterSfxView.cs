@@ -1,27 +1,31 @@
-﻿using App.Audio.Sources;
-using App.Ecs.Clenuping;
+﻿using System;
+using App.Audio.Sources;
+using App.Ecs.EntityViews;
 using Unity.Entities.Content;
 using UnityEngine;
 using Zenject;
 
 namespace App.Ecs.Shooting
 {
-    public class ShooterSfxView : CleanupView
+    public class ShooterSfxView : MonoBehaviour, IEntityViewElement
     {
         [SerializeField] private Vector2 pitchRange = new(0.9f, 1.1f);
 
         private SfxHolder _shootSfx;
-        
+        public event Action<IEntityViewElement> OnCleanupCompleted;
+
         [Inject]
         public void Construct(AudioFactory audioFactory)
         {
             _shootSfx = new SfxHolder(audioFactory);
         }
 
-        protected override void OnDestroy()
+        public bool OnDestroyCallback() 
+            => true;
+
+        private void OnDestroy()
         {
             _shootSfx.ReleaseIfUnused();
-            base.OnDestroy();
         }
 
         public void PlaySfx(Vector3 position)

@@ -1,5 +1,5 @@
 ﻿using App.Audio.Sources;
-using App.Ecs.Clenuping;
+using App.Ecs.EntityViews;
 using App.Ecs.Sound;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -21,10 +21,10 @@ namespace App.Ecs.Shooting
         
     }
     
-    public partial class ShooterSfxViewInstaller : ViewInstallerSystem<ShooterSfxTag>
+    public partial class ShooterSfxViewInit : ViewHolderInitializeSystem<ShooterSfxTag, ShooterSfxView, ShooterSfxViewHolder>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new ShooterSfxViewHolder() { Instance = instance as ShooterSfxView });
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, ShooterSfxView view)
+            => ecb.AddComponent(entity, new ShooterSfxViewHolder() { Instance = view });
     }
     
     public partial class ShooterSfxStartLoadSystem : SfxStartLoadSystem<ShooterSfxDataHolder>
