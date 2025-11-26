@@ -74,7 +74,7 @@ namespace App.Ecs.EntityViews
                         instance.SetPrefab(ref prefabRef);
 
                         ecb.AddComponent(entity, new EntityViewHolder { Instance = instance });
-                        ecb.AddComponent(entity, new Clenuping.CleanupCallback()
+                        ecb.AddComponent(entity, new CleanupCallbackHolder()
                         {
                             Instance = instance.CleanupCallback, 
                         });

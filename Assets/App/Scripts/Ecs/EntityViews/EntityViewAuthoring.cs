@@ -14,6 +14,7 @@ namespace App.Ecs.EntityViews
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
+                AddComponent(entity, new RequiredCleanupTag());
                 AddComponent(entity, new EntityViewPrefabHolder()
                 {
                     Prefab = authoring.viewPrefab

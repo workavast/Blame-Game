@@ -1,5 +1,4 @@
 ﻿using App.Audio.Sources;
-using App.Ecs.Clenuping;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
@@ -8,7 +7,6 @@ namespace App.Ecs.Rockets
 {
     public class RocketAuthoring : MonoBehaviour
     {
-        [SerializeField] private WeakObjectReference<CleanupView> viewPrefab;
         [SerializeField] private WeakObjectReference<AudioPoolRelease> explosionPrefab;
         
         private class Baker : Baker<RocketAuthoring>

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4812872135994636390}
   - component: {fileID: 65426461587165503}
-  - component: {fileID: -925514961919633282}
   m_Layer: 0
   m_Name: ECS_Exp
   m_TagString: Untagged
@@ -51,15 +50,3 @@ MonoBehaviour:
   consumeMoveSpeed: 16
   expOrbVerticalOffset: 0.6
   expOrbConsumeDistanceError: 0.1
---- !u!114 &-925514961919633282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055571320157864214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

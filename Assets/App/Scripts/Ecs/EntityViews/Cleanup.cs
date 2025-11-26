@@ -1,12 +1,12 @@
 ﻿using Unity.Entities;
 
-namespace App.Ecs.Clenuping
+namespace App.Ecs.EntityViews
 {
-    public struct CleanUpTag : IComponentData { }
+    public struct RequiredCleanupTag : IComponentData { }
     
-    public struct CleanupCallback : ICleanupComponentData
+    public struct CleanupCallbackHolder : ICleanupComponentData
     {
-        public UnityObjectRef<App.CleanupCallback> Instance;
+        public UnityObjectRef<CleanupCallback> Instance;
     }
     
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
@@ -17,8 +17,8 @@ namespace App.Ecs.Clenuping
         public void OnCreate(ref SystemState state)
         {
             _query = SystemAPI.QueryBuilder()
-                .WithAll<CleanupCallback>()
-                .WithNone<CleanUpTag>()
+                .WithAll<CleanupCallbackHolder>()
+                .WithNone<RequiredCleanupTag>()
                 .Build();
     
             state.RequireForUpdate(_query);
@@ -28,14 +28,14 @@ namespace App.Ecs.Clenuping
         {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (visual, entity) in 
-                     SystemAPI.Query<RefRW<CleanupCallback>>()
-                         .WithNone<CleanUpTag>()
+                     SystemAPI.Query<RefRW<CleanupCallbackHolder>>()
+                         .WithNone<RequiredCleanupTag>()
                          .WithEntityAccess())
             {
                 if (visual.ValueRW.Instance.IsValid()) 
                     visual.ValueRO.Instance.Value.Callback();
                 
-                ecb.RemoveComponent<CleanupCallback>(entity);
+                ecb.RemoveComponent<CleanupCallbackHolder>(entity);
             }
             
             ecb.Playback(state.EntityManager);

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3541772834499764439}
   - component: {fileID: 3619416845734656769}
   - component: {fileID: 3772264454899709627}
-  - component: {fileID: 3060774363302412002}
   - component: {fileID: 6812218096001856858}
   - component: {fileID: 7237500614916515786}
   m_Layer: 7
@@ -91,32 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityViewPrefab:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: 1054006115468105067
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 4084527996
-            y: 1332468945
-            z: 3286310590
-            w: 679102235
-        IdentifierType: 1
-      GenerationType: 1
-  deathSfxRef:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: -758675528668472863
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 2516042599
-            y: 1200917388
-            z: 1686091904
-            w: 2830124188
-        IdentifierType: 1
-      GenerationType: 1
   health: 100
   moveSpeed: 20
   rotationSpeed: 0.5
@@ -130,18 +103,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3060774363302412002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303910047062856018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &6812218096001856858
