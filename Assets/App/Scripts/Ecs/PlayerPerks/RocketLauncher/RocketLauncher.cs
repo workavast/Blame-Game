@@ -8,7 +8,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace App.Ecs.PlayerPerks.RocektLauncher
+namespace App.Ecs.PlayerPerks.RocketLauncher
 {
     public struct RocketLauncherTag : IComponentData
     {

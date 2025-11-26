@@ -1,11 +1,10 @@
-﻿using App.Ecs.Attack;
-using App.Ecs.Rockets;
+﻿using App.Ecs.Rockets;
 using App.Ecs.Shooting;
 using Unity.Entities;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-namespace App.Ecs.PlayerPerks.RocektLauncher
+namespace App.Ecs.PlayerPerks.RocketLauncher
 {
     public class RocketLauncherAuthoring : MonoBehaviour
     {
