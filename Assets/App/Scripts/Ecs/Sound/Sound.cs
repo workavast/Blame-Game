@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using App.Ecs.SystemGroups;
+using Unity.Collections;
 using Unity.Entities;
 
 namespace App.Ecs.Sound
@@ -14,7 +15,7 @@ namespace App.Ecs.Sound
     }
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(ViewInstallSystemGroup))]
+    [UpdateAfter(typeof(InitOffSystemGroup))]
     public partial class SfxStartLoadSystemGroup : ComponentSystemGroup
     {
         

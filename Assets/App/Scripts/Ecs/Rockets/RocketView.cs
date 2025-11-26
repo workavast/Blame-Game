@@ -1,6 +1,6 @@
-﻿using App.Audio;
+﻿using System;
 using App.Audio.Sources;
-using App.Ecs.Clenuping;
+using App.Ecs.EntityViews;
 using Unity.Entities.Content;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Zenject;
 
 namespace App.Ecs.Rockets
 {
-    public class RocketView : CleanupView
+    public class RocketView : MonoBehaviour, IEntityViewElement
     {
         [SerializeField] private GameObject rocketModelHolder;
         [SerializeField] private Transform explosionSphere;
@@ -17,8 +17,9 @@ namespace App.Ecs.Rockets
         [SerializeField] private Vector2 explosionPitchRange;
 
         private float _explosionRadius;
-
         private SfxHolder _sfxHolder;
+        
+        public event Action<IEntityViewElement> OnCleanupCompleted;
         
         [Inject]
         public void Construct(AudioFactory audioFactory)
@@ -26,36 +27,26 @@ namespace App.Ecs.Rockets
             _sfxHolder = new SfxHolder(audioFactory);
         }
         
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            particleProvider.OnStopped += DestroyInternal;
-        }
+        private void Awake() 
+            => particleProvider.OnStopped += () => OnCleanupCompleted?.Invoke(this);
 
-        protected override void OnDestroy()
-        {
-            _sfxHolder.ReleaseIfUnused();
-            base.OnDestroy();
-        }
-
-        protected override void DestroyCallback()
+        public bool OnDestroyCallback()
         {
             explosionSphere.localScale = Vector3.one * _explosionRadius;
             explosionSphere.gameObject.SetActive(true);
             rocketModelHolder.SetActive(false);
 
             _sfxHolder.Play(transform.position, explosionPitchRange);
-        }
 
-        private void DestroyInternal() 
-            => base.DestroyCallback();
-
-        public void SetSfxView(WeakObjectReference<AudioPoolRelease> sfxRef)
-        {
-            _sfxHolder.SetSfx(sfxRef);
+            return false;
         }
         
+        private void OnDestroy() 
+            => _sfxHolder.ReleaseIfUnused();
+        
+        public void SetSfxView(WeakObjectReference<AudioPoolRelease> sfxRef) 
+            => _sfxHolder.SetSfx(sfxRef);
+
         public void SetPosition(float3 position)
             => transform.position = position;
 

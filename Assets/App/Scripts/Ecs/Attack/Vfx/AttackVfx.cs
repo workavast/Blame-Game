@@ -1,4 +1,5 @@
 ﻿using App.Ecs.EntityViews;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 
 namespace App.Ecs.Attack.Vfx
@@ -30,8 +31,8 @@ namespace App.Ecs.Attack.Vfx
             => ecb.AddComponent(entity, new AttackVfxViewHolder() { Instance = view });
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial struct AttackVfxInitializeSystem : ISystem
+    [UpdateInGroup(typeof(InitOffSystemGroup))]
+    public partial struct AttackVfxInitOffSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
@@ -44,6 +45,7 @@ namespace App.Ecs.Attack.Vfx
         }
     }
 
+    [UpdateInGroup(typeof(AttackSystemGroup))]
     public partial struct AttackVfxActivateSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

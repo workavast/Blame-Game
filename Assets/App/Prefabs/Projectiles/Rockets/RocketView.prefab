@@ -214,6 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8709059607738902798}
+  - component: {fileID: 902648039176736665}
   - component: {fileID: 2134850286280499378}
   - component: {fileID: 6664539335381877551}
   m_Layer: 0
@@ -240,6 +241,19 @@ Transform:
   - {fileID: 8163535348943951802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902648039176736665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744924866886962284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cdffa6f99848d392b2ae2161b6cacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanupCallback: {fileID: 6664539335381877551}
 --- !u!114 &2134850286280499378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ed82f37e0f487dbc82dc83bc895b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleanupCallback: {fileID: 6664539335381877551}
   rocketModelHolder: {fileID: 8747241904201155928}
   explosionSphere: {fileID: 8163535348943951802}
   particleProvider: {fileID: 4479697179438091901}

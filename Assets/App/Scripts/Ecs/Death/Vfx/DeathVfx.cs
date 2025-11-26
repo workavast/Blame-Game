@@ -1,4 +1,5 @@
 ﻿using App.Ecs.EntityViews;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 
 namespace App.Ecs.Death.Vfx
@@ -23,8 +24,8 @@ namespace App.Ecs.Death.Vfx
         public UnityObjectRef<DeathVfxView> Instance;
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial struct DeathVfxInitializeSystem : ISystem
+    [UpdateInGroup(typeof(InitOffSystemGroup))]
+    public partial struct DeathVfxInitOffSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {

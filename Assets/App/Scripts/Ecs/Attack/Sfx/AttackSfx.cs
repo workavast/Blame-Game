@@ -1,6 +1,7 @@
 ﻿using App.Audio.Sources;
 using App.Ecs.EntityViews;
 using App.Ecs.Sound;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Entities.Content;
 
@@ -26,8 +27,8 @@ namespace App.Ecs.Attack.Sfx
         public UnityObjectRef<AttackSfxView> Instance;
     }
 
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial struct AttackSfxInitializeSystem : ISystem
+    [UpdateInGroup(typeof(InitOffSystemGroup))]
+    public partial struct AttackSfxInitOffSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {

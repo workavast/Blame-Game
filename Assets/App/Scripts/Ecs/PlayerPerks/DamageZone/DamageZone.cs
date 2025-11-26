@@ -1,6 +1,6 @@
 ﻿using App.Ecs.AoeZones;
-using App.Ecs.Clenuping;
 using App.Ecs.Enemies;
+using App.Ecs.EntityViews;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
@@ -19,11 +19,12 @@ namespace App.Ecs.PlayerPerks.DamageZone
         public UnityObjectRef<DamageZoneView> Instance;
     }
     
-    public partial class DamageZoneViewInstallerSystem : ViewInstallerSystem<DamageZoneTag>
+    public partial class DamageZoneViewHolderInitSystem
+        : ViewHolderInitializeSystem<DamageZoneTag, DamageZoneView, DamageZoneViewHolder>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new DamageZoneViewHolder() { Instance = instance as DamageZoneView });
-    } 
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DamageZoneView view)
+            => ecb.AddComponent(entity, new DamageZoneViewHolder() { Instance = view });
+    }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct DamageZoneViewUpdateSystem : ISystem

@@ -1,5 +1,5 @@
 ﻿using App.Ecs.AoeZones;
-using App.Ecs.Clenuping;
+using App.Ecs.EntityViews;
 using App.Ecs.Experience.ExpOrb;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
@@ -18,11 +18,12 @@ namespace App.Ecs.Experience.ExpConsumeZone
         public UnityObjectRef<ExpConsumeZoneView> Instance;
     }
     
-    public partial class ExpConsumeZoneViewInstallerSystem : ViewInstallerSystem<ExpConsumeZoneTag>
+    public partial class ExpConsumeZoneViewHolderInitSystem
+        : ViewHolderInitializeSystem<ExpConsumeZoneTag, ExpConsumeZoneView, ExpConsumeZoneViewHolder>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new ExpConsumeZoneViewHolder() { Instance = instance as ExpConsumeZoneView });
-    } 
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, ExpConsumeZoneView view)
+            => ecb.AddComponent(entity, new ExpConsumeZoneViewHolder() { Instance = view });
+    }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct ExpConsumeZoneViewUpdateSystem : ISystem

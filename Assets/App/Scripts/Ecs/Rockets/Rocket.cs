@@ -1,4 +1,4 @@
-﻿using App.Ecs.Clenuping;
+﻿using App.Ecs.EntityViews;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -39,14 +39,15 @@ namespace App.Ecs.Rockets
         
     }
     
-    public partial class RocketViewInitializeSystem : ViewInstallerSystem<RocketTag>
+    public partial class RocketViewHolderInitSystem
+        : ViewHolderInitializeSystem<RocketTag, RocketView, RocketViewHolder>
     {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new RocketViewHolder() { Instance = instance as RocketView });
+        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, RocketView view)
+            => ecb.AddComponent(entity, new RocketViewHolder() { Instance = view });
     }
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(ViewInstallSystemGroup))]
+    [UpdateAfter(typeof(ViewsInitializationSystemGroup))]
     public partial struct RocketViewExplosionRadiusInitializeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

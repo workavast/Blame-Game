@@ -1,11 +1,17 @@
-﻿using App.Ecs.Clenuping;
+﻿using System;
+using App.Ecs.EntityViews;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace App.Ecs.AoeZones
 {
-    public class AoeZoneView : CleanupView
+    public class AoeZoneView : MonoBehaviour, IEntityViewElement
     {
+        public event Action<IEntityViewElement> OnCleanupCompleted;
+
+        public bool OnDestroyCallback()
+            => true;
+        
         public void SetPosition(float3 position) 
             => SetPosition((Vector3)position);
 

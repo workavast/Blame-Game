@@ -1,6 +1,5 @@
 ﻿using App.Ecs.Clenuping;
 using Unity.Entities;
-using Unity.Entities.Content;
 using UnityEngine;
 
 namespace App.Ecs.PlayerPerks.DamageZone
@@ -8,7 +7,6 @@ namespace App.Ecs.PlayerPerks.DamageZone
     public class DamageZoneAuthoring : MonoBehaviour
     {
         [SerializeField] private float damage;
-        [SerializeField] private WeakObjectReference<CleanupView> prefab;
         
         private class Baker : Baker<DamageZoneAuthoring>
         {
@@ -17,7 +15,6 @@ namespace App.Ecs.PlayerPerks.DamageZone
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent(entity, new DamageZoneTag());
-                AddComponent(entity, new CleanupViewPrefabHolder() { Prefab = authoring.prefab });
                 
                 AddComponent(entity, new AttackDamage() { Value = authoring.damage });
                 AddComponent(entity, new DamageScale());
