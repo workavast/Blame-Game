@@ -1,6 +1,7 @@
-﻿using App.Ecs.Enemies;
+﻿using App.Ecs.Enemies.Spawning;
 using App.EnemiesCountScaling.Configs;
 using Unity.Entities;
+using UnityEngine;
 
 namespace App.EnemiesCountScaling
 {
@@ -17,10 +18,11 @@ namespace App.EnemiesCountScaling
         public void UpdateEnemiesScaling(float timeInMinutes)
         {
             var scale = _config.GetCountPerSecond(timeInMinutes);
-            EcsSingletons.TrySetComponentOfSingleton<TSpawnerTag, EnemiesSpawnCountPerSecond>(new EnemiesSpawnCountPerSecond()
+            if (!EcsSingletons.TrySetComponentOfSingleton<TSpawnerTag, EnemySpawnCountPerSecond>(
+                    new EnemySpawnCountPerSecond() { Value = scale }))
             {
-                Value = scale
-            });
+                Debug.LogError($"Cant find singleton with target tag: [{typeof(TSpawnerTag)}]");
+            }
         }
     }
 

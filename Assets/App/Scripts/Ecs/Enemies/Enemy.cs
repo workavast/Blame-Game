@@ -6,11 +6,6 @@ using Unity.Transforms;
 
 namespace App.Ecs.Enemies
 {
-    public struct EnemiesSpawnCountPerSecond : IComponentData
-    {
-        public float Value;
-    }
-    
     public struct EnemyTag : IComponentData
     {
         
