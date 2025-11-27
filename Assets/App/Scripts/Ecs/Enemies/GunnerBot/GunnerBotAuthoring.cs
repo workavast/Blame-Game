@@ -5,12 +5,15 @@ namespace App.Ecs.Enemies.GunnerBot
 {
     public class GunnerBotAuthoring : MonoBehaviour
     {
+        [Header("random offset of hold position range")]
         [SerializeField] private float minOffset;
         [SerializeField] private float maxOffset;
         [Space]
+        [Header("Range of the hold position zone, when bot in zone")]
         [SerializeField] private float minDistance;
         [SerializeField] private float maxDistance;
         [Space]
+        [Header("Range of the hold position zone, when bot not in zone")]
         [SerializeField] private float minTarget;
         [SerializeField] private float maxTarget;
         

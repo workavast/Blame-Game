@@ -89,7 +89,7 @@ namespace App.Ecs.Enemies.GunnerBot
         private void MoveToTargetZone(ref SystemState state, LocalTransform playerTransform)
         {
             foreach (var (transform, moveDirection, data, inZone) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag>()
                          .WithNone<DefaultMoveTag>()
@@ -119,7 +119,7 @@ namespace App.Ecs.Enemies.GunnerBot
         private void StayInZone(ref SystemState state, LocalTransform playerTransform)
         {
             foreach (var (transform, moveDirection, data, inZoneFlag) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
                          .WithNone<DefaultMoveTag>())
