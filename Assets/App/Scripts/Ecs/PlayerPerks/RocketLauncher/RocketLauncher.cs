@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.Rockets;
 using App.Ecs.Shooting;

@@ -1,5 +1,5 @@
 ﻿using App.Audio.Sources;
-using App.Ecs.Attack;
+using App.Ecs.Moving;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7515435142354848014}
   - component: {fileID: 2468055080028373906}
   - component: {fileID: 3541772834499764439}
+  - component: {fileID: 3173128161280173240}
   - component: {fileID: -6749704837827783511}
   - component: {fileID: 3619416845734656769}
   - component: {fileID: 3772264454899709627}
@@ -79,6 +80,22 @@ MonoBehaviour:
   initialDamageScale: 1
   initialFireScale: 1
   initialExpScale: 1
+--- !u!114 &3173128161280173240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303910047062856018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcbc46fba07409aa91acfb74af91e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 20
+  defaultMoveSpeed: 20
+  isPhysically: 1
+  useDefaultMoveSystem: 0
 --- !u!114 &-6749704837827783511
 MonoBehaviour:
   m_ObjectHideFlags: 0

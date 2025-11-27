@@ -12,15 +12,11 @@ namespace App.Ecs.Experience.ExpOrb
         {
             public override void Bake(ExpOrbAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                var entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new ExpOrbTag());
                 AddComponent(entity, new ExpOrbAmount() { Value = authoring.expAmount });
                 AddComponent(entity, new ExpOrbDamping() { Value = authoring.damping });
-                
-                AddComponent(entity, new AutoMoveTag());
-                AddComponent(entity, new MoveSpeed());
-                AddComponent(entity, new MoveDirection());
             }
         }
     }

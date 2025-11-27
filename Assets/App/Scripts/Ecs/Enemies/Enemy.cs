@@ -1,4 +1,5 @@
-﻿using App.Ecs.Player;
+﻿using App.Ecs.Moving;
+using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -35,8 +36,8 @@ namespace App.Ecs.Enemies
     }
     
     [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    [UpdateBefore(typeof(AutoMoveSystem))]
-    public partial struct EnemiesAutoMoveToPlayerSystem : ISystem
+    [UpdateBefore(typeof(DefaultMoveSystem))]
+    public partial struct EnemiesDefaultMoveDirectionToPlayerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -50,7 +51,7 @@ namespace App.Ecs.Enemies
 
             foreach (var (transform, moveDirection) in 
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>>()
-                         .WithAll<EnemyTag, AutoMoveTag>())
+                         .WithAll<EnemyTag, DefaultMoveTag>())
             {
                 var moveDirectionV3 = playerTransform.Position - transform.ValueRO.Position;
                 moveDirection.ValueRW.Value = math.normalizesafe(moveDirectionV3.xz);

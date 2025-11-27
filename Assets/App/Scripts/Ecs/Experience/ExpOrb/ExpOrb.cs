@@ -1,4 +1,5 @@
-﻿using App.Ecs.SystemGroups;
+﻿using App.Ecs.Moving;
+using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
 

@@ -9,10 +9,9 @@ namespace App.Ecs.Enemies.Kamikaze
         {
             public override void Bake(KamikazeAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                var entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new KamikazeTag());
-                AddComponent(entity, new AutoMoveTag());
             }
         }
     }

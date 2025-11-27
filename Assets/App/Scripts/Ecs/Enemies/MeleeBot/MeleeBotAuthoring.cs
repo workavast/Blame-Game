@@ -9,10 +9,9 @@ namespace App.Ecs.Enemies.MeleeBot
         {
             public override void Bake(MeleeBotAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                var entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new MeleeBotTag());
-                AddComponent(entity, new AutoMoveTag());
             }
         }
     }

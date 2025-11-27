@@ -14,7 +14,7 @@ namespace App.Ecs.Enemies.GunnerBot
         [SerializeField] private float minTarget;
         [SerializeField] private float maxTarget;
         
-        private class KamikazeBaker : Baker<GunnerBotAuthoring>
+        private class Baker : Baker<GunnerBotAuthoring>
         {
             public override void Bake(GunnerBotAuthoring authoring)
             {

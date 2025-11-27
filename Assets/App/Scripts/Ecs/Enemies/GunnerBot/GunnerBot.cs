@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.Bullets;
+using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
@@ -68,7 +69,7 @@ namespace App.Ecs.Enemies.GunnerBot
     }
     
     [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    [UpdateBefore(typeof(AutoMoveSystem))]
+    [UpdateBefore(typeof(DefaultMoveSystem))]
     public partial struct GunnerBotHoldDistanceSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -91,7 +92,7 @@ namespace App.Ecs.Enemies.GunnerBot
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag>()
-                         .WithNone<AutoMoveTag>()
+                         .WithNone<DefaultMoveTag>()
                          .WithDisabled<GunnerBotInZoneFlag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
@@ -121,7 +122,7 @@ namespace App.Ecs.Enemies.GunnerBot
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
-                         .WithNone<AutoMoveTag>())
+                         .WithNone<DefaultMoveTag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
 

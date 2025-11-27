@@ -6,9 +6,9 @@ using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace App.Ecs
+namespace App.Ecs.Moving
 {
-    public struct AutoMoveTag : IComponentData
+    public struct DefaultMoveTag : IComponentData
     {
         
     }
@@ -40,14 +40,14 @@ namespace App.Ecs
     }
     
     [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    public partial struct AutoMoveSystem : ISystem
+    public partial struct DefaultMoveSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (transform, direction,speed) 
                      in SystemAPI.Query<RefRW<LocalTransform>, RefRO<MoveDirection>, RefRO<MoveSpeed>>()
-                         .WithAll<AutoMoveTag>()
+                         .WithAll<DefaultMoveTag>()
                          .WithNone<PhysicsVelocity>())
             {
                 var step2D = direction.ValueRO.Value * speed.ValueRO.Value * Time.deltaTime;

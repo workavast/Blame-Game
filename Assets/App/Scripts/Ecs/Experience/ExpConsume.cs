@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Experience.ExpOrb;
+using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
@@ -39,7 +40,7 @@ namespace App.Ecs.Experience
     }
     
     [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    [UpdateBefore(typeof(AutoMoveSystem))]
+    [UpdateBefore(typeof(DefaultMoveSystem))]
     public partial struct ExpOrbsConsumeMoveToPlayerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

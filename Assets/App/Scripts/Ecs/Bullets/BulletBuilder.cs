@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Moving;
 using App.Ecs.Shooting;
 using Unity.Entities;
 
