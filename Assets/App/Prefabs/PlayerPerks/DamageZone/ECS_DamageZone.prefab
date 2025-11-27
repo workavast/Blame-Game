@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 204315825799570941}
   - component: {fileID: 6450978080292737787}
   - component: {fileID: 6847017654185076457}
+  - component: {fileID: 5063868720592035739}
   - component: {fileID: -1499143068213774012}
   - component: {fileID: 5260437685003879534}
   m_Layer: 8
@@ -74,7 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d340180566264a6099b60726d5435cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
 --- !u!114 &6847017654185076457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +90,20 @@ MonoBehaviour:
   initialRadius: 0
   targetRadius: 8
   radiusFactor: 1.5
+--- !u!114 &5063868720592035739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815417730963370890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 0.25
+  haveRateScale: 0
 --- !u!114 &-1499143068213774012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDamage: 4
+  defaultDamage: 1
   hasDamageScale: 1
 --- !u!135 &5260437685003879534
 SphereCollider:

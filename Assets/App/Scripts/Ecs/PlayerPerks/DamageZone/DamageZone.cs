@@ -56,12 +56,16 @@ namespace App.Ecs.PlayerPerks.DamageZone
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
-            var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (zoneTransform, radius, damage, damageScale) in 
+            foreach (var (zoneTransform, radius, 
+                         damage, damageScale, entity) in 
                      SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<AttackDamageScale>>()
-                         .WithAll<DamageZoneTag>())
+                         .WithDisabled<AttackCooldown>()
+                         .WithAll<DamageZoneTag>()
+                         .WithEntityAccess())
             {
-                var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value) * deltaTime;
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
+
+                var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value);
                 foreach (var (enemyTransform, damageBuffer) in SystemAPI
                              .Query<RefRO<LocalTransform>, DynamicBuffer<DamageToHealthFrameBuffer>>()
                              .WithAll<EnemyTag>())
