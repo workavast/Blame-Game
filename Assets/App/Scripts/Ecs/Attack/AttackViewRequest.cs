@@ -3,23 +3,23 @@ using Unity.Entities;
 
 namespace App.Ecs.Attack
 {
-    public struct AttackRequested : IComponentData, IEnableableComponent
+    public struct AttackViewRequested : IComponentData, IEnableableComponent
     {
         
     }
     
-    public struct AttackInitRequired : IComponentData, IEnableableComponent
+    public struct AttackViewInitRequired : IComponentData, IEnableableComponent
     {
         
     }
     
     [UpdateInGroup(typeof(InitOffSystemGroup))]
-    public partial struct AttackVfxInitOffSystem : ISystem
+    public partial struct AttackViewRequestInitOffSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (requestFlag, initializedFlag) in
-                     SystemAPI.Query<EnabledRefRW<AttackRequested>, EnabledRefRW<AttackInitRequired>>())
+                     SystemAPI.Query<EnabledRefRW<AttackViewRequested>, EnabledRefRW<AttackViewInitRequired>>())
             {
                 requestFlag.ValueRW = false;
                 initializedFlag.ValueRW = false;
@@ -28,12 +28,12 @@ namespace App.Ecs.Attack
     }
     
     [UpdateInGroup(typeof(AttackSystemGroup), OrderFirst = false, OrderLast = true)]
-    public partial struct AttackResetSystem : ISystem
+    public partial struct AttackViewRequestResetSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
             foreach (var requestFlag in
-                     SystemAPI.Query<EnabledRefRW<AttackRequested>>())
+                     SystemAPI.Query<EnabledRefRW<AttackViewRequested>>())
             {
                 requestFlag.ValueRW = false;
             }

@@ -64,7 +64,7 @@ namespace App.Ecs.Attack.Sfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, _) in
-                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, EnabledRefRO<AttackRequested>>())
+                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, EnabledRefRO<AttackViewRequested>>())
             {
                 attackSfx.ValueRO.Instance.Value.Activate();
             }

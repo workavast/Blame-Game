@@ -11,8 +11,8 @@ namespace App.Ecs.Attack
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                AddComponent(entity, new AttackRequested());
-                AddComponent(entity, new AttackInitRequired());
+                AddComponent(entity, new AttackViewRequested());
+                AddComponent(entity, new AttackViewInitRequired());
             }
         }
     }

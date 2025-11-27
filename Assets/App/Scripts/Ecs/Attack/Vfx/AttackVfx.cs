@@ -27,7 +27,7 @@ namespace App.Ecs.Attack.Vfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackView, _) in
-                     SystemAPI.Query<RefRO<AttackVfxViewHolder>, EnabledRefRO<AttackRequested>>())
+                     SystemAPI.Query<RefRO<AttackVfxViewHolder>, EnabledRefRO<AttackViewRequested>>())
             {
                 attackView.ValueRO.Instance.Value.PerformAttack();
             }

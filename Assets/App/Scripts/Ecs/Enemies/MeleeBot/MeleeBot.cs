@@ -29,7 +29,7 @@ namespace App.Ecs.Enemies.MeleeBot
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
                 
                 ShootCooldownLookup = SystemAPI.GetComponentLookup<AttackCooldown>(),
-                AttackRequests = SystemAPI.GetComponentLookup<AttackRequested>(),
+                AttackRequests = SystemAPI.GetComponentLookup<AttackViewRequested>(),
                 DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
             };
 
@@ -44,7 +44,7 @@ namespace App.Ecs.Enemies.MeleeBot
             [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
         
             public ComponentLookup<AttackCooldown> ShootCooldownLookup;
-            public ComponentLookup<AttackRequested> AttackRequests;
+            public ComponentLookup<AttackViewRequested> AttackRequests;
             public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
         
             public void Execute(CollisionEvent collisionEvent)
