@@ -46,7 +46,6 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
                 var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
                 
-                
                 BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
 
                 sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);

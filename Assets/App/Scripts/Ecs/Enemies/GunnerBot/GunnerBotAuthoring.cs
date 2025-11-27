@@ -1,25 +1,18 @@
-﻿using App.Ecs.Bullets;
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Enemies.GunnerBot
 {
     public class GunnerBotAuthoring : MonoBehaviour
     {
-        [SerializeField] private BulletAuthoring bulletPrefab;
-        [SerializeField] private float damage;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private int penetration;
-        [SerializeField] private float spawnVerticalOffset;
-        [Space]
         [SerializeField] private float minOffset;
         [SerializeField] private float maxOffset;
-
+        [Space]
         [SerializeField] private float minDistance;
         [SerializeField] private float maxDistance;
+        [Space]
         [SerializeField] private float minTarget;
         [SerializeField] private float maxTarget;
-        [SerializeField] private float shootCooldown;
         
         private class KamikazeBaker : Baker<GunnerBotAuthoring>
         {
@@ -44,15 +37,6 @@ namespace App.Ecs.Enemies.GunnerBot
                     MaxTargetInternal = authoring.maxTarget,
                     
                     Offset = Random.Range(0f, 3f)
-                });
-                
-                AddComponent(entity, new BulletInitialData()
-                {
-                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    Damage = authoring.damage,
-                    MoveSpeed = authoring.moveSpeed,
-                    Penetration = authoring.penetration,
-                    SpawnVerticalOffset = authoring.spawnVerticalOffset
                 });
             }
         }

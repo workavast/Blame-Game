@@ -1,6 +1,4 @@
-﻿using App.Ecs.Attack;
-using App.Ecs.Bullets;
-using App.Ecs.Shooting;
+﻿using App.Ecs.Shooting;
 using Unity.Entities;
 using UnityEngine;
 
@@ -8,12 +6,7 @@ namespace App.Ecs.PlayerPerks.Rifle
 {
     public class RifleAuthoring : MonoBehaviour
     {
-        [SerializeField] private BulletAuthoring bulletPrefab;
-        [SerializeField] private float spawnVerticalOffset;
-        [SerializeField] private float damage;
-        [SerializeField] private float moveSpeed;
         [SerializeField] private float distanceReaction;
-        [SerializeField] private int penetration = 1;
 
         private class Baker : Baker<RifleAuthoring>
         {
@@ -23,18 +16,6 @@ namespace App.Ecs.PlayerPerks.Rifle
 
                 AddComponent(entity, new RifleTag());
                 AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
-
-                AddComponent(entity, new AttackDamageScale());
-                AddComponent(entity, new AdditionalPenetration());
-                
-                AddComponent(entity, new BulletInitialData()
-                {
-                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    SpawnVerticalOffset = authoring.spawnVerticalOffset,
-                    Damage = authoring.damage,
-                    MoveSpeed = authoring.moveSpeed,
-                    Penetration = authoring.penetration
-                });
             }
         }
     }

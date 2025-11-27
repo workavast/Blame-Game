@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 335520474355232990}
   - component: {fileID: -7612459697272757352}
   - component: {fileID: 149804519188190474}
+  - component: {fileID: -7796525979654830959}
   - component: {fileID: 8150267388831764307}
   - component: {fileID: 5738400548069601718}
   m_Layer: 0
@@ -78,6 +79,25 @@ MonoBehaviour:
   moveSpeed: 25
   distanceReaction: 15
   penetration: 1
+--- !u!114 &-7796525979654830959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856451364952303405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f79814f8c7941808f9a2022f14aefea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
+  damage: 5
+  penetration: 1
+  moveSpeed: 25
+  spawnVerticalOffset: 1
+  hasDamageScale: 1
+  hasPenetrationScale: 1
 --- !u!114 &8150267388831764307
 MonoBehaviour:
   m_ObjectHideFlags: 0
