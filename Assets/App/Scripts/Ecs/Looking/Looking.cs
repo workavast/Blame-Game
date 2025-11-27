@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace App.Ecs
+namespace App.Ecs.Looking
 {
     public struct LookPoint : IComponentData
     {
