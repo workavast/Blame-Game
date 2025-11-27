@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ExpConfig
   m_EditorClassIdentifier: 
   initialExpValue: 6
-  scalePerLevel: 0.5
+  scalePerLevel: 1.5

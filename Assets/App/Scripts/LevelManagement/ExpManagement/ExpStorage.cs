@@ -1,6 +1,4 @@
 ﻿using App.Ecs.Experience;
-using App.Ecs.Experience.ExpOrb;
-using UnityEngine;
 
 namespace App.LevelManagement.ExpManagement
 {
