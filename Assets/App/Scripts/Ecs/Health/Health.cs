@@ -3,7 +3,7 @@ using App.Ecs.Experience.ExpDropping;
 using Unity.Entities;
 using Unity.Transforms;
 
-namespace App.Ecs
+namespace App.Ecs.Health
 {
     public struct MaxHealth : IComponentData
     {
@@ -13,6 +13,29 @@ namespace App.Ecs
     public struct CurrentHealth : IComponentData
     {
         public float Value;
+    }
+    
+    public struct DamageToHealthFrameBuffer : IBufferElementData
+    {
+        public float Value;
+    }
+    
+    public partial struct ApplyDamageToHealth : ISystem
+    {
+        public void OnUpdate(ref SystemState state)
+        {
+            foreach (var (health, damageBuffer) in 
+                     SystemAPI.Query<RefRW<CurrentHealth>, DynamicBuffer<DamageToHealthFrameBuffer>>())
+            {
+                if (damageBuffer.IsEmpty)
+                    continue;
+
+                foreach (var damage in damageBuffer) 
+                    health.ValueRW.Value -= damage.Value;
+                
+                damageBuffer.Clear();
+            }
+        }
     }
 
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]

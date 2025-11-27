@@ -2,6 +2,7 @@
 using App.Ecs.Attack;
 using App.Ecs.Enemies;
 using App.Ecs.EntityViews;
+using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;

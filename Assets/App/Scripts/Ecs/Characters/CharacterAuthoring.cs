@@ -1,4 +1,3 @@
-using App.Ecs.Attack;
 using Unity.Entities;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ namespace App.Ecs.Characters
 {
     public class CharacterAuthoring : MonoBehaviour
     {
-        [SerializeField] private float health;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float rotationSpeed;
         
@@ -23,11 +21,6 @@ namespace App.Ecs.Characters
                 
                 AddComponent(entity, new LookPoint());
                 AddComponent(entity, new RotationSpeed() { Value = authoring.rotationSpeed });
-
-                AddComponent(entity, new MaxHealth() { Value = authoring.health });
-                AddComponent(entity, new CurrentHealth() { Value = authoring.health });
-
-                AddBuffer<DamageToHealthFrameBuffer>(entity);
                 
                 AddComponent(entity, new CharacterTag());
             }

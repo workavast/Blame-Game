@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -8130247287595296169}
   - component: {fileID: 5445998171043606013}
   - component: {fileID: 6030792426865596637}
+  - component: {fileID: 1916482620648484710}
   - component: {fileID: 1593248158783211833}
   - component: {fileID: -2630142589991180637}
   - component: {fileID: 1283775126065587771}
@@ -169,8 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc9ef0bacd24b26a2aff29e2dd25816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  attackCooldown: 2
 --- !u!114 &6030792426865596637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +182,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00171f2a03bd4010909dbbfc091eb2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1916482620648484710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85493f9055941faae83aa36ec818f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
 --- !u!114 &1593248158783211833
 MonoBehaviour:
   m_ObjectHideFlags: 0

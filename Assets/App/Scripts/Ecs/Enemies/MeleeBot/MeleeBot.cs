@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
@@ -77,8 +78,8 @@ namespace App.Ecs.Enemies.MeleeBot
                 
                 if (AttackRequests.HasComponent(meleeBot)) 
                     AttackRequests.SetComponentEnabled(meleeBot, true);
-                
-                playerDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = attack.ValueRO.Value});
+
+                playerDamageBuffer.Add(new DamageToHealthFrameBuffer() { Value = attack.ValueRO.Value });
             }
         }
     }

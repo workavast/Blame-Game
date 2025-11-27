@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Ecs;
+using App.Ecs.Health;
 using App.Ecs.Player;
 
 namespace App.PlayerProviding

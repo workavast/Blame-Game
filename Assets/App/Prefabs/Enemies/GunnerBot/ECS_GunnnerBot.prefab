@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5324052048430321285}
   - component: {fileID: 5120785661382401772}
   - component: {fileID: 7962342114739726347}
+  - component: {fileID: 1672412849275918775}
   - component: {fileID: 5987560476787775990}
   - component: {fileID: 4070966470742770889}
   - component: {fileID: -5055788461443472159}
@@ -166,18 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca1a1c1d6604b59964dfd888fa54081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6266134800027268151, guid: e83ee1c7458c4ed4c9a960abe443803b, type: 3}
-  damage: 1
-  moveSpeed: 6
-  penetration: 0
-  spawnVerticalOffset: 1.5
   minOffset: 0
   maxOffset: 3
   minDistance: 7
   maxDistance: 15
   minTarget: 9
   maxTarget: 12
-  shootCooldown: 2
 --- !u!114 &7962342114739726347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +185,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00171f2a03bd4010909dbbfc091eb2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1672412849275918775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539452127399808908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85493f9055941faae83aa36ec818f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
 --- !u!114 &5987560476787775990
 MonoBehaviour:
   m_ObjectHideFlags: 0

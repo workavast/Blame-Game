@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.EntityViews;
+using App.Ecs.Health;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
