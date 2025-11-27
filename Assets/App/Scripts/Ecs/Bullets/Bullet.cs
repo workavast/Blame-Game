@@ -1,4 +1,5 @@
-﻿using App.Ecs.EntityViews;
+﻿using App.Ecs.Attack;
+using App.Ecs.EntityViews;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -120,7 +121,7 @@ namespace App.Ecs.Bullets
                 BulletPenetrationLookup = SystemAPI.GetComponentLookup<BulletPenetration>(),
                     
                 ECB = ecb.AsParallelWriter(),
-                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>(),
+                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageToHealthFrameBuffer>(),
                 BulletCollisionsLookup = SystemAPI.GetBufferLookup<BulletCollisions>()
             };
 
@@ -137,7 +138,7 @@ namespace App.Ecs.Bullets
         [ReadOnly] public ComponentLookup<BulletPenetration> BulletPenetrationLookup;
 
         public EntityCommandBuffer.ParallelWriter ECB;
-        public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
+        public BufferLookup<DamageToHealthFrameBuffer> DamageBufferLookup;
         public BufferLookup<BulletCollisions> BulletCollisionsLookup;
         
         public void Execute(TriggerEvent triggerEvent)
@@ -170,7 +171,7 @@ namespace App.Ecs.Bullets
             var enemyDamageBuffer = DamageBufferLookup[target];
 
             collisions.Add(new BulletCollisions() { Entity = target });
-            enemyDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
+            enemyDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = attack.ValueRO.Value});
 
             if (collisions.Length > penetration.ValueRO.Value) 
                 ECB.DestroyEntity(0, bullet);

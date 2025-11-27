@@ -1,10 +1,10 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Attack;
+using Unity.Entities;
 
 namespace App.Ecs.Death
 {
     [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateAfter(typeof(ApplyDamageToHealth))]
-    [UpdateBefore(typeof(DestroyDeadEntities))]
+    [UpdateAfter(typeof(AttackSystemGroup))]
     public partial class DeathSystemGroup : ComponentSystemGroup
     {
         

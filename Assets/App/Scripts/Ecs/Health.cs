@@ -15,40 +15,7 @@ namespace App.Ecs
         public float Value;
     }
 
-    public struct AttackDamage : IComponentData
-    {
-        public float Value;
-    }
-
-    public struct DamageScale : IComponentData
-    {
-        public float Value;
-    }
-    
-    public struct DamageFrameBuffer : IBufferElementData
-    {
-        public float Value;
-    }
-    
-    public partial struct ApplyDamageToHealth : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (health, damageBuffer) in 
-                     SystemAPI.Query<RefRW<CurrentHealth>, DynamicBuffer<DamageFrameBuffer>>())
-            {
-                if (damageBuffer.IsEmpty)
-                    continue;
-
-                foreach (var damage in damageBuffer) 
-                    health.ValueRW.Value -= damage.Value;
-                
-                damageBuffer.Clear();
-            }
-        }
-    }
-
-    [UpdateAfter(typeof(ApplyDamageToHealth))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public partial struct DestroyDeadEntities : ISystem
     {
         public void OnCreate(ref SystemState state)

@@ -1,6 +1,5 @@
-using App.Audio.Sources;
+using App.Ecs.Attack;
 using Unity.Entities;
-using Unity.Entities.Content;
 using UnityEngine;
 
 namespace App.Ecs.Characters
@@ -28,7 +27,7 @@ namespace App.Ecs.Characters
                 AddComponent(entity, new MaxHealth() { Value = authoring.health });
                 AddComponent(entity, new CurrentHealth() { Value = authoring.health });
 
-                AddBuffer<DamageFrameBuffer>(entity);
+                AddBuffer<DamageToHealthFrameBuffer>(entity);
                 
                 AddComponent(entity, new CharacterTag());
             }

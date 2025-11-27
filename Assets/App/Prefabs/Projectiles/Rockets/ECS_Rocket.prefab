@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7670515727402208753}
   - component: {fileID: 7075438696059482359}
   - component: {fileID: 5047102358424169268}
+  - component: {fileID: 8300357585248205610}
   m_Layer: 8
   m_Name: ECS_Rocket
   m_TagString: Untagged
@@ -170,3 +171,17 @@ MonoBehaviour:
             w: 1271443647
         IdentifierType: 1
       GenerationType: 1
+--- !u!114 &8300357585248205610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899427986911649250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDamage: 0
+  hasDamageScale: 0

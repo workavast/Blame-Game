@@ -1,4 +1,5 @@
-﻿using App.Ecs.Shooting;
+﻿using App.Ecs.Attack;
+using App.Ecs.Shooting;
 using Unity.Entities;
 
 namespace App.Ecs.Bullets
@@ -13,7 +14,7 @@ namespace App.Ecs.Bullets
         }
         
         public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale)
+            RefRO<AttackDamageScale> damageScale)
         {
             ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * damageScale.ValueRO.Value});
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
@@ -21,7 +22,7 @@ namespace App.Ecs.Bullets
         }
         
         public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale, RefRO<AdditionalPenetration> additionalPenetration)
+            RefRO<AttackDamageScale> damageScale, RefRO<AdditionalPenetration> additionalPenetration)
         {
             ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * damageScale.ValueRO.Value});
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
@@ -29,9 +30,9 @@ namespace App.Ecs.Bullets
         }
         
         public static void Build(ref EntityCommandBuffer ecb, ref Entity bullet, RefRO<BulletInitialData> data, 
-            RefRO<DamageScale> damageScale, DamageScale globalDamageScale, RefRO<AdditionalPenetration> additionalPenetration)
+            RefRO<AttackDamageScale> damageScale, AttackDamageScale globalAttackDamageScale, RefRO<AdditionalPenetration> additionalPenetration)
         {
-            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value)});
+            ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalAttackDamageScale.Value)});
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
             ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value});
         }

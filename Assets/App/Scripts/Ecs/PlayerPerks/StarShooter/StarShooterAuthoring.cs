@@ -28,7 +28,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
                 });
                 
                 AddComponent(entity, new AdditionalProjectilesCount());
-                AddComponent(entity, new DamageScale());
+                AddComponent(entity, new AttackDamageScale());
                 AddComponent(entity, new AdditionalPenetration());
                 
                 AddComponent(entity, new BulletInitialData()

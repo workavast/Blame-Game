@@ -27,14 +27,14 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (data, damageScale, 
                          additionalPenetration, sfxView, entity) in 
-                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>,
+                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<AttackDamageScale>,
                              RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
                          .WithAll<ForwardShooterTag>()
                          .WithDisabled<AttackCooldown>()

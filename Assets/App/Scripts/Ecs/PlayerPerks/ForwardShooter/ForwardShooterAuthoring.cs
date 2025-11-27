@@ -30,7 +30,7 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
                     Penetration = authoring.penetration
                 });
 
-                AddComponent(entity, new DamageScale());
+                AddComponent(entity, new AttackDamageScale());
                 AddComponent(entity, new AdditionalPenetration());
             }
         }

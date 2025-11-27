@@ -24,7 +24,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
     {
         public Entity RocketPrefab;
         public int RocketsCount;
-        public float Damage;
         public float RandomInterval;
         public float MinDistance;
         public float MaxDistance;
@@ -46,13 +45,13 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
 
             var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, additionalProjectilesCount, damageScale, random, entity) in 
-                     SystemAPI.Query<RefRO<RocketLauncherData>, RefRO<AdditionalProjectilesCount>, RefRO<DamageScale>, RefRW<RocketLauncherRandom>>()
+            foreach (var (data, additionalProjectilesCount, attackDamage, damageScale, random, entity) in 
+                     SystemAPI.Query<RefRO<RocketLauncherData>, RefRO<AdditionalProjectilesCount>, RefRO<AttackDamage>, RefRO<AttackDamageScale>, RefRW<RocketLauncherRandom>>()
                          .WithAll<RocketLauncherTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -60,7 +59,7 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var rocketsCount = data.ValueRO.RocketsCount + additionalProjectilesCount.ValueRO.Value;
-                var damage = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalDamageScale.Value);
+                var damage = attackDamage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value);
                 for (var i = 0; i < rocketsCount; i++)
                 {
                     var spawnPoint = RandomPosition.GetPointInRadius(playerPosition, data.ValueRO.MinDistance, data.ValueRO.MaxDistance, ref random.ValueRW.Random);

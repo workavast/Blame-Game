@@ -1,4 +1,5 @@
-﻿using App.Ecs.EntityViews;
+﻿using App.Ecs.Attack;
+using App.Ecs.EntityViews;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -151,10 +152,10 @@ namespace App.Ecs.Rockets
 
                     foreach (var collision in collisions)
                     {
-                        if (SystemAPI.HasBuffer<DamageFrameBuffer>(collision.Entity))
+                        if (SystemAPI.HasBuffer<DamageToHealthFrameBuffer>(collision.Entity))
                         {
-                            var damageBuffer = SystemAPI.GetBuffer<DamageFrameBuffer>(collision.Entity);
-                            damageBuffer.Add(new DamageFrameBuffer() { Value = damage.ValueRO.Value });
+                            var damageBuffer = SystemAPI.GetBuffer<DamageToHealthFrameBuffer>(collision.Entity);
+                            damageBuffer.Add(new DamageToHealthFrameBuffer() { Value = damage.ValueRO.Value });
                         }
                     }
                     

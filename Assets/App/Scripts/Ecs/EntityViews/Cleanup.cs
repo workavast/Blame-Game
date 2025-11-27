@@ -9,7 +9,7 @@ namespace App.Ecs.EntityViews
         public UnityObjectRef<CleanupCallback> Instance;
     }
     
-    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup), OrderFirst = false, OrderLast = true)]
     public partial struct CleanupSystem : ISystem
     {
         private EntityQuery _query;

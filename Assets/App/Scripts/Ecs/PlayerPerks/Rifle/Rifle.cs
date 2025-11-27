@@ -36,7 +36,7 @@ namespace App.Ecs.PlayerPerks.Rifle
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
@@ -68,7 +68,7 @@ namespace App.Ecs.PlayerPerks.Rifle
             foreach (var (distanceReaction, data, damageScale
                          , additionalPenetration, sfxView, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
-                            RefRO<DamageScale>, RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
+                            RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
                          .WithAll<RifleTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())

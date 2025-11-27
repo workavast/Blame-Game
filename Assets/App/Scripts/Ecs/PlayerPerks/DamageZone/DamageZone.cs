@@ -1,4 +1,5 @@
 ﻿using App.Ecs.AoeZones;
+using App.Ecs.Attack;
 using App.Ecs.Enemies;
 using App.Ecs.EntityViews;
 using App.Ecs.Player;
@@ -52,20 +53,20 @@ namespace App.Ecs.PlayerPerks.DamageZone
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
             var deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var (zoneTransform, radius, damage, damageScale) in 
-                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<DamageScale>>()
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<AttackDamageScale>>()
                          .WithAll<DamageZoneTag>())
             {
                 var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value) * deltaTime;
                 foreach (var (enemyTransform, damageBuffer) in SystemAPI
-                             .Query<RefRO<LocalTransform>, DynamicBuffer<DamageFrameBuffer>>()
+                             .Query<RefRO<LocalTransform>, DynamicBuffer<DamageToHealthFrameBuffer>>()
                              .WithAll<EnemyTag>())
                 {
                     if (math.distance(zoneTransform.ValueRO.Position, enemyTransform.ValueRO.Position) <= radius.ValueRO.Value)
-                        damageBuffer.Add(new DamageFrameBuffer() { Value = damageValue });
+                        damageBuffer.Add(new DamageToHealthFrameBuffer() { Value = damageValue });
                 }
             }
         }

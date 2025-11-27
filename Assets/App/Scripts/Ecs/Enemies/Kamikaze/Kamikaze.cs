@@ -1,4 +1,5 @@
-﻿using App.Ecs.Player;
+﻿using App.Ecs.Attack;
+using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Collections;
 using Unity.Entities;
@@ -27,7 +28,7 @@ namespace App.Ecs.Enemies.Kamikaze
                 KamikazeLookup = SystemAPI.GetComponentLookup<KamikazeTag>(true),
                 AttackDamageLookup = SystemAPI.GetComponentLookup<AttackDamage>(true),
                     
-                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
+                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageToHealthFrameBuffer>()
             };
 
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
@@ -41,7 +42,7 @@ namespace App.Ecs.Enemies.Kamikaze
         [ReadOnly] public ComponentLookup<KamikazeTag> KamikazeLookup;
         [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
         
-        public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
+        public BufferLookup<DamageToHealthFrameBuffer> DamageBufferLookup;
         
         public void Execute(CollisionEvent collisionEvent)
         {
@@ -67,8 +68,8 @@ namespace App.Ecs.Enemies.Kamikaze
             var playerDamageBuffer = DamageBufferLookup[player];
             var kamikazeDamageBuffer = DamageBufferLookup[kamikaze];
 
-            playerDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
-            kamikazeDamageBuffer.Add(new DamageFrameBuffer() {Value = float.MaxValue});
+            playerDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = attack.ValueRO.Value});
+            kamikazeDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = float.MaxValue});
         }
     }
 }

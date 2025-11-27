@@ -24,7 +24,7 @@ namespace App.Ecs.PlayerPerks.MachineGun
                 AddComponent(entity, new MachineGunTag());
                 AddComponent(entity, new ShootDistanceReaction() { Value = authoring.distanceReaction });
 
-                AddComponent(entity, new DamageScale());
+                AddComponent(entity, new AttackDamageScale());
                 AddComponent(entity, new AdditionalPenetration());
                 
                 AddComponent(entity, new BulletInitialData()

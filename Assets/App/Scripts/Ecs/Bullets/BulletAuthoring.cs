@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Attack;
+using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Bullets

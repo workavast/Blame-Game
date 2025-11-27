@@ -10,7 +10,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
     {
         [SerializeField] private RocketAuthoring rocketPrefab;
         [SerializeField] private int rocketsCount;
-        [SerializeField] private float damage;
         [SerializeField] private float randomInterval;
         [SerializeField] private float minDistance;
         [SerializeField] private float maxDistance;
@@ -25,7 +24,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new DamageScale());
                 AddComponent(entity, new AdditionalProjectilesCount());
                 
                 AddComponent(entity, new RocketLauncherTag());
@@ -34,7 +32,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
                 {
                     RocketPrefab = GetEntity(authoring.rocketPrefab, TransformUsageFlags.Dynamic),
                     RocketsCount = authoring.rocketsCount,
-                    Damage = authoring.damage,
                     RandomInterval = authoring.randomInterval,
                     MinDistance = authoring.minDistance,
                     MaxDistance = authoring.maxDistance,

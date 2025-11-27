@@ -32,7 +32,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
@@ -41,7 +41,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
                          bulletData, damageScale, additionalPenetration, 
                          sfxView, entity) in 
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
-                             RefRO<BulletInitialData>, RefRO<DamageScale>, RefRO<AdditionalPenetration>,
+                             RefRO<BulletInitialData>, RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>,
                              RefRO<ShooterSfxViewHolder>>()
                          .WithAll<StarShooterTag>()
                          .WithDisabled<AttackCooldown>()

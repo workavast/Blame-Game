@@ -30,7 +30,7 @@ namespace App.Ecs.Enemies.MeleeBot
                 
                 ShootCooldownLookup = SystemAPI.GetComponentLookup<AttackCooldown>(),
                 AttackRequests = SystemAPI.GetComponentLookup<AttackViewRequested>(),
-                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageFrameBuffer>()
+                DamageBufferLookup = SystemAPI.GetBufferLookup<DamageToHealthFrameBuffer>()
             };
 
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
@@ -45,7 +45,7 @@ namespace App.Ecs.Enemies.MeleeBot
         
             public ComponentLookup<AttackCooldown> ShootCooldownLookup;
             public ComponentLookup<AttackViewRequested> AttackRequests;
-            public BufferLookup<DamageFrameBuffer> DamageBufferLookup;
+            public BufferLookup<DamageToHealthFrameBuffer> DamageBufferLookup;
         
             public void Execute(CollisionEvent collisionEvent)
             {
@@ -78,7 +78,7 @@ namespace App.Ecs.Enemies.MeleeBot
                 if (AttackRequests.HasComponent(meleeBot)) 
                     AttackRequests.SetComponentEnabled(meleeBot, true);
                 
-                playerDamageBuffer.Add(new DamageFrameBuffer() {Value = attack.ValueRO.Value});
+                playerDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = attack.ValueRO.Value});
             }
         }
     }

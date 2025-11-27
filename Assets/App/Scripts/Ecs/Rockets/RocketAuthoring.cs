@@ -1,4 +1,5 @@
 ﻿using App.Audio.Sources;
+using App.Ecs.Attack;
 using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
@@ -23,8 +24,6 @@ namespace App.Ecs.Rockets
                 
                 AddComponent(entity, new RocketSfxData(){SfxPrefab = authoring.explosionPrefab});    
                     
-                AddComponent(entity, new AttackDamage());
-
                 AddComponent(entity, new MoveSpeed());
             }
         }

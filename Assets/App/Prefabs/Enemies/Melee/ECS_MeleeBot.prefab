@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5445998171043606013}
   - component: {fileID: 6030792426865596637}
   - component: {fileID: 1593248158783211833}
+  - component: {fileID: -2630142589991180637}
   - component: {fileID: 1283775126065587771}
   - component: {fileID: -135082464952418873}
   - component: {fileID: 5847842444254435159}
@@ -197,6 +198,20 @@ MonoBehaviour:
   health: 20
   moveSpeed: 10
   rotationSpeed: 5
+--- !u!114 &-2630142589991180637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDamage: 2
+  hasDamageScale: 0
 --- !u!114 &1283775126065587771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 2
+  haveRateScale: 0
 --- !u!114 &-3244954611840141626
 MonoBehaviour:
   m_ObjectHideFlags: 0
