@@ -2,6 +2,7 @@
 using App.Ecs.Bullets;
 using App.Ecs.Moving;
 using App.Ecs.Player;
+using App.Ecs.Randomisation;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -48,22 +49,19 @@ namespace App.Ecs.Enemies.GunnerBot
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(RandomInitializationSystemGroup))]
     public partial struct GunnerBotOffsetInitializeSystem : ISystem
     {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<SingletonRandom>();
-        }
-
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (offsetInitializedFlag, data, offsetData) in 
-                     SystemAPI.Query<EnabledRefRW<GunnerBotOffsetInitializedFlag>, RefRW<GunnerBotData>, RefRW<GunnerBotOffsetData>>()
-                         .WithAll<GunnerBotOffsetInitializedFlag, GunnerBotTag>())
+            foreach (var (offsetInitializedFlag, data, 
+                         offsetData, randomHolder) in 
+                     SystemAPI.Query<EnabledRefRW<GunnerBotOffsetInitializedFlag>, RefRW<GunnerBotData>, 
+                             RefRW<GunnerBotOffsetData>, RefRW<RandomHolder>>()
+                         .WithAll<GunnerBotTag>())
             {
-                var random = SystemAPI.GetSingletonRW<SingletonRandom>();
-                data.ValueRW.Offset = random.ValueRW.Random.NextFloat(offsetData.ValueRO.MinOffset, offsetData.ValueRO.MaxOffset);
-                offsetInitializedFlag.ValueRW = true;
+                data.ValueRW.Offset = randomHolder.ValueRW.Random.NextFloat(offsetData.ValueRO.MinOffset, offsetData.ValueRO.MaxOffset);
+                offsetInitializedFlag.ValueRW = false;
             }
         }
     }

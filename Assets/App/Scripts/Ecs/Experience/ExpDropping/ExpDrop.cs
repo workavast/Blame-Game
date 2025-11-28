@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Moving;
+using App.Ecs.Randomisation;
 using App.Ecs.SystemGroups;
 using App.Ecs.Utils;
 using Unity.Entities;
@@ -34,7 +35,6 @@ namespace App.Ecs.Experience.ExpDropping
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<ExpTag>();
-            state.RequireForUpdate<SingletonRandom>();
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -43,9 +43,8 @@ namespace App.Ecs.Experience.ExpDropping
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
-            var random = SystemAPI.GetSingletonRW<SingletonRandom>().ValueRW.Random;
-
             var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var randomHolder = SystemAPI.GetComponentRW<RandomHolder>(expEntity);
             var orbPrefabHolder = SystemAPI.GetComponent<ExpOrbPrefabHolder>(expEntity);
             var requestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
             var dropImpulse = SystemAPI.GetComponent<ExpOrbDropImpulse>(expEntity);
@@ -59,7 +58,7 @@ namespace App.Ecs.Experience.ExpDropping
 
                 for (var j = 0; j < spawnExpOrbsRequest.OrbsCount; j++)
                 {
-                    var direction = RandomPosition.GetDirection(ref random);
+                    var direction = RandomPosition.GetDirection(ref randomHolder.ValueRW.Random);
                     var orb = ecb.Instantiate(orbPrefabHolder.OrbPrefab);
 
                     ecb.SetComponent(orb, LocalTransform.FromPosition(spawnPoint));
