@@ -41,8 +41,8 @@ namespace App.Ecs.Bullets
 
     public partial class BulletViewHolderInitSystem : ViewHolderInitializeSystem<BulletTag, BulletView, BulletViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, BulletView view) 
-            => ecb.AddComponent(entity, new BulletViewHolder() { Instance = view });
+        protected override BulletViewHolder CreateViewHolder(BulletView view)
+            => new() { Instance = view };
     }
     
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]

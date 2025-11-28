@@ -133,13 +133,13 @@ namespace App.Ecs.EntityViews
                 var entity = entities[i];
                 var view = viewHolders[i].Instance.Value.GetView<TView>();
                 
-                AddViewHolder(ref ecb, entity, view);
+                ecb.AddComponent(entity, CreateViewHolder(view));
             }
 
             ecb.Playback(EntityManager);
             ecb.Dispose();
         }
 
-        protected abstract void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, TView view);
+        protected abstract TViewHolder CreateViewHolder(TView view);
     }
 }

@@ -30,8 +30,8 @@ namespace App.Ecs.Attack.Sfx
     public partial class AttackSfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackSfxView view)
-            => ecb.AddComponent(entity, new AttackSfxViewHolder() { Instance = view });
+        protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view) 
+            => new() { Instance = view };
     }
 
     [UpdateInGroup(typeof(SfxSetSystemGroup))]

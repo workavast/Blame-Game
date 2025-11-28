@@ -23,8 +23,8 @@ namespace App.Ecs.Shooting
     
     public partial class ShooterSfxViewInit : ViewHolderInitializeSystem<ShooterSfxTag, ShooterSfxView, ShooterSfxViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, ShooterSfxView view)
-            => ecb.AddComponent(entity, new ShooterSfxViewHolder() { Instance = view });
+        protected override ShooterSfxViewHolder CreateViewHolder(ShooterSfxView view)
+            => new() { Instance = view };
     }
     
     public partial class ShooterSfxStartLoadSystem : SfxStartLoadSystem<ShooterSfxDataHolder>

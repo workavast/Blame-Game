@@ -45,8 +45,8 @@ namespace App.Ecs.Rockets
     public partial class RocketViewHolderInitSystem
         : ViewHolderInitializeSystem<RocketTag, RocketView, RocketViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, RocketView view)
-            => ecb.AddComponent(entity, new RocketViewHolder() { Instance = view });
+        protected override RocketViewHolder CreateViewHolder(RocketView view)
+            => new() { Instance = view };
     }
     
     [UpdateInGroup(typeof(InitializationSystemGroup))]

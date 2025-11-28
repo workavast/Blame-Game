@@ -17,8 +17,8 @@ namespace App.Ecs.Attack.Vfx
     public partial class AttackVfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackVfxViewHolderInitializeFlag, AttackVfxView, AttackVfxViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, AttackVfxView view)
-            => ecb.AddComponent(entity, new AttackVfxViewHolder() { Instance = view });
+        protected override AttackVfxViewHolder CreateViewHolder(AttackVfxView view)
+            => new() { Instance = view };
     }
 
     [UpdateInGroup(typeof(AttackSystemGroup))]

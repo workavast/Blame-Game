@@ -24,8 +24,8 @@ namespace App.Ecs.PlayerPerks.DamageZone
     public partial class DamageZoneViewHolderInitSystem
         : ViewHolderInitializeSystem<DamageZoneTag, DamageZoneView, DamageZoneViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DamageZoneView view)
-            => ecb.AddComponent(entity, new DamageZoneViewHolder() { Instance = view });
+        protected override DamageZoneViewHolder CreateViewHolder(DamageZoneView view)
+            => new() { Instance = view };
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]

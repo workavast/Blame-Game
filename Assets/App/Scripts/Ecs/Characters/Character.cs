@@ -20,8 +20,8 @@ namespace App.Ecs.Characters
     public partial class CharacterViewHolderInitSystem
         : ViewHolderInitializeSystem<CharacterTag, CharacterView, CharacterViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, CharacterView view)
-            => ecb.AddComponent(entity, new CharacterViewHolder() { Instance = view });
+        protected override CharacterViewHolder CreateViewHolder(CharacterView view)
+            => new() { Instance = view };
     }
 
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]

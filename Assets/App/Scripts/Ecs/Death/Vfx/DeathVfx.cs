@@ -42,8 +42,8 @@ namespace App.Ecs.Death.Vfx
     public partial class DeathVfxViewHolderInitSystem
         : ViewHolderInitializeSystem<DeathVfxViewHolderInitializeFlag, DeathVfxView, DeathVfxViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, DeathVfxView view)
-            => ecb.AddComponent(entity, new DeathVfxViewHolder() { Instance = view });
+        protected override DeathVfxViewHolder CreateViewHolder(DeathVfxView view)
+            => new() { Instance = view };
     }
 
     [UpdateInGroup(typeof(DeathSystemGroup))]

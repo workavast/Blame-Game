@@ -21,8 +21,8 @@ namespace App.Ecs.Experience.ExpConsumeZone
     public partial class ExpConsumeZoneViewHolderInitSystem
         : ViewHolderInitializeSystem<ExpConsumeZoneTag, ExpConsumeZoneView, ExpConsumeZoneViewHolder>
     {
-        protected override void AddViewHolder(ref EntityCommandBuffer ecb, Entity entity, ExpConsumeZoneView view)
-            => ecb.AddComponent(entity, new ExpConsumeZoneViewHolder() { Instance = view });
+        protected override ExpConsumeZoneViewHolder CreateViewHolder(ExpConsumeZoneView view)
+            => new() { Instance = view };
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
