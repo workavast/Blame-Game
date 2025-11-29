@@ -21,6 +21,7 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<ForwardShooterTag>();
         }
 
         public void OnUpdate(ref SystemState state)

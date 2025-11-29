@@ -2,7 +2,6 @@
 using App.Ecs.Shooting;
 using Unity.Entities;
 using UnityEngine;
-using Random = Unity.Mathematics.Random;
 
 namespace App.Ecs.PlayerPerks.RocketLauncher
 {
@@ -16,7 +15,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
         [SerializeField] private float height;
         [SerializeField] private float explosionRadius;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private uint seed;
         
         private class Baker : Baker<RocketLauncherAuthoring>
         {
@@ -27,7 +25,6 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
                 AddComponent(entity, new AdditionalProjectilesCount());
                 
                 AddComponent(entity, new RocketLauncherTag());
-                AddComponent(entity, new RocketLauncherRandom() { Random =  Random.CreateFromIndex(authoring.seed)});
                 AddComponent(entity, new RocketLauncherData()
                 {
                     RocketPrefab = GetEntity(authoring.rocketPrefab, TransformUsageFlags.Dynamic),

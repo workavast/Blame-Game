@@ -4,7 +4,6 @@ using App.Ecs.Enemies;
 using App.Ecs.Player;
 using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -19,17 +18,12 @@ namespace App.Ecs.PlayerPerks.Rifle
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct RifleSystem : ISystem
     {
-        private EntityQuery _query;
-        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
-            
-            _query = state.GetEntityQuery(
-                ComponentType.ReadWrite<LocalToWorld>(),
-                ComponentType.ReadWrite<EnemyTag>()
-            );
+            state.RequireForUpdate<EnemyTag>();
+            state.RequireForUpdate<RifleTag>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -37,19 +31,9 @@ namespace App.Ecs.PlayerPerks.Rifle
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
             var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
-            
-            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
-
-            var enemiesEntities = _query.ToEntityArray(Allocator.Temp);
-            var enemiesCount = enemiesEntities.Length;
-
-            if (enemiesCount <= 0)
-                return;
 
             var shootPoint = float3.zero;
             var distance = float.MaxValue;
-
             foreach (var enemyTransform in
                      SystemAPI.Query<RefRO<LocalToWorld>>()
                          .WithAll<EnemyTag>())
@@ -61,10 +45,12 @@ namespace App.Ecs.PlayerPerks.Rifle
                     shootPoint = enemyTransform.ValueRO.Position;
                 }
             }
-
+            
+            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
+            
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
-            
             foreach (var (distanceReaction, data, damageScale
                          , additionalPenetration, sfxView, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,

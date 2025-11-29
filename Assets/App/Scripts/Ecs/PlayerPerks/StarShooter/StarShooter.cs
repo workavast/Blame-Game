@@ -26,6 +26,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<StarShooterTag>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -37,7 +38,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, starShooterAdditionalBulletsCount, 
+            foreach (var (data, additionalBulletsCount, 
                          bulletData, damageScale, additionalPenetration, 
                          sfxView, entity) in 
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
@@ -49,7 +50,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
-                var bulletsCount = data.ValueRO.BulletsCount + starShooterAdditionalBulletsCount.ValueRO.Value;
+                var bulletsCount = data.ValueRO.BulletsCount + additionalBulletsCount.ValueRO.Value;
                 var angleStep = math.TAU / bulletsCount;
                 var angle = 0f;
                 
