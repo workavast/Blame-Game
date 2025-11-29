@@ -2,6 +2,7 @@
 using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -23,6 +24,7 @@ namespace App.Ecs.Enemies
             state.RequireForUpdate<PlayerTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var player = SystemAPI.GetSingletonEntity<PlayerTag>();
@@ -45,6 +47,7 @@ namespace App.Ecs.Enemies
             state.RequireForUpdate<PlayerTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var player = SystemAPI.GetSingletonEntity<PlayerTag>();

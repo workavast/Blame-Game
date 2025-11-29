@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace App.Ecs.Attack.Vfx
 {
+    [RequireComponent(typeof(AttackViewRequestAuthoring))]
     public class AttackVfxAuthoring : MonoBehaviour
     {
         private class Baker : Baker<AttackVfxAuthoring>

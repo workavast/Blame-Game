@@ -1,4 +1,5 @@
 ﻿using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -19,6 +20,7 @@ namespace App.Ecs.Looking
     [UpdateAfter(typeof(DependentMoveSystemGroup))]
     public partial struct LookAtPointSystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;

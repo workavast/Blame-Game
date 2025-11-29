@@ -71,9 +71,9 @@ namespace App.Ecs.Characters
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterViewHolder>>()
                          .WithNone<PhysicsVelocity>())
             {
-                characterVisual.ValueRO.Instance.Value.SetVelocity(float3.zero);
-                characterVisual.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-                characterVisual.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+                characterVisual.ValueRW.Instance.Value.SetVelocity(float3.zero);
+                characterVisual.ValueRW.Instance.Value.SetPosition(transform.ValueRO.Position);
+                characterVisual.ValueRW.Instance.Value.SetRotation(transform.ValueRO.Rotation);
             }
         }
     }

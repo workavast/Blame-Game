@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace App.Ecs.Attack.Sfx
 {
+    [RequireComponent(typeof(AttackViewRequestAuthoring))]
     public class AttackSfxAuthoring : MonoBehaviour
     {
         [SerializeField] private WeakObjectReference<AudioPoolRelease> sfxRef;

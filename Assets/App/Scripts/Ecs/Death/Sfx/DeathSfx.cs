@@ -64,9 +64,9 @@ namespace App.Ecs.Death.Sfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathSfx, _) in
-                     SystemAPI.Query<RefRO<DeathSfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
+                     SystemAPI.Query<RefRW<DeathSfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
             {
-                deathSfx.ValueRO.Instance.Value.Activate();
+                deathSfx.ValueRW.Instance.Value.Activate();
             }
         }
     }

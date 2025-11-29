@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Player;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace App.Ecs.Attack
@@ -22,6 +23,7 @@ namespace App.Ecs.Attack
     [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct AttackCooldownStarterSystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (shootCooldown, defaultShootCooldown, shootCooldownToggler)  in
@@ -42,6 +44,7 @@ namespace App.Ecs.Attack
             state.RequireForUpdate<PlayerTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;

@@ -26,9 +26,9 @@ namespace App.Ecs.Death.Vfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathView, _) in
-                     SystemAPI.Query<RefRO<DeathVfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
+                     SystemAPI.Query<RefRW<DeathVfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
             {
-                deathView.ValueRO.Instance.Value.Activate();
+                deathView.ValueRW.Instance.Value.Activate();
             }
         }
     }

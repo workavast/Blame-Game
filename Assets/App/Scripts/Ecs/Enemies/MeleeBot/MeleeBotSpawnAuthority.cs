@@ -1,8 +1,10 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Enemies.Spawning;
+using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Enemies.MeleeBot
 {
+    [RequireComponent(typeof(EnemySpawnerAuthority))]
     public class MeleeBotSpawnAuthority : MonoBehaviour
     {
         private class Baker : Baker<MeleeBotSpawnAuthority>
