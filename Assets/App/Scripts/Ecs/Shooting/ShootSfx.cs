@@ -29,10 +29,8 @@ namespace App.Ecs.Shooting
     
     public partial class ShooterSfxStartLoadSystem : SfxStartLoadSystem<ShooterSfxDataHolder>
     {
-        protected override void StartLoading(ShooterSfxDataHolder sfxData)
-        {
-            sfxData.ShootSfxRef.LoadAsync();
-        }
+        protected override void StartLoading(ShooterSfxDataHolder sfxData) 
+            => sfxData.ShootSfxRef.LoadAsync();
     }
     
     [UpdateInGroup(typeof(SfxSetSystemGroup))]
@@ -40,6 +38,12 @@ namespace App.Ecs.Shooting
     {
         public void OnCreate(ref SystemState state)
         {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<ShooterSfxViewHolder, ShooterSfxDataHolder>()
+                .WithNone<SfxInitedTag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 

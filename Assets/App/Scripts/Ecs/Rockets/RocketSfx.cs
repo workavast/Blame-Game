@@ -12,10 +12,8 @@ namespace App.Ecs.Rockets
     
     public partial class RockSfxStartLoadSystem : SfxStartLoadSystem<RocketSfxData>
     {
-        protected override void StartLoading(RocketSfxData comp)
-        {
-            comp.SfxPrefab.LoadAsync();
-        }
+        protected override void StartLoading(RocketSfxData comp) 
+            => comp.SfxPrefab.LoadAsync();
     }
     
     [UpdateInGroup(typeof(SfxSetSystemGroup))]
@@ -23,6 +21,12 @@ namespace App.Ecs.Rockets
     {
         public void OnCreate(ref SystemState state)
         {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<RocketViewHolder, RocketSfxData, RocketTag>()
+                .WithNone<SfxInitedTag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 

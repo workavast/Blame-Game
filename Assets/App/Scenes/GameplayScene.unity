@@ -3710,7 +3710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 970945783549557039, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
       propertyPath: startTime
-      value: 120
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2278671928407448817, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
       propertyPath: screensController

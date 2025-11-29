@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Player;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -39,6 +40,7 @@ namespace App.Ecs.AoeZones
         {
             state.RequireForUpdate<SimulationSingleton>();
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<AoeZoneTag>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -58,6 +60,11 @@ namespace App.Ecs.AoeZones
     [UpdateInGroup(typeof(BeforeTransformPauseSimulationGroup))]
     public partial struct AoeZoneSizeUpdateSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<AoeZoneTag>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;

@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Moving;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 
@@ -28,6 +29,12 @@ namespace App.Ecs.Experience.ExpOrb
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct ExpOrbUpdateMoveDampingSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<ExpOrbTag>();
+        }
+
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;

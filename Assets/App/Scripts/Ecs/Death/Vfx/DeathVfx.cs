@@ -23,6 +23,15 @@ namespace App.Ecs.Death.Vfx
     [UpdateInGroup(typeof(DeathSystemGroup))]
     public partial struct DeathVfxActivateSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<DeathVfxViewHolder, DeathViewRequestedFlag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathView, _) in

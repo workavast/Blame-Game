@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Experience;
 using App.Ecs.Experience.ExpDropping;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
@@ -22,6 +23,7 @@ namespace App.Ecs.Health
     
     public partial struct ApplyDamageToHealth : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (health, damageBuffer) in 

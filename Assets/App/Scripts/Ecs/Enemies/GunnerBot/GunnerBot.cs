@@ -4,6 +4,7 @@ using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.Randomisation;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -49,9 +50,14 @@ namespace App.Ecs.Enemies.GunnerBot
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(RandomInitializationSystemGroup))]
+    [UpdateAfter(typeof(RandomInitializer))]
     public partial struct GunnerBotOffsetInitializeSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<GunnerBotTag>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (offsetInitializedFlag, data, 
@@ -73,8 +79,10 @@ namespace App.Ecs.Enemies.GunnerBot
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<GunnerBotTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
@@ -151,8 +159,10 @@ namespace App.Ecs.Enemies.GunnerBot
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<GunnerBotTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();

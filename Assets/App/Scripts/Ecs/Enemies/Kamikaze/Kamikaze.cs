@@ -2,6 +2,7 @@
 using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
@@ -19,8 +20,10 @@ namespace App.Ecs.Enemies.Kamikaze
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<SimulationSingleton>();
+            state.RequireForUpdate<KamikazeTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var kamikazeExplosionJob = new KamikazeExplosionJob()
@@ -35,42 +38,43 @@ namespace App.Ecs.Enemies.Kamikaze
             var simulationSingleton = SystemAPI.GetSingleton<SimulationSingleton>();
             state.Dependency = kamikazeExplosionJob.Schedule(simulationSingleton, state.Dependency);
         }
-    }
-    
-    public struct KamikazeExplosionJob : ICollisionEventsJob
-    {
-        [ReadOnly] public ComponentLookup<PlayerTag> PlayerLookup;
-        [ReadOnly] public ComponentLookup<KamikazeTag> KamikazeLookup;
-        [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
-        
-        public BufferLookup<DamageToHealthFrameBuffer> DamageBufferLookup;
-        
-        public void Execute(CollisionEvent collisionEvent)
+
+        private struct KamikazeExplosionJob : ICollisionEventsJob
         {
-            Entity player;
-            Entity kamikaze;
+            [ReadOnly] public ComponentLookup<PlayerTag> PlayerLookup;
+            [ReadOnly] public ComponentLookup<KamikazeTag> KamikazeLookup;
+            [ReadOnly] public ComponentLookup<AttackDamage> AttackDamageLookup;
+        
+            public BufferLookup<DamageToHealthFrameBuffer> DamageBufferLookup;
+        
+            public void Execute(CollisionEvent collisionEvent)
+            {
+                Entity player;
+                Entity kamikaze;
 
-            if (PlayerLookup.HasComponent(collisionEvent.EntityA) && KamikazeLookup.HasComponent(collisionEvent.EntityB))
-            {
-                player = collisionEvent.EntityA;
-                kamikaze = collisionEvent.EntityB;
-            } 
-            else if (PlayerLookup.HasComponent(collisionEvent.EntityB) && KamikazeLookup.HasComponent(collisionEvent.EntityA))
-            {
-                player = collisionEvent.EntityB;
-                kamikaze = collisionEvent.EntityA;
+                if (PlayerLookup.HasComponent(collisionEvent.EntityA) && KamikazeLookup.HasComponent(collisionEvent.EntityB))
+                {
+                    player = collisionEvent.EntityA;
+                    kamikaze = collisionEvent.EntityB;
+                } 
+                else if (PlayerLookup.HasComponent(collisionEvent.EntityB) && KamikazeLookup.HasComponent(collisionEvent.EntityA))
+                {
+                    player = collisionEvent.EntityB;
+                    kamikaze = collisionEvent.EntityA;
+                }
+                else
+                {
+                    return;
+                }
+
+                var attack = AttackDamageLookup.GetRefRO(kamikaze);
+                var playerDamageBuffer = DamageBufferLookup[player];
+                var kamikazeDamageBuffer = DamageBufferLookup[kamikaze];
+
+                playerDamageBuffer.Add(new DamageToHealthFrameBuffer() { Value = attack.ValueRO.Value });
+                kamikazeDamageBuffer.Add(new DamageToHealthFrameBuffer() { Value = float.MaxValue });
             }
-            else
-            {
-                return;
-            }
-
-            var attack = AttackDamageLookup.GetRefRO(kamikaze);
-            var playerDamageBuffer = DamageBufferLookup[player];
-            var kamikazeDamageBuffer = DamageBufferLookup[kamikaze];
-
-            playerDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = attack.ValueRO.Value});
-            kamikazeDamageBuffer.Add(new DamageToHealthFrameBuffer() {Value = float.MaxValue});
         }
+
     }
 }

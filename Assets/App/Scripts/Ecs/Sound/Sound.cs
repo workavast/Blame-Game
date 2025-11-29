@@ -4,16 +4,6 @@ using Unity.Entities;
 
 namespace App.Ecs.Sound
 {
-    public struct SfxLoadStartedTag : IComponentData
-    {
-        
-    }
-    
-    public struct SfxInitedTag : IComponentData
-    {
-        
-    }
-    
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(InitOffSystemGroup))]
     public partial class SfxStartLoadSystemGroup : ComponentSystemGroup
@@ -28,12 +18,28 @@ namespace App.Ecs.Sound
         
     }
     
+    public struct SfxLoadStartedTag : IComponentData
+    {
+        
+    }
+    
+    public struct SfxInitedTag : IComponentData
+    {
+        
+    }
+    
     [UpdateInGroup(typeof(SfxStartLoadSystemGroup))]
     public abstract partial class SfxStartLoadSystem<TSfxData> : SystemBase
         where TSfxData : unmanaged, IComponentData
     {
         protected override void OnCreate()
         {
+            var query = GetEntityQuery(
+                ComponentType.ReadWrite<TSfxData>(),
+                ComponentType.Exclude<SfxLoadStartedTag>()
+            );
+            
+            RequireForUpdate(query);
             RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 

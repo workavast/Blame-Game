@@ -1,4 +1,5 @@
 ﻿using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace App.Ecs
@@ -11,6 +12,7 @@ namespace App.Ecs
     [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct ExistTimerSystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;

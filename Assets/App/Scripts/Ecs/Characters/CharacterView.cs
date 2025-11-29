@@ -19,10 +19,13 @@ namespace App.Ecs.Characters
         public void SetVelocity(float velocity) 
             => Velocity = velocity;
 
+        public void SetPositionAndRotation(float3 position, quaternion rotation) 
+            => transform.SetPositionAndRotation(position, rotation);
+        
         public void SetPosition(float3 position) 
             => transform.position = position;
 
-        public void SetRotation(quaternion rotation) 
+        public void SetRotation(quaternion rotation)
             => transform.rotation = rotation;
     }
 }

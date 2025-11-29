@@ -39,6 +39,12 @@ namespace App.Ecs.Death.Sfx
     {
         public void OnCreate(ref SystemState state)
         {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<DeathSfxViewHolder, DeathSfxData>()
+                .WithNone<SfxInitedTag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -61,6 +67,15 @@ namespace App.Ecs.Death.Sfx
     [UpdateInGroup(typeof(DeathSystemGroup))]
     public partial struct DeathSfxActivateSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<DeathSfxViewHolder, DeathViewRequestedFlag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathSfx, _) in

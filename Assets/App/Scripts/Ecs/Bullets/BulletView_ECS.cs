@@ -19,6 +19,11 @@ namespace App.Ecs.Bullets
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct BulletViewUpdateSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BulletTag>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (view, transform) in 

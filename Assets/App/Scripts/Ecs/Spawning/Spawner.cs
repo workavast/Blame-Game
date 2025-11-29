@@ -21,6 +21,7 @@ namespace App.Ecs.Spawning
         {
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<SpawnCell>();
+            state.RequireForUpdate<SpawnRequest>();
         }
 
         public void OnUpdate(ref SystemState state)

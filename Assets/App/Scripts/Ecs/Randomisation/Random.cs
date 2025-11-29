@@ -3,12 +3,6 @@ using Unity.Mathematics;
 
 namespace App.Ecs.Randomisation
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    public partial class RandomInitializationSystemGroup : ComponentSystemGroup
-    {
-        
-    }
-    
     public struct RandomHolderRequiredInitializationFlag : IComponentData, IEnableableComponent
     {
 
@@ -24,20 +18,18 @@ namespace App.Ecs.Randomisation
         public Random Random;
     }
     
-    [UpdateInGroup(typeof(RandomInitializationSystemGroup), OrderFirst = true)]
-    public partial struct SingletonRandomInitializer : ISystem
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    public partial struct RandomInitializer : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
             var entity = state.EntityManager.CreateEntity();
             state.EntityManager.AddComponent<SingletonRandom>(entity);
             state.EntityManager.SetComponentData(entity, new SingletonRandom() { Random = Random.CreateFromIndex(0) });
+            
+            state.RequireForUpdate<RandomHolderRequiredInitializationFlag>();
         }
-    }
-    
-    [UpdateInGroup(typeof(RandomInitializationSystemGroup))]
-    public partial struct RandomInitializer : ISystem
-    {
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (requiredInitializationFlag, randomHolder) in 

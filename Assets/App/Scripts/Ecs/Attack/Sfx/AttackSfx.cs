@@ -39,6 +39,12 @@ namespace App.Ecs.Attack.Sfx
     {
         public void OnCreate(ref SystemState state)
         {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<AttackSfxViewHolder, AttackSfxData>()
+                .WithNone<SfxInitedTag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -61,6 +67,15 @@ namespace App.Ecs.Attack.Sfx
     [UpdateInGroup(typeof(AttackSystemGroup))]
     public partial struct AttackSfxActivateSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<AttackSfxViewHolder, AttackViewRequested>()
+                .Build();
+            
+            state.RequireForUpdate(query);
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, _) in

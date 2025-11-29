@@ -38,6 +38,11 @@ namespace App.Ecs.Bullets
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct BulletMoveSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<BulletTag>();
+        }
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -59,6 +64,7 @@ namespace App.Ecs.Bullets
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<BulletTag>();
         }
 
         [BurstCompile]
@@ -85,8 +91,10 @@ namespace App.Ecs.Bullets
         {
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<SimulationSingleton>();
+            state.RequireForUpdate<BulletTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
@@ -108,7 +116,6 @@ namespace App.Ecs.Bullets
             state.Dependency = bulletCollisionJob.Schedule(simulationSingleton, state.Dependency);
         }
 
-        [BurstCompile]
         private struct BulletCollisionJob : ITriggerEventsJob
         {
             [ReadOnly] public ComponentLookup<CurrentHealth> DamageableLookup;

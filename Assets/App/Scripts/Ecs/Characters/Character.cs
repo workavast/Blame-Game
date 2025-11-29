@@ -43,9 +43,8 @@ namespace App.Ecs.Characters
             foreach (var (transform, physicsVelocity, characterViewHolder) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<PhysicsVelocity>, RefRW<CharacterViewHolder>>())
             {
-                characterViewHolder.ValueRO.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
-                characterViewHolder.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-                characterViewHolder.ValueRO.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+                characterViewHolder.ValueRW.Instance.Value.SetVelocity(physicsVelocity.ValueRO.Linear);
+                characterViewHolder.ValueRW.Instance.Value.SetPositionAndRotation(transform.ValueRO.Position, transform.ValueRO.Rotation);
             }
         }
     }
@@ -53,27 +52,24 @@ namespace App.Ecs.Characters
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct CharacterViewUpdateSystem : ISystem
     {
-        private EntityQuery _query;
-
         public void OnCreate(ref SystemState state)
         {
-            _query = SystemAPI.QueryBuilder()
+            var query = SystemAPI.QueryBuilder()
                 .WithAll<LocalToWorld, CharacterViewHolder>()
                 .WithNone<PhysicsVelocity>()
                 .Build();
 
-            state.RequireForUpdate(_query);
+            state.RequireForUpdate(query);
         }
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (transform, characterVisual) in
+            foreach (var (transform, characterViewHolder) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CharacterViewHolder>>()
                          .WithNone<PhysicsVelocity>())
             {
-                characterVisual.ValueRW.Instance.Value.SetVelocity(float3.zero);
-                characterVisual.ValueRW.Instance.Value.SetPosition(transform.ValueRO.Position);
-                characterVisual.ValueRW.Instance.Value.SetRotation(transform.ValueRO.Rotation);
+                characterViewHolder.ValueRW.Instance.Value.SetVelocity(float3.zero);
+                characterViewHolder.ValueRW.Instance.Value.SetPositionAndRotation(transform.ValueRO.Position, transform.ValueRO.Rotation);
             }
         }
     }

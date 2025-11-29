@@ -2,6 +2,7 @@
 using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
@@ -19,8 +20,10 @@ namespace App.Ecs.Enemies.MeleeBot
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<SimulationSingleton>();
+            state.RequireForUpdate<MeleeBotTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var meleeAttackJob = new MeleeAttackJob()

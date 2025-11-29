@@ -41,6 +41,7 @@ namespace App.Ecs.Enemies.Spawning
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EnemySpawnCountPerSecond>();
+            state.RequireForUpdate<EnemySpawnerTag>();
         }
 
         public void OnUpdate(ref SystemState state)
