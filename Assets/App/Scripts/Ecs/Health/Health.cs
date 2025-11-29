@@ -1,8 +1,5 @@
-﻿using App.Ecs.Experience;
-using App.Ecs.Experience.ExpDropping;
-using Unity.Burst;
+﻿using Unity.Burst;
 using Unity.Entities;
-using Unity.Transforms;
 
 namespace App.Ecs.Health
 {
@@ -43,35 +40,16 @@ namespace App.Ecs.Health
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public partial struct DestroyDeadEntities : ISystem
     {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<ExpTag>();
-        }
-
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
-            
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (transform, health, entity) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>>()
+            foreach (var (health, entity) in 
+                     SystemAPI.Query<RefRO<CurrentHealth>>()
                          .WithEntityAccess())
             {
-                if (health.ValueRO.Value <= 0)
-                {
-                    if (SystemAPI.HasComponent<ExpOrbDropper>(entity))
-                    {
-                        var expOrbDropper = SystemAPI.GetComponent<ExpOrbDropper>(entity);
-                        expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
-                        {
-                            OrbsCount = expOrbDropper.OrbsCount,
-                            Position = transform.ValueRO.Position
-                        });
-                    }
-                    
+                if (health.ValueRO.Value <= 0) 
                     ecb.DestroyEntity(entity);
-                }
             }
             
             ecb.Playback(state.EntityManager);

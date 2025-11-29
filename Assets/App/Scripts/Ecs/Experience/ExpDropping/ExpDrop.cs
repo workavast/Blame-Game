@@ -1,7 +1,9 @@
-﻿using App.Ecs.Moving;
+﻿using App.Ecs.Death;
+using App.Ecs.Health;
+using App.Ecs.Moving;
 using App.Ecs.Randomisation;
-using App.Ecs.SystemGroups;
 using App.Ecs.Utils;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -29,8 +31,38 @@ namespace App.Ecs.Experience.ExpDropping
         public float Value;
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct ExpOrbDropSystem : ISystem
+    [UpdateInGroup(typeof(DeathSystemGroup))]
+    public partial struct ExpOrbCallSpawnSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<ExpTag>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
+            
+            foreach (var (transform, health, expOrbDropper) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, RefRO<ExpOrbDropper>>())
+            {
+                if (health.ValueRO.Value <= 0)
+                {
+                    expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
+                    {
+                        OrbsCount = expOrbDropper.ValueRO.OrbsCount,
+                        Position = transform.ValueRO.Position
+                    });
+                }
+            }
+        }
+    }
+    
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateAfter(typeof(DeathSystemGroup))]
+    public partial struct ExpOrbSpawnSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
