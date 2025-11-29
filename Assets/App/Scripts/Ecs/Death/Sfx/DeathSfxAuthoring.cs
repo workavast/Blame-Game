@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace App.Ecs.Death.Sfx
 {
+    [RequireComponent(typeof(DeathViewRequestAuthoring))]
     public class DeathSfxAuthoring : MonoBehaviour
     {
         [SerializeField] private WeakObjectReference<AudioPoolRelease> deathSfxRef;
@@ -20,9 +21,7 @@ namespace App.Ecs.Death.Sfx
                     DeathSfxRef = authoring.deathSfxRef
                 });
                 
-                AddComponent(entity, new DeathSfxInitializeFlag());
                 AddComponent(entity, new DeathSfxHolderInitializeFlag());
-                AddComponent(entity, new DeathSfxActivateFlag());
             }
         }
     }

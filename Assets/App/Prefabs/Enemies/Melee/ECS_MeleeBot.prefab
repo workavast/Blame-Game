@@ -102,8 +102,9 @@ GameObject:
   - component: {fileID: -3100416427177838989}
   - component: {fileID: 1855901496654438983}
   - component: {fileID: 1916482620648484710}
-  - component: {fileID: -135082464952418873}
   - component: {fileID: 1283775126065587771}
+  - component: {fileID: 584097088813187948}
+  - component: {fileID: -135082464952418873}
   - component: {fileID: -2630142589991180637}
   - component: {fileID: 5847842444254435159}
   - component: {fileID: -3244954611840141626}
@@ -196,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
 --- !u!114 &-3100416427177838989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +238,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
+--- !u!114 &1283775126065587771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddffd55fd3f45d9b2ce8861c0ae248a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbsCount: 2
+--- !u!114 &584097088813187948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab91a73191c84eb89892eb461f84c8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-135082464952418873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,19 +288,6 @@ MonoBehaviour:
             w: 2830124188
         IdentifierType: 1
       GenerationType: 1
---- !u!114 &1283775126065587771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394460037251805814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ddffd55fd3f45d9b2ce8861c0ae248a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbsCount: 2
 --- !u!114 &-2630142589991180637
 MonoBehaviour:
   m_ObjectHideFlags: 0

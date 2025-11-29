@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace App.Ecs.Death.Vfx
 {
+    [RequireComponent(typeof(DeathViewRequestAuthoring))]
     public class DeathVfxAuthoring : MonoBehaviour
     {
         private class Baker : Baker<DeathVfxAuthoring>
@@ -11,9 +12,7 @@ namespace App.Ecs.Death.Vfx
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                AddComponent(entity, new DeathVfxInitializeFlag());
                 AddComponent(entity, new DeathVfxViewHolderInitializeFlag());
-                AddComponent(entity, new DeathVfxActivateFlag());
             }
         }
     }
