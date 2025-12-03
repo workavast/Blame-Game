@@ -175,13 +175,10 @@ namespace App.Ecs.Enemies.GunnerBot
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
-                
-                var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
-                var bulletSpawnPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet,
-                    LocalTransform.FromPositionRotation(bulletSpawnPosition, transform.ValueRO.Rotation));
-                
-                BulletBuilder.Build(ref ecb, ref bullet, bulletData);
+
+                var bulletPrefab = bulletData.ValueRO.BulletPrefab;
+                var bulletPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
+                BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, transform.ValueRO.Rotation);
             }
         }
     }

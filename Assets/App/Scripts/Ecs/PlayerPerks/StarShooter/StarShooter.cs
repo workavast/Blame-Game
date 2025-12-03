@@ -64,12 +64,10 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     };
                     angle += angleStep;
 
-                    var spawnRotation = quaternion.LookRotation(spawnDirection, new float3(0, 1, 0));
-                    var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
-                    var bulletSpawnPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
-                    ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, spawnRotation));
-                  
-                    BulletBuilder.Build(ref ecb, ref bullet, bulletData, damageScale, globalDamageScale, additionalPenetration);
+                    var bulletPrefab = bulletData.ValueRO.BulletPrefab;
+                    var bulletPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
+                    var bulletRotation = quaternion.LookRotation(spawnDirection, new float3(0, 1, 0));
+                    BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, bulletRotation, damageScale, globalDamageScale, additionalPenetration);
                 }
                 
                 attackViewRequest.ValueRW = true;

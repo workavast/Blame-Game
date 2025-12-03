@@ -42,12 +42,10 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
-                
-                var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
-                var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
-                
-                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
+
+                var bulletPrefab = data.ValueRO.BulletPrefab;
+                var bulletPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
+                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, playerTransform.Rotation, damageScale, globalDamageScale, additionalPenetration);
 
                 attackViewRequest.ValueRW = true;
             }
