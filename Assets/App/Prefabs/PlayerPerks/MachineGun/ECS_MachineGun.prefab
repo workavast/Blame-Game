@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: -3250439972364353814}
   - component: {fileID: 8210490951117237937}
   - component: {fileID: -3434939794679581145}
-  - component: {fileID: 6522583797870812275}
   - component: {fileID: 8311467375454259078}
+  - component: {fileID: -4734041384785188631}
+  - component: {fileID: -6834455115217254523}
   m_Layer: 0
   m_Name: ECS_MachineGun
   m_TagString: Untagged
@@ -73,12 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f757ae73c1b4c8ab500cd500b2d3611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5742481295489709929, guid: ff166bcc51f652d4186baf758c84f9a4, type: 3}
-  spawnVerticalOffset: 1
-  damage: 5
-  moveSpeed: 20
   distanceReaction: 15
-  penetration: 0
 --- !u!114 &-3434939794679581145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,31 +94,6 @@ MonoBehaviour:
   spawnVerticalOffset: 1
   hasDamageScale: 1
   hasPenetrationScale: 1
---- !u!114 &6522583797870812275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116665741028914375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2aca0bfac5445279c3f0e0fb4a4d968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootSfxRef:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: -8523166520005946569
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 1500909776
-            y: 1321883660
-            z: 200381097
-            w: 3492685712
-        IdentifierType: 1
-      GenerationType: 1
 --- !u!114 &8311467375454259078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,3 +108,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 1
   haveRateScale: 1
+--- !u!114 &-4734041384785188631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebdf449350c48b2b957abb57d9ec884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6834455115217254523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116665741028914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab0a865145149a7867e5c26bf04f008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxRef:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -8523166520005946569
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 1500909776
+            y: 1321883660
+            z: 200381097
+            w: 3492685712
+        IdentifierType: 1
+      GenerationType: 1

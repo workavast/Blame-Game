@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Ecs.Player;
 using App.Perks.Configs;
 using Avastrad.Extensions;
 
@@ -23,7 +24,10 @@ namespace App.Perks.PerksManagement
             _perksStorage.ActivatePerk(perkCell);
         }
 
-        public void ActivateSpawnPerk(SpawnPerk spawnPerk) 
-            => EcsSpawner.Spawn(spawnPerk.Key);
+        public void ActivateSpawnPerk(SpawnPerk spawnPerk)
+        {
+            var playerEntity = EcsSingletons.GetSingletonEntity<PlayerTag>();
+            EcsSpawner.Spawn(spawnPerk.Key, playerEntity);
+        }
     }
 }

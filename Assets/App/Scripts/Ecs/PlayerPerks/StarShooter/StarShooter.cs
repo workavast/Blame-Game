@@ -40,12 +40,12 @@ namespace App.Ecs.PlayerPerks.StarShooter
             
             foreach (var (data, additionalBulletsCount, 
                          bulletData, damageScale, additionalPenetration, 
-                         sfxView, entity) in 
+                         attackViewRequest, entity) in 
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
                              RefRO<BulletInitialData>, RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>,
-                             RefRO<ShooterSfxViewHolder>>()
+                             EnabledRefRW<AttackViewRequested>>()
                          .WithAll<StarShooterTag>()
-                         .WithDisabled<AttackCooldown>()
+                         .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
@@ -72,7 +72,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     BulletBuilder.Build(ref ecb, ref bullet, bulletData, damageScale, globalDamageScale, additionalPenetration);
                 }
                 
-                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
+                attackViewRequest.ValueRW = true;
             }
         }
     }

@@ -52,11 +52,11 @@ namespace App.Ecs.PlayerPerks.MachineGun
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             foreach (var (distanceReaction, data,
-                         damageScale, additionalPenetration, sfxView, entity) in
+                         damageScale, additionalPenetration, attackViewRequest, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, 
-                             RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
+                             RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<MachineGunTag>()
-                         .WithDisabled<AttackCooldown>()
+                         .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
             {
                 if (distance > distanceReaction.ValueRO.Value)
@@ -69,8 +69,8 @@ namespace App.Ecs.PlayerPerks.MachineGun
                 ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
                 
                 BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
-                
-                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
+
+                attackViewRequest.ValueRW = true;
             }
         }
     }

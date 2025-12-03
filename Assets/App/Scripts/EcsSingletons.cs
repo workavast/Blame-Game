@@ -20,6 +20,28 @@ namespace App
             return query.HasSingleton<TSingleton>();
         }
         
+        public static Entity GetSingletonEntity<TSingleton>()
+            where TSingleton: unmanaged, IComponentData
+        {
+            var world = World.DefaultGameObjectInjectionWorld;
+            if (world == null)
+            {
+                Debug.LogError("World is null");
+                return default;
+            }
+            
+            var query = world.EntityManager.CreateEntityQuery(typeof(TSingleton));
+            if (query.TryGetSingletonEntity<TSingleton>(out var entity))
+            {
+                return entity;
+            }
+            else
+            {
+                Debug.LogError($"Cant find singleton component: [{nameof(TSingleton)}]");
+                return default;
+            }
+        }
+        
         public static bool TryGetSingletonRO<TSingleton>(out TSingleton component)
             where TSingleton: unmanaged, IComponentData
         {

@@ -72,8 +72,5 @@ namespace App.Perks.PerksManagement
                 _availablePerks.Add(childPerk);
             }
         }
-
-        public void ActivateSpawnPerk(SpawnPerk spawnPerk) 
-            => EcsSpawner.Spawn(spawnPerk.Key);
     }
 }

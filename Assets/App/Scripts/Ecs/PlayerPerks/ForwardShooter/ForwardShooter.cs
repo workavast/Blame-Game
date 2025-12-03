@@ -32,13 +32,13 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
-            
+
             foreach (var (data, damageScale, 
-                         additionalPenetration, sfxView, entity) in 
+                         additionalPenetration, attackViewRequest, entity) in 
                      SystemAPI.Query<RefRO<BulletInitialData>, RefRO<AttackDamageScale>,
-                             RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
+                             RefRO<AdditionalPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<ForwardShooterTag>()
-                         .WithDisabled<AttackCooldown>()
+                         .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
@@ -49,7 +49,7 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
                 
                 BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
 
-                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
+                attackViewRequest.ValueRW = true;
             }
         }
     }

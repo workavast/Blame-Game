@@ -3,6 +3,7 @@ using App.Ecs.EntityViews;
 using App.Ecs.Sound;
 using Unity.Entities;
 using Unity.Entities.Content;
+using Unity.Transforms;
 
 namespace App.Ecs.Attack.Sfx
 {
@@ -65,7 +66,7 @@ namespace App.Ecs.Attack.Sfx
     }
 
     [UpdateInGroup(typeof(AttackSystemGroup))]
-    public partial struct AttackSfxActivateSystem : ISystem
+    public partial struct AttackSfxActivateAtViewSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -79,9 +80,33 @@ namespace App.Ecs.Attack.Sfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, _) in
-                     SystemAPI.Query<RefRW<AttackSfxViewHolder>, EnabledRefRO<AttackViewRequested>>())
+                     SystemAPI.Query<RefRW<AttackSfxViewHolder>, EnabledRefRO<AttackViewRequested>>()
+                         .WithNone<Owner>())
             {
                 attackSfx.ValueRW.Instance.Value.Activate();
+            }
+        }
+    }
+    
+    [UpdateInGroup(typeof(AttackSystemGroup))]
+    public partial struct AttackSfxActivateAtOwnerSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<AttackSfxViewHolder, AttackViewRequested>()
+                .Build();
+            
+            state.RequireForUpdate(query);
+        }
+        
+        public void OnUpdate(ref SystemState state)
+        {
+            foreach (var (attackSfx, owner, _) in
+                     SystemAPI.Query<RefRW<AttackSfxViewHolder>, RefRO<Owner>, EnabledRefRO<AttackViewRequested>>())
+            {
+                var ownerPosition = SystemAPI.GetComponentRO<LocalToWorld>(owner.ValueRO.Value);
+                attackSfx.ValueRW.Instance.Value.Activate(ownerPosition.ValueRO.Position);
             }
         }
     }

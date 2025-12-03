@@ -32,5 +32,8 @@ namespace App.Ecs.Attack.Sfx
 
         public void Activate() 
             => _sfxHolder.Play(transform.position, deathPitchRange);
+        
+        public void Activate(Vector3 position) 
+            => _sfxHolder.Play(position, deathPitchRange);
     }
 }

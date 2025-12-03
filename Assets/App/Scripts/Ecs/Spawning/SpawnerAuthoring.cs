@@ -13,7 +13,7 @@ namespace App.Ecs.Spawning
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                var buffer = AddBuffer<SpawnCell>(entity);
+                var buffer = AddBuffer<PrefabCell>(entity);
 
                 var prefabs = authoring.authoringPrefabs;
                 if (prefabs == null)
@@ -23,7 +23,7 @@ namespace App.Ecs.Spawning
                     if (prefabs[i] == null)
                         continue;
                     
-                    buffer.Add(new SpawnCell()
+                    buffer.Add(new PrefabCell()
                     {
                         Key = prefabs[i].name.GetHashCode(),
                         Prefab = GetEntity(prefabs[i], TransformUsageFlags.Dynamic)
