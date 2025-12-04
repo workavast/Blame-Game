@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Experience;
+using App.EcsBridges;
 
 namespace App.LevelManagement.ExpManagement
 {
@@ -21,7 +22,7 @@ namespace App.LevelManagement.ExpManagement
         
         public bool IsReachExpTarget()
         {
-            if (EcsSingletons.TryGetSingletonRO<PlayerExp>(out var playerExp))
+            if (EcsBridge.TryGetSingletonRO<PlayerExp>(out var playerExp))
             {
                 ExpAmount = playerExp.Value;
                 if (ExpAmount >= ExpTarget)

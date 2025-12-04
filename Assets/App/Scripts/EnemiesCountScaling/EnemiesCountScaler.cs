@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Enemies.Spawning;
+using App.EcsBridges;
 using App.EnemiesCountScaling.Configs;
 using Unity.Entities;
 
@@ -17,7 +18,7 @@ namespace App.EnemiesCountScaling
         public void UpdateEnemiesScaling(float timeInMinutes)
         {
             var scale = _config.GetCountPerSecond(timeInMinutes);
-            EcsSingletons.TrySetComponentOfSingleton<TSpawnerTag, EnemySpawnCountPerSecond>(
+            EcsBridge.TrySetComponentOfSingleton<TSpawnerTag, EnemySpawnCountPerSecond>(
                 new EnemySpawnCountPerSecond() { Value = scale });
         }
     }

@@ -2,6 +2,7 @@
 using App.Ecs;
 using App.Ecs.Health;
 using App.Ecs.Player;
+using App.EcsBridges;
 
 namespace App.PlayerProviding
 {
@@ -27,17 +28,17 @@ namespace App.PlayerProviding
         private void CheckPlayerSpawned()
         {
             if (!PlayerSpawned)
-                if (EcsSingletons.Exist<PlayerTag>()) 
+                if (EcsBridge.Exist<PlayerTag>()) 
                     PlayerSpawned = true;
         }
 
         private void UpdateHealthValues()
         {
-            if (EcsSingletons.TryGetComponentOfSingletonRO<PlayerTag, MaxHealth>(out var maxHealth))
+            if (EcsBridge.TryGetComponentOfSingletonRO<PlayerTag, MaxHealth>(out var maxHealth))
             {
                 MaxHealth = maxHealth.Value;
 
-                if (EcsSingletons.TryGetComponentOfSingletonRO<PlayerTag, CurrentHealth>(out var health))
+                if (EcsBridge.TryGetComponentOfSingletonRO<PlayerTag, CurrentHealth>(out var health))
                 {
                     CurrentHealth = health.Value;
                     FillPercentage = CurrentHealth / MaxHealth;

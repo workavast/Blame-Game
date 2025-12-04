@@ -1,5 +1,6 @@
 ﻿using App.Ecs;
 using App.Ecs.Attack;
+using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -16,10 +17,10 @@ namespace App.Perks.Configs.Upgrades
         
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, AttackRateScale>();
+            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, AttackRateScale>();
             currentScale.Value += additionalFireRate;
             
-            EcsSingletons.TrySetComponentOfSingleton<TTag, AttackRateScale>(currentScale);
+            EcsBridge.TrySetComponentOfSingleton<TTag, AttackRateScale>(currentScale);
         }
     }
 }

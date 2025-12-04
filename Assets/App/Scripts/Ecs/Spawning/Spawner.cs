@@ -3,13 +3,18 @@ using UnityEngine;
 
 namespace App.Ecs.Spawning
 {
+    public struct SpawnerTag : IComponentData
+    {
+        
+    }
+    
     public struct PrefabCell : IBufferElementData
     {
         public int Key;
         public Entity Prefab;
     }
 
-    public struct SpawnRequest : IComponentData
+    public struct SpawnRequest : IBufferElementData
     {
         public int Key;
         public Entity Owner;
@@ -21,8 +26,7 @@ namespace App.Ecs.Spawning
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            state.RequireForUpdate<PrefabCell>();
-            state.RequireForUpdate<SpawnRequest>();
+            state.RequireForUpdate<SpawnerTag>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -30,27 +34,26 @@ namespace App.Ecs.Spawning
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-            var spawnData = SystemAPI.GetSingletonBuffer<PrefabCell>();
-            
-            foreach (var (spawnRequest, requestEntity) in 
-                     SystemAPI.Query<RefRO<SpawnRequest>>()
-                         .WithEntityAccess())
+            foreach (var (prefabsBuffer, requestsBuffer) in
+                     SystemAPI.Query<DynamicBuffer<PrefabCell>, DynamicBuffer<SpawnRequest>>())
             {
-                if (BufferContains(spawnData, spawnRequest.ValueRO.Key, out var prefabEntity))
+                foreach (var request in requestsBuffer)
                 {
-                    var entity = ecb.Instantiate(prefabEntity);
+                    if (TryGetPrefabEntity(prefabsBuffer, request.Key, out var prefabEntity))
+                    {
+                        var newEntity = ecb.Instantiate(prefabEntity);
 
-                    if (spawnRequest.ValueRO.Owner != Entity.Null) 
-                        ecb.AddComponent(entity, new Owner() { Value = spawnRequest.ValueRO.Owner });
+                        if (request.Owner != Entity.Null)
+                            ecb.AddComponent(newEntity, new Owner() { Value = request.Owner });
+                    }
+                    else
+                        Debug.LogError($"You try spawn entity that not exist in spawn buffer: key [{request.Key}], owner [{request.Owner}]");
                 }
-                else
-                    Debug.LogError($"You try spawn entity that not exist in spawn buffer: key [{spawnRequest.ValueRO.Key}]");
-                
-                ecb.DestroyEntity(requestEntity);
+                requestsBuffer.Clear();
             }
         }
 
-        private bool BufferContains(DynamicBuffer<PrefabCell> buffer, int key, out Entity prefabEntity)
+        private bool TryGetPrefabEntity(DynamicBuffer<PrefabCell> buffer, int key, out Entity prefabEntity)
         {
             for (var i = 0; i < buffer.Length; i++)
                 if (buffer[i].Key == key)

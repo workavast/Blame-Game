@@ -2,9 +2,9 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace App
+namespace App.EcsBridges
 {
-    public static class EcsSpawner
+    public static class EcsSpawnBridge
     {
         public static void Spawn(int prefabKey, Entity owner)
         {
@@ -15,12 +15,8 @@ namespace App
                 return;
             }
             
-            var entityManager = world.EntityManager;
-
-            var entity = entityManager.CreateEntity();
-            
-            entityManager.AddComponent<SpawnRequest>(entity);
-            entityManager.SetComponentData(entity, new SpawnRequest() { Owner = owner, Key = prefabKey });
+            if (EcsBridge.GetBufferOfSingleton<SpawnerTag, SpawnRequest>(out var buffer)) 
+                buffer.Add(new SpawnRequest() { Owner = owner, Key = prefabKey});
         }
     }
 }
