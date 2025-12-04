@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: CancelAndClose
     m_Metadata:
       m_Items: []
+  - m_Id: 11281354993856512
+    m_Key: CursorType
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
