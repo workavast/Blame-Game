@@ -8,10 +8,8 @@ namespace Avastrad.Settings.Template
         [SerializeField] private TemplateSettingsViewModel viewModel;
         [SerializeField] private Slider slider;
         
-        public void Initialize()
-        {
-            UpdateView();
-        }
+        public void Initialize() 
+            => UpdateView();
 
         public void OnEnabledManual()
         {

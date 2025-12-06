@@ -1,11 +1,11 @@
 using System;
-using UnityEngine;
 
 namespace Avastrad.Settings.CameraShakePower
 {
     public class CameraShakePowerSettingModel : ISettingModel
     {
         public float ShakePower { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public float DefaultShakePower => _config.DefaultShakePower;
@@ -19,13 +19,19 @@ namespace Avastrad.Settings.CameraShakePower
             ShakePower = DefaultShakePower;
         }
 
-        public void SetValue(float shakePower) 
-            => ShakePower = shakePower;
+        public void SetValue(float shakePower)
+        {
+            ShakePower = shakePower;
+            HasChanged = true;
+        }
 
-        public void Apply() { }
+        public void Apply()
+        {
+            HasChanged = false;
+        }
 
         public void ResetToDefault() 
-            => ShakePower = DefaultShakePower;
+            => SetValue(DefaultShakePower);
 
         public Type GetStateType() 
             => typeof(SettingState);
@@ -36,7 +42,7 @@ namespace Avastrad.Settings.CameraShakePower
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            ShakePower = state.ShakePower;
+            SetValue(state.ShakePower);
         }
         
         private struct SettingState : ISettingState

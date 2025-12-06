@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Avastrad.Settings.AntiAliasing
@@ -8,9 +7,9 @@ namespace Avastrad.Settings.AntiAliasing
     public class AntiAliasingSettingModel : ISettingModel
     {
         public int SelectedAntiAliasingIndex { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
-        
         public IReadOnlyList<AntialiasingMode> AntiAliasingModes => _config.AntiAliasingModes;
         public int DefaultAntiAliasingIndex => _config.DefaultAntiAliasingIndex;
         public AntialiasingMode SelectedAntialiasingMode => AntiAliasingModes[SelectedAntiAliasingIndex];
@@ -28,18 +27,18 @@ namespace Avastrad.Settings.AntiAliasing
 
         public void SetValue(int value)
         {
+            HasChanged = SelectedAntiAliasingIndex != value;
             SelectedAntiAliasingIndex = value;
         }
-        
+
         public void Apply()
         {
+            HasChanged = false;
             OnAntialiasingModeChanged?.Invoke();
         }
 
-        public void ResetToDefault()
-        {
-            SelectedAntiAliasingIndex = DefaultAntiAliasingIndex;
-        }
+        public void ResetToDefault() 
+            => SetValue(DefaultAntiAliasingIndex);
 
         public Type GetStateType() 
             => typeof(SettingState);
@@ -50,7 +49,7 @@ namespace Avastrad.Settings.AntiAliasing
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            SelectedAntiAliasingIndex = state.SelectedAntiAliasingIndex;
+            SetValue(state.SelectedAntiAliasingIndex);
         }
         
         private struct SettingState : ISettingState

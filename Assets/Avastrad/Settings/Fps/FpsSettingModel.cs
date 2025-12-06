@@ -7,6 +7,7 @@ namespace Avastrad.Settings.Fps
     public class FpsSettingModel : ISettingModel
     {
         public int SelectedOptionIndex { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public IReadOnlyList<int> FpsOptions => _config.FpsOptions;
@@ -21,11 +22,20 @@ namespace Avastrad.Settings.Fps
             SelectedOptionIndex = DefaultOptionIndex;
         }
         
-        public void Set(int optionIndex) 
-            => SelectedOptionIndex = optionIndex;
+        public void Set(int optionIndex)
+        {
+            HasChanged = true;
+            SelectedOptionIndex = optionIndex;
+        }
 
-        public void Apply() 
-            => Application.targetFrameRate = SelectedOption;
+        public void Apply()
+        {
+            HasChanged = false;
+            Application.targetFrameRate = SelectedOption;
+        }
+
+        public void ResetToDefault() 
+            => Set(DefaultOptionIndex);
 
         public Type GetStateType() 
             => typeof(SettingState);
@@ -36,7 +46,7 @@ namespace Avastrad.Settings.Fps
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            SelectedOptionIndex = state.SelectedOptionIndex;
+            Set(state.SelectedOptionIndex);
         }
 
         private struct SettingState : ISettingState

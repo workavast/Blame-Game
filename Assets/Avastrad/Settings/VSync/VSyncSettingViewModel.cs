@@ -4,41 +4,28 @@ namespace Avastrad.Settings.VSync
 {
     public class VSyncSettingViewModel : SettingViewModel<VSyncSettingModel>
     {
-        public bool UseVSync { get; private set; }
         public override bool HasChanged => _model.UseVSync != UseVSync;
+        public bool UseVSync { get; private set; }
 
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            UseVSync = _model.UseVSync;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            _model.SetValue(UseVSync);
-        }
+        public override void SetToModel() 
+            => _model.SetValue(UseVSync);
 
-        public override void ResetSettings()
-        {
-            UseVSync = _model.UseVSync;
-            
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void ResetSetting() 
+            => SetValue(_model.UseVSync, true);
 
-        public override void ResetToDefault()
-        {
-            UseVSync = _model.DefaultValue;
-
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void LoadModelData()
+            => SetValue(_model.UseVSync, true);
 
         public void SetValue(bool value, bool notify)
         {
+            if (UseVSync == value)
+                return;
+            
             UseVSync = value;
 
             if (notify)

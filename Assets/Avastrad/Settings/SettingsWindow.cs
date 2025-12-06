@@ -46,26 +46,28 @@ namespace Avastrad.Settings
         public void ApplySettings()
         {
             foreach (var viewModel in _settingsViewModels)
-                viewModel.ApplySettings();
+                viewModel.SetToModel();
 
-            _settingsModel.Apply();
+            _settingsModel.Apply(false);
             _settingsModel.Save();
         }
 
         public void ResetSettings()
         {
             foreach (var viewModel in _settingsViewModels)
-                viewModel.ResetSettings();
+                viewModel.ResetSetting();
 
+            _settingsModel.Apply(false);
             _settingsModel.Save();
         }
 
         public void ResetToDefaults()
         {
+            _settingsModel.ResetToDefault();
+            
             foreach (var viewModel in _settingsViewModels)
-                viewModel.ResetToDefault();
-
-            _settingsModel.Apply();
+                viewModel.LoadModelData();
+            
             _settingsModel.Save();
         }
     }

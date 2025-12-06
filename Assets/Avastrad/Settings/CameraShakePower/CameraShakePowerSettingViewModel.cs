@@ -5,39 +5,23 @@ namespace Avastrad.Settings.CameraShakePower
 {
     public class CameraShakePowerSettingViewModel : SettingViewModel<CameraShakePowerSettingModel>
     {
-        public float ShakePower { get; private set; }
         public override bool HasChanged => !Mathf.Approximately(_model.ShakePower, ShakePower);
+        public float ShakePower { get; private set; }
 
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            ShakePower = _model.ShakePower;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            _model.SetValue(ShakePower);
-        }
+        public override void SetToModel() 
+            => _model.SetValue(ShakePower);
 
-        public override void ResetSettings()
-        {
-            ShakePower = _model.ShakePower;
-            
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void ResetSetting() 
+            => SetValue(_model.ShakePower, true);
 
-        public override void ResetToDefault()
-        {
-            ShakePower = _model.DefaultShakePower;
+        public override void LoadModelData()
+            => SetValue(_model.ShakePower, true);
 
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
-        
         public void SetValue(float shakePower, bool notify)
         {
             ShakePower = shakePower;

@@ -6,7 +6,8 @@ namespace Avastrad.Settings.VSync
     public class VSyncSettingModel : ISettingModel
     {
         public bool UseVSync { get; private set; }
-
+        public bool HasChanged { get; private set; }
+        
         public int Priority => _config.Priority;
         public bool DefaultValue => _config.DefaultValue;
         
@@ -21,19 +22,19 @@ namespace Avastrad.Settings.VSync
 
         public void SetValue(bool value)
         {
+            HasChanged = UseVSync != value;
             UseVSync = value;
         }
-        
+
         public void Apply()
         {
             QualitySettings.vSyncCount = UseVSync ? 1 : 0;
+            HasChanged = false;
         }
 
-        public void ResetToDefault()
-        {
-            UseVSync = DefaultValue;
-        }
-        
+        public void ResetToDefault() 
+            => SetValue(DefaultValue);
+
         public Type GetStateType() 
             => typeof(SettingState);
 
@@ -43,7 +44,7 @@ namespace Avastrad.Settings.VSync
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            UseVSync = state.UseVSync;
+            SetValue(state.UseVSync);
         }
         
         private struct SettingState : ISettingState

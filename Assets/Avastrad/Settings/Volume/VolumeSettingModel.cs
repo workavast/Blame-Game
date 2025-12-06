@@ -1,15 +1,13 @@
 using System;
-using Newtonsoft.Json;
 
 namespace Avastrad.Settings.Volume
 {
-    [Serializable]
-    [JsonObject(MemberSerialization.OptIn)]
     public class VolumeSettingModel : ISettingModel
     {
-        [JsonProperty] public float MasterVolume { get; private set; }
-        [JsonProperty] public float MusicVolume { get; private set; }
-        [JsonProperty] public float EffectsVolume { get; private set; }
+        public float MasterVolume { get; private set; }
+        public float MusicVolume { get; private set; }
+        public float EffectsVolume { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public float DefaultMasterVolume => _config.DefaultMasterVolume;
@@ -45,15 +43,19 @@ namespace Avastrad.Settings.Volume
                 default:
                     throw new ArgumentOutOfRangeException(nameof(volumeType), volumeType, null);
             }
+
+            HasChanged = true;
         }
         
         public void SetVolumeTemporary(SettingsVolumeType volumeType, float value)
         {
+            HasChanged = true;
             OnTempApply?.Invoke(volumeType, value);
         }
 
         public void Apply()
         {
+            HasChanged = false;
             OnApply?.Invoke();
         }
 
@@ -62,6 +64,7 @@ namespace Avastrad.Settings.Volume
             MasterVolume = DefaultMasterVolume;
             MusicVolume = DefaultMusicVolume;
             EffectsVolume = DefaultEffectsVolume;
+            HasChanged = true;
         }
         
         public Type GetStateType() 
@@ -76,6 +79,7 @@ namespace Avastrad.Settings.Volume
             MasterVolume = state.MasterVolume;
             MusicVolume = state.MusicVolume;
             EffectsVolume = state.EffectsVolume;
+            HasChanged = true;
         }
         
         private struct SettingState : ISettingState

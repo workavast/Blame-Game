@@ -6,9 +6,10 @@ namespace Avastrad.Settings.CursorType
     public class CursorTypeSettingsModel : ISettingModel
     {
         public bool CustomCursor { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
-        public bool DefaultValue => _config.UseCustomCursor;
+        private bool DefaultValue => _config.UseCustomCursor;
         
         private readonly CursorTypeSettingsConfig _config;
         
@@ -21,15 +22,17 @@ namespace Avastrad.Settings.CursorType
 
         public void SetValue(bool customCursor)
         {
+            HasChanged = true;
             CustomCursor = customCursor;
         }
-        
+
         public void Apply()
         {
             if (CustomCursor)
                 Cursor.SetCursor(_config.CustomCursor, _config.HotSpot, CursorMode.Auto);
             else
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            HasChanged = false;
         }
         
         public void SetValueTemporary(bool customCursor)
@@ -38,10 +41,11 @@ namespace Avastrad.Settings.CursorType
                 Cursor.SetCursor(_config.CustomCursor, _config.HotSpot, CursorMode.Auto);
             else
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            HasChanged = true;
         }
         
         public void ResetToDefault() 
-            => CustomCursor = DefaultValue;
+            => SetValue(DefaultValue);
 
         public Type GetStateType() 
             => typeof(SettingState);
@@ -52,7 +56,7 @@ namespace Avastrad.Settings.CursorType
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            CustomCursor = state.CustomCursor;
+            SetValue(state.CustomCursor);
         }
 
         private struct SettingState : ISettingState

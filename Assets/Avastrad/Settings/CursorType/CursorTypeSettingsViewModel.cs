@@ -10,32 +10,16 @@ namespace Avastrad.Settings.CursorType
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            CustomCursor = _model.CustomCursor;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            _model.SetValue(CustomCursor);
-        }
+        public override void SetToModel() 
+            => _model.SetValue(CustomCursor);
 
-        public override void ResetSettings()
-        {
-            CustomCursor = _model.CustomCursor;
-            
-            ApplySettings();
-            _model.Apply();
-            
-            OnChanged?.Invoke();
-        }
+        public override void ResetSetting() 
+            => SetValue(_model.CustomCursor, true);
 
-        public override void ResetToDefault()
-        {
-            _model.ResetToDefault();
-            CustomCursor = _model.DefaultValue;
-            
-            OnChanged?.Invoke();
-        }
+        public override void LoadModelData()
+            => SetValue(_model.CustomCursor, true);
 
         public void SetValue(bool customCursor, bool notify)
         {

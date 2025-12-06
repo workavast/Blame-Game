@@ -6,40 +6,24 @@ namespace Avastrad.Settings.Localization
 {
     public class LocalizationSettingViewModel : SettingViewModel<LocalizationSettingModel>
     {
+        public override bool HasChanged => _model.SelectedOptionIndex != SelectedOptionIndex;
         public int SelectedOptionIndex { get; private set; }
         public IReadOnlyList<Locale> Options => _model.Options;
-        public int DefaultOptionIndex => _model.DefaultOptionIndex;
-        public override bool HasChanged => _model.SelectedOptionIndex != SelectedOptionIndex;
 
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            SelectedOptionIndex = _model.SelectedOptionIndex;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            _model.Set(SelectedOptionIndex);
-        }
-        
-        public override void ResetSettings()
-        {
-            SelectedOptionIndex = _model.SelectedOptionIndex;
-            OnChanged?.Invoke();
-        }
+        public override void SetToModel() 
+            => _model.Set(SelectedOptionIndex);
 
-        public override void ResetToDefault()
-        {
-            if (SelectedOptionIndex == DefaultOptionIndex)
-                return;
+        public override void ResetSetting() 
+            => Set(_model.SelectedOptionIndex, true);
 
-            SelectedOptionIndex = DefaultOptionIndex;
-            ApplySettings();
+        public override void LoadModelData()
+            => Set(_model.SelectedOptionIndex, true);
 
-            OnChanged?.Invoke();
-        }
-        
         public void Set(int optionIndex, bool notify)
         {
             SelectedOptionIndex = optionIndex;

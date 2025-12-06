@@ -5,8 +5,8 @@ namespace Avastrad.Settings
         public bool HasChanged { get; }
 
         public void Initialize(SettingsModel settingsModel);
-        public void ApplySettings();
-        public void ResetSettings();
-        public void ResetToDefault();
+        public void SetToModel();
+        public void ResetSetting();
+        public void LoadModelData();
     }
 }

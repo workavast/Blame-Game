@@ -17,8 +17,8 @@ namespace Avastrad.Settings
 
         protected abstract void Initialize();
 
-        public abstract void ApplySettings();
-        public abstract void ResetSettings();
-        public abstract void ResetToDefault();
+        public abstract void SetToModel();
+        public abstract void ResetSetting();
+        public abstract void LoadModelData();
     }
 }

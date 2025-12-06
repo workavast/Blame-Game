@@ -53,10 +53,17 @@ namespace Avastrad.Settings
             SettingsSaver.Save(states);
         }
 
-        public void Apply()
+        public void Apply(bool force)
         {
             foreach (var settings in _allSettings)
-                settings.Apply();
+                if (force || settings.HasChanged) 
+                    settings.Apply();
+        }
+        
+        public void ResetToDefault()
+        {
+            foreach (var setting in _allSettings) 
+                setting.ResetToDefault();
         }
     }
 }

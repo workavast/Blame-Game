@@ -23,31 +23,26 @@ namespace Avastrad.Settings.Volume
             EffectsVolume = _model.EffectsVolume;
         }
 
-        public override void ApplySettings()
+        public override void SetToModel()
         {
             _model.SetVolume(SettingsVolumeType.Master, MasterVolume);
             _model.SetVolume(SettingsVolumeType.Effects, EffectsVolume);
             _model.SetVolume(SettingsVolumeType.Music, MusicVolume);
         }
 
-        public override void ResetSettings()
+        public override void ResetSetting()
         {
             MasterVolume = _model.MasterVolume; 
             EffectsVolume = _model.EffectsVolume;
             MusicVolume = _model.MusicVolume;
-            ApplySettings();
-            _model.Apply();
-            
             OnChanged?.Invoke();
         }
 
-        public override void ResetToDefault()
+        public override void LoadModelData()
         {
-            MasterVolume = _model.DefaultMasterVolume; 
-            EffectsVolume = _model.DefaultEffectsVolume;
-            MusicVolume = _model.DefaultMusicVolume;
-            ApplySettings();
-            
+            MasterVolume = _model.MasterVolume; 
+            EffectsVolume = _model.EffectsVolume;
+            MusicVolume = _model.MusicVolume;
             OnChanged?.Invoke();
         }
 

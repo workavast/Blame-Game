@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Avastrad.Settings.Resolution
 {
-    [Serializable]
     public class ResolutionSettingModel : ISettingModel
     {
         public int SelectedResolutionIndex { get; private set; }
         public bool SpecialResolution { get; private set; }
-        
+        public bool HasChanged { get; private set; }
+
         public int Priority => _config.Priority;
         public InspectorResolution MonitorResolution { get; private set; }
         public int DefaultResolutionIndex { get; private set; }
@@ -37,12 +37,22 @@ namespace Avastrad.Settings.Resolution
             SelectedResolutionIndex = DefaultResolutionIndex;
         }
 
+        public void Set(int resolutionIndex)
+        {
+            HasChanged = true;
+            SelectedResolutionIndex = resolutionIndex;
+        }
+
         public void Apply()
         {
             var selectedResolution = Resolutions[SelectedResolutionIndex];
             Screen.SetResolution(selectedResolution.Width, selectedResolution.Height, Screen.fullScreen);
+            HasChanged = false;
         }
 
+        public void ResetToDefault() 
+            => Set(DefaultResolutionIndex);
+        
         public Type GetStateType() 
             => typeof(SettingState);
 
@@ -52,12 +62,9 @@ namespace Avastrad.Settings.Resolution
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            SelectedResolutionIndex = state.SelectedResolutionIndex;
+            Set(state.SelectedResolutionIndex);
             SpecialResolution = state.SpecialResolution;
         }
-
-        public void Set(int resolutionIndex) 
-            => SelectedResolutionIndex = resolutionIndex;
 
         public void Load(ResolutionSettingModel model)
         {

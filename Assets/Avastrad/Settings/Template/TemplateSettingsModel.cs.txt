@@ -5,6 +5,7 @@ namespace Avastrad.Settings.Template
     public class TemplateSettingsModel : ISettingModel
     {
         public float Value { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public float DefaultValue => _config.DefaultValue;
@@ -21,17 +22,17 @@ namespace Avastrad.Settings.Template
         public void SetValue(float value)
         {
             Value = value;
+            HasChanged = true;
         }
         
         public void Apply()
         {
             //apply value to some system, if it required
+            HasChanged = false;
         }
         
-        public void ResetToDefault()
-        {
-            Value = DefaultValue;
-        }
+        public void ResetToDefault() 
+            => SetValue(DefaultValue);
 
         public Type GetStateType() 
             => typeof(SettingState);
@@ -41,7 +42,8 @@ namespace Avastrad.Settings.Template
 
         public void LoadState(ISettingState genericState)
         {
-            throw new NotImplementedException();
+            var state = (SettingState)genericState;
+            SetValue(state.Value);
         }
 
         private struct SettingState : ISettingState

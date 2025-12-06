@@ -6,6 +6,7 @@ namespace Avastrad.Settings.ScreenMode
     public class ScreenModeSettingModel : ISettingModel
     {
         public bool IsFullScreen { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public bool DefaultIsFullScreen => _config.DefaultIsFullScreen;
@@ -18,11 +19,17 @@ namespace Avastrad.Settings.ScreenMode
             IsFullScreen = DefaultIsFullScreen;
         }
 
-        public void Set(bool isFullScreen) 
-            => IsFullScreen = isFullScreen;
+        public void Set(bool isFullScreen)
+        {
+            HasChanged = true;
+            IsFullScreen = isFullScreen;
+        }
 
-        public void Apply() 
-            => Screen.fullScreen = IsFullScreen;
+        public void Apply()
+        {
+            HasChanged = false;
+            Screen.fullScreen = IsFullScreen;
+        }
 
         public void ResetToDefault()
             => Set(DefaultIsFullScreen);
@@ -36,7 +43,7 @@ namespace Avastrad.Settings.ScreenMode
         public void LoadState(ISettingState genericState)
         {
             var state = (ScreenModeSettingState)genericState;
-            IsFullScreen = state.IsFullScreen;
+            Set(state.IsFullScreen);
         }
         
         private struct ScreenModeSettingState : ISettingState

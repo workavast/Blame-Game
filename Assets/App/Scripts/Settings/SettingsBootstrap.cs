@@ -13,7 +13,7 @@ namespace App.Settings
         protected override Task SelfInitialization()
         {
             _settingsModel.TryLoad();
-            _settingsModel.Apply();
+            _settingsModel.Apply(true);
 
             return Task.CompletedTask;
         }

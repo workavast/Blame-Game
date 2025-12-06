@@ -8,9 +8,9 @@ namespace Avastrad.Settings.Brightness
     public class BrightnessSettingModel : ISettingModel
     {
         public float Value { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
-        
         public VolumeProfile DefaultVolume => _config.DefaultVolume;
         public float DefaultValue => _config.DefaultValue;
         public float MinValue => _config.MinValue;
@@ -27,29 +27,32 @@ namespace Avastrad.Settings.Brightness
 
         public void SetValue(float value)
         {
-            Value =  Mathf.Clamp(value, _config.MinValue, _config.MaxValue);
+            Value = Mathf.Clamp(value, _config.MinValue, _config.MaxValue);
+            HasChanged = true;
         }
-        
+
         public void SetTemporary(float value)
         {
             value = Mathf.Clamp(value, _config.MinValue, _config.MaxValue);
             Apply(value);
+            HasChanged = true;
         }
         
-        public void Apply() 
-            => Apply(Value);
+        public void Apply()
+        {
+            Apply(Value);
+            HasChanged = false;
+        }
 
+        public void ResetToDefault() 
+            => SetValue(DefaultValue);
+        
         private void Apply(float value)
         {
             if (DefaultVolume.TryGet(typeof(ColorAdjustments), out ColorAdjustments ca)) 
                 ca.postExposure.value = value;
         }
-        
-        public void ResetToDefault()
-        {
-            Value = DefaultValue;
-        }
-        
+
         public Type GetStateType() 
             => typeof(SettingState);
 
@@ -59,7 +62,7 @@ namespace Avastrad.Settings.Brightness
         public void LoadState(ISettingState genericState)
         {
             var state = (SettingState)genericState;
-            Value = state.Value;
+            SetValue(state.Value);
         }
         
         private struct SettingState : ISettingState

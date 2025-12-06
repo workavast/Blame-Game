@@ -5,38 +5,24 @@ namespace Avastrad.Settings.Resolution
 {
     public class ResolutionSettingViewModel : SettingViewModel<ResolutionSettingModel>
     {
+        public override bool HasChanged => SelectedResolutionIndex != _model.SelectedResolutionIndex;
         public int SelectedResolutionIndex { get; private set; }
         public IReadOnlyList<InspectorResolution> Resolutions => _model.Resolutions;
-        public override bool HasChanged => SelectedResolutionIndex != _model.SelectedResolutionIndex;
-        
-        private int DefaultResolutionIndex => _model.DefaultResolutionIndex;
 
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            SelectedResolutionIndex = _model.SelectedResolutionIndex;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            if (!HasChanged)
-                return;
-            
-            _model.Set(SelectedResolutionIndex);
-        }
-        
-        public override void ResetSettings() 
+        public override void SetToModel() 
+            => _model.Set(SelectedResolutionIndex);
+
+        public override void ResetSetting() 
             => Set(_model.SelectedResolutionIndex, true);
 
-        public override void ResetToDefault()
-        {
-            Set(DefaultResolutionIndex, false);
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
-        
+        public override void LoadModelData()
+            => Set(_model.SelectedResolutionIndex, true);
+
         public void Set(int resolutionIndex, bool notify)
         {
             if (SelectedResolutionIndex == resolutionIndex)

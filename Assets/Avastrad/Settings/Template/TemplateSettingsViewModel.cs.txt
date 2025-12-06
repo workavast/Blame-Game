@@ -11,37 +11,20 @@ namespace Avastrad.Settings.Template
         public event Action OnChanged;
 
         protected override void Initialize()
-        {
-            Value = _model.Value;
-        }
+            => LoadModelData();
 
-        public override void ApplySettings()
-        {
-            _model.SetValue(Value);
-        }
+        public override void SetToModel() 
+            => _model.SetValue(Value);
 
-        public override void ResetSettings()
-        {
-            Value = _model.Value;
-            
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void ResetSetting() 
+            => SetValue(_model.Value, true);
 
-        public override void ResetToDefault()
-        {
-            Value = _model.DefaultValue;
-
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void LoadModelData()
+            => SetValue(_model.Value, true);
 
         public void SetValue(float value, bool notify)
         {
             Value = value;
-
             if (notify)
                 OnChanged?.Invoke();
         }
