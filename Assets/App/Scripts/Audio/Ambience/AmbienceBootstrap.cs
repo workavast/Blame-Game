@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using App.Audio.Ambience.Effects;
 using App.Bootstraps;
@@ -11,7 +12,7 @@ namespace App.Audio.Ambience
         [SerializeField] private AmbienceInitializer ambienceInitializer;
         [SerializeField] private List<AmbienceEffectorToggler> effectorTogglers; 
 
-        protected override Task SelfInitialization()
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
             ambienceInitializer.Init();
             foreach (var effectorToggler in effectorTogglers)

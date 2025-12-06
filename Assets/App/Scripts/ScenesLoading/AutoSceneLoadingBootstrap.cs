@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using App.ScenesReferencing;
 using Avastrad.ScenesLoading;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace App.Bootstraps
         
         [Inject] private readonly ISceneLoader _sceneLoader;
 
-        protected override Task SelfInitialization()
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
             _sceneLoader.LoadScene(sceneForLoading.SceneIndex, showLoadingScreenInstantly);
             

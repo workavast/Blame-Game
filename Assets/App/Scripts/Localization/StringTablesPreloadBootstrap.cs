@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using App.Bootstraps;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 
 namespace App.Localization
 {
@@ -14,14 +11,13 @@ namespace App.Localization
     {
         [SerializeField] private StringTablesPreloader preloader;
 
-        protected override Task SelfInitialization()
-        {
-            return preloader.Preload();
-        }
-        
-        private void OnDestroy()
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
+            => preloader.Preload();
+
+        protected override void OnDestroy()
         {
             preloader.Release();
+            base.OnDestroy();
         }
     }
 }

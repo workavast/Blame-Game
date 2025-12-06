@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using App.Bootstraps;
 using Zenject;
 
@@ -8,7 +9,7 @@ namespace App.LevelManagement
     {
         [Inject] private readonly LevelStorage _levelStorage;
 
-        protected override Task SelfInitialization()
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
             _levelStorage.LevelUp();
             return Task.CompletedTask;

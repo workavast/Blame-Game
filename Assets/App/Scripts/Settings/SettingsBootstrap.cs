@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using App.Bootstraps;
 using Avastrad.Settings;
-using Avastrad.Settings.Save;
 using Zenject;
 
 namespace App.Settings
@@ -10,7 +10,7 @@ namespace App.Settings
     {
         [Inject] private readonly SettingsModel _settingsModel;
 
-        protected override Task SelfInitialization()
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
             _settingsModel.TryLoad();
             _settingsModel.Apply(true);
