@@ -48,14 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 5047102358424169268, guid: f0e12bb08cde19a408b78ccaa4a6316a, type: 3}
-  rocketsCount: 5
+  rocketsCount: 6
   randomInterval: 0.5
   minDistance: 5
   maxDistance: 15
   height: 25
   explosionRadius: 5
   moveSpeed: 35
-  seed: 0
 --- !u!114 &8440447385563137795
 MonoBehaviour:
   m_ObjectHideFlags: 0
