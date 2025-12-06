@@ -1,6 +1,9 @@
-﻿using App.Ecs.Experience.ExpOrb;
-using App.Ecs.SystemGroups;
+﻿using App.Ecs.Death;
+using App.Ecs.Health;
+using App.Ecs.Moving;
+using App.Ecs.Randomisation;
 using App.Ecs.Utils;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -28,13 +31,42 @@ namespace App.Ecs.Experience.ExpDropping
         public float Value;
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct ExpOrbDropSystem : ISystem
+    [UpdateInGroup(typeof(DeathSystemGroup))]
+    public partial struct ExpOrbCallSpawnSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<ExpTag>();
-            state.RequireForUpdate<SingletonRandom>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
+            
+            foreach (var (transform, health, expOrbDropper) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, RefRO<ExpOrbDropper>>())
+            {
+                if (health.ValueRO.Value <= 0)
+                {
+                    expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
+                    {
+                        OrbsCount = expOrbDropper.ValueRO.OrbsCount,
+                        Position = transform.ValueRO.Position
+                    });
+                }
+            }
+        }
+    }
+    
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateAfter(typeof(DeathSystemGroup))]
+    public partial struct ExpOrbSpawnSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<ExpTag>();
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -43,9 +75,8 @@ namespace App.Ecs.Experience.ExpDropping
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
-            var random = SystemAPI.GetSingletonRW<SingletonRandom>().ValueRW.Random;
-
             var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
+            var randomHolder = SystemAPI.GetComponentRW<RandomHolder>(expEntity);
             var orbPrefabHolder = SystemAPI.GetComponent<ExpOrbPrefabHolder>(expEntity);
             var requestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
             var dropImpulse = SystemAPI.GetComponent<ExpOrbDropImpulse>(expEntity);
@@ -59,7 +90,7 @@ namespace App.Ecs.Experience.ExpDropping
 
                 for (var j = 0; j < spawnExpOrbsRequest.OrbsCount; j++)
                 {
-                    var direction = RandomPosition.GetDirection(ref random);
+                    var direction = RandomPosition.GetDirection(ref randomHolder.ValueRW.Random);
                     var orb = ecb.Instantiate(orbPrefabHolder.OrbPrefab);
 
                     ecb.SetComponent(orb, LocalTransform.FromPosition(spawnPoint));

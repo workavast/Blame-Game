@@ -8,7 +8,7 @@ namespace App.Audio
 {
     public class AudioProjectInstaller : MonoInstaller
     {
-        [SerializeField] private VolumeSettingsConfig volumeSettingsConfig;
+        [SerializeField] private VolumeSettingConfig volumeSettingConfig;
         
         public override void InstallBindings()
         {
@@ -21,7 +21,7 @@ namespace App.Audio
             var ambienceManager = ambienceManagerHolder.AddComponent<AmbienceManager>();
 
             Container.Bind<AmbienceManager>().FromInstance(ambienceManager).AsSingle();
-            Container.Bind<SettingsAudioApplier>().FromNew().AsSingle().WithArguments(volumeSettingsConfig).NonLazy();
+            Container.Bind<SettingsAudioApplier>().FromNew().AsSingle().WithArguments(volumeSettingConfig).NonLazy();
         }
     }
 }

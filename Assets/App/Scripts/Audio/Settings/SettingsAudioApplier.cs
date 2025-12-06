@@ -6,17 +6,17 @@ namespace App.Audio.Settings
 {
     public class SettingsAudioApplier
     {
-        private readonly VolumeSettingsModel _volumeSettingsModel;
+        private readonly VolumeSettingModel _volumeSettingModel;
         private readonly AudioVolumeChanger _audioVolumeChanger;
         
-        public SettingsAudioApplier(SettingsModel settingsModel, VolumeSettingsConfig config)
+        public SettingsAudioApplier(SettingsModel settingsModel, VolumeSettingConfig config)
         {
-            _volumeSettingsModel = settingsModel.VolumeSettingsModel;
+            _volumeSettingModel = settingsModel.GetSettingModel<VolumeSettingModel>();
             _audioVolumeChanger = new AudioVolumeChanger(config.AudioMixer, config.MasterParam, config.EffectsParam,
                 config.MusicParam);
             
-            _volumeSettingsModel.OnApply += ApplySettings;
-            _volumeSettingsModel.OnTempApply += ApplyTempValues;
+            _volumeSettingModel.OnApply += ApplySettings;
+            _volumeSettingModel.OnTempApply += ApplyTempValues;
         }
 
         private void ApplyTempValues(SettingsVolumeType settingsVolumeType, float volume)
@@ -26,9 +26,9 @@ namespace App.Audio.Settings
 
         private void ApplySettings()
         {
-            _audioVolumeChanger.SetVolume(VolumeType.Master, _volumeSettingsModel.MasterVolume);
-            _audioVolumeChanger.SetVolume(VolumeType.Effects, _volumeSettingsModel.EffectsVolume);
-            _audioVolumeChanger.SetVolume(VolumeType.Music, _volumeSettingsModel.MusicVolume);
+            _audioVolumeChanger.SetVolume(VolumeType.Master, _volumeSettingModel.MasterVolume);
+            _audioVolumeChanger.SetVolume(VolumeType.Effects, _volumeSettingModel.EffectsVolume);
+            _audioVolumeChanger.SetVolume(VolumeType.Music, _volumeSettingModel.MusicVolume);
         }
     }
 }

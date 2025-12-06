@@ -1,6 +1,10 @@
-﻿using App.Ecs.Bullets;
+﻿using App.Ecs.Attack;
+using App.Ecs.Bullets;
+using App.Ecs.Moving;
 using App.Ecs.Player;
+using App.Ecs.Randomisation;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -46,35 +50,39 @@ namespace App.Ecs.Enemies.GunnerBot
     }
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(RandomInitializer))]
     public partial struct GunnerBotOffsetInitializeSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SingletonRandom>();
+            state.RequireForUpdate<GunnerBotTag>();
         }
-
+        
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (offsetInitializedFlag, data, offsetData) in 
-                     SystemAPI.Query<EnabledRefRW<GunnerBotOffsetInitializedFlag>, RefRW<GunnerBotData>, RefRW<GunnerBotOffsetData>>()
-                         .WithAll<GunnerBotOffsetInitializedFlag, GunnerBotTag>())
+            foreach (var (offsetInitializedFlag, data, 
+                         offsetData, randomHolder) in 
+                     SystemAPI.Query<EnabledRefRW<GunnerBotOffsetInitializedFlag>, RefRW<GunnerBotData>, 
+                             RefRW<GunnerBotOffsetData>, RefRW<RandomHolder>>()
+                         .WithAll<GunnerBotTag>())
             {
-                var random = SystemAPI.GetSingletonRW<SingletonRandom>();
-                data.ValueRW.Offset = random.ValueRW.Random.NextFloat(offsetData.ValueRO.MinOffset, offsetData.ValueRO.MaxOffset);
-                offsetInitializedFlag.ValueRW = true;
+                data.ValueRW.Offset = randomHolder.ValueRW.Random.NextFloat(offsetData.ValueRO.MinOffset, offsetData.ValueRO.MaxOffset);
+                offsetInitializedFlag.ValueRW = false;
             }
         }
     }
     
     [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    [UpdateBefore(typeof(AutoMoveSystem))]
+    [UpdateBefore(typeof(DefaultMoveSystem))]
     public partial struct GunnerBotHoldDistanceSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<GunnerBotTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
@@ -87,10 +95,10 @@ namespace App.Ecs.Enemies.GunnerBot
         private void MoveToTargetZone(ref SystemState state, LocalTransform playerTransform)
         {
             foreach (var (transform, moveDirection, data, inZone) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag>()
-                         .WithNone<AutoMoveTag>()
+                         .WithNone<DefaultMoveTag>()
                          .WithDisabled<GunnerBotInZoneFlag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
@@ -117,10 +125,10 @@ namespace App.Ecs.Enemies.GunnerBot
         private void StayInZone(ref SystemState state, LocalTransform playerTransform)
         {
             foreach (var (transform, moveDirection, data, inZoneFlag) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRW<MoveDirection>, RefRO<GunnerBotData>, 
                              EnabledRefRW<GunnerBotInZoneFlag>>()
                          .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
-                         .WithNone<AutoMoveTag>())
+                         .WithNone<DefaultMoveTag>())
             {
                 var distance = math.distance(playerTransform.Position, transform.ValueRO.Position);
 
@@ -151,8 +159,10 @@ namespace App.Ecs.Enemies.GunnerBot
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<GunnerBotTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
@@ -165,13 +175,10 @@ namespace App.Ecs.Enemies.GunnerBot
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
-                
-                var bullet = ecb.Instantiate(bulletData.ValueRO.BulletPrefab);
-                var bulletSpawnPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet,
-                    LocalTransform.FromPositionRotation(bulletSpawnPosition, transform.ValueRO.Rotation));
-                
-                BulletBuilder.Build(ref ecb, ref bullet, bulletData);
+
+                var bulletPrefab = bulletData.ValueRO.BulletPrefab;
+                var bulletPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
+                BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, transform.ValueRO.Rotation);
             }
         }
     }

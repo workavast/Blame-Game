@@ -1,8 +1,23 @@
-﻿using Unity.Collections;
+﻿using App.Ecs.SystemGroups;
+using Unity.Collections;
 using Unity.Entities;
 
 namespace App.Ecs.Sound
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(InitOffSystemGroup))]
+    public partial class SfxStartLoadSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(SfxStartLoadSystemGroup))]
+    public partial class SfxSetSystemGroup : ComponentSystemGroup
+    {
+        
+    }
+    
     public struct SfxLoadStartedTag : IComponentData
     {
         
@@ -13,14 +28,18 @@ namespace App.Ecs.Sound
         
     }
     
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(ViewInstallSystemGroup))]
-    public abstract partial class SfxInitializeSystem<TSfxData, TTag> : SystemBase
+    [UpdateInGroup(typeof(SfxStartLoadSystemGroup))]
+    public abstract partial class SfxStartLoadSystem<TSfxData> : SystemBase
         where TSfxData : unmanaged, IComponentData
-        where TTag : unmanaged, IComponentData
     {
         protected override void OnCreate()
         {
+            var query = GetEntityQuery(
+                ComponentType.ReadWrite<TSfxData>(),
+                ComponentType.Exclude<SfxLoadStartedTag>()
+            );
+            
+            RequireForUpdate(query);
             RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -31,7 +50,6 @@ namespace App.Ecs.Sound
             
             var query = GetEntityQuery(
                 ComponentType.ReadWrite<TSfxData>(),
-                ComponentType.ReadOnly<TTag>(),
                 ComponentType.Exclude<SfxLoadStartedTag>()
             );
             

@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471696479103966725}
+  - component: {fileID: -7081423945588091134}
   - component: {fileID: 926852454929210646}
-  - component: {fileID: 1384335209961638700}
-  - component: {fileID: -8812144846451714992}
+  - component: {fileID: -3357713794554249300}
+  - component: {fileID: -5295759170767767967}
+  - component: {fileID: 8039948690888372479}
+  - component: {fileID: -7896084038192709650}
   m_Layer: 0
   m_Name: ECS_StarShooter
   m_TagString: Untagged
@@ -34,6 +37,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7081423945588091134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 1479741128470322390
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 281974976
+            y: 1288845239
+            z: 3905311629
+            w: 1958158132
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &926852454929210646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,14 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc0175b2f79451db1aca81296475101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 609897343643812836, guid: 2e5aaf766f17bf345b6d8c6ca41e7b10, type: 3}
-  spawnVerticalOffset: 1
-  damage: 5
-  moveSpeed: 15
-  shootPause: 1
   bulletsCount: 7
-  penetration: 0
---- !u!114 &1384335209961638700
+--- !u!114 &-3357713794554249300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,11 +84,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 719000234346042645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2aca0bfac5445279c3f0e0fb4a4d968, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f79814f8c7941808f9a2022f14aefea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooterSfxView: {fileID: 8534289003875197159, guid: 0c89ec017b732dc4d8356c8e43f17b47, type: 3}
-  shootSfxRef:
+  bulletPrefab: {fileID: 609897343643812836, guid: 2e5aaf766f17bf345b6d8c6ca41e7b10, type: 3}
+  damage: 5
+  penetration: 0
+  moveSpeed: 15
+  spawnVerticalOffset: 1
+  hasDamageScale: 1
+  hasPenetrationScale: 1
+--- !u!114 &-5295759170767767967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
+  haveRateScale: 1
+--- !u!114 &8039948690888372479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebdf449350c48b2b957abb57d9ec884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7896084038192709650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab0a865145149a7867e5c26bf04f008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxRef:
     Id:
       GlobalId:
         SceneObjectIdentifier0: -1465399079000597387
@@ -79,15 +145,3 @@ MonoBehaviour:
             w: 3239049381
         IdentifierType: 1
       GenerationType: 1
---- !u!114 &-8812144846451714992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719000234346042645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

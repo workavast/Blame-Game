@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f3229723d44b81b1e8667adfc477a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSettingsConfig: {fileID: 11400000, guid: b6c282326d80370439e151cecd263e42, type: 2}
+  volumeSettingConfig: {fileID: 11400000, guid: b6c282326d80370439e151cecd263e42, type: 2}
 --- !u!1 &8845997652791796183
 GameObject:
   m_ObjectHideFlags: 0

@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: Cancel And Close
     m_Metadata:
       m_Items: []
+  - m_Id: 11281354993856512
+    m_Localized: Custom Cursor
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

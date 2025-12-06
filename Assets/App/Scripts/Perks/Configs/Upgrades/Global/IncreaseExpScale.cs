@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Experience;
 using App.Ecs.Player;
+using App.EcsBridges;
 using App.Perks.PerksManagement;
 using UnityEngine;
 
@@ -15,10 +16,10 @@ namespace App.Perks.Configs.Upgrades.Global
 
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsSingletons.GetComponentOfSingletonRO<PlayerTag, ExpScale>();
+            var currentScale = EcsBridge.GetComponentOfSingletonRO<PlayerTag, ExpScale>();
             currentScale.Value += scale;
             
-            EcsSingletons.TrySetComponentOfSingleton<PlayerTag, ExpScale>(currentScale);
+            EcsBridge.TrySetComponentOfSingleton<PlayerTag, ExpScale>(currentScale);
         }
     }
 }

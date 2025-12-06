@@ -1,6 +1,7 @@
 ﻿using App.Ecs.AoeZones;
-using App.Ecs.Clenuping;
+using App.Ecs.Attack;
 using App.Ecs.Enemies;
+using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
@@ -13,32 +14,6 @@ namespace App.Ecs.PlayerPerks.DamageZone
     {
         
     }
-
-    public struct DamageZoneViewHolder : IComponentData
-    {
-        public UnityObjectRef<DamageZoneView> Instance;
-    }
-    
-    public partial class DamageZoneViewInstallerSystem : ViewInstallerSystem<DamageZoneTag>
-    {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new DamageZoneViewHolder() { Instance = instance as DamageZoneView });
-    } 
-    
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct DamageZoneViewUpdateSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (transform, view, radius) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<DamageZoneViewHolder>, RefRO<AoeZoneRadius>>()
-                         .WithAll<DamageZoneTag>())
-            {
-                view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-                view.ValueRO.Instance.Value.SetRadius(radius.ValueRO.Value);
-            }
-        }
-    }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct DamageZoneDamageSystem : ISystem
@@ -46,25 +21,30 @@ namespace App.Ecs.PlayerPerks.DamageZone
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<DamageZoneTag>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
-            var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (zoneTransform, radius, damage, damageScale) in 
-                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<DamageScale>>()
-                         .WithAll<DamageZoneTag>())
+            foreach (var (zoneTransform, radius, 
+                         damage, damageScale, entity) in 
+                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<AoeZoneRadius>, RefRO<AttackDamage>, RefRO<AttackDamageScale>>()
+                         .WithDisabled<AttackCooldown>()
+                         .WithAll<DamageZoneTag>()
+                         .WithEntityAccess())
             {
-                var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value) * deltaTime;
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
+
+                var damageValue = damage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value);
                 foreach (var (enemyTransform, damageBuffer) in SystemAPI
-                             .Query<RefRO<LocalTransform>, DynamicBuffer<DamageFrameBuffer>>()
+                             .Query<RefRO<LocalTransform>, DynamicBuffer<DamageToHealthFrameBuffer>>()
                              .WithAll<EnemyTag>())
                 {
                     if (math.distance(zoneTransform.ValueRO.Position, enemyTransform.ValueRO.Position) <= radius.ValueRO.Value)
-                        damageBuffer.Add(new DamageFrameBuffer() { Value = damageValue });
+                        damageBuffer.Add(new DamageToHealthFrameBuffer() { Value = damageValue });
                 }
             }
         }

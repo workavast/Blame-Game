@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5086404599561293257}
-  - component: {fileID: 1146601655354514938}
+  - component: {fileID: 7858629857318887883}
+  - component: {fileID: -8312296163611023223}
   - component: {fileID: 7583880803962719508}
   m_Layer: 0
   m_Name: ShootView
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1146601655354514938
+--- !u!114 &7858629857318887883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +43,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5620775436016632829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cdaf3c6fde49d09036ca988141602a, type: 3}
+  m_Script: {fileID: 11500000, guid: e6cdffa6f99848d392b2ae2161b6cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: 7583880803962719508}
-  pitchRange: {x: 0.9, y: 1.1}
-  shootSfx: {fileID: 8335031281253095714, guid: 72c2c8cb0756a174db4e013971471868, type: 3}
+--- !u!114 &-8312296163611023223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620775436016632829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5142e906e1b2494f8b07c95ad0a5350a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathPitchRange: {x: 0.9, y: 1.1}
 --- !u!114 &7583880803962719508
 MonoBehaviour:
   m_ObjectHideFlags: 0

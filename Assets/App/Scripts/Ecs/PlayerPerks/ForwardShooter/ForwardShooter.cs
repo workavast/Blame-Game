@@ -1,11 +1,11 @@
-﻿using App.Ecs.Bullets;
-using App.Ecs.Clenuping;
+﻿using App.Ecs.Attack;
+using App.Ecs.Bullets;
 using App.Ecs.Player;
+using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.PlayerPerks.ForwardShooter
 {
@@ -21,35 +21,33 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
+            state.RequireForUpdate<ForwardShooterTag>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
-            
+
             foreach (var (data, damageScale, 
-                         additionalPenetration, sfxView, entity) in 
-                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<DamageScale>,
-                             RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
+                         additionalPenetration, attackViewRequest, entity) in 
+                     SystemAPI.Query<RefRO<BulletInitialData>, RefRO<AttackDamageScale>,
+                             RefRO<AdditionalPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<ForwardShooterTag>()
-                         .WithDisabled<AttackCooldown>()
+                         .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
             {
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
-                
-                var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
-                var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(bulletSpawnPosition, playerTransform.Rotation));
-                
-                
-                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
 
-                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
+                var bulletPrefab = data.ValueRO.BulletPrefab;
+                var bulletPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
+                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, playerTransform.Rotation, damageScale, globalDamageScale, additionalPenetration);
+
+                attackViewRequest.ValueRW = true;
             }
         }
     }

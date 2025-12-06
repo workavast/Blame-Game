@@ -1,12 +1,11 @@
 using System;
-using UnityEngine;
 
-namespace App.Settings.Template
+namespace Avastrad.Settings.Template
 {
-    [Serializable]
-    public class TemplateSettingsModel : ISettingsModel
+    public class TemplateSettingsModel : ISettingModel
     {
-        [field: SerializeField] public float Value { get; private set; }
+        public float Value { get; private set; }
+        public bool HasChanged { get; private set; }
 
         public int Priority => _config.Priority;
         public float DefaultValue => _config.DefaultValue;
@@ -23,21 +22,38 @@ namespace App.Settings.Template
         public void SetValue(float value)
         {
             Value = value;
+            HasChanged = true;
         }
         
         public void Apply()
         {
-            //apply value to the some system, if it required
+            //apply value to some system, if it required
+            HasChanged = false;
+        }
+        
+        public void ResetToDefault() 
+            => SetValue(DefaultValue);
+
+        public Type GetStateType() 
+            => typeof(SettingState);
+
+        public ISettingState GetState() 
+            => new SettingState(this);
+
+        public void LoadState(ISettingState genericState)
+        {
+            var state = (SettingState)genericState;
+            SetValue(state.Value);
         }
 
-        public void ResetToDefault()
+        private struct SettingState : ISettingState
         {
-            Value = DefaultValue;
-        }
+            public float Value { get; set; }
 
-        public void Load(TemplateSettingsModel model)
-        {
-            Value = model.Value;
+            public SettingState(TemplateSettingsModel model)
+            {
+                Value = model.Value;
+            }
         }
     }
 }

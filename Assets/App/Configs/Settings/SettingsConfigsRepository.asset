@@ -16,6 +16,7 @@ MonoBehaviour:
   configsRepositoryCell:
     autoFill: 1
     configs:
+    - {fileID: 11400000, guid: 2f74d2701d05e8e49976ce2104dab5eb, type: 2}
     - {fileID: 11400000, guid: fbfa67fee3815164a8ca97afb1fe58fa, type: 2}
     - {fileID: 11400000, guid: 50fde4e136866b246a7c0b54b204bd11, type: 2}
     - {fileID: 11400000, guid: 14ae4d9b24b69074f93375edbed16de3, type: 2}

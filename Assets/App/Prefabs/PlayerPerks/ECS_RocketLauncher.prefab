@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4265581567283410751}
   - component: {fileID: 7488058628797259467}
-  - component: {fileID: 2557838843244079044}
+  - component: {fileID: 8440447385563137795}
+  - component: {fileID: 3866568303860793416}
+  - component: {fileID: 7855151480677827190}
   m_Layer: 0
   m_Name: ECS_RocketLauncher
   m_TagString: Untagged
@@ -46,17 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 5047102358424169268, guid: f0e12bb08cde19a408b78ccaa4a6316a, type: 3}
-  rocketsCount: 5
-  damage: 25
-  interval: 5
+  rocketsCount: 6
   randomInterval: 0.5
   minDistance: 5
   maxDistance: 15
   height: 25
   explosionRadius: 5
   moveSpeed: 35
-  seed: 0
---- !u!114 &2557838843244079044
+--- !u!114 &8440447385563137795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,6 +64,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 5165562416961467058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 5
+  haveRateScale: 1
+--- !u!114 &3866568303860793416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165562416961467058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDamage: 25
+  hasDamageScale: 1
+--- !u!114 &7855151480677827190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165562416961467058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3256c30889754c2780b2022243c670da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

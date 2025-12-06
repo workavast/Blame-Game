@@ -1,4 +1,6 @@
 ﻿using App.Ecs;
+using App.Ecs.Shooting;
+using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -15,10 +17,10 @@ namespace App.Perks.Configs.Upgrades
         
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentCount = EcsSingletons.GetComponentOfSingletonRO<TTag, AdditionalProjectilesCount>();
+            var currentCount = EcsBridge.GetComponentOfSingletonRO<TTag, AdditionalProjectilesCount>();
             currentCount.Value += additionalProjectilesCount;
             
-            EcsSingletons.TrySetComponentOfSingleton<TTag, AdditionalProjectilesCount>(currentCount);
+            EcsBridge.TrySetComponentOfSingleton<TTag, AdditionalProjectilesCount>(currentCount);
         }
     }
 }

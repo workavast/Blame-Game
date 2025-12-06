@@ -5,20 +5,13 @@ namespace App.Ecs.Enemies.MeleeBot
 {
     public class MeleeBotAuthoring : MonoBehaviour
     {
-        [SerializeField] private float damage;
-        [SerializeField] private float attackCooldown;
-        
         private class Baker : Baker<MeleeBotAuthoring>
         {
             public override void Bake(MeleeBotAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.Dynamic);
+                var entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new MeleeBotTag());
-                AddComponent(entity, new AttackDamage() { Value = authoring.damage });
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.attackCooldown });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.attackCooldown });
-                AddComponent(entity, new AutoMoveTag());
             }
         }
     }

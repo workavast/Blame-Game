@@ -1,5 +1,4 @@
-﻿using Unity.Burst;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 
@@ -10,7 +9,6 @@ namespace App.Ecs
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial struct PhysicsMassInitializeSystem : ISystem
     {
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (physicsMass, flag) in 

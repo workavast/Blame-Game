@@ -1,27 +1,23 @@
-﻿using App.Ecs.Bullets;
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
 
 namespace App.Ecs.Enemies.GunnerBot
 {
     public class GunnerBotAuthoring : MonoBehaviour
     {
-        [SerializeField] private BulletAuthoring bulletPrefab;
-        [SerializeField] private float damage;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private int penetration;
-        [SerializeField] private float spawnVerticalOffset;
-        [Space]
+        [Header("random offset of hold position range")]
         [SerializeField] private float minOffset;
         [SerializeField] private float maxOffset;
-
+        [Space]
+        [Header("Range of the hold position zone, when bot in zone")]
         [SerializeField] private float minDistance;
         [SerializeField] private float maxDistance;
+        [Space]
+        [Header("Range of the hold position zone, when bot not in zone")]
         [SerializeField] private float minTarget;
         [SerializeField] private float maxTarget;
-        [SerializeField] private float shootCooldown;
         
-        private class KamikazeBaker : Baker<GunnerBotAuthoring>
+        private class Baker : Baker<GunnerBotAuthoring>
         {
             public override void Bake(GunnerBotAuthoring authoring)
             {
@@ -45,18 +41,6 @@ namespace App.Ecs.Enemies.GunnerBot
                     
                     Offset = Random.Range(0f, 3f)
                 });
-                
-                AddComponent(entity, new BulletInitialData()
-                {
-                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    Damage = authoring.damage,
-                    MoveSpeed = authoring.moveSpeed,
-                    Penetration = authoring.penetration,
-                    SpawnVerticalOffset = authoring.spawnVerticalOffset
-                });
-                
-                AddComponent(entity, new DefaultAttackCooldown() {Timer = authoring.shootCooldown});
-                AddComponent(entity, new AttackCooldown() {Timer = authoring.shootCooldown});
             }
         }
     }

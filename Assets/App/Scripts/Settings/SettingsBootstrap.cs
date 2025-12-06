@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using App.Bootstraps;
 using Avastrad.Settings;
+using Avastrad.Settings.Save;
 using Zenject;
 
 namespace App.Settings
@@ -11,9 +12,8 @@ namespace App.Settings
 
         protected override Task SelfInitialization()
         {
-            if (SettingsSaver.Exist()) 
-                _settingsModel.Load(SettingsSaver.Load());
-            _settingsModel.Apply();
+            _settingsModel.TryLoad();
+            _settingsModel.Apply(true);
 
             return Task.CompletedTask;
         }

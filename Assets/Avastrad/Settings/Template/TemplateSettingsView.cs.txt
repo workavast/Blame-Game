@@ -1,17 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Settings.Template
+namespace Avastrad.Settings.Template
 {
-    public class TemplateSettingsView : MonoBehaviour, ISettingsView
+    public class TemplateSettingsView : MonoBehaviour, ISettingView
     {
         [SerializeField] private TemplateSettingsViewModel viewModel;
         [SerializeField] private Slider slider;
         
-        public void Initialize()
-        {
-            UpdateView();
-        }
+        public void Initialize() 
+            => UpdateView();
 
         public void OnEnabledManual()
         {

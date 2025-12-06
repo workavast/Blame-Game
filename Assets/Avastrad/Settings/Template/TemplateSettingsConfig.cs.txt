@@ -1,11 +1,14 @@
 using UnityEngine;
 
-namespace App.Settings.Template
+namespace Avastrad.Settings.Template
 {
     [CreateAssetMenu(fileName = nameof(TemplateSettingsConfig),
         menuName = Consts.ConfigsPath + "Settings/" + nameof(TemplateSettingsConfig))]
-    public class TemplateSettingsConfig : SettingsConfig
+    public class TemplateSettingsConfig : SettingConfig
     {
         [field: SerializeField] public float DefaultValue { get; private set; }
+        
+        public override ISettingModel CreateModel() 
+            => new TemplateSettingsModel(this);
     }
 }

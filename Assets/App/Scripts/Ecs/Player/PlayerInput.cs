@@ -1,4 +1,6 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Looking;
+using App.Ecs.Moving;
+using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 

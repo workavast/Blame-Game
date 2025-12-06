@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400830749089235023}
+  - component: {fileID: 204315825799570941}
   - component: {fileID: 6450978080292737787}
   - component: {fileID: 6847017654185076457}
-  - component: {fileID: -5428802117278905021}
+  - component: {fileID: 5063868720592035739}
+  - component: {fileID: -1499143068213774012}
   - component: {fileID: 5260437685003879534}
   m_Layer: 8
   m_Name: ECS_DamageZone
@@ -36,6 +38,31 @@ Transform:
   - {fileID: 916656310971082699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204315825799570941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815417730963370890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: -2191656751336819318
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 2956627081
+            y: 1252923543
+            z: 2694233272
+            w: 4261224002
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &6450978080292737787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,20 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d340180566264a6099b60726d5435cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
-  prefab:
-    Id:
-      GlobalId:
-        SceneObjectIdentifier0: 4582370686019908126
-        SceneObjectIdentifier1: 0
-        AssetGUID:
-          Value:
-            x: 2956627081
-            y: 1252923543
-            z: 2694233272
-            w: 4261224002
-        IdentifierType: 1
-      GenerationType: 1
 --- !u!114 &6847017654185076457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +90,7 @@ MonoBehaviour:
   initialRadius: 0
   targetRadius: 8
   radiusFactor: 1.5
---- !u!114 &-5428802117278905021
+--- !u!114 &5063868720592035739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,9 +99,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3815417730963370890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldown: 0.25
+  haveRateScale: 0
+--- !u!114 &-1499143068213774012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815417730963370890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDamage: 0.8
+  hasDamageScale: 1
 --- !u!135 &5260437685003879534
 SphereCollider:
   m_ObjectHideFlags: 0

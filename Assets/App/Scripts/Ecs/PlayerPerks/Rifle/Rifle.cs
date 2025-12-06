@@ -1,8 +1,9 @@
-﻿using App.Ecs.Bullets;
+﻿using App.Ecs.Attack;
+using App.Ecs.Bullets;
 using App.Ecs.Enemies;
 using App.Ecs.Player;
+using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -17,37 +18,22 @@ namespace App.Ecs.PlayerPerks.Rifle
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct RifleSystem : ISystem
     {
-        private EntityQuery _query;
-        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
-            
-            _query = state.GetEntityQuery(
-                ComponentType.ReadWrite<LocalToWorld>(),
-                ComponentType.ReadWrite<EnemyTag>()
-            );
+            state.RequireForUpdate<EnemyTag>();
+            state.RequireForUpdate<RifleTag>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<DamageScale>(playerEntity);
-            
-            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
-
-            var enemiesEntities = _query.ToEntityArray(Allocator.Temp);
-            var enemiesCount = enemiesEntities.Length;
-
-            if (enemiesCount <= 0)
-                return;
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
 
             var shootPoint = float3.zero;
             var distance = float.MaxValue;
-
             foreach (var enemyTransform in
                      SystemAPI.Query<RefRO<LocalToWorld>>()
                          .WithAll<EnemyTag>())
@@ -59,16 +45,18 @@ namespace App.Ecs.PlayerPerks.Rifle
                     shootPoint = enemyTransform.ValueRO.Position;
                 }
             }
-
+            
+            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
+            
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
-            
             foreach (var (distanceReaction, data, damageScale
-                         , additionalPenetration, sfxView, entity) in
+                         , additionalPenetration, attackViewRequest, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
-                            RefRO<DamageScale>, RefRO<AdditionalPenetration>, RefRO<ShooterSfxViewHolder>>()
+                            RefRO<AttackDamageScale>, RefRO<AdditionalPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<RifleTag>()
-                         .WithDisabled<AttackCooldown>()
+                         .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
             {
                 if (distance > distanceReaction.ValueRO.Value)
@@ -76,14 +64,11 @@ namespace App.Ecs.PlayerPerks.Rifle
 
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
-                var bullet = ecb.Instantiate(data.ValueRO.BulletPrefab);
-                var bulletSpawnPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                ecb.SetComponent(bullet,
-                    LocalTransform.FromPositionRotation(bulletSpawnPosition, rotation));
+                var bulletPrefab = data.ValueRO.BulletPrefab;
+                var bulletPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
+                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, rotation, damageScale, globalDamageScale, additionalPenetration);
                 
-                BulletBuilder.Build(ref ecb, ref bullet, data, damageScale, globalDamageScale, additionalPenetration);
-                
-                sfxView.ValueRO.Instance.Value.PlaySfx(playerTransform.Position);
+                attackViewRequest.ValueRW = true;
             }
         }
     }

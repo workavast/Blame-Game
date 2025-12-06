@@ -1,51 +1,30 @@
 using System;
 using UnityEngine;
-using Zenject;
 
-namespace App.Settings.Template
+namespace Avastrad.Settings.Template
 {
-    public class TemplateSettingsViewModel : MonoBehaviour, ISettingsViewModel
+    public class TemplateSettingsViewModel : SettingViewModel<TemplateSettingsModel>
     {
-        [Inject] private SettingsModel _settingsModel;
-
-        private TemplateSettingsModel Model => new(null);//in real case use => _settingsModel.TemplateSettingsModel;
-        
+        public override bool HasChanged => !Mathf.Approximately(Value, _model.Value);
         public float Value { get; private set; }
 
-        public Action OnChanged;
-        
-        public void Initialize()
-        {
-            Value = Model.Value;
-        }
+        public event Action OnChanged;
 
-        public void ApplySettings()
-        {
-            Model.SetValue(Value);
-        }
+        protected override void Initialize()
+            => LoadModelData();
 
-        public void ResetSettings()
-        {
-            Value = Model.Value;
-            
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void SetToModel() 
+            => _model.SetValue(Value);
 
-        public void ResetToDefault()
-        {
-            Value = Model.DefaultValue;
+        public override void ResetSetting() 
+            => SetValue(_model.Value, true);
 
-            ApplySettings();
-            
-            OnChanged?.Invoke();
-        }
+        public override void LoadModelData()
+            => SetValue(_model.Value, true);
 
         public void SetValue(float value, bool notify)
         {
             Value = value;
-
             if (notify)
                 OnChanged?.Invoke();
         }

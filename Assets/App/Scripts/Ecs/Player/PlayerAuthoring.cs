@@ -1,4 +1,5 @@
-﻿using App.Ecs.Experience;
+﻿using App.Ecs.Attack;
+using App.Ecs.Experience;
 using App.Ecs.Experience.ExpOrb;
 using Unity.Entities;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace App.Ecs.Player
                 AddComponent(entity, new InitializeCameraTargetFlag());
                 AddComponent(entity, new CameraTarget());
                 
-                AddComponent(entity, new DamageScale() { Value = authoring.initialDamageScale });
+                AddComponent(entity, new AttackDamageScale() { Value = authoring.initialDamageScale });
                 AddComponent(entity, new AttackRateScale() { Value = authoring.initialFireScale });
                 AddComponent(entity, new ExpScale() { Value = authoring.initialExpScale });
             }

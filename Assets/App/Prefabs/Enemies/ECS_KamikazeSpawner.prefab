@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6243289181657771591}
+  - component: {fileID: 5434091303801664529}
   - component: {fileID: 5193957859383615895}
-  - component: {fileID: -9099009325826874080}
   m_Layer: 0
   m_Name: ECS_KamikazeSpawner
   m_TagString: Untagged
@@ -33,6 +33,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5434091303801664529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969112924376949529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443c77b3c8994e1db15ce3be82c7ac13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7105407583576499244, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
+  interval: 1
+  distance: 40
+  seed: 123
 --- !u!114 &5193957859383615895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,21 +59,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a160462ddd0a4313b5c516ea5ad79efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 3001960104340552425, guid: 63a23249ed8b5584582b43ff331db2fb, type: 3}
-  interval: 1
-  distance: 40
-  seed: 123
---- !u!114 &-9099009325826874080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5969112924376949529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c6b87719224234b8b8a447f417f610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

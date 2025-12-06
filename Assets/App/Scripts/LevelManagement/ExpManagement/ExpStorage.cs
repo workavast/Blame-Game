@@ -1,6 +1,5 @@
 ﻿using App.Ecs.Experience;
-using App.Ecs.Experience.ExpOrb;
-using UnityEngine;
+using App.EcsBridges;
 
 namespace App.LevelManagement.ExpManagement
 {
@@ -23,7 +22,7 @@ namespace App.LevelManagement.ExpManagement
         
         public bool IsReachExpTarget()
         {
-            if (EcsSingletons.TryGetSingletonRO<PlayerExp>(out var playerExp))
+            if (EcsBridge.TryGetSingletonRO<PlayerExp>(out var playerExp))
             {
                 ExpAmount = playerExp.Value;
                 if (ExpAmount >= ExpTarget)
@@ -36,7 +35,7 @@ namespace App.LevelManagement.ExpManagement
         public void IncreaseExpTarget()
         {
             ExpPrevTarget = ExpTarget;
-            ExpTarget *= _config.ScalePerLevel;
+            ExpTarget += ExpTarget * _config.ScalePerLevel;
         }
     }
 }

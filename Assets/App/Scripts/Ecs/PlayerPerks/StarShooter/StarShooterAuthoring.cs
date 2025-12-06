@@ -1,4 +1,4 @@
-﻿using App.Ecs.Bullets;
+﻿using App.Ecs.Shooting;
 using Unity.Entities;
 using UnityEngine;
 
@@ -6,13 +6,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
 {
     public class StarShooterAuthoring : MonoBehaviour
     {
-        [SerializeField] private BulletAuthoring bulletPrefab;
-        [SerializeField] private float spawnVerticalOffset;
-        [SerializeField] private float damage;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float shootPause;
         [SerializeField] private float bulletsCount;
-        [SerializeField] private int penetration;
         
         private class Baker : Baker<StarShooterAuthoring>
         {
@@ -26,22 +20,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     BulletsCount = authoring.bulletsCount
                 });
                 
-                AddComponent(entity, new DefaultAttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackCooldown() { Timer = authoring.shootPause });
-                AddComponent(entity, new AttackRateScale());
-
                 AddComponent(entity, new AdditionalProjectilesCount());
-                AddComponent(entity, new DamageScale());
-                AddComponent(entity, new AdditionalPenetration());
-                
-                AddComponent(entity, new BulletInitialData()
-                {
-                    BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
-                    SpawnVerticalOffset = authoring.spawnVerticalOffset,
-                    Damage = authoring.damage,
-                    MoveSpeed = authoring.moveSpeed,
-                    Penetration = authoring.penetration
-                });
             }
         }
     }

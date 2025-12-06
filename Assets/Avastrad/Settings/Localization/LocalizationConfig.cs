@@ -7,7 +7,7 @@ using UnityEngine.Localization.Settings;
 namespace Avastrad.Settings.Localization
 {
     [CreateAssetMenu(fileName = nameof(LocalizationConfig), menuName = Consts.ConfigsPath + "Settings/" + nameof(LocalizationConfig))]
-    public class LocalizationConfig : SettingsConfig
+    public class LocalizationConfig : SettingConfig
     {
         public static string GetSystemLocaleCode()
         {
@@ -32,5 +32,8 @@ namespace Avastrad.Settings.Localization
 
         public static IReadOnlyList<Locale> GetLocales() 
             => LocalizationSettings.AvailableLocales.Locales;
+        
+        public override ISettingModel CreateModel() 
+            => new LocalizationSettingModel(this);
     }
 }

@@ -1,10 +1,10 @@
-﻿using App.Audio.Sources;
-using App.Ecs.Clenuping;
-using App.Ecs.Sound;
+﻿using App.Ecs.Attack;
+using App.Ecs.Health;
+using App.Ecs.Moving;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Entities.Content;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
@@ -14,16 +14,6 @@ namespace App.Ecs.Rockets
     public struct RocketTag : IComponentData
     {
         
-    }
-    
-    public struct RocketSfxData : IComponentData
-    {
-        public WeakObjectReference<AudioPoolRelease> SfxPrefab;
-    }
-    
-    public struct RocketViewHolder : IComponentData
-    {
-        public UnityObjectRef<RocketView> Instance;
     }
     
     public struct RocketAwaitTimer : IComponentData, IEnableableComponent
@@ -47,65 +37,14 @@ namespace App.Ecs.Rockets
         
     }
     
-    public partial class RocketViewInitializeSystem : ViewInstallerSystem<RocketTag>
-    {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new RocketViewHolder() { Instance = instance as RocketView });
-    }
-    
-    public partial class RockSfxInitializeSystem : SfxInitializeSystem<RocketSfxData, RocketTag>
-    {
-        protected override void StartLoading(RocketSfxData comp)
-        {
-            comp.SfxPrefab.LoadAsync();
-        }
-    }
-    
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(RockSfxInitializeSystem))]
-    public partial struct RocketSfxSetSystem : ISystem
-    {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
-        }
-
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
-            
-            foreach (var (viewHolder, sfx, entity)  in 
-                     SystemAPI.Query<RefRO<RocketViewHolder>, RefRO<RocketSfxData>>()
-                         .WithAll<RocketTag>()
-                         .WithNone<SfxInitedTag>()
-                         .WithEntityAccess())
-            {
-                ecb.AddComponent(entity, new SfxInitedTag());
-                viewHolder.ValueRO.Instance.Value.SetSfxView(sfx.ValueRO.SfxPrefab);
-            }
-        }
-    }
-    
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
-    [UpdateAfter(typeof(ViewInstallSystemGroup))]
-    public partial struct RocketViewExplosionRadiusInitializeSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (radiusSeted, viewHolder, explosionRadius)  in 
-                     SystemAPI.Query<EnabledRefRW<RocketViewExplosionRadiusSetFlag>, RefRO<RocketViewHolder>, RefRO<RocketExplosionRadius>>()
-                         .WithAll<RocketTag>())
-            {
-                viewHolder.ValueRO.Instance.Value.SetExplosionRadius(explosionRadius.ValueRO.Value);
-                radiusSeted.ValueRW = false;
-            }
-        }
-    }
-    
     [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     public partial struct RocketAwaitTimerTickSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<RocketTag>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
@@ -125,6 +64,11 @@ namespace App.Ecs.Rockets
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]
     public partial struct RocketMoveSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<RocketTag>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
@@ -145,20 +89,6 @@ namespace App.Ecs.Rockets
         }
     }
     
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct RocketViewUpdateSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (transform, viewHolder) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<RocketViewHolder>>()
-                         .WithAll<RocketTag>())
-            {
-                viewHolder.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-            }
-        }
-    }
-    
     [UpdateInGroup(typeof(PhysicsPausableSimulationGroup))]
     public partial struct RocketExplosionSystem : ISystem
     {
@@ -166,23 +96,29 @@ namespace App.Ecs.Rockets
         {
             state.RequireForUpdate<PhysicsWorldSingleton>();
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            
+            var query = SystemAPI.QueryBuilder()
+                .WithAll<LocalToWorld, RocketTargetHeight, AttackDamage, RocketExplosionRadius, RocketTag>()
+                .Build();
+            
+            state.RequireForUpdate(query);
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var physics = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-            
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (transform, targetHeight, damage, explosionRadius, rocketEntity) in 
-                     SystemAPI.Query< RefRO<LocalToWorld>, RefRO<RocketTargetHeight>, RefRO<AttackDamage>, RefRO<RocketExplosionRadius>>()
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<RocketTargetHeight>, RefRO<AttackDamage>, RefRO<RocketExplosionRadius>>()
                          .WithAll<RocketTag>()
                          .WithEntityAccess())
             {
-                var collisions = new NativeList<ColliderCastHit>(Allocator.Temp);
                 if (transform.ValueRO.Position.y <= targetHeight.ValueRO.Value + RocketTargetHeight.HeightError)
                 {
+                    var collisions = new NativeList<ColliderCastHit>(Allocator.Temp);
                     physics.SphereCastAll(transform.ValueRO.Position, explosionRadius.ValueRO.Value / 2, 
                         float3.zero, 0.1f, ref collisions,
                         new CollisionFilter()
@@ -192,10 +128,10 @@ namespace App.Ecs.Rockets
 
                     foreach (var collision in collisions)
                     {
-                        if (SystemAPI.HasBuffer<DamageFrameBuffer>(collision.Entity))
+                        if (SystemAPI.HasBuffer<DamageToHealthFrameBuffer>(collision.Entity))
                         {
-                            var damageBuffer = SystemAPI.GetBuffer<DamageFrameBuffer>(collision.Entity);
-                            damageBuffer.Add(new DamageFrameBuffer() { Value = damage.ValueRO.Value });
+                            var damageBuffer = SystemAPI.GetBuffer<DamageToHealthFrameBuffer>(collision.Entity);
+                            damageBuffer.Add(new DamageToHealthFrameBuffer() { Value = damage.ValueRO.Value });
                         }
                     }
                     

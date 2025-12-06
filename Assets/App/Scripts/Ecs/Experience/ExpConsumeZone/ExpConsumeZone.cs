@@ -1,7 +1,7 @@
 ﻿using App.Ecs.AoeZones;
-using App.Ecs.Clenuping;
 using App.Ecs.Experience.ExpOrb;
 using App.Ecs.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -12,36 +12,17 @@ namespace App.Ecs.Experience.ExpConsumeZone
     {
         
     }
-    
-    public struct ExpConsumeZoneViewHolder : IComponentData
-    {
-        public UnityObjectRef<ExpConsumeZoneView> Instance;
-    }
-    
-    public partial class ExpConsumeZoneViewInstallerSystem : ViewInstallerSystem<ExpConsumeZoneTag>
-    {
-        protected override void AddViewHolder(Entity entity, CleanupView instance, ref EntityCommandBuffer ecb) 
-            => ecb.AddComponent(entity, new ExpConsumeZoneViewHolder() { Instance = instance as ExpConsumeZoneView });
-    } 
-    
-    [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct ExpConsumeZoneViewUpdateSystem : ISystem
-    {
-        public void OnUpdate(ref SystemState state)
-        {
-            foreach (var (transform, view, radius) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<ExpConsumeZoneViewHolder>, RefRO<AoeZoneRadius>>()
-                         .WithAll<ExpConsumeZoneTag>())
-            {
-                view.ValueRO.Instance.Value.SetPosition(transform.ValueRO.Position);
-                view.ValueRO.Instance.Value.SetRadius(radius.ValueRO.Value);
-            }
-        }
-    }
-    
+
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct ExpConsumeZoneStartConsumeSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<ExpConsumeZoneTag>();
+            state.RequireForUpdate<ExpOrbTag>();
+        }
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);

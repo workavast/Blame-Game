@@ -1,4 +1,5 @@
 ﻿using App.Ecs.AoeZones;
+using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;
 using UnityEngine;
@@ -15,10 +16,10 @@ namespace App.Perks.Configs.Upgrades
         
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsSingletons.GetComponentOfSingletonRO<TTag, AoeZoneRadiusScale>();
+            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, AoeZoneRadiusScale>();
             currentScale.Value += additionalScale;
             
-            EcsSingletons.TrySetComponentOfSingleton<TTag, AoeZoneRadiusScale>(currentScale);
+            EcsBridge.TrySetComponentOfSingleton<TTag, AoeZoneRadiusScale>(currentScale);
         }
     }
 }

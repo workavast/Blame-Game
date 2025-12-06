@@ -12,6 +12,7 @@ namespace Avastrad.ConfigsRepositories
         [SerializeField] private ConfigsRepositoryCell<TConfig> configsRepositoryCell = new(true);
 
         protected List<TConfig> Configs => configsRepositoryCell.Configs;
+        public IReadOnlyList<TConfig> ConfigsRO => configsRepositoryCell.Configs;
 
         protected virtual int Comparison(TConfig a, TConfig b)
         {

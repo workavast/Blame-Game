@@ -16,11 +16,17 @@ namespace App.Audio.Ambience
         private void Awake()
             => DontDestroyOnLoad(gameObject);
 
-        public void ApplyEffect(IAmbientEffector ambientEffector) 
-            => ambientEffector.Apply(_mainAmbience);
+        public void ApplyEffect(IAmbientEffector ambientEffector)
+        {
+            if (_mainAmbience != null)
+                ambientEffector.Apply(_mainAmbience);
+        }
 
-        public void RevertEffect(IAmbientEffector ambientEffector) 
-            => ambientEffector.Revert(_mainAmbience);
+        public void RevertEffect(IAmbientEffector ambientEffector)
+        {
+            if (_mainAmbience != null)
+                ambientEffector.Revert(_mainAmbience);
+        }
 
         public void Activate(AmbienceSource ambiencePrefab, float transitionTime = 1f)
         {

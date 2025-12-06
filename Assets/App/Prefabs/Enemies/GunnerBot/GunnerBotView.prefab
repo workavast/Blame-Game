@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1798664553200853719}
+  - component: {fileID: 6118622345551306013}
   - component: {fileID: 350588431722163739}
+  - component: {fileID: -7041278443759181566}
   - component: {fileID: 8176448482098108948}
   m_Layer: 0
   m_Name: GunnerBotView
@@ -34,6 +36,19 @@ Transform:
   - {fileID: 2424678706443073560}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6118622345551306013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376885262701076366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cdffa6f99848d392b2ae2161b6cacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanupCallback: {fileID: 8176448482098108948}
 --- !u!114 &350588431722163739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +62,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleanupCallback: {fileID: 8176448482098108948}
+  model: {fileID: 0}
+  deathVfxView: {fileID: 0}
+--- !u!114 &-7041278443759181566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376885262701076366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff16a30f5d2a413290a261b9f185e15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   deathPitchRange: {x: 0.9, y: 1.1}
 --- !u!114 &8176448482098108948
 MonoBehaviour:
