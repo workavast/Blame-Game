@@ -1,6 +1,6 @@
 ﻿namespace App
 {
-    public class Consts
+    public class AppConsts
     {
         public const string AppName = "App";
         public const string AppPath = AppName + "/";
