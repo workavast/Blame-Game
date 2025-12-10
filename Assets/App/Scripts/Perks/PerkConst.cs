@@ -1,14 +1,14 @@
 ﻿namespace App.Perks
 {
-    public static class PerkConst
+    public class PerkConst : AppConsts
     {
-        public const string GlobalPath = AppConsts.AppPath + "Perks/Global/";
-        public const string ExpZonePath = AppConsts.AppPath + "Perks/ExpZone/";
-        public const string DamageZonePath = AppConsts.AppPath + "Perks/DamageZone/";
-        public const string ForwardShooterPath = AppConsts.AppPath + "Perks/ForwardShooter/";
-        public const string MachineGunPath = AppConsts.AppPath + "Perks/MachineGun/";
-        public const string RiflePath = AppConsts.AppPath + "Perks/Rifle/";
-        public const string RocketLauncherPath = AppConsts.AppPath + "Perks/RocketLauncher/";
-        public const string StarShooterPath = AppConsts.AppPath + "Perks/StarShooter/";
+        public const string GlobalPath = AppPath + "Perks/Global/";
+        public const string ExpZonePath = AppPath + "Perks/ExpZone/";
+        public const string DamageZonePath = AppPath + "Perks/DamageZone/";
+        public const string ForwardShooterPath = AppPath + "Perks/ForwardShooter/";
+        public const string MachineGunPath = AppPath + "Perks/MachineGun/";
+        public const string RiflePath = AppPath + "Perks/Rifle/";
+        public const string RocketLauncherPath = AppPath + "Perks/RocketLauncher/";
+        public const string StarShooterPath = AppPath + "Perks/StarShooter/";
     }
 }
