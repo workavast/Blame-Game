@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ab07df1027e99c4f81d6e77f27515af
+    m_Address: Bestiary_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9064f2e673fd1ac42bf512c7bd336ad0
     m_Address: MainMenu_ru
     m_ReadOnly: 1
@@ -45,8 +51,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc1aae1ff62cae747b0c2b7cb3b13cf1
+    m_Address: EnemiesDescriptions_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eeb1b219e85d99641bee2e7798cb5c2d
     m_Address: Settings_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd43d93082aa60b4aa6bd6f4425562d4
+    m_Address: EnemiesTitles_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

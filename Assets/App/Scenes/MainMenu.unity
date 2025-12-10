@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.518
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -822,6 +822,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3225047088657761473, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225047088657761473, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225047088657761473, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225047088657761473, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225047088657761473, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247203658885548101, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: bestiaryHolder
+      value: 
+      objectReference: {fileID: 5532439362098305609}
     - target: {fileID: 4382983899680981164, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -845,6 +869,10 @@ PrefabInstance:
     - target: {fileID: 6174156005935392703, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
       propertyPath: m_Name
       value: UI-MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174156005935392703, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6815078176356091137, guid: 16d3f5259053a8346a7337f4e47a4e67, type: 3}
       propertyPath: m_Pivot.x
@@ -988,6 +1016,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81e32445445ee3845b4c00f27fa66c89, type: 3}
+--- !u!114 &5532439362098305609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3123888046456145734, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+  m_PrefabInstance: {fileID: 7466242406398663951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8eb4f974784b71992220d834a124b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5629942218407036761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1049,6 +1088,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39d00ad56664033459b869059d9e5279, type: 3}
+--- !u!1001 &7466242406398663951
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -500
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750615851882769540, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688758543918848061, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
+      propertyPath: m_Name
+      value: BestiaryHolder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b27c337d3b5d57045bd2c2657afcb2a3, type: 3}
 --- !u!1001 &7548721056689092230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,6 +1153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612534613382747295, guid: 16abdfba368514c44af35adca57c409e, type: 3}
+      propertyPath: awaitDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 803417093581652720, guid: 16abdfba368514c44af35adca57c409e, type: 3}
       propertyPath: m_Name
       value: MainMenuBootstrap
@@ -1118,3 +1218,4 @@ SceneRoots:
   - {fileID: 1428595983}
   - {fileID: 2442018592489083854}
   - {fileID: 1015536846}
+  - {fileID: 7466242406398663951}

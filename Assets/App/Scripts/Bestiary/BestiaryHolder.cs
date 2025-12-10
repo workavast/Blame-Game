@@ -1,0 +1,56 @@
+﻿using System;
+using Avastrad.ScenesLoading;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using Zenject;
+
+namespace App.Bestiary
+{
+    public class BestiaryHolder : MonoBehaviour
+    {
+        [SerializeField] private AssetReferenceGameObject bestiaryPrefabRef;
+
+        [Inject] private readonly ISceneLoader _sceneLoader;
+        
+        private BestiaryManager _bestiaryManager;
+        private bool _loadStarted;
+        
+        private void OnDestroy()
+        {
+            if (_loadStarted)
+                bestiaryPrefabRef.ReleaseAsset();
+        }
+
+        public void Open()
+        {
+            _sceneLoader.ShowLoadScreen(false, TryLoad);
+        }
+        
+        public void Close()
+        {
+            _sceneLoader.ShowLoadScreen(false, () =>
+            {
+                _bestiaryManager.ToggleVisibility(false);
+                _sceneLoader.HideLoadScreen(false);
+            });
+        }
+
+        private async void TryLoad()
+        {
+            if (_bestiaryManager == null)
+            {
+                _loadStarted = true;
+                var prefabGo = await bestiaryPrefabRef.LoadAssetAsync().Task;
+                if (!prefabGo.TryGetComponent<BestiaryManager>(out var bestiaryPrefab))
+                    throw new NullReferenceException("Asset ref hasn't target component");
+                
+                _bestiaryManager = Instantiate(bestiaryPrefab, transform);
+                _bestiaryManager.Initialize(this);
+            }
+
+            _bestiaryManager.ToggleVisibility(true);
+            
+            _sceneLoader.HideLoadScreen(false);
+        }
+    }
+}
