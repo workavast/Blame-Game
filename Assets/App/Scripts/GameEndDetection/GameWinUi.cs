@@ -13,7 +13,8 @@ namespace App.GameEndDetection
         [SerializeField] private Button backInMenuBtn;
         [SerializeField] private SceneReference gameplaySceneRef;
         [SerializeField] private SceneReference mainMenuSceneRef;
-
+        [SerializeField] private LoadingConfig loadingConfig;
+        
         [Inject] private readonly ISceneLoader _sceneLoader;
 
         public override void Initialize()
@@ -24,9 +25,9 @@ namespace App.GameEndDetection
         }
 
         private void Restart() 
-            => _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
+            => _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex, loadingConfig.ShowDuration);
 
         private void LoadMenu() 
-            => _sceneLoader.LoadScene(mainMenuSceneRef.SceneIndex);
+            => _sceneLoader.LoadScene(mainMenuSceneRef.SceneIndex, loadingConfig.ShowDuration);
     }
 }

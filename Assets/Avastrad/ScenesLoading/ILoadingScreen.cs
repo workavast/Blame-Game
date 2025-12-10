@@ -8,7 +8,7 @@ namespace Avastrad.ScenesLoading
 
         public event Action OnHided;
         
-        public void Show(bool instantly, Action onShowedCallback);
-        public void Hide(bool instantly);
+        public void Show(float duration, Action onShowedCallback);
+        public void Hide(float duration);
     }
 }

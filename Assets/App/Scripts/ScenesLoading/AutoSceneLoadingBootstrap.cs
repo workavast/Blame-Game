@@ -10,13 +10,14 @@ namespace App.Bootstraps
     public class AutoSceneLoadingBootstrap : Bootstrap
     {
         [SerializeField] private SceneReference sceneForLoading;
+        [SerializeField] private LoadingConfig loadingConfig;
         [SerializeField] private bool showLoadingScreenInstantly = true;
         
         [Inject] private readonly ISceneLoader _sceneLoader;
 
         protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
-            _sceneLoader.LoadScene(sceneForLoading.SceneIndex, showLoadingScreenInstantly);
+            _sceneLoader.LoadScene(sceneForLoading.SceneIndex, loadingConfig.ShowDuration, showLoadingScreenInstantly);
             
             return Task.CompletedTask;
         }

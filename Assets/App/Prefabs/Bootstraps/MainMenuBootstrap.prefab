@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0564e443348148218398516b93aff7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   awaitDelay: 1000
 --- !u!114 &7222267959062548167
 MonoBehaviour:
@@ -108,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b954724e499d4d019837fc96758d8387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   preloader:
     config: {fileID: 11400000, guid: ff2aa04f4a14a04478cfd82425bbce77, type: 2}
 --- !u!1 &803417093581652720
@@ -159,11 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094701a7dcd345d7839a08343d0e494c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps:
-  - {fileID: 2179940991916314151}
-  - {fileID: 6310425915518647784}
-  - {fileID: 612534613382747295}
-  - {fileID: 2845571068093197402}
 --- !u!1 &1216998149926535085
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec773d07e6043eea05b8fa61c1aedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
+  loadingConfig: {fileID: 11400000, guid: b43213e7b487bb245982f8372f6ac623, type: 2}
   hideInstantly: 0
 --- !u!1 &6138744980342771194
 GameObject:
@@ -255,7 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e5bae4ef0c4286961efc984e1cd4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   ambienceInitializer: {fileID: 3775755073801197805}
   effectorTogglers: []
 --- !u!114 &3775755073801197805

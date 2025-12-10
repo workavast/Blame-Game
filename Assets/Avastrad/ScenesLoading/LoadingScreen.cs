@@ -7,8 +7,6 @@ namespace Avastrad.ScenesLoading
     public class LoadingScreen : MonoBehaviour, ILoadingScreen
     {
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private float hideFadeTime = 1;
-        [SerializeField] private float showFadeTime = 1;
         
         public bool IsVisible { get; private set; }
         
@@ -18,21 +16,21 @@ namespace Avastrad.ScenesLoading
         public void Initialize() 
             => IsVisible = gameObject.activeSelf;
 
-        public void Show(bool instantly, Action onShowedCallback)
+        public void Show(float duration, Action onShowedCallback)
         {
             OnPreShow?.Invoke();
-            if (instantly)
+            if (duration <= 0)
                 ShowInstantly(onShowedCallback);
             else
-                ShowWithFade(onShowedCallback);
+                ShowWithFade(duration, onShowedCallback);
         }
 
-        public void Hide(bool instantly)
+        public void Hide(float duration)
         {
-            if (instantly)
+            if (duration <= 0)
                 HideInstantly();
             else
-                HideWithFade();
+                HideWithFade(duration);
         }
 
         private void ShowInstantly(Action onShowedCallback)
@@ -44,12 +42,12 @@ namespace Avastrad.ScenesLoading
             onShowedCallback?.Invoke();
         }
         
-        private void ShowWithFade(Action onShowedCallback)
+        private void ShowWithFade(float duration, Action onShowedCallback)
         {
             StopAllCoroutines();
             IsVisible = true;
             gameObject.SetActive(true);
-            StartCoroutine(ShowFade(onShowedCallback));
+            StartCoroutine(ShowFade(duration, onShowedCallback));
         }
         
         private void HideInstantly()
@@ -60,24 +58,24 @@ namespace Avastrad.ScenesLoading
             OnHided?.Invoke();
         }
         
-        private void HideWithFade()
+        private void HideWithFade(float duration)
         {
             StopAllCoroutines();
             
             if (!IsVisible)
                 return;
 
-            StartCoroutine(HideFade());
+            StartCoroutine(HideFade(duration));
         }
         
-        private IEnumerator ShowFade(Action onShowedCallback)
+        private IEnumerator ShowFade(float duration, Action onShowedCallback)
         {
             float timer = 0;
 
-            while (timer < showFadeTime)
+            while (timer < duration)
             {
                 yield return new WaitForEndOfFrame();
-                canvasGroup.alpha = timer/showFadeTime;
+                canvasGroup.alpha = timer/duration;
                 timer += Time.unscaledDeltaTime;
             }
             
@@ -85,14 +83,14 @@ namespace Avastrad.ScenesLoading
             onShowedCallback?.Invoke();
         }
 
-        private IEnumerator HideFade()
+        private IEnumerator HideFade(float duration)
         {
             float timer = 0;
 
-            while (timer < hideFadeTime)
+            while (timer < duration)
             {
                 yield return new WaitForEndOfFrame();
-                canvasGroup.alpha = 1 - timer/hideFadeTime;
+                canvasGroup.alpha = 1 - timer/duration;
                 timer += Time.unscaledDeltaTime;
             }
             

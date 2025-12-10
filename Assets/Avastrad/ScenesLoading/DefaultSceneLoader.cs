@@ -25,13 +25,13 @@ namespace Avastrad.ScenesLoading
             _loadingScreen.OnHided += () => OnLoadingScreenHided?.Invoke();
         }
         
-        public void ShowLoadScreen(bool showInstantly, Action onShowedCallback)
-            => _loadingScreen.Show(showInstantly, onShowedCallback);
+        public void ShowLoadScreen(float duration, Action onShowedCallback)
+            => _loadingScreen.Show(duration, onShowedCallback);
         
-        public void HideLoadScreen(bool hideLoadScreenInstantly)
-            => _loadingScreen.Hide(hideLoadScreenInstantly);
+        public void HideLoadScreen(float duration)
+            => _loadingScreen.Hide(duration);
 
-        public void LoadScene(int index, bool showLoadScreenInstantly = false, bool skipLoadingScreen = false)
+        public void LoadScene(int index, float duration, bool skipLoadingScreen = false)
         {
             PrevTargetSceneIndex = _targetSceneIndex;
             _targetSceneIndex = index;
@@ -41,7 +41,7 @@ namespace Avastrad.ScenesLoading
             if (skipLoadingScreen)
                 SceneManager.LoadScene(_loadingSceneIndex);
             else
-                _loadingScreen.Show(showLoadScreenInstantly, () => SceneManager.LoadSceneAsync(_loadingSceneIndex));
+                _loadingScreen.Show(duration, () => SceneManager.LoadSceneAsync(_loadingSceneIndex));
         }
 
         public void LoadTargetScene() 

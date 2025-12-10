@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de52b3c27b814758a24f04df970fe708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
 --- !u!1 &1866358458852870228
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,10 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094701a7dcd345d7839a08343d0e494c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps:
-  - {fileID: 134603592819017731}
-  - {fileID: 7310808902408664480}
-  - {fileID: 1598533867800313166}
 --- !u!1 &3365966221834620244
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9039c08bec42eea01a371c5a7f0b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
 --- !u!1 &4020189717319903302
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fc43478a3748c799e4bed69e7ccd6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   sceneForLoading: {fileID: 11400000, guid: 3d035d974fb8cae4faadb4dd6c2d0ad5, type: 2}
+  loadingConfig: {fileID: 11400000, guid: f56a6c27a2a8b8542a3107e25afda04d, type: 2}
   showLoadingScreenInstantly: 1

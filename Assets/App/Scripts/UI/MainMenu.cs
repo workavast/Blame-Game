@@ -12,6 +12,7 @@ namespace App.UI
         [SerializeField] private Button startGameBtn;
         [SerializeField] private Button quitBtn;
         [SerializeField] private SceneReference gameplaySceneRef;
+        [SerializeField] private LoadingConfig loadingConfig;
 
         [Inject] private readonly ISceneLoader _sceneLoader;
         
@@ -23,7 +24,7 @@ namespace App.UI
 
         private void StartGame()
         {
-            _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex);
+            _sceneLoader.LoadScene(gameplaySceneRef.SceneIndex, loadingConfig.ShowDuration);
         }
 
         private void Quit()

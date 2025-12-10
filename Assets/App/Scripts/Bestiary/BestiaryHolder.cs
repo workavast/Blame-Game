@@ -9,7 +9,8 @@ namespace App.Bestiary
     public class BestiaryHolder : MonoBehaviour
     {
         [SerializeField] private AssetReferenceGameObject bestiaryPrefabRef;
-
+        [SerializeField] private LoadingConfig loadingConfig;
+        
         [Inject] private readonly ISceneLoader _sceneLoader;
         
         private BestiaryManager _bestiaryManager;
@@ -23,15 +24,15 @@ namespace App.Bestiary
 
         public void Open()
         {
-            _sceneLoader.ShowLoadScreen(false, TryLoad);
+            _sceneLoader.ShowLoadScreen(loadingConfig.ShowDuration, TryLoad);
         }
         
         public void Close()
         {
-            _sceneLoader.ShowLoadScreen(false, () =>
+            _sceneLoader.ShowLoadScreen(loadingConfig.ShowDuration, () =>
             {
                 _bestiaryManager.ToggleVisibility(false);
-                _sceneLoader.HideLoadScreen(false);
+                _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
             });
         }
 
@@ -50,7 +51,7 @@ namespace App.Bestiary
 
             _bestiaryManager.ToggleVisibility(true);
             
-            _sceneLoader.HideLoadScreen(false);
+            _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
         }
     }
 }

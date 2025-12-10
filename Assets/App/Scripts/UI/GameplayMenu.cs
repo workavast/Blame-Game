@@ -12,6 +12,7 @@ namespace App.UI
     {
         [SerializeField] private SceneReference mainMenuRef;
         [SerializeField] private SceneReference gameplayRef;
+        [SerializeField] private LoadingConfig loadingConfig;
         [Space]
         [SerializeField] private Button continueBtn;
         [SerializeField] private Button restartBtn;
@@ -40,13 +41,13 @@ namespace App.UI
             => _screensController.ToggleScreen(GetType());
 
         private void RestartGame() 
-            => _sceneLoader.LoadScene(gameplayRef.SceneIndex);
+            => _sceneLoader.LoadScene(gameplayRef.SceneIndex, loadingConfig.ShowDuration);
 
         private void ContinueGame() 
             => _screensController.ToggleScreen(GetType(), false);
 
         private void BackInMenu() 
-            => _sceneLoader.LoadScene(mainMenuRef.SceneIndex);
+            => _sceneLoader.LoadScene(mainMenuRef.SceneIndex, loadingConfig.ShowDuration);
 
         private void QuitGame() 
             => Application.Quit();

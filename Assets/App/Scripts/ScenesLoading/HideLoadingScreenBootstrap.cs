@@ -8,12 +8,13 @@ namespace App.Bootstraps
 {
     public class HideLoadingScreenBootstrap : Bootstrap
     {
-        [SerializeField] private bool hideInstantly;
+        [SerializeField] private LoadingConfig loadingConfig;
+
         [Inject] private readonly ISceneLoader _sceneLoader;
 
         protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
-            _sceneLoader.HideLoadScreen(hideInstantly);
+            _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
             return Task.CompletedTask;
         }
     }
