@@ -51,3 +51,5 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   loadingConfig: {fileID: 11400000, guid: a9317aa0e7ab08e418fd5a4dd74b40be, type: 2}
+  stringTablesPreloader:
+    config: {fileID: 11400000, guid: 9393db7bfb60c974ba7043f9bf69e99c, type: 2}

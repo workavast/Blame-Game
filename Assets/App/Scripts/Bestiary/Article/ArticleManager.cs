@@ -16,7 +16,7 @@ namespace App.Bestiary.Article
         {
             articlesList.Initialize(articlesCount, initialIndex);
         }
-        
+
         public void SetArticle(int index, BestiaryArticleConfig articleConfig)
         {
             _activeConfig = articleConfig;
@@ -34,9 +34,9 @@ namespace App.Bestiary.Article
             _activeModel = Instantiate(_activeConfig.Model, modelHolder);
         }
         
-        public void UpdateTexts()
+        private void UpdateTexts()
         {
-            articleDescription.SetTitle(_activeConfig.TitleName);
+            articleDescription.SetTitle(_activeConfig.Title);
             articleDescription.SetDescription(_activeConfig.Description);
         }
     }

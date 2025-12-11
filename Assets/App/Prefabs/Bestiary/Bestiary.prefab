@@ -54,6 +54,7 @@ MonoBehaviour:
   defaultIndex: 0
   bestiaryUi: {fileID: 2381923837859922504}
   articleManager: {fileID: 8617333298398001122}
+  cameraManager: {fileID: 6722276784979229467}
 --- !u!114 &8778934685091639437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,18 +477,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205e3ebf48d64f73bea71204fc8f32fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraRotationHolder: {fileID: 1449989006454517460}
-  rotationSpeed: 0.1
-  maxAngle: 60
-  minAngle: -10
+  rotator:
+    cameraRotationHolder: {fileID: 1449989006454517460}
+    rotationSpeed: 0.1
+    maxAngle: 60
+    minAngle: -10
+    damping: 20
   scroller:
     cameraDistanceTransform: {fileID: 4108930265294678470}
     scrollReadPower: 0.4
-    applyPower: 1
+    damping: 4
     minDistance: 2
     maxDistance: 5
     defaultDistance: 4
-    damping: 4
 --- !u!114 &3551259080239973552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,8 +1729,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibilityToggleBtn: {fileID: 9053988757975607834}
   descriptionHolder: {fileID: 6958301051695584873}
-  descriptionField: {fileID: 8323259235662603378}
-  titleField: {fileID: 6949140243355426920}
+  descriptionField: {fileID: 7373922528645309207}
+  titleField: {fileID: 8477755191760627469}
+  stringEvent: {fileID: 0}
 --- !u!1 &6958301051695584873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,8 +2817,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: DescriptionTxt
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2825,15 +2827,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7280501842329580839, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
   m_PrefabInstance: {fileID: 2823189334500370653}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8323259235662603378 stripped
+--- !u!114 &7373922528645309207 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6102328638956915887, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
   m_PrefabInstance: {fileID: 2823189334500370653}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3809937169559727303
@@ -2948,8 +2950,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleTxt
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2959,15 +2960,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7280501842329580839, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
   m_PrefabInstance: {fileID: 3809937169559727303}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6949140243355426920 stripped
+--- !u!114 &8477755191760627469 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6102328638956915887, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4717684185407917002, guid: 90ac936d9606fc24a8c3f541c3f0d76e, type: 3}
   m_PrefabInstance: {fileID: 3809937169559727303}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4249102732668309888

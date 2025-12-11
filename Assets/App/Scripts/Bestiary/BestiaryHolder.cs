@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Localization;
 using Avastrad.ScenesLoading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,7 +11,8 @@ namespace App.Bestiary
     {
         [SerializeField] private AssetReferenceGameObject bestiaryPrefabRef;
         [SerializeField] private LoadingConfig loadingConfig;
-        
+        [SerializeField] private StringTablesPreloader stringTablesPreloader;
+
         [Inject] private readonly ISceneLoader _sceneLoader;
         
         private BestiaryManager _bestiaryManager;
@@ -20,6 +22,8 @@ namespace App.Bestiary
         {
             if (_loadStarted)
                 bestiaryPrefabRef.ReleaseAsset();
+            stringTablesPreloader.Release();
+            stringTablesPreloader.Dispose();
         }
 
         public void Open()
@@ -44,7 +48,9 @@ namespace App.Bestiary
                 var prefabGo = await bestiaryPrefabRef.LoadAssetAsync().Task;
                 if (!prefabGo.TryGetComponent<BestiaryManager>(out var bestiaryPrefab))
                     throw new NullReferenceException("Asset ref hasn't target component");
-                
+
+                stringTablesPreloader.Initialize();
+                await stringTablesPreloader.Preload();
                 _bestiaryManager = Instantiate(bestiaryPrefab, transform);
                 _bestiaryManager.Initialize(this);
             }

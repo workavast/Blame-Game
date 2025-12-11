@@ -11,7 +11,7 @@ namespace App.Bestiary
         [SerializeField] private LocalizedString description;
 
         public GameObject Model => model;
-        public string TitleName => titleName.GetLocalizedString();
-        public string Description => description.GetLocalizedString();
+        public LocalizedString Title => titleName;
+        public LocalizedString Description => description;
     }
 }

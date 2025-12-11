@@ -11,12 +11,16 @@ namespace App.Localization
     {
         [SerializeField] private StringTablesPreloader preloader;
 
-        protected override Task SelfInitialization(CancellationToken cancellationToken) 
-            => preloader.Preload();
+        protected override Task SelfInitialization(CancellationToken cancellationToken)
+        {
+            preloader.Initialize();
+            return preloader.Preload();
+        }
 
         protected override void OnDestroy()
         {
             preloader.Release();
+            preloader.Dispose();
             base.OnDestroy();
         }
     }

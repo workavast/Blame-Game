@@ -5,47 +5,32 @@ namespace App.Bestiary.CameraControl
 {
     public class CameraManager : MonoBehaviour
     {
-        [SerializeField] private Transform cameraRotationHolder;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private float maxAngle;
-        [SerializeField] private float minAngle;
-        [Space]
+        [SerializeField] private Rotator rotator;
         [SerializeField] private Scroller scroller;
 
         private void Awake()
         {
             scroller.Initialize();
-            Scroll(0);
+            rotator.Initialize();
         }
 
         private void Update()
         {
+            rotator.Update();
             scroller.Update();
         }
 
-        public void Rotate(Vector2 delta)
+        public void ToDefault()
         {
-            cameraRotationHolder.Rotate(Vector3.up, delta.x * rotationSpeed, Space.World);
-
-            var angle = NormalizeAngle(cameraRotationHolder.rotation.eulerAngles.x);
-            var angleDelta = -delta.y * rotationSpeed;
-            var clampedAngle = Mathf.Clamp(angleDelta, minAngle - angle, maxAngle - angle);
-
-            cameraRotationHolder.Rotate(Vector3.right, clampedAngle, Space.Self);
+            scroller.ToDefault();
+            rotator.ToDefault();
         }
+        
+        public void Rotate(Vector2 delta) 
+            => rotator.Rotate(delta);
 
-        public void Scroll(float scrollDelta)
-        {
-            scroller.SetTargetDistance(scrollDelta);
-        }
-
-        private static float NormalizeAngle(float angle)
-        {
-            angle %= 360f;
-            if (angle > 180f) 
-                angle -= 360f;
-            return angle;
-        }
+        public void Scroll(float scrollDelta) 
+            => scroller.SetTargetDistance(scrollDelta);
 
         [Serializable]
         private class Scroller
@@ -62,8 +47,7 @@ namespace App.Bestiary.CameraControl
 
             public void Initialize()
             {
-                _currentDistance = _targetDistance = defaultDistance;
-                cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);              
+                ToDefault();
             }
             
             public void Update()
@@ -79,10 +63,72 @@ namespace App.Bestiary.CameraControl
                 cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);              
             }
             
+            public void ToDefault()
+            {
+                _currentDistance = _targetDistance = Mathf.Clamp(defaultDistance, minDistance, maxDistance);
+                cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);
+            }
+            
             public void SetTargetDistance(float scrollDelta)
             {
                 var distanceDelta = (scrollReadPower * scrollDelta);
                 _targetDistance = Mathf.Clamp(_targetDistance + distanceDelta, minDistance, maxDistance);
+            }
+        }
+
+        [Serializable]
+        private class Rotator
+        {
+            [SerializeField] private Transform cameraRotationHolder;
+            [SerializeField] private float rotationSpeed;
+            [SerializeField] private float maxAngle;
+            [SerializeField] private float minAngle;
+            [SerializeField] private float damping;
+
+            private float _currentYaw;
+            private float _targetYaw;
+
+            private float _currentPitch;
+            private float _targetPitch;
+
+            private Vector3 _defaultRotation;
+            
+            public void Initialize()
+            {
+                _defaultRotation = cameraRotationHolder.rotation.eulerAngles;
+                _currentYaw = _targetYaw = _defaultRotation.y;
+                _currentPitch = _targetPitch = NormalizeAngle(_defaultRotation.x);
+            }
+            
+            public void Update()
+            {
+                var t = 1f - Mathf.Exp(-damping * Time.deltaTime);
+
+                _currentYaw = Mathf.Lerp(_currentYaw, _targetYaw, t);
+                _currentPitch = Mathf.Lerp(_currentPitch, _targetPitch, t);
+
+                cameraRotationHolder.rotation = Quaternion.Euler(_currentPitch, _currentYaw, 0f);
+            }
+
+            public void ToDefault()
+            {
+                _currentYaw = _targetYaw = _defaultRotation.y;
+                _currentPitch = _targetPitch = NormalizeAngle(_defaultRotation.x);
+            }
+            
+            public void Rotate(Vector2 delta)
+            {
+                _targetYaw += delta.x * rotationSpeed;
+                _targetPitch -= delta.y * rotationSpeed;
+                _targetPitch = Mathf.Clamp(_targetPitch, minAngle, maxAngle);
+            }
+
+            private static float NormalizeAngle(float angle)
+            {
+                angle %= 360f;
+                if (angle > 180f) 
+                    angle -= 360f;
+                return angle;
             }
         }
     }

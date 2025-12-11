@@ -1,5 +1,6 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace App.Bestiary.Article.UI
@@ -8,9 +9,9 @@ namespace App.Bestiary.Article.UI
     {
         [SerializeField] private Button visibilityToggleBtn;
         [SerializeField] private GameObject descriptionHolder;
-        [SerializeField] private TMP_Text descriptionField;
-        [SerializeField] private TMP_Text titleField;
-
+        [SerializeField] private LocalizeStringEvent titleField;
+        [SerializeField] private LocalizeStringEvent descriptionField;
+        
         private void Awake()
         {
             visibilityToggleBtn.onClick.AddListener(ToggleVisibility);
@@ -22,14 +23,10 @@ namespace App.Bestiary.Article.UI
             descriptionHolder.SetActive(isVisible);
         }
 
-        public void SetTitle(string title)
-        {
-            titleField.text = title;
-        }
-        
-        public void SetDescription(string description)
-        {
-            descriptionField.text = description;
-        }
+        public void SetTitle(LocalizedString title) 
+            => titleField.StringReference = title;
+
+        public void SetDescription(LocalizedString description) 
+            => descriptionField.StringReference = description;
     }
 }

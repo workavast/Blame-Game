@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Bestiary.Article;
+using App.Bestiary.CameraControl;
 using App.Utils;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace App.Bestiary
         [SerializeField] private int defaultIndex;
         [SerializeField] private Canvas bestiaryUi;
         [SerializeField] private ArticleManager articleManager;
+        [SerializeField] private CameraManager cameraManager;
         
         public int ActiveArticle { get; private set; } = -1;
 
@@ -22,15 +24,16 @@ namespace App.Bestiary
         {
             _bestiaryHolder = bestiaryHolder;
             articleManager.Initialize(config.BestiaryArticles.Count, defaultIndex);
-            
-            SetArticle(defaultIndex);
         }
         
         public void ToggleVisibility(bool isVisible)
         {
             bestiaryUi.gameObject.SetActive(isVisible);
-            if (isVisible) 
-                articleManager.UpdateTexts();
+            if (isVisible)
+            {
+                cameraManager.ToDefault();
+                SetArticle(defaultIndex);
+            }
         }
 
         public void Close() 
