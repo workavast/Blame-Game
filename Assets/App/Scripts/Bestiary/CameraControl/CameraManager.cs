@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace App.Bestiary.CameraControl
 {
@@ -9,18 +10,17 @@ namespace App.Bestiary.CameraControl
         [SerializeField] private float maxAngle;
         [SerializeField] private float minAngle;
         [Space]
-        [SerializeField] private Transform cameraDistanceTransform;
-        [SerializeField] private float scrollPower;
-        [SerializeField] private float minDistance;
-        [SerializeField] private float maxDistance;
-        [SerializeField] private float defaultDistance;
-
-        private float _currentDistance;
+        [SerializeField] private Scroller scroller;
 
         private void Awake()
         {
-            _currentDistance = defaultDistance;
+            scroller.Initialize();
             Scroll(0);
+        }
+
+        private void Update()
+        {
+            scroller.Update();
         }
 
         public void Rotate(Vector2 delta)
@@ -36,10 +36,7 @@ namespace App.Bestiary.CameraControl
 
         public void Scroll(float scrollDelta)
         {
-            var distanceDelta = (scrollPower * scrollDelta * Time.deltaTime);
-            _currentDistance = Mathf.Clamp(_currentDistance + distanceDelta, minDistance, maxDistance);
-
-            cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);
+            scroller.SetTargetDistance(scrollDelta);
         }
 
         private static float NormalizeAngle(float angle)
@@ -48,6 +45,45 @@ namespace App.Bestiary.CameraControl
             if (angle > 180f) 
                 angle -= 360f;
             return angle;
+        }
+
+        [Serializable]
+        private class Scroller
+        {
+            [SerializeField] private Transform cameraDistanceTransform;
+            [SerializeField] private float scrollReadPower;
+            [SerializeField] private float damping;
+            [SerializeField] private float minDistance;
+            [SerializeField] private float maxDistance;
+            [SerializeField] private float defaultDistance;
+
+            private float _targetDistance;
+            private float _currentDistance;
+
+            public void Initialize()
+            {
+                _currentDistance = _targetDistance = defaultDistance;
+                cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);              
+            }
+            
+            public void Update()
+            {
+                if (Mathf.Approximately(_currentDistance, _targetDistance)) 
+                    return;
+                
+                var t = 1f - Mathf.Exp(-damping * Time.deltaTime);
+                _currentDistance = Mathf.Lerp(_currentDistance, _targetDistance, t);
+                if (Mathf.Approximately(_currentDistance, _targetDistance)) 
+                    _currentDistance = _targetDistance;
+                
+                cameraDistanceTransform.localPosition = new Vector3(0, 0, -_currentDistance);              
+            }
+            
+            public void SetTargetDistance(float scrollDelta)
+            {
+                var distanceDelta = (scrollReadPower * scrollDelta);
+                _targetDistance = Mathf.Clamp(_targetDistance + distanceDelta, minDistance, maxDistance);
+            }
         }
     }
 }

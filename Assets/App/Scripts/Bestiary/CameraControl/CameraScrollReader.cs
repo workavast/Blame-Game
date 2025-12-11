@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace App.Bestiary.CameraControl
@@ -11,6 +12,11 @@ namespace App.Bestiary.CameraControl
         private void Awake()
         {
             scrollAction.action.Enable();
+        }
+
+        private void OnDestroy()
+        {
+            scrollAction.action.Disable();
         }
 
         public void Update()

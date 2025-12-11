@@ -480,11 +480,14 @@ MonoBehaviour:
   rotationSpeed: 0.1
   maxAngle: 60
   minAngle: -10
-  cameraDistanceTransform: {fileID: 4108930265294678470}
-  scrollPower: 10
-  minDistance: 2
-  maxDistance: 5
-  defaultDistance: 4
+  scroller:
+    cameraDistanceTransform: {fileID: 4108930265294678470}
+    scrollReadPower: 0.4
+    applyPower: 1
+    minDistance: 2
+    maxDistance: 5
+    defaultDistance: 4
+    damping: 4
 --- !u!114 &3551259080239973552
 MonoBehaviour:
   m_ObjectHideFlags: 0
