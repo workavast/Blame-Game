@@ -1,4 +1,5 @@
 ﻿using System;
+using App.EscProviding;
 using App.Localization;
 using Avastrad.ScenesLoading;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace App.Bestiary
         [SerializeField] private StringTablesPreloader stringTablesPreloader;
 
         [Inject] private readonly ISceneLoader _sceneLoader;
+        [Inject] private readonly EscProvider _escProvider;
         
         private BestiaryManager _bestiaryManager;
         private bool _loadStarted;
@@ -52,7 +54,7 @@ namespace App.Bestiary
                 stringTablesPreloader.Initialize();
                 await stringTablesPreloader.Preload();
                 _bestiaryManager = Instantiate(bestiaryPrefab, transform);
-                _bestiaryManager.Initialize(this);
+                _bestiaryManager.Initialize(this, _escProvider);
             }
 
             _bestiaryManager.ToggleVisibility(true);

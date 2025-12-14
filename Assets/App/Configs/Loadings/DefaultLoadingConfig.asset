@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34be4cf4da9dc624baa15a80855ae111, type: 3}
   m_Name: DefaultLoadingConfig
   m_EditorClassIdentifier: 
-  showDuration: 1
-  hideDuration: 1
+  showDuration: 0.5
+  hideDuration: 0.5
