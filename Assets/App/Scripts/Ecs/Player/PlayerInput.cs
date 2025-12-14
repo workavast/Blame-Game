@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Looking;
 using App.Ecs.Moving;
+using App.PlayerProviding;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
