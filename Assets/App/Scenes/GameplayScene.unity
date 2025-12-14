@@ -617,7 +617,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 81d5d8448ee4a8d44af6c52596ade1d7, type: 2}
   m_TargetDisplay: 0
@@ -2067,6 +2067,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e5fc5cf-cbbf-48a1-948b-cca13d4aae67
+    m_ActionName: 'UI/Next[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 256b8cfc-9bc1-421b-ac41-edd209db5a49
+    m_ActionName: 'UI/Prev[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3880,6 +3888,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467430393144199903, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726083025217017625, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726083025217017625, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
