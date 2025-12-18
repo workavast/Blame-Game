@@ -40,45 +40,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1798664553200853719}
     m_Modifications:
-    - target: {fileID: 178414493641246195, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1629405628508341032, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1787559478482280272, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2983396787134673826, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
       propertyPath: m_Name
       value: MeleeBotBody
-      objectReference: {fileID: 0}
-    - target: {fileID: 3351681503237635800, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5369753831032295455, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5370740706478487470, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6046344568136815391, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720609489482018732, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833290054084840147, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8859736668629073323, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
       propertyPath: m_LocalPosition.x
