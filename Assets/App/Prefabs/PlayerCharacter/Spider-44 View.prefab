@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 566994351304006282}
   - component: {fileID: 5815913985351992582}
   - component: {fileID: 1054006115468105067}
+  - component: {fileID: 5623656713301565506}
   - component: {fileID: -1193697066701458380}
   m_Layer: 0
   m_Name: Spider-44 View
@@ -59,6 +60,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77a1e45f9f474ce4aaa2ae382f051647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5623656713301565506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373908884717754748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3c646f019946c2a266c0b5d4fa0d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-1193697066701458380
@@ -205,7 +218,7 @@ PrefabInstance:
     - target: {fileID: 1014432445328573254, guid: 778460ad012f66e44b72dd448ee06944, type: 3}
       propertyPath: viewRef
       value: 
-      objectReference: {fileID: 1054006115468105067}
+      objectReference: {fileID: 5623656713301565506}
     - target: {fileID: 1014432445328573254, guid: 778460ad012f66e44b72dd448ee06944, type: 3}
       propertyPath: entityRef
       value: 

@@ -9,7 +9,7 @@ namespace App.Ecs.Characters
         {
             public override void Bake(CharacterViewAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.None);
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent(entity, new CharacterTag());
             }

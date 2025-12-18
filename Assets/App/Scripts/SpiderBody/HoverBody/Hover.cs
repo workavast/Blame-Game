@@ -1,5 +1,5 @@
 ﻿using System;
-using App.Ecs.Characters;
+using App.Ecs.VelocityOwning;
 using App.SpiderBody.IK_Legs;
 using DCFApixels;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace App.SpiderBody.HoverBody
     public partial class Hover : MonoBehaviour
     {
         [SerializeField] private RigBuilder rigBuilder;
-        [SerializeField] private CharacterView viewRef;
+        [SerializeField] private VelocityView viewRef;
         [SerializeField] private SpringData[] springs;
         [Space]
         [SerializeField] private IK_LegPoint[] legs;
