@@ -19,21 +19,24 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4324225024
-    m_Localized: 'A close-range that gets close to its target and blasts them with
-      a high-voltage electric shock. Fortunately, its batteries can''t hold the charge
-      for long; they need time to recharge.
+    m_Localized: 'A close-range combat unit designed to close combat and deliver
+      a devastating high-voltage shock. Its power cells have limited capacity, requiring
+      a brief cooldown period between discharges.
 
-      Durable'
+      Notably durable.'
     m_Metadata:
       m_Items: []
   - m_Id: 6765309952
-    m_Localized: A close-range bot that moves closer to a target and detonates itself.
+    m_Localized: An autonomous close-range drone programmed for tactical self-destruction.
+      Identifies a target, maneuvers into optimal blast radius, and detonates its
+      core, dealing a large amount of damage.
     m_Metadata:
       m_Items: []
   - m_Id: 8979902464
-    m_Localized: A long-range bot that approaches a target at medium range and begins
-      firing at them. If you get too close, it will attempt to fly away. It requires
-      charging to fire, so it can only fire while standing still.
+    m_Localized: "A versatile ranged support drone. Engages targets from a safe distance
+      with charged plasma bursts. Its propulsion system prioritizes repositioning
+      over evasion\u2014if threatened, it will retreat to regain optimal firing range.
+      Requires a stay at place to charge and fire."
     m_Metadata:
       m_Items: []
   references:
