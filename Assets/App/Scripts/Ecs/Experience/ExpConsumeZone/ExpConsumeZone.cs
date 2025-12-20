@@ -1,5 +1,6 @@
 ﻿using App.Ecs.AoeZones;
 using App.Ecs.Experience.ExpOrb;
+using App.Ecs.Orbs;
 using App.Ecs.SystemGroups;
 using Unity.Burst;
 using Unity.Entities;
@@ -33,12 +34,12 @@ namespace App.Ecs.Experience.ExpConsumeZone
             {
                 foreach (var (expOrbTransform, expOrbEntity) in SystemAPI
                              .Query<RefRO<LocalTransform>>()
-                             .WithEntityAccess()
                              .WithAll<ExpOrbTag>()
-                             .WithNone<ExpOrbIsConsumeTag>())
+                             .WithNone<OrbConsumeTag, OrbConsumedTag>()
+                             .WithEntityAccess())
                 {
                     if (math.distance(zoneTransform.ValueRO.Position, expOrbTransform.ValueRO.Position) <= radius.ValueRO.Value)
-                        ecb.AddComponent<ExpOrbIsConsumeTag>(expOrbEntity);
+                        ecb.AddComponent<OrbConsumeTag>(expOrbEntity);
                 }
             }
             
