@@ -4,7 +4,7 @@ using App.Ecs.Sound;
 using Unity.Entities;
 using Unity.Entities.Content;
 
-namespace App.Ecs.Death.Sfx
+namespace App.Ecs.Health.Death.Sfx
 {
     public struct DeathSfxData : IComponentData
     {
@@ -70,7 +70,7 @@ namespace App.Ecs.Death.Sfx
         public void OnCreate(ref SystemState state)
         {
             var query = SystemAPI.QueryBuilder()
-                .WithAll<DeathSfxViewHolder, DeathViewRequestedFlag>()
+                .WithAll<DeathSfxViewHolder, DeathFlag>()
                 .Build();
             
             state.RequireForUpdate(query);
@@ -79,7 +79,7 @@ namespace App.Ecs.Death.Sfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathSfx, _) in
-                     SystemAPI.Query<RefRW<DeathSfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
+                     SystemAPI.Query<RefRW<DeathSfxViewHolder>, EnabledRefRO<DeathFlag>>())
             {
                 deathSfx.ValueRW.Instance.Value.Activate();
             }

@@ -3,9 +3,9 @@ using Unity.Entities;
 using Unity.Entities.Content;
 using UnityEngine;
 
-namespace App.Ecs.Death.Sfx
+namespace App.Ecs.Health.Death.Sfx
 {
-    [RequireComponent(typeof(DeathViewRequestAuthoring))]
+    [RequireComponent(typeof(HealthAuthoring))]
     public class DeathSfxAuthoring : MonoBehaviour
     {
         [SerializeField] private WeakObjectReference<AudioPoolRelease> deathSfxRef;

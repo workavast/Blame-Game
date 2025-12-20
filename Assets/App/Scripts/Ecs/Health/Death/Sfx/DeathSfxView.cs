@@ -5,7 +5,7 @@ using Unity.Entities.Content;
 using UnityEngine;
 using Zenject;
 
-namespace App.Ecs.Death.Sfx
+namespace App.Ecs.Health.Death.Sfx
 {
     public class DeathSfxView : MonoBehaviour, IEntityViewElement
     {

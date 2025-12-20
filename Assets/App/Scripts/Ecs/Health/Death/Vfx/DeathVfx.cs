@@ -1,7 +1,7 @@
 ﻿using App.Ecs.EntityViews;
 using Unity.Entities;
 
-namespace App.Ecs.Death.Vfx
+namespace App.Ecs.Health.Death.Vfx
 {
     public struct DeathVfxViewHolderInitializeFlag : IComponentData, IEnableableComponent
     {
@@ -26,7 +26,7 @@ namespace App.Ecs.Death.Vfx
         public void OnCreate(ref SystemState state)
         {
             var query = SystemAPI.QueryBuilder()
-                .WithAll<DeathVfxViewHolder, DeathViewRequestedFlag>()
+                .WithAll<DeathVfxViewHolder, DeathFlag>()
                 .Build();
             
             state.RequireForUpdate(query);
@@ -35,7 +35,7 @@ namespace App.Ecs.Death.Vfx
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathView, _) in
-                     SystemAPI.Query<RefRW<DeathVfxViewHolder>, EnabledRefRO<DeathViewRequestedFlag>>())
+                     SystemAPI.Query<RefRW<DeathVfxViewHolder>, EnabledRefRO<DeathFlag>>())
             {
                 deathView.ValueRW.Instance.Value.Activate();
             }

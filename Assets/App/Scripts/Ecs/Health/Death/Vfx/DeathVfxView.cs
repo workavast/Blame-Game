@@ -2,7 +2,7 @@
 using App.Ecs.EntityViews;
 using UnityEngine;
 
-namespace App.Ecs.Death.Vfx
+namespace App.Ecs.Health.Death.Vfx
 {
     public class DeathVfxView : MonoBehaviour, IEntityViewElement
     {

@@ -1,9 +1,9 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace App.Ecs.Death.Vfx
+namespace App.Ecs.Health.Death.Vfx
 {
-    [RequireComponent(typeof(DeathViewRequestAuthoring))]
+    [RequireComponent(typeof(HealthAuthoring))]
     public class DeathVfxAuthoring : MonoBehaviour
     {
         private class Baker : Baker<DeathVfxAuthoring>

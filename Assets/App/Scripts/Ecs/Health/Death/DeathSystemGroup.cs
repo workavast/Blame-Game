@@ -1,7 +1,6 @@
-﻿using App.Ecs.Health;
-using Unity.Entities;
+﻿using Unity.Entities;
 
-namespace App.Ecs.Death
+namespace App.Ecs.Health.Death
 {
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     [UpdateAfter(typeof(ApplyDamageToHealth))]

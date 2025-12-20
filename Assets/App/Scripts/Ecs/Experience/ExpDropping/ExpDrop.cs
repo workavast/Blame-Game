@@ -1,5 +1,4 @@
-﻿using App.Ecs.Death;
-using App.Ecs.Health;
+﻿using App.Ecs.Health.Death;
 using App.Ecs.Moving;
 using App.Ecs.Randomisation;
 using App.Ecs.Utils;
@@ -45,17 +44,14 @@ namespace App.Ecs.Experience.ExpDropping
             var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
             var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
             
-            foreach (var (transform, health, expOrbDropper) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, RefRO<ExpOrbDropper>>())
+            foreach (var (deathFlag, transform, expOrbDropper) in 
+                     SystemAPI.Query<RefRW<DeathFlag>, RefRO<LocalToWorld>, RefRO<ExpOrbDropper>>())
             {
-                if (health.ValueRO.Value <= 0)
+                expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
                 {
-                    expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
-                    {
-                        OrbsCount = expOrbDropper.ValueRO.OrbsCount,
-                        Position = transform.ValueRO.Position
-                    });
-                }
+                    OrbsCount = expOrbDropper.ValueRO.OrbsCount,
+                    Position = transform.ValueRO.Position
+                });
             }
         }
     }
