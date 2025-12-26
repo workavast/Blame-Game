@@ -21,11 +21,6 @@ namespace App.Ecs.Experience
         public float Value;
     }
     
-    public struct ExpOrbPrefabHolder : IComponentData
-    {
-        public Entity OrbPrefab;
-    }
-    
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     [UpdateAfter(typeof(OrbsCheckConsumeOverSystem))]
     public partial struct ExpOrbsConsumeOverSystem : ISystem
@@ -38,8 +33,8 @@ namespace App.Ecs.Experience
 
         public void OnUpdate(ref SystemState state)
         {
-            var expEntity = SystemAPI.GetSingletonEntity<ExpGlobalDataTag>();
-            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(expEntity);
+            var expGlobalDataEntity = SystemAPI.GetSingletonEntity<ExpGlobalDataTag>();
+            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(expGlobalDataEntity);
             
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var globalExpScale = SystemAPI.GetComponent<ExpScale>(playerEntity);

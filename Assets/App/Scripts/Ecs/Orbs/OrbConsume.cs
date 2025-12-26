@@ -122,7 +122,6 @@ namespace App.Ecs.Orbs
                          .WithAll<OrbConsumedTag>()
                          .WithEntityAccess())
             {
-                Debug.Log("DESTROY");
                 ecb.DestroyEntity(entity);
             }
         }
