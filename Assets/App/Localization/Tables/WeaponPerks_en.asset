@@ -19,11 +19,12 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 10984779776
-    m_Localized: Forwrad Shooter
+    m_Localized: Forward Shooter
     m_Metadata:
       m_Items: []
   - m_Id: 349284757504
-    m_Localized: Shoot Forwrard
+    m_Localized: Fires in the direction the spider-bot is facing. It's a bit awkward,
+      but its damage and rate of fire make up for it.
     m_Metadata:
       m_Items: []
   - m_Id: 10605498888192
@@ -31,7 +32,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10684058202112
-    m_Localized: Zone witch damage all enemies in it
+    m_Localized: Deals damage to all enemies caught inside
     m_Metadata:
       m_Items: []
   - m_Id: 10915306958848
@@ -64,7 +65,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12896301903872
-    m_Localized: Shoot few projectiles around player
+    m_Localized: Shoot several projectiles around player
     m_Metadata:
       m_Items: []
   references:
