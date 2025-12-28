@@ -86,6 +86,10 @@ MonoBehaviour:
     m_Localized: Custom Cursor
     m_Metadata:
       m_Items: []
+  - m_Id: 19991798904717312
+    m_Localized: Camera Shake
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: CursorType
     m_Metadata:
       m_Items: []
+  - m_Id: 19991798904717312
+    m_Key: CameraShake
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
