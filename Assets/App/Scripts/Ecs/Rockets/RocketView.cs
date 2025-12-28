@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Audio.Sources;
+using App.CameraShaking;
 using App.Ecs.EntityViews;
 using Unity.Entities.Content;
 using Unity.Mathematics;
@@ -15,12 +16,16 @@ namespace App.Ecs.Rockets
         [SerializeField] private ParticleProvider particleProvider;
         [Header("SFX")]
         [SerializeField] private Vector2 explosionPitchRange;
+        [Header("Camera Shake")]
+        [SerializeField] private float shakePower;
 
+        [Inject] private CameraShakeBehaviour _cameraShakeBehaviour;
+        
         private float _explosionRadius;
         private SfxHolder _sfxHolder;
         
         public event Action<IEntityViewElement> OnCleanupCompleted;
-        
+
         [Inject]
         public void Construct(AudioFactory audioFactory)
         {
@@ -37,6 +42,7 @@ namespace App.Ecs.Rockets
             rocketModelHolder.SetActive(false);
 
             _sfxHolder.Play(transform.position, explosionPitchRange);
+            _cameraShakeBehaviour.Shake(shakePower);
 
             return false;
         }

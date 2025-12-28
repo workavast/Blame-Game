@@ -1321,10 +1321,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6749704837827783511, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 303910047062856018, guid: 517a4f88a98e7b44396c6a8f8fef4fe2, type: 3}
       propertyPath: m_Name
       value: ECS_Player
