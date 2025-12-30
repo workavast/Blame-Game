@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 116903538688
-    m_Localized: You Loose
+    m_Localized: Game Over
     m_Metadata:
       m_Items: []
   - m_Id: 191419543552

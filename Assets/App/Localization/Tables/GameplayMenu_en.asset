@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1066603016192
-    m_Localized: Game Paused
+    m_Localized: Pause
     m_Metadata:
       m_Items: []
   references:
