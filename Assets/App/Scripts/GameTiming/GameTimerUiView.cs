@@ -14,10 +14,10 @@ namespace App.GameTiming
 
         private void Update()
         {
-            if (!Mathf.Approximately(_lastTimeValue, _gameTimer.Time))
+            if (!Mathf.Approximately(_lastTimeValue, _gameTimer.RemainTime))
             {
-                _lastTimeValue = _gameTimer.Time;
-                timeViewTxt.text = $"{Mathf.Floor(_gameTimer.Minutes):00}:{Mathf.Floor(_gameTimer.Seconds):00}";
+                _lastTimeValue = _gameTimer.RemainTime;
+                timeViewTxt.text = $"{Mathf.Floor(_gameTimer.RemainMinutes):00}:{Mathf.Floor(_gameTimer.RemainSeconds):00}";
             }
         }
     }

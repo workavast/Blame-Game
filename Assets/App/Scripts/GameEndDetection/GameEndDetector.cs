@@ -9,8 +9,6 @@ namespace App.GameEndDetection
 {
     public class GameEndDetector : MonoBehaviour
     {
-        [SerializeField] private float gameTimeToWin;
-
         [Inject] private readonly ScreensController _screensController;
         [Inject] private readonly PlayerProvider _playerProvider;
         [Inject] private readonly IGameTimerRO _gameTimer;
@@ -34,7 +32,7 @@ namespace App.GameEndDetection
             if (_gameIsOver)
                 return;
             
-            if (_gameTimer.Time >= gameTimeToWin) 
+            if (_gameTimer.TimeIsOver) 
                 GameWin();
         }
 

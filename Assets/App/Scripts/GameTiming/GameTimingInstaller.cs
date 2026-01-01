@@ -5,11 +5,11 @@ namespace App.GameTiming
 {
     public class GameTimingInstaller : MonoInstaller
     {
-        [SerializeField] private float startTime;
+        [SerializeField] private GameTimeConfig config;
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<GameTimer>().FromNew().AsSingle().WithArguments(startTime);
+            Container.BindInterfacesAndSelfTo<GameTimer>().FromNew().AsSingle().WithArguments(config);
         }
     }
 }
