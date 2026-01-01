@@ -48,6 +48,18 @@ namespace App.UI
             }
         }
 
+        private void OnEnable()
+        {
+            ApplyTilt(_baseRotation, false);
+            SetScale(_baseScale, false);
+            UpdateShadow(Vector2.zero, false);
+        }
+
+        private void OnDisable()
+        {
+            OnPointerExit(null);
+        }
+
         private void Update()
         {
             UpdateScale();
@@ -76,19 +88,31 @@ namespace App.UI
                 ? _baseScale * hoverScale
                 : _baseScale;
 
-            visualTarget.localScale = Vector3.Lerp(
-                visualTarget.localScale,
-                targetScale,
-                Time.unscaledDeltaTime * scaleLerpSpeed
-            );
+            SetScale(targetScale, true);
+        }
+
+        private void SetScale(Vector3 targetScale, bool smooth)
+        {
+            if (smooth)
+            {
+                visualTarget.localScale = Vector3.Lerp(
+                    visualTarget.localScale,
+                    targetScale,
+                    Time.unscaledDeltaTime * scaleLerpSpeed
+                );
+            }
+            else
+            {
+                visualTarget.localScale = targetScale;
+            }
         }
 
         private void UpdateTilt()
         {
             if (!_isHovered)
             {
-                ResetTilt();
-                UpdateShadow(Vector2.zero);
+                ApplyTilt(_baseRotation, true);
+                UpdateShadow(Vector2.zero, true);
                 return;
             }
 
@@ -99,20 +123,27 @@ namespace App.UI
                 Time.unscaledDeltaTime * inputSmoothingSpeed
             );
 
-            ApplyTilt(_smoothedInput);
-            UpdateShadow(_smoothedInput);
+            CalculateTilt(_smoothedInput);
+            UpdateShadow(_smoothedInput, true);
         }
 
-        private void ResetTilt()
+        private void ApplyTilt(Quaternion targetRotation, bool smooth)
         {
-            visualTarget.localRotation = Quaternion.Lerp(
-                visualTarget.localRotation,
-                _baseRotation,
-                Time.unscaledDeltaTime * tiltLerpSpeed
-            );
+            if (smooth)
+            {
+                visualTarget.localRotation = Quaternion.Lerp(
+                    visualTarget.localRotation,
+                    targetRotation,
+                    Time.unscaledDeltaTime * tiltLerpSpeed
+                );   
+            }
+            else
+            {
+                visualTarget.localRotation = targetRotation;
+            }
         }
 
-        private void ApplyTilt(Vector2 input)
+        private void CalculateTilt(Vector2 input)
         {
             var targetRotation = Quaternion.Euler(
                 -input.y * maxTiltAngle,
@@ -120,11 +151,7 @@ namespace App.UI
                 0f
             );
 
-            visualTarget.localRotation = Quaternion.Lerp(
-                visualTarget.localRotation,
-                targetRotation,
-                Time.unscaledDeltaTime * tiltLerpSpeed
-            );
+            ApplyTilt(targetRotation, true);
         }
 
         private Vector2 CalculateNormalizedInput()
@@ -145,23 +172,30 @@ namespace App.UI
             );
         }
 
-        private void UpdateShadow(Vector2 input)
+        private void UpdateShadow(Vector2 input, bool smooth)
         {
             if (shadow == null)
                 return;
 
             var targetOffset = -input * maxShadowOffset;
+            if (smooth)
+            {
+                shadow.anchoredPosition = Vector2.Lerp(
+                    shadow.anchoredPosition,
+                    targetOffset,
+                    Time.unscaledDeltaTime * shadowFollowSpeed
+                );
+            }
+            else
+            {
+                shadow.anchoredPosition = targetOffset;
+            }
 
-            shadow.anchoredPosition = Vector2.Lerp(
-                shadow.anchoredPosition,
-                targetOffset,
-                Time.unscaledDeltaTime * shadowFollowSpeed
-            );
 
             shadow.localScale = visualTarget.localScale;
             shadow.localRotation = visualTarget.localRotation;
         }
-        
+
         private static float SoftNormalize(float value)
         {
             value = Mathf.Clamp(value, -1f, 1f);
