@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a2256641c81a50a4dba788bb035b9575
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86242
+  packageName: Workplace Tools
+  packageVersion: 1.2
+  assetPath: Assets/Workplace Tools/Materials/Wrench_Open_Metal.mat
+  uploadId: 729009
