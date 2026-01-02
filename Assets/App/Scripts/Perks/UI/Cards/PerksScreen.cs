@@ -4,7 +4,7 @@ using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;
 
-namespace App.Perks.UI
+namespace App.Perks.UI.Cards
 {
     public class PerksScreen : ScreenBase
     {

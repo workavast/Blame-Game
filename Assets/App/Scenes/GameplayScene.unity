@@ -882,6 +882,17 @@ Transform:
   - {fileID: 164696158}
   m_Father: {fileID: 1276541325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &420882004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4373044094240541739, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+  m_PrefabInstance: {fileID: 7058456261474037533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e740451265c07c44fa9c920607c79df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &441027385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1453,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1284749534}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &710957547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 710957548}
+  - component: {fileID: 710957549}
+  m_Layer: 0
+  m_Name: ActivePerksViewController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &710957548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710957547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2103980529}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710957549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710957547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49ad2eff586ac14dbcb7b2bddd41328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activePerksViewGrid: {fileID: 420882004}
 --- !u!1 &752742576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,6 +3750,7 @@ Transform:
   - {fileID: 2048167130}
   - {fileID: 976251086}
   - {fileID: 1152160354}
+  - {fileID: 710957548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3521817651972184101

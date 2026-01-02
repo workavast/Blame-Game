@@ -16,6 +16,8 @@ namespace App.Perks.PerksManagement
         public IReadOnlyList<PerkCell> AvailablePerks => _availablePerks;
         public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
 
+        public event Action OnActivePerksChanged;
+
         public PerksStorage(IReadOnlyList<PerkCell> initialPerks, IReadOnlyList<PerkCell> initialGlobalPerks)
         {
             _availablePerks.AddRange(initialPerks);
@@ -71,6 +73,8 @@ namespace App.Perks.PerksManagement
                 
                 _availablePerks.Add(childPerk);
             }
+
+            OnActivePerksChanged?.Invoke();
         }
     }
 }

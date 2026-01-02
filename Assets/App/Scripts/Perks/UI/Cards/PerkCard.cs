@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Perks.UI
+namespace App.Perks.UI.Cards
 {
     public class PerkCard : MonoBehaviour
     {

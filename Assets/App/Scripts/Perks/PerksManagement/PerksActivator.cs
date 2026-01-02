@@ -2,7 +2,6 @@
 using App.Ecs.Player;
 using App.EcsBridges;
 using App.Perks.Configs;
-using Avastrad.Extensions;
 
 namespace App.Perks.PerksManagement
 {

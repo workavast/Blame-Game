@@ -5,7 +5,7 @@ using App.Perks.PerksManagement;
 using UnityEngine;
 using Zenject;
 
-namespace App.Perks.UI
+namespace App.Perks.UI.Cards
 {
     public class PerksChooseWindow : MonoBehaviour
     {
