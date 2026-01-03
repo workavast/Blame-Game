@@ -33,10 +33,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8979902464
-    m_Localized: "A versatile ranged support drone. Engages targets from a safe distance
+    m_Localized: A versatile ranged support drone. Engages targets from a safe distance
       with charged plasma bursts. Its propulsion system prioritizes repositioning
-      over evasion\u2014if threatened, it will retreat to regain optimal firing range.
-      Requires a stay at place to charge and fire."
+      over evasion - if threatened, it will retreat to regain optimal firing range.
+      Requires a stay at place to charge and fire.
     m_Metadata:
       m_Items: []
   references:
