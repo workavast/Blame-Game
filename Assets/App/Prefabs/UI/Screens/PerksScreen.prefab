@@ -288,6 +288,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7227280025555282133}
     m_Modifications:
+    - target: {fileID: 822355156696508140, guid: 4bf8df915b043f140a341fceace3f9ba, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1351456749, guid: 691bf0084d3b85049aed8dade759de25, type: 3}
     - target: {fileID: 2605033269840015245, guid: 4bf8df915b043f140a341fceace3f9ba, type: 3}
       propertyPath: m_SizeDelta.x
       value: -40
@@ -340,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PerkCard_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8329195394636023260, guid: 4bf8df915b043f140a341fceace3f9ba, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1793889379, guid: 691bf0084d3b85049aed8dade759de25, type: 3}
     - target: {fileID: 8884512051833911104, guid: 4bf8df915b043f140a341fceace3f9ba, type: 3}
       propertyPath: m_Sprite
       value: 
