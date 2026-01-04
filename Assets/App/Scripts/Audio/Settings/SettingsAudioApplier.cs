@@ -9,9 +9,9 @@ namespace App.Audio.Settings
         private readonly VolumeSettingModel _volumeSettingModel;
         private readonly AudioVolumeChanger _audioVolumeChanger;
         
-        public SettingsAudioApplier(SettingsModel settingsModel, VolumeSettingConfig config)
+        public SettingsAudioApplier(SettingsRepository settingsRepository, VolumeSettingConfig config)
         {
-            _volumeSettingModel = settingsModel.GetSettingModel<VolumeSettingModel>();
+            _volumeSettingModel = settingsRepository.GetSettingModel<VolumeSettingModel>();
             _audioVolumeChanger = new AudioVolumeChanger(config.AudioMixer, config.MasterParam, config.EffectsParam,
                 config.MusicParam);
             

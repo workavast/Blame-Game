@@ -9,8 +9,8 @@ namespace Avastrad.Settings
 
         public override void InstallBindings()
         {
-            var settingsModel = new SettingsModel(settingsConfigsRepository);
-            Container.Bind<SettingsModel>().FromInstance(settingsModel).AsSingle();
+            var settingsModel = new SettingsRepository(settingsConfigsRepository);
+            Container.Bind<SettingsRepository>().FromInstance(settingsModel).AsSingle();
         }
     }
 }

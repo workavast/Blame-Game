@@ -5,7 +5,7 @@ namespace Avastrad.Settings
 {
     public class SettingsWindow : MonoBehaviour
     {
-        [Inject] private readonly SettingsModel _settingsModel;
+        [Inject] private readonly SettingsRepository _settingsRepository;
         
         private ISettingViewModel[] _settingsViewModels;
         private ISettingView[] _settingsViews;
@@ -16,7 +16,7 @@ namespace Avastrad.Settings
             _settingsViews = GetComponentsInChildren<ISettingView>(true);
 
             foreach (var viewModel in _settingsViewModels)
-                viewModel.Initialize(_settingsModel);
+                viewModel.Initialize(_settingsRepository);
 
             foreach (var view in _settingsViews)
                 view.Initialize(); 
@@ -48,8 +48,8 @@ namespace Avastrad.Settings
             foreach (var viewModel in _settingsViewModels)
                 viewModel.SetToModel();
 
-            _settingsModel.Apply(false);
-            _settingsModel.Save();
+            _settingsRepository.Apply(false);
+            _settingsRepository.Save();
         }
 
         public void ResetSettings()
@@ -57,19 +57,19 @@ namespace Avastrad.Settings
             foreach (var viewModel in _settingsViewModels)
                 viewModel.ResetSetting();
 
-            _settingsModel.Apply(false);
-            _settingsModel.Save();
+            _settingsRepository.Apply(false);
+            _settingsRepository.Save();
         }
 
         public void ResetToDefaults()
         {
-            _settingsModel.ResetToDefault();
+            _settingsRepository.ResetToDefault();
             
             foreach (var viewModel in _settingsViewModels)
                 viewModel.LoadModelData();
 
-            _settingsModel.Apply(false);
-            _settingsModel.Save();
+            _settingsRepository.Apply(false);
+            _settingsRepository.Save();
         }
     }
 }

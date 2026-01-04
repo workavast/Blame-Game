@@ -3,11 +3,11 @@ using Avastrad.Settings.Save;
 
 namespace Avastrad.Settings
 {
-    public class SettingsModel
+    public class SettingsRepository
     {
         private readonly ISettingModel[] _allSettings;
 
-        public SettingsModel(SettingsConfigsRepository configsRepository)
+        public SettingsRepository(SettingsConfigsRepository configsRepository)
         {
             _allSettings = new ISettingModel[configsRepository.ConfigsRO.Count];
             for (int i = 0; i < configsRepository.ConfigsRO.Count; i++) 
