@@ -14,6 +14,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.smkplus.custom-toolbar": {
+      "version": "https://github.com/smkplus/CustomToolbar.git#master",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c42b0f4497a2b463490b59be9026cb63b1b884f9"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

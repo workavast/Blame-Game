@@ -9,7 +9,7 @@ using UnityEditor.Localization;
 
 namespace App.Localization
 {
-    [CreateAssetMenu(fileName = nameof(StringTablesConfig), menuName = Consts.ConfigsPath + nameof(StringTablesConfig))]
+    [CreateAssetMenu(fileName = nameof(StringTablesConfig), menuName = AppConsts.ConfigsPath + nameof(StringTablesConfig))]
     public class StringTablesConfig : ScriptableObject
     {
         [field: SerializeField, Tooltip("ReadOnly"), ReadOnly] private List<TableReference> tableReferences = new();

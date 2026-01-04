@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Avastrad.ScenesLoading;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,10 @@ namespace App.Bootstraps
 
         [Inject] private readonly ISceneLoader _sceneLoader;
 
-        protected override Task SelfInitialization() 
-            => Await();
+        protected override Task SelfInitialization(CancellationToken cancellationToken) 
+            => Await(cancellationToken);
 
-        private async Task Await() 
-            => await Task.Delay(awaitDelay);
+        private async Task Await(CancellationToken cancellationToken) 
+            => await Task.Delay(awaitDelay, cancellationToken);
     }
 }

@@ -22,7 +22,7 @@ namespace App.EcsBridges
             }
             else
             {
-                Debug.LogError($"Cant find singleton component: [{nameof(TSingleton)}]");
+                Debug.LogError($"Cant find singleton component: [{typeof(TSingleton)}]");
                 return default;
             }
         }

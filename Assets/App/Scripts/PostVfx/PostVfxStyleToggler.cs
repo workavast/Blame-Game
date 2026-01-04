@@ -7,17 +7,30 @@ namespace App.PostVfx
 {
     public class PostVfxStyleToggler : MonoBehaviour
     {
+        [SerializeField] private InputActionReference numInput;
         [SerializeField] private List<Material> postProcMaterials;
         [SerializeField] private RawImage rawImage;
-        
-        public void InvNums(InputAction.CallbackContext input)
-        {
-            if (!input.started)
-                return;
-            
-            var floatValue = input.ReadValue<float>();
 
+        private void Awake()
+        {
+            numInput.action.performed += ReadInput;
+        }
+
+        private void OnDestroy()
+        {
+            numInput.action.performed -= ReadInput;
+        }
+
+        private void ReadInput(InputAction.CallbackContext input)
+        {
+            var floatValue = input.ReadValue<float>();
             var index = ((int)floatValue) - 1;
+            
+            SetVfx(index);
+        }
+
+        private void SetVfx(int index)
+        {
             if (index < 0 || postProcMaterials.Count <= index) 
                 rawImage.material = null;
             else

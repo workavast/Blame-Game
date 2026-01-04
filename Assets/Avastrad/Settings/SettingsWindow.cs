@@ -67,7 +67,8 @@ namespace Avastrad.Settings
             
             foreach (var viewModel in _settingsViewModels)
                 viewModel.LoadModelData();
-            
+
+            _settingsModel.Apply(false);
             _settingsModel.Save();
         }
     }

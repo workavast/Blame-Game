@@ -64,9 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a1e45f9f474ce4aaa2ae382f051647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleanupCallback: {fileID: 8176448482098108948}
-  model: {fileID: 1672947223765314213}
-  deathVfxView: {fileID: 0}
 --- !u!114 &-477919987833839917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2983396787134673826, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
       propertyPath: m_Name
-      value: DR View
+      value: MeleeBotBody
       objectReference: {fileID: 0}
     - target: {fileID: 8859736668629073323, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
       propertyPath: m_LocalPosition.x
@@ -248,11 +245,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
---- !u!1 &1672947223765314213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2983396787134673826, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}
-  m_PrefabInstance: {fileID: 4490272656607009031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4946285823455044780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8859736668629073323, guid: e59c0263f73b61b4fa3f7fb0b1245418, type: 3}

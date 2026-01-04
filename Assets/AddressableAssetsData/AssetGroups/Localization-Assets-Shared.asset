@@ -20,6 +20,16 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 264083ada79061f4bb1d9ab3ffce95f1
+    m_Address: Assets/App/Localization/Tables/BestiaryCore Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a49792c2876ed4428e2366952927479
+    m_Address: Assets/App/Localization/Tables/EnemiesTitles Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ce567600914a404f82a1fac03cf4238
     m_Address: Assets/App/Localization/Tables/GameplayMenu Shared Data.asset
     m_ReadOnly: 1
@@ -37,6 +47,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9cad0ae026143a4bacc9da52faf384c
     m_Address: Assets/App/Localization/Tables/Settings Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caf68bf299dbfd84a926561702c06322
+    m_Address: Assets/App/Localization/Tables/EnemiesDescriptions Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

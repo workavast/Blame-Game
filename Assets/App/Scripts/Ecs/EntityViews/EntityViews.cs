@@ -99,8 +99,8 @@ namespace App.Ecs.EntityViews
     
     [UpdateInGroup(typeof(ViewsInitializationSystemGroup))]
     [UpdateAfter(typeof(EntityViewInstallerSystem))]
-    public abstract partial class ViewHolderInitializeSystem<TInitializeFlag, TView, TViewHolder> : SystemBase
-        where TInitializeFlag : unmanaged, IComponentData
+    public abstract partial class ViewHolderInitializeSystem<TInitializeTag, TView, TViewHolder> : SystemBase
+        where TInitializeTag : unmanaged, IComponentData
         where TView : MonoBehaviour, IEntityViewElement
         where TViewHolder : unmanaged, IComponentData
     {
@@ -108,7 +108,7 @@ namespace App.Ecs.EntityViews
         {
             var query = GetEntityQuery(
                 ComponentType.ReadWrite<EntityViewHolder>(),
-                ComponentType.ReadOnly<TInitializeFlag>(),
+                ComponentType.ReadOnly<TInitializeTag>(),
                 ComponentType.Exclude<TViewHolder>()
             );
             
@@ -121,7 +121,7 @@ namespace App.Ecs.EntityViews
 
             var query = GetEntityQuery(
                 ComponentType.ReadWrite<EntityViewHolder>(),
-                ComponentType.ReadOnly<TInitializeFlag>(),
+                ComponentType.ReadOnly<TInitializeTag>(),
                 ComponentType.Exclude<TViewHolder>()
             );
             

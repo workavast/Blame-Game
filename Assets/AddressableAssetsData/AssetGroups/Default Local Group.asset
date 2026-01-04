@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: e8ab521315683774b8a1c9b170f13514
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b89097df546c6b4499d37008669eec1c
+    m_Address: Assets/App/Prefabs/Bestiary/Bestiary.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b96e6a5ba87f7a344ada0ad02bad6e7f, type: 2}
   m_SchemaSet:

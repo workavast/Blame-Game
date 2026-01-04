@@ -6,7 +6,6 @@ namespace App.Ecs.Experience.ExpOrb
     public class ExpOrbAuthoring : MonoBehaviour
     {
         [SerializeField] private float expAmount;
-        [SerializeField] private float damping;
         
         private class ExpOrbBaker : Baker<ExpOrbAuthoring>
         {
@@ -16,7 +15,6 @@ namespace App.Ecs.Experience.ExpOrb
                 
                 AddComponent(entity, new ExpOrbTag());
                 AddComponent(entity, new ExpOrbAmount() { Value = authoring.expAmount });
-                AddComponent(entity, new ExpOrbDamping() { Value = authoring.damping });
             }
         }
     }

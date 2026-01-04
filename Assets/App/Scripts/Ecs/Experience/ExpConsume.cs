@@ -1,14 +1,12 @@
 ﻿using App.Ecs.Experience.ExpOrb;
-using App.Ecs.Moving;
+using App.Ecs.Orbs;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 
 namespace App.Ecs.Experience
 {
-    public struct ExpTag : IComponentData
+    public struct ExpGlobalDataTag : IComponentData
     {
         
     }
@@ -23,89 +21,29 @@ namespace App.Ecs.Experience
         public float Value;
     }
     
-    public struct ExpOrbConsumeDistanceError : IComponentData
-    {
-        public float Value;
-    }
-    
-    public struct ExpOrbConsumeMoveSpeed : IComponentData
-    {
-        public float MoveSpeed;
-        public float Acceleration;
-    }
-    
-    public struct ExpOrbPrefabHolder : IComponentData
-    {
-        public Entity OrbPrefab;
-    }
-    
-    [UpdateInGroup(typeof(DependentMoveSystemGroup))]
-    [UpdateBefore(typeof(DefaultMoveSystem))]
-    public partial struct ExpOrbsConsumeMoveToPlayerSystem : ISystem
-    {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<PlayerTag>();
-            state.RequireForUpdate<ExpTag>();
-            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
-        }
-
-        public void OnUpdate(ref SystemState state)
-        {
-            var deltaTime = SystemAPI.Time.DeltaTime;
-            
-            var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-            
-            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var expOrbConsumeData = SystemAPI.GetComponent<ExpOrbConsumeMoveSpeed>(expEntity);
-            
-            foreach (var (transform, moveDirection, moveSpeed) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<MoveDirection>, RefRW<MoveSpeed>>()
-                         .WithAll<ExpOrbTag, ExpOrbIsConsumeTag>())
-            {
-                moveDirection.ValueRW.Value = math.normalize(playerTransform.Position.xz - transform.ValueRO.Position.xz);
-
-                var moveSpeedValue = math.clamp(moveSpeed.ValueRO.Value + expOrbConsumeData.Acceleration * deltaTime, 0, expOrbConsumeData.MoveSpeed);
-                moveSpeed.ValueRW.Value = moveSpeedValue;
-            }
-        }
-    }
-
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateAfter(typeof(OrbsCheckConsumeOverSystem))]
     public partial struct ExpOrbsConsumeOverSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerTag>();
-            state.RequireForUpdate<ExpTag>();
-            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<ExpGlobalDataTag>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
-
-            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(expEntity);
-            var expOrbConsumeDistanceError = SystemAPI.GetComponent<ExpOrbConsumeDistanceError>(expEntity);
+            var expGlobalDataEntity = SystemAPI.GetSingletonEntity<ExpGlobalDataTag>();
+            var playerExp = SystemAPI.GetComponentRW<PlayerExp>(expGlobalDataEntity);
             
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
-            var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
             var globalExpScale = SystemAPI.GetComponent<ExpScale>(playerEntity);
 
-            foreach (var (transform, expAmount, entity) in 
-                     SystemAPI.Query<RefRO<LocalTransform>, RefRO<ExpOrbAmount>>()
-                         .WithAll<ExpOrbTag, ExpOrbIsConsumeTag>()
-                         .WithEntityAccess())
+            foreach (var expAmount in 
+                     SystemAPI.Query<RefRO<ExpOrbAmount>>()
+                         .WithAll<ExpOrbTag, OrbConsumedTag>())
             {
-                var dist = math.distance(playerTransform.Position.xz, transform.ValueRO.Position.xz);
-                if (dist <= expOrbConsumeDistanceError.Value)
-                {
-                    playerExp.ValueRW.Value += expAmount.ValueRO.Value * globalExpScale.Value;
-                    ecb.DestroyEntity(entity); 
-                }
+                playerExp.ValueRW.Value += expAmount.ValueRO.Value * globalExpScale.Value;
             }
         }
     }

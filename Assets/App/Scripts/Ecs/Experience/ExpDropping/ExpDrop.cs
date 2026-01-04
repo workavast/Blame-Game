@@ -1,11 +1,6 @@
-﻿using App.Ecs.Death;
-using App.Ecs.Health;
-using App.Ecs.Moving;
-using App.Ecs.Randomisation;
-using App.Ecs.Utils;
-using Unity.Burst;
+﻿using App.Ecs.Health.Death;
+using App.Ecs.Orbs;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace App.Ecs.Experience.ExpDropping
@@ -15,91 +10,29 @@ namespace App.Ecs.Experience.ExpDropping
         public int OrbsCount;
     }
     
-    public struct ExpOrbsDropRequest : IBufferElementData
-    {
-        public int OrbsCount;
-        public float3 Position;
-    }
-    
-    public struct ExpOrbDropImpulse : IComponentData
-    {
-        public float Value;
-    }
-
-    public struct ExpOrbDropHeight : IComponentData
-    {
-        public float Value;
-    }
-    
     [UpdateInGroup(typeof(DeathSystemGroup))]
     public partial struct ExpOrbCallSpawnSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<ExpTag>();
-        }
-
-        [BurstCompile]
-        public void OnUpdate(ref SystemState state)
-        {
-            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
-            
-            foreach (var (transform, health, expOrbDropper) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRW<CurrentHealth>, RefRO<ExpOrbDropper>>())
-            {
-                if (health.ValueRO.Value <= 0)
-                {
-                    expOrbsRequestsBuffer.Add(new ExpOrbsDropRequest()
-                    {
-                        OrbsCount = expOrbDropper.ValueRO.OrbsCount,
-                        Position = transform.ValueRO.Position
-                    });
-                }
-            }
-        }
-    }
-    
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateAfter(typeof(DeathSystemGroup))]
-    public partial struct ExpOrbSpawnSystem : ISystem
-    {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<ExpTag>();
-            state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<ExpGlobalDataTag>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
+            var expGlobalDataEntity = SystemAPI.GetSingletonEntity<ExpGlobalDataTag>();
+            var expOrbsRequestsBuffer = SystemAPI.GetBuffer<OrbsDropRequest>(expGlobalDataEntity);
 
-            var expEntity = SystemAPI.GetSingletonEntity<ExpTag>();
-            var randomHolder = SystemAPI.GetComponentRW<RandomHolder>(expEntity);
-            var orbPrefabHolder = SystemAPI.GetComponent<ExpOrbPrefabHolder>(expEntity);
-            var requestsBuffer = SystemAPI.GetBuffer<ExpOrbsDropRequest>(expEntity);
-            var dropImpulse = SystemAPI.GetComponent<ExpOrbDropImpulse>(expEntity);
-            var verticalOffset = SystemAPI.GetComponent<ExpOrbDropHeight>(expEntity);
-
-            for (var i = 0; i < requestsBuffer.Length; i++)
+            foreach (var (transform, expOrbDropper) in
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<ExpOrbDropper>>()
+                         .WithAll<DeathFlag>())
             {
-                var spawnExpOrbsRequest = requestsBuffer[i];
-                var spawnPoint = spawnExpOrbsRequest.Position;
-                spawnPoint.y = verticalOffset.Value;
-
-                for (var j = 0; j < spawnExpOrbsRequest.OrbsCount; j++)
+                expOrbsRequestsBuffer.Add(new OrbsDropRequest()
                 {
-                    var direction = RandomPosition.GetDirection(ref randomHolder.ValueRW.Random);
-                    var orb = ecb.Instantiate(orbPrefabHolder.OrbPrefab);
-
-                    ecb.SetComponent(orb, LocalTransform.FromPosition(spawnPoint));
-                    ecb.SetComponent(orb, new MoveSpeed() { Value = dropImpulse.Value });
-                    ecb.SetComponent(orb, new MoveDirection() { Value = direction.xz });
-                }
+                    OrbsCount = expOrbDropper.ValueRO.OrbsCount,
+                    Position = transform.ValueRO.Position
+                });
             }
-
-            requestsBuffer.Clear();
         }
     }
 }

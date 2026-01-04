@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1444629878566912
-    m_Localized: Detected unsaved changes
+    m_Localized: Save Changes
     m_Metadata:
       m_Items: []
   - m_Id: 1444849093865472
@@ -84,6 +84,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 11281354993856512
     m_Localized: Custom Cursor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19991798904717312
+    m_Localized: Camera Shake
     m_Metadata:
       m_Items: []
   references:

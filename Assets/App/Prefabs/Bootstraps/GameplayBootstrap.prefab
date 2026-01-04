@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b954724e499d4d019837fc96758d8387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   preloader:
     config: {fileID: 11400000, guid: 64327ab706a1bac4fa8bddb0ac3c3989, type: 2}
 --- !u!1 &3261612727902063463
@@ -91,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299a6c805a14405598c652a321138ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
 --- !u!1 &3415621757873998989
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +125,7 @@ Transform:
   - {fileID: 3600347266537301220}
   - {fileID: 663498637813481031}
   - {fileID: 7424022348483954338}
+  - {fileID: 1533636636941213467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216285357571760931
@@ -141,12 +140,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094701a7dcd345d7839a08343d0e494c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps:
-  - {fileID: 2624584315642194907}
-  - {fileID: 4569151583115929486}
-  - {fileID: 4857292426109411136}
-  - {fileID: 5166087996763463982}
-  - {fileID: 8557070474297080253}
+--- !u!1 &5904494793108713427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533636636941213467}
+  - component: {fileID: 1807299621449578600}
+  m_Layer: 0
+  m_Name: GameTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1533636636941213467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904494793108713427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5323622458317749281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1807299621449578600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904494793108713427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5c33b37c994204aa27ef823238eb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTimerUpdater: {fileID: 0}
 --- !u!1 &6145679101548349573
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,8 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec773d07e6043eea05b8fa61c1aedd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
-  hideInstantly: 0
+  loadingConfig: {fileID: 11400000, guid: b43213e7b487bb245982f8372f6ac623, type: 2}
 --- !u!1 &7549002935643666465
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e5bae4ef0c4286961efc984e1cd4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   ambienceInitializer: {fileID: 3584511101992674051}
   effectorTogglers:
   - {fileID: 5737007960359177166}
@@ -377,7 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0564e443348148218398516b93aff7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childBootstraps: []
   awaitDelay: 2000
 --- !u!114 &2333059753304383225
 MonoBehaviour:

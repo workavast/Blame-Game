@@ -36,24 +36,4 @@ namespace App.Ecs.Health
             }
         }
     }
-
-    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
-    public partial struct DestroyDeadEntities : ISystem
-    {
-        [BurstCompile]
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (health, entity) in 
-                     SystemAPI.Query<RefRO<CurrentHealth>>()
-                         .WithEntityAccess())
-            {
-                if (health.ValueRO.Value <= 0) 
-                    ecb.DestroyEntity(entity);
-            }
-            
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-        }   
-    }
 }
