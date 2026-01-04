@@ -29,6 +29,8 @@ Control:
 
 ## Demonstration
 
+[![Static Badge](https://img.shields.io/badge/link-white?style=flat&logo=itchdotio&label=Itch.io&labelColor=white&color=gray)](https://avastrad.itch.io/exostructure)
+
 <details><summary><h3>Gifs</h3></summary>
   
   ![Gameplay-gif](https://github.com/user-attachments/assets/302c9f62-41db-4f1e-bbd7-76cd8f37fafe)
