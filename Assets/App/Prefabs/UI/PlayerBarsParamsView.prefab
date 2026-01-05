@@ -619,6 +619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barView: {fileID: 4922400257160971809}
   txtView: {fileID: 1507525721304367510}
+  easing: 9
+  animDuration: 0.25
 --- !u!1 &3464765923490367721
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expBarView: {fileID: 7857041375299928266}
+  easing: 9
+  animDuration: 0.25
 --- !u!1 &3617331349524686404
 GameObject:
   m_ObjectHideFlags: 0
