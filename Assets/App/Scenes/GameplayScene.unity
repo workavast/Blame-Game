@@ -3834,6 +3834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI-Gameplay
       objectReference: {fileID: 0}
+    - target: {fileID: 2759443364495413131, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2905032977977010552, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3929,6 +3933,18 @@ PrefabInstance:
     - target: {fileID: 5467430393144199903, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811409258773009545, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869354378717653403, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657447620424412420, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

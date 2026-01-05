@@ -1,5 +1,7 @@
 ﻿using App.EscProviding;
 using App.TypeReferencing;
+using App.UI;
+using App.Utils.Polymorphism;
 using Avastrad.Settings;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
@@ -10,6 +12,7 @@ namespace App.Settings
 {
     public class SettingsScreen : ScreenBase, IEscListener
     {
+        [SerializeField, SerializeReference, Polymorphic] private ShowAnim showAnim;
         [SerializeField] private TypeReference<ScreenBase> screen;
         [SerializeField] private SettingsWindow settingsWindow;
         [SerializeField] private CloseWarningWindow closeWarningWindow;
@@ -38,7 +41,13 @@ namespace App.Settings
         {
             _escProvider.UnSub(this);
         }
-        
+
+        protected override void Show(string[] args = null)
+        {
+            showAnim.Play(transform);
+            base.Show(args);
+        }
+
         public void OnEscPressed() 
             => TryCloseScreen();
 

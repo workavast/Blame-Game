@@ -174,7 +174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 454.99997}
+  m_AnchoredPosition: {x: 0, y: 455.00003}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6001252801800487686
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 176760049920729493}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9009901
+  m_Size: 0.9008248
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -768,7 +768,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8818347501356715237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,11 +781,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42e9a22cac64d0eb6a40487c661746d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAnim:
+    rid: 4433144150564012148
   screen:
     typeName: 
   settingsWindow: {fileID: 2532614794539834083}
   closeWarningWindow: {fileID: 3008060784186185988}
   closeScreenBtn: {fileID: 2901448527427967801}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4433144150564012148
+      type: {class: SettingsShowAnim, ns: App.Settings, asm: Assembly-CSharp}
+      data:
+        easingShowType: 3
+        showDuration: 0.1
+        scrollbar: {fileID: 8821175135066888583}
 --- !u!114 &2532614794539834083
 MonoBehaviour:
   m_ObjectHideFlags: 0

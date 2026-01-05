@@ -1,13 +1,12 @@
 ﻿using App.ScenesReferencing;
 using Avastrad.ScenesLoading;
-using Avastrad.UI.UiSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace App.UI
 {
-    public class MainMenu : ScreenBase
+    public class MainMenu : DefaultScreen
     {
         [SerializeField] private Button startGameBtn;
         [SerializeField] private Button quitBtn;

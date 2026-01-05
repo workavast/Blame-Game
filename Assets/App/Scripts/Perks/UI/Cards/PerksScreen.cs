@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using App.Perks.Configs;
+using App.UI;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;
 
 namespace App.Perks.UI.Cards
 {
-    public class PerksScreen : ScreenBase
+    public class PerksScreen : DefaultScreen
     {
         [SerializeField] private PerksChooseWindow perksChooseWindow;
         
