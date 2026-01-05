@@ -20,6 +20,10 @@ namespace Avastrad.Settings.Save
         
         public void Save(object data)
         {
+            var directory = Path.GetDirectoryName(_savePath);
+            if (!Directory.Exists(directory)) 
+                Directory.CreateDirectory(directory);
+            
             var save = JsonConvert.SerializeObject(data, Formatting.Indented,
                 new JsonSerializerSettings
                 {
