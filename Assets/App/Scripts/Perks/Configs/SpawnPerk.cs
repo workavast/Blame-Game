@@ -4,7 +4,7 @@ using UnityEngine;
 namespace App.Perks.Configs
 {
     [CreateAssetMenu]
-    public class SpawnPerk : PerkCell
+    public class SpawnPerk : PerkConfig
     {
         [SerializeField] private MonoBehaviour ecsPerkPrefab;
 

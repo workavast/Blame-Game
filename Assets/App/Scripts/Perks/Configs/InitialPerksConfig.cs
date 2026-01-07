@@ -6,8 +6,8 @@ namespace App.Perks.Configs
     [CreateAssetMenu]
     public class InitialPerksConfig : ScriptableObject
     {
-        [SerializeField] private List<PerkCell> initialPerks;
+        [SerializeField] private List<PerkConfig> initialPerks;
 
-        public IReadOnlyList<PerkCell> InitialPerks => initialPerks;
+        public IReadOnlyList<PerkConfig> InitialPerks => initialPerks;
     }
 }

@@ -7,24 +7,24 @@ namespace App.Perks.PerksManagement
 {
     public class PerksStorage
     {
-        private readonly List<PerkCell> _activatedPerks = new();
-        private readonly List<PerkCell> _availablePerks = new();
-        private readonly List<PerkCell> _globalAvailablePerks = new();
+        private readonly List<PerkConfig> _activatedPerks = new();
+        private readonly List<PerkConfig> _availablePerks = new();
+        private readonly List<PerkConfig> _globalAvailablePerks = new();
         
         public int CountOfAllAvailablePerks => _availablePerks.Count + _globalAvailablePerks.Count;
         public int CountOfAvailableMainPerks => _availablePerks.Count;
-        public IReadOnlyList<PerkCell> AvailablePerks => _availablePerks;
-        public IReadOnlyList<PerkCell> ActivatedPerks => _activatedPerks;
+        public IReadOnlyList<PerkConfig> AvailablePerks => _availablePerks;
+        public IReadOnlyList<PerkConfig> ActivatedPerks => _activatedPerks;
 
         public event Action OnActivePerksChanged;
 
-        public PerksStorage(IReadOnlyList<PerkCell> initialPerks, IReadOnlyList<PerkCell> initialGlobalPerks)
+        public PerksStorage(IReadOnlyList<PerkConfig> initialPerks, IReadOnlyList<PerkConfig> initialGlobalPerks)
         {
             _availablePerks.AddRange(initialPerks);
             _globalAvailablePerks.AddRange(initialGlobalPerks);
         }
 
-        public IReadOnlyList<PerkCell> GetRandomPerks(int perksCount, bool withGlobalPerks = true)
+        public IReadOnlyList<PerkConfig> GetRandomPerks(int perksCount, bool withGlobalPerks = true)
         {
             if (withGlobalPerks)
             {
@@ -39,9 +39,9 @@ namespace App.Perks.PerksManagement
                                                         $"available[{CountOfAvailableMainPerks}]");
             }
             
-            var perks = new List<PerkCell>();
+            var perks = new List<PerkConfig>();
 
-            var availablePerksBuffer = new List<PerkCell>(_availablePerks);
+            var availablePerksBuffer = new List<PerkConfig>(_availablePerks);
             if (withGlobalPerks) 
                 availablePerksBuffer.AddRange(_globalAvailablePerks);
 
@@ -57,16 +57,16 @@ namespace App.Perks.PerksManagement
             return perks;
         }
 
-        public bool IsAvailable(PerkCell perkCell) 
-            => _availablePerks.Contains(perkCell) || _globalAvailablePerks.Contains(perkCell);
+        public bool IsAvailable(PerkConfig perkConfig) 
+            => _availablePerks.Contains(perkConfig) || _globalAvailablePerks.Contains(perkConfig);
 
-        public void ActivatePerk(PerkCell perkCell)
+        public void ActivatePerk(PerkConfig perkConfig)
         {
-            _activatedPerks.Add(perkCell);
-            _availablePerks.Remove(perkCell);
-            _globalAvailablePerks.Remove(perkCell);
+            _activatedPerks.Add(perkConfig);
+            _availablePerks.Remove(perkConfig);
+            _globalAvailablePerks.Remove(perkConfig);
 
-            foreach (var childPerk in perkCell.ChildPerks)
+            foreach (var childPerk in perkConfig.ChildPerks)
             {
                 if (_activatedPerks.Contains(childPerk) || _availablePerks.Contains(childPerk))
                     continue;

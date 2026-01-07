@@ -8,15 +8,15 @@ namespace App.Perks.UI.ActivePerksView
     {
         [SerializeField] private Image icon;
         
-        private PerkCell _perkCell;
+        private PerkConfig _perkConfig;
         
-        public void SetPerk(PerkCell perkCell)
+        public void SetPerk(PerkConfig perkConfig)
         {
-            _perkCell = perkCell;
-            icon.sprite = perkCell.Icon;
+            _perkConfig = perkConfig;
+            icon.sprite = perkConfig.Icon;
         }
         
-        public PerkCell GetPerkDataConfig() 
-            => _perkCell;
+        public PerkConfig GetPerkDataConfig() 
+            => _perkConfig;
     }
 }

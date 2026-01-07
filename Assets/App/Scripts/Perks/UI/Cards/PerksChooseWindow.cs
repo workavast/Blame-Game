@@ -23,7 +23,7 @@ namespace App.Perks.UI.Cards
                 perkCard.OnActivate += Perform;
         }
 
-        public void ShowPerksVariants(IReadOnlyList<PerkCell> perks)
+        public void ShowPerksVariants(IReadOnlyList<PerkConfig> perks)
         {
             if (perks.Count <= 0)
                 return;
@@ -38,9 +38,9 @@ namespace App.Perks.UI.Cards
             }
         }
         
-        private void Perform(PerkCell perkCell)
+        private void Perform(PerkConfig perkConfig)
         {
-            _perksActivator.ActivatePerk(perkCell);
+            _perksActivator.ActivatePerk(perkConfig);
             OnPerkChoose?.Invoke();
         }
     }

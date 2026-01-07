@@ -13,22 +13,22 @@ namespace App.Perks.UI.Cards
         [SerializeField] private Image icon;
         [SerializeField] private Button activateBtn;
         
-        private PerkCell _perkCell;
+        private PerkConfig _perkConfig;
 
-        public event Action<PerkCell> OnActivate;
+        public event Action<PerkConfig> OnActivate;
 
         private void Awake()
         {
-            activateBtn.onClick.AddListener(() => OnActivate?.Invoke(_perkCell));
+            activateBtn.onClick.AddListener(() => OnActivate?.Invoke(_perkConfig));
         }
 
-        public void SetPerk(PerkCell perkCell)
+        public void SetPerk(PerkConfig perkConfig)
         {
-            _perkCell = perkCell;
+            _perkConfig = perkConfig;
 
-            title.text = _perkCell.GetTitle();
-            description.text = _perkCell.GetDescription();
-            icon.sprite = _perkCell.Icon;
+            title.text = _perkConfig.GetTitle();
+            description.text = _perkConfig.GetDescription();
+            icon.sprite = _perkConfig.Icon;
         }
     }
 }

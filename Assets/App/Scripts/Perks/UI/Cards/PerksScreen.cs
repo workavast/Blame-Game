@@ -22,7 +22,7 @@ namespace App.Perks.UI.Cards
             base.Initialize();
         }
 
-        public void ShowPerksVariants(IReadOnlyList<PerkCell> randomPerks) 
+        public void ShowPerksVariants(IReadOnlyList<PerkConfig> randomPerks) 
             => perksChooseWindow.ShowPerksVariants(randomPerks);
         
         private void TurnOffSelf() 
