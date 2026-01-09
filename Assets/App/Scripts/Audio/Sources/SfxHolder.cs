@@ -18,6 +18,7 @@ namespace App.Audio.Sources
         {
             Release();
             _sfxRef = sfxRef;
+            _sfxRef.LoadAsync();
         }
 
         public void Play(Vector3 position, Vector2 pitchRange)

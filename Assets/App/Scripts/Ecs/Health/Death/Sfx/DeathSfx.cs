@@ -15,7 +15,7 @@ namespace App.Ecs.Health.Death.Sfx
     {
         public UnityObjectRef<DeathSfxView> Instance;
     }
-    
+
     public struct DeathSfxHolderInitializeFlag : IComponentData, IEnableableComponent
     {
 
@@ -23,18 +23,38 @@ namespace App.Ecs.Health.Death.Sfx
 
     public struct DeathSfxLoadStartedTag : IComponentData
     {
-        
+
     }
-    
+
     public struct DeathSfxSetedTag : IComponentData
     {
-        
+
     }
-    
-    public partial class DeathSfxStartLoadingSystem : SfxStartLoadSystem<DeathSfxData, DeathSfxLoadStartedTag>
+
+    public struct DeathSfxCleanup : ICleanupComponentData
     {
-        protected override void StartLoading(DeathSfxData sfxData) 
+        public WeakObjectReference<AudioPoolRelease> SfxRef;
+    }
+
+    public struct DeathSfxCleanupTag : IComponentData
+    {
+
+    }
+
+    public partial class DeathSfxStartLoadingSystem : SfxStartLoadSystem<DeathSfxData, DeathSfxLoadStartedTag,
+        DeathSfxCleanup, DeathSfxCleanupTag>
+    {
+        protected override void StartLoading(DeathSfxData sfxData)
             => sfxData.DeathSfxRef.LoadAsync();
+
+        protected override DeathSfxCleanup CreateSfxCleanup(DeathSfxData sfxData)
+            => new() { SfxRef = sfxData.DeathSfxRef };
+    }
+
+    public partial class DeathSfxCleanupSystem : SfxCleanupSystem<DeathSfxCleanup, DeathSfxCleanupTag>
+    {
+        protected override void Release(DeathSfxCleanup sfxData)
+            => sfxData.SfxRef.Release();
     }
 
     public partial class DeathSfxViewHolderInitSystem
@@ -46,10 +66,10 @@ namespace App.Ecs.Health.Death.Sfx
 
     public partial class DeathSfxSetSystem : SfxSetSystem<DeathSfxViewHolder, DeathSfxData, DeathSfxSetedTag>
     {
-        protected override void SetData(DeathSfxViewHolder viewHolder, DeathSfxData sfx) 
+        protected override void SetData(DeathSfxViewHolder viewHolder, DeathSfxData sfx)
             => viewHolder.Instance.Value.SetDeathSfx(sfx.DeathSfxRef);
     }
-    
+
     [UpdateInGroup(typeof(DeathSystemGroup))]
     public partial struct DeathSfxActivateSystem : ISystem
     {
@@ -58,10 +78,10 @@ namespace App.Ecs.Health.Death.Sfx
             var query = SystemAPI.QueryBuilder()
                 .WithAll<DeathSfxViewHolder, DeathFlag>()
                 .Build();
-            
+
             state.RequireForUpdate(query);
         }
-        
+
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (deathSfx, _) in

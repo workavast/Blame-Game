@@ -16,38 +16,58 @@ namespace App.Ecs.Attack.Sfx
     {
         public UnityObjectRef<AttackSfxView> Instance;
     }
-    
+
     public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
     {
-        
+
     }
-    
+
     public struct AttackSfxLoadStartedTag : IComponentData
     {
-        
+
     }
-    
+
     public struct AttackSfxSetedTag : IComponentData
     {
-        
+
+    }
+
+    public struct AttackSfxCleanup : ICleanupComponentData
+    {
+        public WeakObjectReference<AudioPoolRelease> SfxRef;
+    }
+
+    public struct AttackSfxCleanupTag : IComponentData
+    {
+
     }
 
     public partial class AttackSfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
     {
-        protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view) 
+        protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view)
             => new() { Instance = view };
     }
 
-    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData, AttackSfxLoadStartedTag>
+    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData, AttackSfxLoadStartedTag,
+        AttackSfxCleanup, AttackSfxCleanupTag>
     {
-        protected override void StartLoading(AttackSfxData sfxData) 
+        protected override void StartLoading(AttackSfxData sfxData)
             => sfxData.AttackSfxRef.LoadAsync();
+
+        protected override AttackSfxCleanup CreateSfxCleanup(AttackSfxData sfxData)
+            => new() { SfxRef = sfxData.AttackSfxRef };
     }
-    
+
+    public partial class AttackSfxCleanupSystem : SfxCleanupSystem<AttackSfxCleanup, AttackSfxCleanupTag>
+    {
+        protected override void Release(AttackSfxCleanup sfxData)
+            => sfxData.SfxRef.Release();
+    }
+
     public partial class AttackSfxSetSystem : SfxSetSystem<AttackSfxViewHolder, AttackSfxData, AttackSfxSetedTag>
     {
-        protected override void SetData(AttackSfxViewHolder viewHolder, AttackSfxData sfx) 
+        protected override void SetData(AttackSfxViewHolder viewHolder, AttackSfxData sfx)
             => viewHolder.Instance.Value.SetSfxRef(sfx.AttackSfxRef);
     }
 
@@ -59,10 +79,10 @@ namespace App.Ecs.Attack.Sfx
             var query = SystemAPI.QueryBuilder()
                 .WithAll<AttackSfxViewHolder, AttackViewRequested>()
                 .Build();
-            
+
             state.RequireForUpdate(query);
         }
-        
+
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, _) in
@@ -73,7 +93,7 @@ namespace App.Ecs.Attack.Sfx
             }
         }
     }
-    
+
     [UpdateInGroup(typeof(AttackSystemGroup))]
     public partial struct AttackSfxActivateAtOwnerSystem : ISystem
     {
@@ -82,10 +102,10 @@ namespace App.Ecs.Attack.Sfx
             var query = SystemAPI.QueryBuilder()
                 .WithAll<AttackSfxViewHolder, AttackViewRequested>()
                 .Build();
-            
+
             state.RequireForUpdate(query);
         }
-        
+
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, owner, _) in

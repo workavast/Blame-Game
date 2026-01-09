@@ -19,9 +19,11 @@ namespace App.Ecs.Sound
     }
     
     [UpdateInGroup(typeof(SfxStartLoadSystemGroup))]
-    public abstract partial class SfxStartLoadSystem<TSfxData, TSfxLoadStartedTag> : SystemBase
+    public abstract partial class SfxStartLoadSystem<TSfxData, TSfxLoadStartedTag, TSfxCleanup, TSfxCleanupTag> : SystemBase
         where TSfxData : unmanaged, IComponentData
         where TSfxLoadStartedTag : unmanaged, IComponentData
+        where TSfxCleanup : unmanaged, ICleanupComponentData
+        where TSfxCleanupTag : unmanaged, IComponentData
     {
         protected override void OnCreate()
         {
@@ -51,10 +53,52 @@ namespace App.Ecs.Sound
             {
                 StartLoading(datas[i]);
                 ecb.AddComponent(entities[i], new TSfxLoadStartedTag());
+                ecb.AddComponent(entities[i], CreateSfxCleanup(datas[i]));
+                ecb.AddComponent(entities[i], new TSfxCleanupTag());
             }
         }
 
         protected abstract void StartLoading(TSfxData sfxData);
+        
+        protected abstract TSfxCleanup CreateSfxCleanup(TSfxData sfxData);
+    }
+    
+    [UpdateInGroup(typeof(SfxStartLoadSystemGroup))]
+    public abstract partial class SfxCleanupSystem<TSfxCleanup, TSfxCleanupTag> : SystemBase
+        where TSfxCleanup : unmanaged, ICleanupComponentData
+        where TSfxCleanupTag : unmanaged, IComponentData
+    {
+        protected override void OnCreate()
+        {
+            var query = GetEntityQuery(
+                ComponentType.ReadWrite<TSfxCleanup>(),
+                ComponentType.Exclude<TSfxCleanupTag>()
+            );
+            
+            RequireForUpdate(query);
+            RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        protected override void OnUpdate()
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(EntityManager.WorldUnmanaged);
+            
+            var query = GetEntityQuery(
+                ComponentType.ReadWrite<TSfxCleanup>(),
+                ComponentType.Exclude<TSfxCleanupTag>()
+            );
+            
+            var entities = query.ToEntityArray(Allocator.Temp);
+            var cleanups  = query.ToComponentDataArray<TSfxCleanup>(Allocator.Temp);
+            
+            for (var i = 0; i < entities.Length; i++) 
+                Release(cleanups[i]);
+            
+            ecb.RemoveComponent<TSfxCleanup>(entities);
+        }
+
+        protected abstract void Release(TSfxCleanup sfxData);
     }
     
     [UpdateInGroup(typeof(SfxSetSystemGroup))]
