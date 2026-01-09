@@ -16,16 +16,20 @@ namespace App.Ecs.Attack.Sfx
     {
         public UnityObjectRef<AttackSfxView> Instance;
     }
-
-    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData>
-    {
-        protected override void StartLoading(AttackSfxData sfxData) 
-            => sfxData.AttackSfxRef.LoadAsync();
-    }
-
+    
     public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
     {
-
+        
+    }
+    
+    public struct AttackSfxLoadStartedTag : IComponentData
+    {
+        
+    }
+    
+    public struct AttackSfxSetedTag : IComponentData
+    {
+        
     }
 
     public partial class AttackSfxViewHolderInitSystem
@@ -35,34 +39,16 @@ namespace App.Ecs.Attack.Sfx
             => new() { Instance = view };
     }
 
-    [UpdateInGroup(typeof(SfxSetSystemGroup))]
-    public partial struct AttackSfxSetSystem : ISystem
+    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData, AttackSfxLoadStartedTag>
     {
-        public void OnCreate(ref SystemState state)
-        {
-            var query = SystemAPI.QueryBuilder()
-                .WithAll<AttackSfxViewHolder, AttackSfxData>()
-                .WithNone<SfxInitedTag>()
-                .Build();
-            
-            state.RequireForUpdate(query);
-            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
-        }
-
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
-
-            foreach (var (viewHolder, sfx, entity) in
-                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, RefRO<AttackSfxData>>()
-                         .WithNone<SfxInitedTag>()
-                         .WithEntityAccess())
-            {
-                ecb.AddComponent(entity, new SfxInitedTag());
-                viewHolder.ValueRO.Instance.Value.SetSfxRef(sfx.ValueRO.AttackSfxRef);
-            }
-        }
+        protected override void StartLoading(AttackSfxData sfxData) 
+            => sfxData.AttackSfxRef.LoadAsync();
+    }
+    
+    public partial class AttackSfxSetSystem : SfxSetSystem<AttackSfxViewHolder, AttackSfxData, AttackSfxSetedTag>
+    {
+        protected override void SetData(AttackSfxViewHolder viewHolder, AttackSfxData sfx) 
+            => viewHolder.Instance.Value.SetSfxRef(sfx.AttackSfxRef);
     }
 
     [UpdateInGroup(typeof(AttackSystemGroup))]

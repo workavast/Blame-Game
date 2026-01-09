@@ -16,8 +16,7 @@ namespace App.Audio.Sources
         
         public void SetSfx(WeakObjectReference<AudioPoolRelease> sfxRef)
         {
-            ReleaseIfUnused();
-
+            Release();
             _sfxRef = sfxRef;
         }
 
@@ -35,10 +34,13 @@ namespace App.Audio.Sources
                 Debug.LogWarning("Sfx not loaded yet");
         }
 
-        public void ReleaseIfUnused()
+        public void Release()
         {
-            if (_sfxRef.IsReferenceValid) 
+            if (_sfxRef.IsReferenceValid)
+            {
                 _sfxRef.TryRelease();
+                _sfxRef = default;
+            }
         }
     }
 }
