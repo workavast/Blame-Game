@@ -24,6 +24,7 @@ Control:
 [![Static Badge](https://img.shields.io/badge/Addressables-000000?logo=unity)](https://docs.unity3d.com/Packages/com.unity.addressables@2.7/manual/index.html)
 
 [![Static Badge](https://img.shields.io/badge/Zenject-green)](https://github.com/modesttree/Zenject)
+[![Static Badge](https://img.shields.io/badge/DOTween-green)](https://dotween.demigiant.com)
 [![Static Badge](https://img.shields.io/badge/Custom%20Toolbar-gray)](https://github.com/smkplus/CustomToolbar)
 [![Static Badge](https://img.shields.io/badge/Mesh%20Combiner-gray)](https://github.com/dawid-t/Mesh-Combiner)
 
