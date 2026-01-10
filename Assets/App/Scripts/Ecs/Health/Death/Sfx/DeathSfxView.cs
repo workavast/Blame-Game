@@ -22,7 +22,7 @@ namespace App.Ecs.Health.Death.Sfx
         }
         
         protected void OnDestroy() 
-            => _sfxHolder.ReleaseIfUnused();
+            => _sfxHolder.Release();
 
         public bool OnDestroyCallback()
             => true;

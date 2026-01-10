@@ -8,12 +8,12 @@ namespace App.Settings
 {
     public class SettingsBootstrap : Bootstrap
     {
-        [Inject] private readonly SettingsModel _settingsModel;
+        [Inject] private readonly SettingsRepository _settingsRepository;
 
         protected override Task SelfInitialization(CancellationToken cancellationToken) 
         {
-            _settingsModel.TryLoad();
-            _settingsModel.Apply(true);
+            _settingsRepository.TryLoad();
+            _settingsRepository.Apply(true);
 
             return Task.CompletedTask;
         }

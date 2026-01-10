@@ -55,7 +55,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a25733736b49fdacbe184e89a976ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAnimation:
+    rid: 4433144150564012157
   perksChooseWindow: {fileID: 1403055353152987288}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4433144150564012157
+      type: {class: DefaultShowAnim, ns: App.UI, asm: Assembly-CSharp}
+      data:
+        easingShowType: 3
+        showDuration: 0.1
 --- !u!114 &1403055353152987288
 MonoBehaviour:
   m_ObjectHideFlags: 0

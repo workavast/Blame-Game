@@ -4,7 +4,7 @@ namespace Avastrad.Settings
     {
         public bool HasChanged { get; }
 
-        public void Initialize(SettingsModel settingsModel);
+        public void Initialize(SettingsRepository settingsRepository);
         public void SetToModel();
         public void ResetSetting();
         public void LoadModelData();

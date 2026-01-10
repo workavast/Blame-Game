@@ -456,11 +456,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e8c666c7494a4f91165426020a45e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAnimation:
+    rid: 4433144150564012169
   restartBtn: {fileID: 3821745184261247488}
   backInMenuBtn: {fileID: 5969184211405729474}
   gameplaySceneRef: {fileID: 11400000, guid: 4d79c5046c7b30747a17138936b2c867, type: 2}
   mainMenuSceneRef: {fileID: 11400000, guid: 3d035d974fb8cae4faadb4dd6c2d0ad5, type: 2}
   loadingConfig: {fileID: 11400000, guid: b43213e7b487bb245982f8372f6ac623, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4433144150564012169
+      type: {class: DefaultShowAnim, ns: App.UI, asm: Assembly-CSharp}
+      data:
+        easingShowType: 3
+        showDuration: 0.1
 --- !u!114 &7819731602801390455
 MonoBehaviour:
   m_ObjectHideFlags: 0

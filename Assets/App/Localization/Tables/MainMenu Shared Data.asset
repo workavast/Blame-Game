@@ -31,6 +31,10 @@ MonoBehaviour:
     m_Key: Bestiary
     m_Metadata:
       m_Items: []
+  - m_Id: 22525616173809664
+    m_Key: Assets
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

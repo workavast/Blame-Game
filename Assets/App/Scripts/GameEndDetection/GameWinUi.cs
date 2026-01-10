@@ -1,13 +1,13 @@
 ﻿using App.ScenesReferencing;
+using App.UI;
 using Avastrad.ScenesLoading;
-using Avastrad.UI.UiSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace App.GameEndDetection
 {
-    public class GameWinUi : ScreenBase
+    public class GameWinUi : DefaultScreen
     {
         [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;

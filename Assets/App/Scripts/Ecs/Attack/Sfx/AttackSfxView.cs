@@ -22,7 +22,7 @@ namespace App.Ecs.Attack.Sfx
         }
         
         protected void OnDestroy() 
-            => _sfxHolder.ReleaseIfUnused();
+            => _sfxHolder.Release();
 
         public bool OnDestroyCallback() 
             => true;
@@ -32,7 +32,7 @@ namespace App.Ecs.Attack.Sfx
 
         public void Activate() 
             => _sfxHolder.Play(transform.position, deathPitchRange);
-        
+
         public void Activate(Vector3 position) 
             => _sfxHolder.Play(position, deathPitchRange);
     }

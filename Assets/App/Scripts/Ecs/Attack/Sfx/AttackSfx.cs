@@ -17,13 +17,27 @@ namespace App.Ecs.Attack.Sfx
         public UnityObjectRef<AttackSfxView> Instance;
     }
 
-    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData>
+    public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
     {
-        protected override void StartLoading(AttackSfxData sfxData) 
-            => sfxData.AttackSfxRef.LoadAsync();
+
     }
 
-    public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
+    public struct AttackSfxLoadStartedTag : IComponentData
+    {
+
+    }
+
+    public struct AttackSfxSetedTag : IComponentData
+    {
+
+    }
+
+    public struct AttackSfxCleanup : ICleanupComponentData
+    {
+        public WeakObjectReference<AudioPoolRelease> SfxRef;
+    }
+
+    public struct AttackSfxCleanupTag : IComponentData
     {
 
     }
@@ -31,38 +45,30 @@ namespace App.Ecs.Attack.Sfx
     public partial class AttackSfxViewHolderInitSystem
         : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
     {
-        protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view) 
+        protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view)
             => new() { Instance = view };
     }
 
-    [UpdateInGroup(typeof(SfxSetSystemGroup))]
-    public partial struct AttackSfxSetSystem : ISystem
+    public partial class AttackSfxStartLoadingSystem : SfxStartLoadSystem<AttackSfxData, AttackSfxLoadStartedTag,
+        AttackSfxCleanup, AttackSfxCleanupTag>
     {
-        public void OnCreate(ref SystemState state)
-        {
-            var query = SystemAPI.QueryBuilder()
-                .WithAll<AttackSfxViewHolder, AttackSfxData>()
-                .WithNone<SfxInitedTag>()
-                .Build();
-            
-            state.RequireForUpdate(query);
-            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
-        }
+        protected override void StartLoading(AttackSfxData sfxData)
+            => sfxData.AttackSfxRef.LoadAsync();
 
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+        protected override AttackSfxCleanup CreateSfxCleanup(AttackSfxData sfxData)
+            => new() { SfxRef = sfxData.AttackSfxRef };
+    }
 
-            foreach (var (viewHolder, sfx, entity) in
-                     SystemAPI.Query<RefRO<AttackSfxViewHolder>, RefRO<AttackSfxData>>()
-                         .WithNone<SfxInitedTag>()
-                         .WithEntityAccess())
-            {
-                ecb.AddComponent(entity, new SfxInitedTag());
-                viewHolder.ValueRO.Instance.Value.SetSfxRef(sfx.ValueRO.AttackSfxRef);
-            }
-        }
+    public partial class AttackSfxCleanupSystem : SfxCleanupSystem<AttackSfxCleanup, AttackSfxCleanupTag>
+    {
+        protected override void Release(AttackSfxCleanup sfxData)
+            => sfxData.SfxRef.Release();
+    }
+
+    public partial class AttackSfxSetSystem : SfxSetSystem<AttackSfxViewHolder, AttackSfxData, AttackSfxSetedTag>
+    {
+        protected override void SetData(AttackSfxViewHolder viewHolder, AttackSfxData sfx)
+            => viewHolder.Instance.Value.SetSfxRef(sfx.AttackSfxRef);
     }
 
     [UpdateInGroup(typeof(AttackSystemGroup))]
@@ -73,10 +79,10 @@ namespace App.Ecs.Attack.Sfx
             var query = SystemAPI.QueryBuilder()
                 .WithAll<AttackSfxViewHolder, AttackViewRequested>()
                 .Build();
-            
+
             state.RequireForUpdate(query);
         }
-        
+
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, _) in
@@ -87,7 +93,7 @@ namespace App.Ecs.Attack.Sfx
             }
         }
     }
-    
+
     [UpdateInGroup(typeof(AttackSystemGroup))]
     public partial struct AttackSfxActivateAtOwnerSystem : ISystem
     {
@@ -96,10 +102,10 @@ namespace App.Ecs.Attack.Sfx
             var query = SystemAPI.QueryBuilder()
                 .WithAll<AttackSfxViewHolder, AttackViewRequested>()
                 .Build();
-            
+
             state.RequireForUpdate(query);
         }
-        
+
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (attackSfx, owner, _) in

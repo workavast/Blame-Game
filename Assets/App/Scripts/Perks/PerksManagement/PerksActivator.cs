@@ -14,14 +14,14 @@ namespace App.Perks.PerksManagement
             _perksStorage = perksStorage;
         }
 
-        public void ActivatePerk(PerkCell perkCell)
+        public void ActivatePerk(PerkConfig perkConfig)
         {
-            if (!_perksStorage.IsAvailable(perkCell))
-                throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkCell.name}], perk.title[{perkCell.GetTitle()}]");
+            if (!_perksStorage.IsAvailable(perkConfig))
+                throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkConfig.name}], perk.title[{perkConfig.GetTitle()}]");
             
-            perkCell.Perform(this);
+            perkConfig.Perform(this);
 
-            _perksStorage.ActivatePerk(perkCell);
+            _perksStorage.ActivatePerk(perkConfig);
         }
 
         public void ActivateSpawnPerk(SpawnPerk spawnPerk)

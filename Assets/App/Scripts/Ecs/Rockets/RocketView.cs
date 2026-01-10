@@ -48,7 +48,7 @@ namespace App.Ecs.Rockets
         }
         
         private void OnDestroy() 
-            => _sfxHolder.ReleaseIfUnused();
+            => _sfxHolder.Release();
         
         public void SetSfxView(WeakObjectReference<AudioPoolRelease> sfxRef) 
             => _sfxHolder.SetSfx(sfxRef);

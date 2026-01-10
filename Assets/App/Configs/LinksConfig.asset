@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbbfa0bb7c84b74b84512f9e35094f7, type: 3}
+  m_Name: LinksConfig
+  m_EditorClassIdentifier: 
+  links:
+  - https://fonts.google.com/specimen/Tektur/license
+  - https://sungraphica.itch.io/sci-fi-game-ui-collection-free-version
+  - https://pxldev.itch.io/easy-dithering-and-color-palette
+  - https://andicraft.itch.io/retro-master-shader
+  - https://rtwarner.itch.io/ditherdown-urp
+  - https://assetstore.unity.com/packages/vfx/shaders/dynamic-vertical-fog-189939
+  - https://sketchfab.com/3d-models/spider-car-b1acb94bb8d24bb78e794a691dd6a908
+  - https://sketchfab.com/3d-models/sci-fi-camera-drone-3dbf07385d1b471a96dce6de6cba97d6
+  - https://sketchfab.com/3d-models/drone-deeabeb129f64b3ca083a9841567e725
+  - https://sketchfab.com/3d-models/support-drone-concept-1839a4af10684320bdbc53ee9fd67f07
+  - https://sketchfab.com/3d-models/space-station-807ce4354ebd42c0920c5832831be7f0
+  - https://sketchfab.com/3d-models/gangut-space-hub-db9e338f04ae402c82f8ebdf12b55f9e
+  - https://assetstore.unity.com/packages/3d/props/industrial/workplace-tools-86242
+  - https://freesound.org/people/Artninja/sounds/825999/
+  - https://freesound.org/people/klavo1985/sounds/395435/
+  - https://freesound.org/people/deleted_user_112280/sounds/178368/
+  - https://assetstore.unity.com/packages/audio/sound-fx/sci-fi-game-sound-effects-260627
+  - https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
+  - https://assetstore.unity.com/packages/vfx/particles/new-stylized-explosion-package-260177
+  - https://assetstore.unity.com/packages/vfx/particles/spells/vfx-graph-kikoken-302142
+  - https://assetstore.unity.com/packages/2d/textures-materials/sky/spaceskies-free-80503
+  - https://sketchfab.com/3d-models/sci-fi-texture-pack-f468addc239b49d68f11ab12401d661c

@@ -5,15 +5,15 @@ using UnityEngine.Localization;
 
 namespace App.Perks.Configs
 {
-    public abstract class PerkCell : ScriptableObject
+    public abstract class PerkConfig : ScriptableObject
     {
         [SerializeField] protected LocalizedString title;
         [SerializeField] protected LocalizedString description;
         [SerializeField] private Sprite icon;
-        [SerializeField] private List<PerkCell> childPerks;
+        [SerializeField] private List<PerkConfig> childPerks;
 
         public Sprite Icon => icon;
-        public IReadOnlyList<PerkCell> ChildPerks => childPerks;
+        public IReadOnlyList<PerkConfig> ChildPerks => childPerks;
         
         public string GetTitle()
         {

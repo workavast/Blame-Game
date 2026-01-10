@@ -8,7 +8,7 @@ using Zenject;
 
 namespace App.UI
 {
-    public class GameplayMenu : ScreenBase, IEscListener
+    public class GameplayMenu : DefaultScreen, IEscListener
     {
         [SerializeField] private SceneReference mainMenuRef;
         [SerializeField] private SceneReference gameplayRef;

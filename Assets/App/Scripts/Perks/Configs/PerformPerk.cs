@@ -1,6 +1,6 @@
 ﻿namespace App.Perks.Configs
 {
-    public abstract class PerformPerk : PerkCell
+    public abstract class PerformPerk : PerkConfig
     {
 
     }

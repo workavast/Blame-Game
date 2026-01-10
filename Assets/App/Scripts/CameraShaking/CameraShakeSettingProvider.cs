@@ -9,9 +9,9 @@ namespace App.CameraShaking
         
         private readonly CameraShakePowerSettingModel _cameraShakePowerSettingsModel;
         
-        public CameraShakeSettingProvider(SettingsModel settingsModel)
+        public CameraShakeSettingProvider(SettingsRepository settingsRepository)
         {
-            _cameraShakePowerSettingsModel = settingsModel.GetSettingModel<CameraShakePowerSettingModel>();
+            _cameraShakePowerSettingsModel = settingsRepository.GetSettingModel<CameraShakePowerSettingModel>();
         }
     }
 }

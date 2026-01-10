@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using App.Perks.Configs;
+using App.UI;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;
 
 namespace App.Perks.UI.Cards
 {
-    public class PerksScreen : ScreenBase
+    public class PerksScreen : DefaultScreen
     {
         [SerializeField] private PerksChooseWindow perksChooseWindow;
         
@@ -21,7 +22,7 @@ namespace App.Perks.UI.Cards
             base.Initialize();
         }
 
-        public void ShowPerksVariants(IReadOnlyList<PerkCell> randomPerks) 
+        public void ShowPerksVariants(IReadOnlyList<PerkConfig> randomPerks) 
             => perksChooseWindow.ShowPerksVariants(randomPerks);
         
         private void TurnOffSelf() 

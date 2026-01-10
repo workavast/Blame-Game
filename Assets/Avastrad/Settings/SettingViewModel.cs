@@ -9,9 +9,9 @@ namespace Avastrad.Settings
         
         public abstract bool HasChanged { get; }
 
-        public void Initialize(SettingsModel settingsModel)
+        public void Initialize(SettingsRepository settingsRepository)
         {
-            _model = settingsModel.GetSettingModel<TSettingModel>();
+            _model = settingsRepository.GetSettingModel<TSettingModel>();
             Initialize();
         }
 
