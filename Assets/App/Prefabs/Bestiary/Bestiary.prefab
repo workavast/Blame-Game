@@ -3081,6 +3081,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4291677645
       objectReference: {fileID: 0}
+    - target: {fileID: 2965072126872467041, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4745089881915356212, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_Color.a
       value: 0.27450982
@@ -3336,6 +3340,10 @@ PrefabInstance:
     - target: {fileID: 2965072126872467041, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4291677645
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965072126872467041, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 4745089881915356212, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
       propertyPath: m_Color.a
