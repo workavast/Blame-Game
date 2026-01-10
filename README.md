@@ -47,3 +47,27 @@ Control:
   <img width="800" height="450" alt="Bestiary" src="https://github.com/user-attachments/assets/13277fac-935f-4765-8854-92ceed1a2591" />
 </details>
 
+<details><summary><h3>Tech. Details</h3></summary>
+
+### Bootstraps
+Each scene uses a Bootstrap system. This consists of a set of game objects with specific components bootstraps. Each bootstrap executes asynchronously. Execution occurs sequentially based on the hierarchy of nested objects in the scene. The order of initialization can be changed by simply changing the order of the objects in the hierarchy.
+
+<img width="860" height="450" alt="Bootstraps Class Diagram With Example" src="https://github.com/user-attachments/assets/f4853eca-bb25-42c1-a1eb-b810a9c5df01" />
+
+### Settings
+The settings system is built on MVVM with a centralized repository. Adding new settings is simplified thanks to code generation: simply specify the setting name, and all the necessary classes are automatically created without modifying existing code. State is saved using Newtonsoft.Json as an array, preserving element type information and validating it during deserialization. This allows for seamless changes to existing code without risking critical errors during backward compatibility.
+
+<img width="1103" height="549" alt="Settings Class Diagram" src="https://github.com/user-attachments/assets/d2398128-6d54-4b1f-8e3a-19a850c9ff7c" />
+
+### ECS Views
+Because the project uses shaders that are not supported by the Entities Graphics system, a Views system has been implemented for rendering in the main scene. This system loads and initializes entity views asynchronously. After an entity is destroyed, its view is notified and should automatically unload itself. The main view (EntityView) can have multiple child views (IEntityViewElement).
+
+<img width="1092" height="333" alt="Ecs Views Class Diagram" src="https://github.com/user-attachments/assets/bcb78a8e-f353-40ac-8e1a-7ffc9d018650" />
+
+### SFX
+The SFX system uses ECS views, but sound files are loaded separately from the views. System supports object pooling.
+
+<img width="1145" height="429" alt="SFX Class Diagram" src="https://github.com/user-attachments/assets/a1993b5c-11e1-4dd7-afad-d6ceb5bc0ac8" />
+
+
+</details>
