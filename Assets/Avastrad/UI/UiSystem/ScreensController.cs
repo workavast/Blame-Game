@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using Avastrad.UI.UiSystem.Commands;
 using UnityEngine;
 
 namespace Avastrad.UI.UiSystem
@@ -7,87 +7,50 @@ namespace Avastrad.UI.UiSystem
     [DisallowMultipleComponent]
     public class ScreensController : MonoBehaviour
     {
-        private ScreensRepository _screenRepository;
-        private ScreenBase _activeScreen;
+        private readonly CommandsRepository _commandsRepository = new(8, 8);
+        private ScreensControllerInternal _screensControllerInternal;
+        private CommandsFactory _commandsFactory;
 
         private void Awake()
         {
-            _screenRepository = GetComponentInChildren<ScreensRepository>();
+            _screensControllerInternal = GetComponentInChildren<ScreensControllerInternal>();
+            _screensControllerInternal.Initialize();
+            
+            _commandsFactory = new CommandsFactory(_screensControllerInternal);
         }
-
-        private void Start()
-        {
-            _screenRepository.Initialize();
-            foreach (var screen in _screenRepository.Screens) 
-                screen.Initialize();
-        }
-        
-        public void SetScreen<TScreen>(string[] args = null) where TScreen : ScreenBase 
-            => SetScreen(typeof(TScreen), args);
 
         public void SetScreen(Type screenType, string[] args = null)
         {
-            var newScreen = _screenRepository.GetScreen(screenType);
-            foreach (var screen in _screenRepository.Screens) 
-                screen.SetActive(false, args);
+            var command = _commandsFactory.SetScreen(screenType);
+            _commandsRepository.ExecuteCommand(command);
+        }
 
-            _activeScreen = newScreen;
-            _activeScreen.SetActive(true, args);
-        }
-        
-        public void SetScreens(IReadOnlyList<Type> screenTypes, string[] args = null)
+        public void ToggleScreen(Type screenType, string[] args = null)
         {
-            foreach (var screen in _screenRepository.Screens)
-                if (screen.isActiveAndEnabled && !Contains(screenTypes, screen.GetType()))
-                    TryToggleScreen(screen, false, args);
+            var command = _commandsFactory.ToggleScreen(screenType);
+            _commandsRepository.ExecuteCommand(command);
+        }
 
-            foreach (var screenType in screenTypes) 
-                ToggleScreen(screenType, true, args);
-        }
-        
-        public TScreen ToggleScreen<TScreen>(string[] args = null)
-            where TScreen : ScreenBase
+        public void ToggleScreen(Type screenType, bool show, string[] args = null)
         {
-            var screen = _screenRepository.GetScreen<TScreen>();
-            TryToggleScreen(screen, !screen.isActiveAndEnabled, args);
-            return screen;
+            var command = _commandsFactory.ToggleScreen(screenType, show);
+            _commandsRepository.ExecuteCommand(command);
         }
-        
-        public ScreenBase ToggleScreen(Type screenType, string[] args = null)
-        {
-            var screen = _screenRepository.GetScreen(screenType);
-            TryToggleScreen(screen, !screen.isActiveAndEnabled, args);
-            return screen;
-        }
-        
+
         public TScreen ToggleScreen<TScreen>(bool show, string[] args = null)
             where TScreen : ScreenBase
         {
-            var screen = _screenRepository.GetScreen<TScreen>();
-            TryToggleScreen(screen, show, args);
-            return screen;
-        }
-        
-        public void ToggleScreen(Type screenType, bool show, string[] args = null)
-        {
-            var screen = _screenRepository.GetScreen(screenType);
-            TryToggleScreen(screen, show, args);
+            var screenType = typeof(TScreen);
+            
+            var command = _commandsFactory.ToggleScreen(screenType, show);
+            _commandsRepository.ExecuteCommand(command);
+            
+            return _screensControllerInternal.GetScreen<TScreen>();
         }
 
-        private static void TryToggleScreen(ScreenBase screen, bool show, string[] args = null)
+        public void Revert()
         {
-            if (screen.isActiveAndEnabled == show) 
-                return;
-            screen.SetActive(show, args);
-        }
-        
-        private static bool Contains(IReadOnlyList<Type> list, Type value) 
-        {
-            for (var i = 0; i < list.Count; i++)
-                if (list[i] == value)
-                    return true;
-            
-            return false;
+            _commandsRepository.UndoCommand();
         }
     }
 }

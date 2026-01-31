@@ -37,19 +37,24 @@ namespace App.UI
             _escProvider.UnSub(this);
         }
 
-        public void OnEscPressed() 
-            => _screensController.ToggleScreen(GetType());
+        public void OnEscPressed()
+        {
+            if (gameObject.activeSelf)
+                _screensController.Revert();
+            else
+                _screensController.SetScreen(GetType());
+        }
 
         private void RestartGame() 
             => _sceneLoader.LoadScene(gameplayRef.SceneIndex, loadingConfig.ShowDuration);
 
         private void ContinueGame() 
-            => _screensController.ToggleScreen(GetType(), false);
+            => _screensController.Revert();
 
         private void BackInMenu() 
             => _sceneLoader.LoadScene(mainMenuRef.SceneIndex, loadingConfig.ShowDuration);
 
-        private void QuitGame() 
+        private static void QuitGame() 
             => Application.Quit();
     }
 }

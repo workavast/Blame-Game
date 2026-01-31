@@ -56,7 +56,7 @@ namespace App.Settings
             if (settingsWindow.HasChangedAny())
                 closeWarningWindow.gameObject.SetActive(true);
             else
-                _screensController.SetScreen(screen.Type);
+                _screensController.Revert();
         }
 
         private void CloseScreen(bool withSave)
@@ -70,13 +70,13 @@ namespace App.Settings
         private void SaveAndClose()
         {
             settingsWindow.ApplySettings();
-            _screensController.SetScreen(screen.Type); 
+            _screensController.Revert(); 
         }
 
         private void CancelAndClose()
         {
             settingsWindow.ResetSettings();
-            _screensController.SetScreen(screen.Type); 
+            _screensController.Revert(); 
         }
     }
 }
