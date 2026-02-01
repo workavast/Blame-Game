@@ -88,12 +88,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
-  damage: 5
+  damage: 7
   penetration: 1
   moveSpeed: 25
   spawnVerticalOffset: 1
-  hasDamageScale: 1
-  hasPenetrationScale: 1
 --- !u!114 &5738400548069601718
 MonoBehaviour:
   m_ObjectHideFlags: 0
