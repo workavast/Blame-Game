@@ -6,7 +6,7 @@ namespace App.Ecs.Attack
     public class AttackDamageAuthoring : MonoBehaviour
     {
         [SerializeField] private float defaultDamage;
-        [SerializeField] private bool hasDamageScale;
+        [SerializeField] private float defaultDamageScale = 1;
         
         private class Baker : Baker<AttackDamageAuthoring>
         {
@@ -14,10 +14,11 @@ namespace App.Ecs.Attack
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                AddComponent(entity, new AttackDamage() { Value = authoring.defaultDamage });
-              
-                if (authoring.hasDamageScale)
-                    AddComponent(entity, new AttackDamageScale());
+                AddComponent(entity, new AttackDamage()
+                {
+                    Value = authoring.defaultDamage,
+                    Scale = authoring.defaultDamageScale
+                });
             }
         }
     }

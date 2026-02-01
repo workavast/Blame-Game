@@ -33,16 +33,16 @@ namespace App.Ecs.PlayerPerks.StarShooter
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalTransform>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamage>(playerEntity);
             
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (data, additionalBulletsCount, 
-                         bulletData, damageScale, penetration, 
+                         bulletData, damage, penetration, 
                          attackViewRequest, entity) in 
                      SystemAPI.Query<RefRO<StarShooterData>, RefRO<AdditionalProjectilesCount>, 
-                             RefRO<BulletInitialData>, RefRO<AttackDamageScale>, RefRO<BulletPenetration>,
+                             RefRO<BulletInitialData>, RefRO<AttackDamage>, RefRO<BulletPenetration>,
                              EnabledRefRW<AttackViewRequested>>()
                          .WithAll<StarShooterTag>()
                          .WithDisabled<AttackCooldown, AttackViewRequested>()
@@ -67,7 +67,7 @@ namespace App.Ecs.PlayerPerks.StarShooter
                     var bulletPrefab = bulletData.ValueRO.BulletPrefab;
                     var bulletPosition = playerTransform.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
                     var bulletRotation = quaternion.LookRotation(spawnDirection, new float3(0, 1, 0));
-                    BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, bulletRotation, damageScale, globalDamageScale, penetration);
+                    BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, bulletRotation, damage, globalDamageScale, penetration);
                 }
                 
                 attackViewRequest.ValueRW = true;

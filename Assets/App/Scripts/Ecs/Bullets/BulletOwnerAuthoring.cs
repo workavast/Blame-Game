@@ -12,8 +12,6 @@ namespace App.Ecs.Bullets
         [SerializeField] private int penetration;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float spawnVerticalOffset;
-        [Header("Scales")]
-        [SerializeField] private bool hasDamageScale;
         
         private class Baker : Baker<BulletOwnerAuthoring>
         {
@@ -25,12 +23,14 @@ namespace App.Ecs.Bullets
                 {
                     BulletPrefab = GetEntity(authoring.bulletPrefab, TransformUsageFlags.Dynamic),
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
-                    Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
                 });
 
-                if (authoring.hasDamageScale)
-                    AddComponent(entity, new AttackDamageScale());
+                AddComponent(entity, new AttackDamage()
+                {
+                    Value = authoring.damage,
+                    Scale = 1f
+                });
 
                 AddComponent(entity, new BulletPenetration()
                 {

@@ -30,7 +30,6 @@ namespace App.Ecs.Bullets
     {
         public Entity BulletPrefab;
         public float SpawnVerticalOffset;
-        public float Damage;
         public float MoveSpeed;
     }
 

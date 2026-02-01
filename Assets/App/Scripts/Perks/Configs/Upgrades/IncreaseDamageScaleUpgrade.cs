@@ -16,10 +16,10 @@ namespace App.Perks.Configs.Upgrades
 
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, AttackDamageScale>();
-            currentScale.Value += damageScale;
+            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, AttackDamage>();
+            currentScale.Scale += damageScale;
             
-            EcsBridge.TrySetComponentOfSingleton<TTag, AttackDamageScale>(currentScale);
+            EcsBridge.TrySetComponentOfSingleton<TTag, AttackDamage>(currentScale);
         }
     }
 }

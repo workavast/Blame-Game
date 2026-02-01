@@ -30,7 +30,7 @@ namespace App.Ecs.PlayerPerks.MachineGun
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerTransform = SystemAPI.GetComponent<LocalToWorld>(playerEntity);
-            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamage>(playerEntity);
 
             var shootPoint = float3.zero;
             var distance = float.MaxValue;
@@ -52,9 +52,9 @@ namespace App.Ecs.PlayerPerks.MachineGun
             var direction = shootPoint - playerTransform.Position;
             var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
             foreach (var (distanceReaction, data,
-                         damageScale, penetration, attackViewRequest, entity) in
+                         damage, penetration, attackViewRequest, entity) in
                      SystemAPI.Query<RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>, 
-                             RefRO<AttackDamageScale>, RefRO<BulletPenetration>, EnabledRefRW<AttackViewRequested>>()
+                             RefRO<AttackDamage>, RefRO<BulletPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<MachineGunTag>()
                          .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
@@ -66,7 +66,7 @@ namespace App.Ecs.PlayerPerks.MachineGun
 
                 var bulletPrefab = data.ValueRO.BulletPrefab;
                 var bulletPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, rotation, damageScale, globalDamageScale, penetration);
+                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, rotation, damage, globalDamageScale, penetration);
 
                 attackViewRequest.ValueRW = true;
             }
