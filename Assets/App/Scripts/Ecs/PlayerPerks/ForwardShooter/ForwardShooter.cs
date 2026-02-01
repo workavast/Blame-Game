@@ -34,9 +34,9 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
             foreach (var (data, damageScale, 
-                         additionalPenetration, attackViewRequest, entity) in 
+                         penetration, attackViewRequest, entity) in 
                      SystemAPI.Query<RefRO<BulletInitialData>, RefRO<AttackDamageScale>,
-                             RefRO<AdditionalPenetration>, EnabledRefRW<AttackViewRequested>>()
+                             RefRO<BulletPenetration>, EnabledRefRW<AttackViewRequested>>()
                          .WithAll<ForwardShooterTag>()
                          .WithDisabled<AttackCooldown, AttackViewRequested>()
                          .WithEntityAccess())
@@ -45,7 +45,7 @@ namespace App.Ecs.PlayerPerks.ForwardShooter
 
                 var bulletPrefab = data.ValueRO.BulletPrefab;
                 var bulletPosition = playerTransform.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
-                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, playerTransform.Rotation, damageScale, globalDamageScale, additionalPenetration);
+                BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, playerTransform.Rotation, damageScale, globalDamageScale, penetration);
 
                 attackViewRequest.ValueRW = true;
             }

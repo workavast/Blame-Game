@@ -1,5 +1,4 @@
 ﻿using App.Ecs.Attack;
-using App.Ecs.Shooting;
 using Unity.Entities;
 using UnityEngine;
 
@@ -15,7 +14,6 @@ namespace App.Ecs.Bullets
         [SerializeField] private float spawnVerticalOffset;
         [Header("Scales")]
         [SerializeField] private bool hasDamageScale;
-        [SerializeField] private bool hasPenetrationScale;
         
         private class Baker : Baker<BulletOwnerAuthoring>
         {
@@ -29,14 +27,15 @@ namespace App.Ecs.Bullets
                     SpawnVerticalOffset = authoring.spawnVerticalOffset,
                     Damage = authoring.damage,
                     MoveSpeed = authoring.moveSpeed,
-                    Penetration = authoring.penetration
                 });
 
                 if (authoring.hasDamageScale)
                     AddComponent(entity, new AttackDamageScale());
 
-                if (authoring.hasPenetrationScale)
-                    AddComponent(entity, new AdditionalPenetration());
+                AddComponent(entity, new BulletPenetration()
+                {
+                    Value = authoring.penetration
+                });
             }
         }
     }

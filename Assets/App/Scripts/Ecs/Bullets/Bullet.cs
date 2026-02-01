@@ -32,7 +32,6 @@ namespace App.Ecs.Bullets
         public float SpawnVerticalOffset;
         public float Damage;
         public float MoveSpeed;
-        public int Penetration;
     }
 
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]

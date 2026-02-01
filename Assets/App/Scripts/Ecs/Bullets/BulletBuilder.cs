@@ -10,14 +10,15 @@ namespace App.Ecs.Bullets
     public struct BulletBuilder
     {
         public static Entity Build(ref EntityCommandBuffer ecb, Entity prefab, RefRO<BulletInitialData> data,
-            float3 position, quaternion rotation)
+            float3 position, quaternion rotation,
+            RefRO<BulletPenetration> penetration)
         {
             var bullet = ecb.Instantiate(prefab);
             ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(position, rotation));
 
             ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage });
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = penetration.ValueRO.Value });
 
             return bullet;
         }
@@ -26,14 +27,14 @@ namespace App.Ecs.Bullets
             float3 position, quaternion rotation,
             RefRO<AttackDamageScale> damageScale,
             AttackDamageScale globalAttackDamageScale,
-            RefRO<AdditionalPenetration> additionalPenetration)
+            RefRO<BulletPenetration> penetration)
         {
             var bullet = ecb.Instantiate(prefab);
             ecb.SetComponent(bullet, LocalTransform.FromPositionRotation(position, rotation));
 
             ecb.SetComponent(bullet, new AttackDamage() { Value = data.ValueRO.Damage * (damageScale.ValueRO.Value + globalAttackDamageScale.Value) });
             ecb.SetComponent(bullet, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
-            ecb.SetComponent(bullet, new BulletPenetration() { Value = data.ValueRO.Penetration + additionalPenetration.ValueRO.Value });
+            ecb.SetComponent(bullet, new BulletPenetration() { Value = penetration.ValueRO.Value });
 
             return bullet;
         }

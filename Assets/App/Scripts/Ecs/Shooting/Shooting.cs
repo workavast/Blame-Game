@@ -7,11 +7,6 @@ namespace App.Ecs.Shooting
         public int Value;
     }
     
-    public struct AdditionalPenetration : IComponentData
-    {
-        public int Value;
-    }
-    
     public struct ShootDistanceReaction : IComponentData
     {
         public float Value;
