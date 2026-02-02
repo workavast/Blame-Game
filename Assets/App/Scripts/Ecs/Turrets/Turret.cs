@@ -75,7 +75,7 @@ namespace App.Ecs.Turrets
     
     [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
     [UpdateAfter(typeof(ExistTimerSystem))]
-    public partial struct BulletExistTimeOverSystem : ISystem
+    public partial struct TurretExistTimeOverSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
