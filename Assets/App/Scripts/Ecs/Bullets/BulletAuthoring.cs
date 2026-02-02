@@ -7,8 +7,6 @@ namespace App.Ecs.Bullets
 {
     public class BulletAuthoring : MonoBehaviour
     {
-        [SerializeField] private float existTime;
-        
         private class Baker : Baker<BulletAuthoring>
         {
             public override void Bake(BulletAuthoring authoring)
@@ -16,7 +14,6 @@ namespace App.Ecs.Bullets
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
                 AddComponent(entity, new BulletTag());
-                AddComponent(entity, new ExistTimer() { Value = authoring.existTime });
                 AddComponent(entity, new AttackDamage());
                 AddComponent(entity, new BulletPenetration());
                 AddBuffer<BulletCollisions>(entity);
