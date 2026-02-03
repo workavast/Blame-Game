@@ -10,7 +10,6 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
         [SerializeField] private TurretAuthoring turretPrefab;
         [SerializeField] private int turretsCount;
         [SerializeField] private float height;
-        [SerializeField] private float existTime;
         [SerializeField] private float minDropImpulse;
         [SerializeField] private float maxDropImpulse;
         private class Baker : Baker<TurretsSpawnerAuthoring>
@@ -27,7 +26,6 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                     TurretPrefab = GetEntity(authoring.turretPrefab, TransformUsageFlags.Dynamic),
                     TurretsCount = authoring.turretsCount,
                     Height = authoring.height,
-                    ExistTime = authoring.existTime,
                     MinDropImpulse = authoring.minDropImpulse,
                     MaxDropImpulse = authoring.maxDropImpulse
                 });

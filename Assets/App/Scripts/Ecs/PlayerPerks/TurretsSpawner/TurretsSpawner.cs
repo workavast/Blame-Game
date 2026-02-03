@@ -1,5 +1,4 @@
 ﻿using App.Ecs.Attack;
-using App.Ecs.ExistTime;
 using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.Randomisation;
@@ -9,7 +8,6 @@ using App.Ecs.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace App.Ecs.PlayerPerks.TurretsSpawner
 {
@@ -23,7 +21,6 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
         public Entity TurretPrefab;
         public int TurretsCount;
         public float Height;
-        public float ExistTime;
         public float MinDropImpulse;
         public float MaxDropImpulse;
     }
@@ -75,7 +72,6 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                     ecb.SetComponent(turretEntity, new MoveDirection() { Value = direction });
                     
                     ecb.SetComponent(turretEntity, new AttackDamage() { Value = resultDamage, Scale = 1f });
-                    ecb.SetComponent(turretEntity, new ExistTimer() { Value = data.ValueRO.ExistTime });
                 }
             }
         }
