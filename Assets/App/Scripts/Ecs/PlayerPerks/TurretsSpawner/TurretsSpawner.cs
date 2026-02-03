@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.ExistTime;
+using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.Randomisation;
 using App.Ecs.Shooting;
@@ -8,6 +9,7 @@ using App.Ecs.Utils;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace App.Ecs.PlayerPerks.TurretsSpawner
 {
@@ -20,10 +22,10 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
     {
         public Entity TurretPrefab;
         public int TurretsCount;
-        public float MinDistance;
-        public float MaxDistance;
         public float Height;
         public float ExistTime;
+        public float MinDropImpulse;
+        public float MaxDropImpulse;
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
@@ -58,12 +60,20 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                 var resultDamage = damage.ValueRO.Value * (damage.ValueRO.Scale + globalDamageScale.Scale);
                 for (var i = 0; i < turretsCount; i++)
                 {
-                    var spawnPoint = RandomPosition.GetPointInRadius(playerPosition, data.ValueRO.MinDistance, data.ValueRO.MaxDistance, ref randomHolder.ValueRW.Random);
+                    var spawnPoint = playerPosition;
                     spawnPoint += new float3(0, data.ValueRO.Height, 0);
+                    var direction = RandomPosition.GetDirectionFloat2(ref randomHolder.ValueRW.Random);
+
+                    var dropImpulse =
+                        randomHolder.ValueRW.Random.NextFloat(data.ValueRO.MinDropImpulse, data.ValueRO.MaxDropImpulse);
                     
                     var turretEntity = ecb.Instantiate(data.ValueRO.TurretPrefab);
                     
                     ecb.SetComponent(turretEntity, LocalTransform.FromPosition(spawnPoint));
+                    
+                    ecb.SetComponent(turretEntity, new MoveSpeed() { Value = dropImpulse });
+                    ecb.SetComponent(turretEntity, new MoveDirection() { Value = direction });
+                    
                     ecb.SetComponent(turretEntity, new AttackDamage() { Value = resultDamage, Scale = 1f });
                     ecb.SetComponent(turretEntity, new ExistTimer() { Value = data.ValueRO.ExistTime });
                 }

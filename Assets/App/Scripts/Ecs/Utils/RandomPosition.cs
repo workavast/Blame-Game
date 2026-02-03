@@ -16,6 +16,18 @@ namespace App.Ecs.Utils
         
             return math.normalize(direction);
         }
+        
+        public static float2 GetDirectionFloat2(ref Random random)
+        {
+            var angle = random.NextFloat(0f, math.TAU);
+            var direction = new float2()
+            {
+                x = math.sin(angle),
+                y = math.cos(angle),
+            };
+        
+            return math.normalize(direction);
+        }
 
         public static float3 GetPointOnRadius(float3 center, float radius, ref Random random)
         {

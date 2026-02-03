@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac3771b82314c73af5e31a44910b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretPrefab: {fileID: 5638536571652354748, guid: 78dc708de9f4a1342a1dede5b6b971dd, type: 3}
+  turretPrefab: {fileID: 6472478979422999213, guid: 78dc708de9f4a1342a1dede5b6b971dd, type: 3}
   turretsCount: 1
-  minDistance: 4.5
-  maxDistance: 6
   height: 0
   existTime: 17.5
+  minDropImpulse: 10
+  maxDropImpulse: 11
 --- !u!114 &8239390322002822675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 7.5
+  attackCooldown: 2
   haveRateScale: 1
 --- !u!114 &4680679382985423344
 MonoBehaviour:

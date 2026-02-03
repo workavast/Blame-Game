@@ -148,11 +148,11 @@ Transform:
   m_GameObject: {fileID: 5585027113892249703}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6815834443417756827}
+  m_Father: {fileID: 4713406553183066518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4911888602165203570
 MeshFilter:
@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 2094475813308677287}
   - component: {fileID: -6467828323639988400}
   - component: {fileID: 5035915941519886656}
+  - component: {fileID: 8705397392649926341}
   m_Layer: 0
   m_Name: TurretView
   m_TagString: Untagged
@@ -240,7 +241,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3661409144155043618}
-  - {fileID: 3147471937537672607}
   - {fileID: 4713406553183066518}
   - {fileID: 6197679673278504166}
   m_Father: {fileID: 0}
@@ -282,6 +282,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a1e45f9f474ce4aaa2ae382f051647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8705397392649926341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777092070901262249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6ca5825a374c29a3299f86ff4d9a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ease: 12
+  sphere: {fileID: 4713406553183066518}
+  sphereLight: {fileID: 7985065603148796083}
 --- !u!1001 &5874995939316464397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,7 +426,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3783013171963169097, guid: c8f5027c065fed041a12876f03401526, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3147471937537672607}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8f5027c065fed041a12876f03401526, type: 3}
 --- !u!4 &4713406553183066518 stripped

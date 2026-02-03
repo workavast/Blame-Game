@@ -10,12 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 3000725405998810441}
   - component: {fileID: 4823952574579417982}
-  - component: {fileID: 5638536571652354748}
+  - component: {fileID: 6472478979422999213}
+  - component: {fileID: -9108712468823041385}
+  - component: {fileID: -2103016363959493324}
   - component: {fileID: 4124399331545810170}
   - component: {fileID: -7973987759028246535}
-  - component: {fileID: -6418592311718591549}
-  - component: {fileID: -4172089504477325267}
   - component: {fileID: 6304728780524870245}
+  - component: {fileID: -4172089504477325267}
+  - component: {fileID: -3438856329849014515}
+  - component: {fileID: 5602228959707303062}
   m_Layer: 0
   m_Name: ECS_Turret
   m_TagString: Untagged
@@ -63,7 +66,7 @@ MonoBehaviour:
             w: 2750191051
         IdentifierType: 1
       GenerationType: 1
---- !u!114 &5638536571652354748
+--- !u!114 &6472478979422999213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,10 +75,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 5542465632544385349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5ec116d64f4dd7a3a199cf17fba2da, type: 3}
+  m_Script: {fileID: 11500000, guid: ef2cc0bb0dcc40bba9a87c41c1d66a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceReaction: 10
+--- !u!114 &-9108712468823041385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542465632544385349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70b5844919f4011b4255c60281c7999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2103016363959493324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542465632544385349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c7f9ff0321487e95ac9669ccd0fe90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deploymentTime: 1
 --- !u!114 &4124399331545810170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,30 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   haveRateScale: 1
---- !u!114 &-6418592311718591549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542465632544385349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebdf449350c48b2b957abb57d9ec884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-4172089504477325267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542465632544385349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6304728780524870245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +148,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   existTime: 25
+--- !u!114 &-4172089504477325267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542465632544385349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f524a603ded67cb44b1be9a50d88954a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3438856329849014515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542465632544385349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcbc46fba07409aa91acfb74af91e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMoveSpeed: 0
+  isPhysically: 0
+  useDefaultMoveSystem: 1
+--- !u!114 &5602228959707303062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542465632544385349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4713576f6b4ac1acfa3017efc7c4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledByDefault: 1
+  damping: 0.5
+  dampingScale: 10
+  dampingScaleMoveSpeedLimit: 10

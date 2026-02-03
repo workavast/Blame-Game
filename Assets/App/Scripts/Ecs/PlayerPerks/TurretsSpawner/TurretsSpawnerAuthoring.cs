@@ -9,11 +9,10 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
     {
         [SerializeField] private TurretAuthoring turretPrefab;
         [SerializeField] private int turretsCount;
-        [SerializeField] private float minDistance;
-        [SerializeField] private float maxDistance;
         [SerializeField] private float height;
         [SerializeField] private float existTime;
-        
+        [SerializeField] private float minDropImpulse;
+        [SerializeField] private float maxDropImpulse;
         private class Baker : Baker<TurretsSpawnerAuthoring>
         {
             public override void Bake(TurretsSpawnerAuthoring authoring)
@@ -27,10 +26,10 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                 {
                     TurretPrefab = GetEntity(authoring.turretPrefab, TransformUsageFlags.Dynamic),
                     TurretsCount = authoring.turretsCount,
-                    MinDistance = authoring.minDistance,
-                    MaxDistance = authoring.maxDistance,
                     Height = authoring.height,
-                    ExistTime = authoring.existTime
+                    ExistTime = authoring.existTime,
+                    MinDropImpulse = authoring.minDropImpulse,
+                    MaxDropImpulse = authoring.maxDropImpulse
                 });
             }
         }
