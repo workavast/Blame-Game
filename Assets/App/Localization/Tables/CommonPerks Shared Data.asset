@@ -55,6 +55,14 @@ MonoBehaviour:
     m_Key: Select
     m_Metadata:
       m_Items: []
+  - m_Id: 32239636711669760
+    m_Key: IncreaseSpawnRateDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32240176979968000
+    m_Key: IncreaseTurretsCapacityDescription
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

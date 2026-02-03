@@ -1,4 +1,5 @@
-﻿using App.Ecs.Turrets.ReadyToUse;
+﻿using App.Ecs.Shooting;
+using App.Ecs.Turrets.ReadyToUse;
 using Unity.Burst;
 using Unity.Entities;
 
@@ -7,12 +8,6 @@ namespace App.Ecs.Turrets
     public struct TurretTag : IComponentData
     {
         
-    }
-    
-    public struct TurretCapacity : IComponentData
-    {
-        public int DefaultValue;
-        public int Value;
     }
     
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
@@ -31,7 +26,7 @@ namespace App.Ecs.Turrets
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
             foreach (var (capacity, entity) in
-                     SystemAPI.Query<RefRO<TurretCapacity>>()
+                     SystemAPI.Query<RefRO<AmmoCapacity>>()
                          .WithAll<TurretTag, TurretStateReadyToUseTag>()
                          .WithEntityAccess())
             {

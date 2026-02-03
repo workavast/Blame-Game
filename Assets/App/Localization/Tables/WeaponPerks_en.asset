@@ -68,6 +68,15 @@ MonoBehaviour:
     m_Localized: Shoot several projectiles around player
     m_Metadata:
       m_Items: []
+  - m_Id: 32241546294394880
+    m_Localized: Turrets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32241595959148544
+    m_Localized: Periodically creates rapid-fire plasma turrets. Each turret has
+      15 shots.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

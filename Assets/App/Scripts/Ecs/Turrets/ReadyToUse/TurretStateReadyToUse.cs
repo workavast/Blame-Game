@@ -40,7 +40,7 @@ namespace App.Ecs.Turrets.ReadyToUse
             foreach (var (transform, distanceReaction, data,
                          damage, penetration, capacity, entity) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
-                             RefRO<AttackDamage>, RefRO<BulletPenetration>, RefRW<TurretCapacity>>()
+                             RefRO<AttackDamage>, RefRO<BulletPenetration>, RefRW<AmmoCapacity>>()
                          .WithAll<TurretTag, TurretStateReadyToUseTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())

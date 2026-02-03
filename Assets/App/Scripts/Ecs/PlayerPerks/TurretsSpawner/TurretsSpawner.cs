@@ -44,9 +44,10 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
             var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, additionalProjectilesCount, damage, randomHolder, entity) in 
+            foreach (var (data, additionalProjectilesCount, damage,
+                         ammoCapacity, randomHolder, entity) in 
                      SystemAPI.Query<RefRO<TurretsSpawnerData>, RefRO<AdditionalProjectilesCount>, RefRO<AttackDamage>, 
-                             RefRW<RandomHolder>>()
+                             RefRO<AmmoCapacity>, RefRW<RandomHolder>>()
                          .WithAll<TurretsSpawnerTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -54,7 +55,7 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var turretsCount = data.ValueRO.TurretsCount + additionalProjectilesCount.ValueRO.Value;
-                var resultDamage = damage.ValueRO.Value * (damage.ValueRO.Scale + globalDamageScale.Scale);
+                var resultDamage = damage.ValueRO.GetDamage(globalDamageScale);
                 for (var i = 0; i < turretsCount; i++)
                 {
                     var spawnPoint = playerPosition;
@@ -72,6 +73,7 @@ namespace App.Ecs.PlayerPerks.TurretsSpawner
                     ecb.SetComponent(turretEntity, new MoveDirection() { Value = direction });
                     
                     ecb.SetComponent(turretEntity, new AttackDamage() { Value = resultDamage, Scale = 1f });
+                    ecb.SetComponent(turretEntity, ShootingUtils.CreateAmmoCapacity(ammoCapacity.ValueRO.DefaultValue));
                 }
             }
         }

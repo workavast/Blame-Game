@@ -1,4 +1,5 @@
 ﻿using App.Ecs.EntityViews;
+using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 
@@ -27,7 +28,7 @@ namespace App.Ecs.Turrets.ReadyToUse
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (capacity, viewHolder) in 
-                     SystemAPI.Query<RefRO<TurretCapacity>, RefRW<TurretCapacityViewHolder>>()
+                     SystemAPI.Query<RefRO<AmmoCapacity>, RefRW<TurretCapacityViewHolder>>()
                          .WithAll<TurretStateReadyToUseTag>())
             {
                 var capacityPercentage = (float)capacity.ValueRO.Value / capacity.ValueRO.DefaultValue;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6662363181241009909}
   - component: {fileID: 3072515442050613519}
+  - component: {fileID: -7771805949516489839}
   - component: {fileID: 8239390322002822675}
   - component: {fileID: 4680679382985423344}
   - component: {fileID: 5274394542065523535}
@@ -50,9 +51,21 @@ MonoBehaviour:
   turretPrefab: {fileID: 6472478979422999213, guid: 78dc708de9f4a1342a1dede5b6b971dd, type: 3}
   turretsCount: 1
   height: 0
-  existTime: 17.5
   minDropImpulse: 10
   maxDropImpulse: 11
+--- !u!114 &-7771805949516489839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151400925757132560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1143b5b570aa41e8822644b1d369e283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoCapacity: 12
 --- !u!114 &8239390322002822675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e8359765de42a18b75cbd3c9298438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 2
+  attackCooldown: 4.5
   haveRateScale: 1
 --- !u!114 &4680679382985423344
 MonoBehaviour:
@@ -79,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86dad3be04346c4af7ae3578ea380ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDamage: 1
+  defaultDamage: 3
   defaultDamageScale: 1
 --- !u!114 &5274394542065523535
 MonoBehaviour:
