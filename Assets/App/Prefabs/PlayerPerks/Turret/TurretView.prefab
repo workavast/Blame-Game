@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 8705397392649926341}
   - component: {fileID: 4132278285139427671}
   - component: {fileID: 4879375893258631662}
+  - component: {fileID: -4422852629874266001}
   m_Layer: 0
   m_Name: TurretView
   m_TagString: Untagged
@@ -328,6 +329,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphere: {fileID: 4713406553183066518}
   sphereLight: {fileID: 7985065603148796083}
+--- !u!114 &-4422852629874266001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777092070901262249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f1ceb5db034a57963685588821b34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetHeight: -1.5
+  duration: 1
+  ease: 2
 --- !u!1001 &5874995939316464397
 PrefabInstance:
   m_ObjectHideFlags: 0

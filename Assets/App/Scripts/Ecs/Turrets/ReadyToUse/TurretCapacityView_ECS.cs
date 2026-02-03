@@ -16,6 +16,7 @@ namespace App.Ecs.Turrets.ReadyToUse
     }
 
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
+    [UpdateAfter(typeof(TurretShootSystem))]
     public partial struct TurretCapacityViewUpdateSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

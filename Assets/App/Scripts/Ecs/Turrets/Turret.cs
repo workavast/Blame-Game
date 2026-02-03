@@ -1,5 +1,4 @@
-﻿using App.Ecs.SystemGroups;
-using App.Ecs.Turrets.ReadyToUse;
+﻿using App.Ecs.Turrets.ReadyToUse;
 using Unity.Burst;
 using Unity.Entities;
 
@@ -16,7 +15,7 @@ namespace App.Ecs.Turrets
         public int Value;
     }
     
-    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
+    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public partial struct TurretOverSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
