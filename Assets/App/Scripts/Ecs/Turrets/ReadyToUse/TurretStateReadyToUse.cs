@@ -18,7 +18,7 @@ namespace App.Ecs.Turrets.ReadyToUse
     }
 
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct TurretSystem : ISystem
+    public partial struct TurretShootSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -38,9 +38,9 @@ namespace App.Ecs.Turrets.ReadyToUse
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
 
             foreach (var (transform, distanceReaction, data,
-                         damage, penetration, entity) in
+                         damage, penetration, capacity, entity) in
                      SystemAPI.Query<RefRO<LocalToWorld>, RefRO<ShootDistanceReaction>, RefRO<BulletInitialData>,
-                             RefRO<AttackDamage>, RefRO<BulletPenetration>>()
+                             RefRO<AttackDamage>, RefRO<BulletPenetration>, RefRW<TurretCapacity>>()
                          .WithAll<TurretTag, TurretStateReadyToUseTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -66,39 +66,12 @@ namespace App.Ecs.Turrets.ReadyToUse
                 var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
 
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
+                capacity.ValueRW.Value--;
 
                 var bulletPrefab = data.ValueRO.BulletPrefab;
                 var bulletPosition = transform.ValueRO.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, rotation, damage, globalDamageScale,
                     penetration);
-            }
-        }
-    }
-
-    [UpdateInGroup(typeof(PausableInitializationSystemGroup))]
-    [UpdateAfter(typeof(ExistTimerSystem))]
-    public partial struct TurretExistTimeOverSystem : ISystem
-    {
-        public void OnCreate(ref SystemState state)
-        {
-            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            state.RequireForUpdate<TurretTag>();
-            state.RequireForUpdate<TurretStateReadyToUseTag>();
-        }
-
-        [BurstCompile]
-        public void OnUpdate(ref SystemState state)
-        {
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
-
-            foreach (var (existTimer, entity) in
-                     SystemAPI.Query<RefRO<ExistTimer>>()
-                         .WithAll<TurretTag, TurretStateReadyToUseTag>()
-                         .WithEntityAccess())
-            {
-                if (existTimer.ValueRO.Value <= 0)
-                    ecb.DestroyEntity(entity);
             }
         }
     }

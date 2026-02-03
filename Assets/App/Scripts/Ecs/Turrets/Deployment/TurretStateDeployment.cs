@@ -45,7 +45,7 @@ namespace App.Ecs.Turrets.Deployment
                          .WithAll<TurretStateDeploymentTag>())
             {
                 deploymentTimer.ValueRW.Value += deltaTime;
-                viewHolder.ValueRO.Instance.Value.SetDeployPercentageTime(deploymentTimer.ValueRO.Value/deploymentTimer.ValueRO.TargetValue);
+                viewHolder.ValueRO.Instance.Value.SetDeployTime(deploymentTimer.ValueRO.Value/deploymentTimer.ValueRO.TargetValue);
             }
         }
     }

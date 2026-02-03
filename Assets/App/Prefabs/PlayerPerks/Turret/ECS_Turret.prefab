@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceReaction: 10
+  capacity: 10
 --- !u!114 &-9108712468823041385
 MonoBehaviour:
   m_ObjectHideFlags: 0

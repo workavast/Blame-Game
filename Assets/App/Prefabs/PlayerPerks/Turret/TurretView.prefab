@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: -6467828323639988400}
   - component: {fileID: 5035915941519886656}
   - component: {fileID: 8705397392649926341}
+  - component: {fileID: 4132278285139427671}
+  - component: {fileID: 4879375893258631662}
   m_Layer: 0
   m_Name: TurretView
   m_TagString: Untagged
@@ -294,7 +296,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6ca5825a374c29a3299f86ff4d9a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ease: 12
+  sphereView: {fileID: 4879375893258631662}
+  animationEase: 12
+--- !u!114 &4132278285139427671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777092070901262249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d3c0c3bfa042938f5a40d562049a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereView: {fileID: 4879375893258631662}
+  percentageEase: 14
+  animationEase: 1
+  duration: 0.2
+--- !u!114 &4879375893258631662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777092070901262249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9737ede194314e0e89ea67c71a39153c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   sphere: {fileID: 4713406553183066518}
   sphereLight: {fileID: 7985065603148796083}
 --- !u!1001 &5874995939316464397
