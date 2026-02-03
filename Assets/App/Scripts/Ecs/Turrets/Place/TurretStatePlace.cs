@@ -28,7 +28,8 @@ namespace App.Ecs.Turrets.Place
             
             foreach (var (moveSpeed, entity) in 
                      SystemAPI.Query<RefRO<MoveSpeed>>()
-                         .WithAll<TurretStatePlaceTag>().WithEntityAccess())
+                         .WithAll<TurretStatePlaceTag, MoveDampingTag>()
+                         .WithEntityAccess())
             {
                 if (moveSpeed.ValueRO.Value == 0)
                 {
