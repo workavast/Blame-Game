@@ -17,7 +17,7 @@ namespace App.Perks.PerksManagement
         public void ActivatePerk(PerkConfig perkConfig)
         {
             if (!_perksStorage.IsAvailable(perkConfig))
-                throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkConfig.name}], perk.title[{perkConfig.GetTitle()}]");
+                throw new NullReferenceException($"Available perks doesnt contain requested perk: perk.name[{perkConfig.name}], perk.title[{perkConfig.GetTitleStr()}]");
             
             perkConfig.Perform(this);
 
