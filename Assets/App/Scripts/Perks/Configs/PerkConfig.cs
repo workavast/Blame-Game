@@ -15,7 +15,7 @@ namespace App.Perks.Configs
         public Sprite Icon => icon;
         public IReadOnlyList<PerkConfig> ChildPerks => childPerks;
         
-        public string GetTitleStr()
+        public string GetTitle()
         {
             if (title == null || title.IsEmpty)
                 return "None";
@@ -23,7 +23,7 @@ namespace App.Perks.Configs
             return title.GetLocalizedString(GetTitleParams());
         }
 
-        public string GetDescriptionStr()
+        public string GetDescription()
         {
             if (title == null || title.IsEmpty)
                 return "None";
@@ -31,22 +31,6 @@ namespace App.Perks.Configs
             return description.GetLocalizedString(GetDescriptionParams());
         }
 
-        public LocalizedString GetTitle()
-        {
-            if (title == null || title.IsEmpty)
-                return default;
-            
-            return title;
-        }
-        
-        public LocalizedString GetDescription()
-        {
-            if (title == null || title.IsEmpty)
-                return default;
-            
-            return description;
-        }
-        
         public abstract void Perform(PerksActivator perksActivator);
         
         protected virtual object[] GetTitleParams() 

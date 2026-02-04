@@ -1,15 +1,15 @@
 ﻿using System;
 using App.Perks.Configs;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace App.Perks.UI.Cards
 {
     public class PerkCard : MonoBehaviour
     {
-        [SerializeField] private LocalizeStringEvent title;
-        [SerializeField] private LocalizeStringEvent description;
+        [SerializeField] private TMP_Text title;
+        [SerializeField] private TMP_Text description;
         [SerializeField] private Image icon;
         [SerializeField] private Button activateBtn;
         
@@ -22,13 +22,24 @@ namespace App.Perks.UI.Cards
             activateBtn.onClick.AddListener(() => OnActivate?.Invoke(_perkConfig));
         }
 
+        private void OnEnable() 
+            => UpdateTexts();
+
         public void SetPerk(PerkConfig perkConfig)
         {
             _perkConfig = perkConfig;
 
             icon.sprite = _perkConfig.Icon;
-            title.StringReference = _perkConfig.GetTitle();
-            description.StringReference = _perkConfig.GetDescription();
+            UpdateTexts();
+        }
+
+        private void UpdateTexts()
+        {
+            if (_perkConfig == null)
+                return;
+            
+            title.text = _perkConfig.GetTitle();
+            description.text = _perkConfig.GetDescription();            
         }
     }
 }

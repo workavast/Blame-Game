@@ -26,7 +26,7 @@ namespace App.Perks.UI.ActivePerksView
         {
             var popupPosition = _rectTransform.position;
             var config = activePerkViewCell.GetPerkDataConfig();
-            _popupController.Show(popupPosition, config.GetTitleStr(), config.GetDescriptionStr());
+            _popupController.Show(popupPosition, config.GetTitle(), config.GetDescription());
         }
 
         public void OnPointerExit(PointerEventData eventData)
