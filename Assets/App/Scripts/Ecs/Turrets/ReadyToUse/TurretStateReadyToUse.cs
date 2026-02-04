@@ -1,11 +1,9 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.Bullets;
 using App.Ecs.Enemies;
-using App.Ecs.ExistTime;
 using App.Ecs.Player;
 using App.Ecs.Shooting;
 using App.Ecs.SystemGroups;
-using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -16,7 +14,7 @@ namespace App.Ecs.Turrets.ReadyToUse
     {
 
     }
-
+    
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
     public partial struct TurretShootSystem : ISystem
     {
@@ -24,8 +22,8 @@ namespace App.Ecs.Turrets.ReadyToUse
         {
             state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
-            state.RequireForUpdate<TurretTag>();
             state.RequireForUpdate<EnemyTag>();
+            state.RequireForUpdate<TurretTag>();
             state.RequireForUpdate<TurretStateReadyToUseTag>();
         }
 
@@ -65,9 +63,10 @@ namespace App.Ecs.Turrets.ReadyToUse
                 var direction = shootPoint - transform.ValueRO.Position;
                 var rotation = quaternion.LookRotation(direction, new float3(0, 1, 0));
 
-                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
                 capacity.ValueRW.Value--;
-
+                SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
+                SystemAPI.SetComponentEnabled<AttackViewRequested>(entity, true);
+                
                 var bulletPrefab = data.ValueRO.BulletPrefab;
                 var bulletPosition = transform.ValueRO.Position + new float3(0, data.ValueRO.SpawnVerticalOffset, 0);
                 BulletBuilder.Build(ref ecb, bulletPrefab, data, bulletPosition, rotation, damage, globalDamageScale,
