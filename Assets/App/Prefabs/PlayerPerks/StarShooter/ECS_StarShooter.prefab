@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5295759170767767967}
   - component: {fileID: 8039948690888372479}
   - component: {fileID: -7896084038192709650}
+  - component: {fileID: -2494525484881926316}
   m_Layer: 0
   m_Name: ECS_StarShooter
   m_TagString: Untagged
@@ -92,8 +93,6 @@ MonoBehaviour:
   penetration: 0
   moveSpeed: 15
   spawnVerticalOffset: 1
-  hasDamageScale: 1
-  hasPenetrationScale: 1
 --- !u!114 &-5295759170767767967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +144,15 @@ MonoBehaviour:
             w: 3239049381
         IdentifierType: 1
       GenerationType: 1
+--- !u!114 &-2494525484881926316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719000234346042645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab204bc63fe46cc9fe338deb2918d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

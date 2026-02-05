@@ -1,6 +1,6 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Experience;
-using App.Ecs.Experience.ExpOrb;
 using Unity.Entities;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace App.Ecs.Player
 {
     public class PlayerAuthoring : MonoBehaviour
     {
-        [SerializeField] private float initialDamageScale = 1;
+        [SerializeField] private float additionalDamageScale = 0;
         [SerializeField] private float initialFireScale = 1;
         [SerializeField] private float initialExpScale = 1;
         
@@ -22,7 +22,7 @@ namespace App.Ecs.Player
                 AddComponent(entity, new InitializeCameraTargetFlag());
                 AddComponent(entity, new CameraTarget());
                 
-                AddComponent(entity, new AttackDamageScale() { Value = authoring.initialDamageScale });
+                AddComponent(entity, new AttackDamage() { Scale = authoring.additionalDamageScale });
                 AddComponent(entity, new AttackRateScale() { Value = authoring.initialFireScale });
                 AddComponent(entity, new ExpScale() { Value = authoring.initialExpScale });
             }

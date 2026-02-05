@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5738400548069601718}
   - component: {fileID: 6793408048182246379}
   - component: {fileID: 7940243683628554270}
+  - component: {fileID: 5821644174448124135}
   m_Layer: 0
   m_Name: ECS_Rifle
   m_TagString: Untagged
@@ -88,12 +89,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5742481295489709929, guid: b7a465d201a8c094f9a3d89cc3d00e2c, type: 3}
-  damage: 5
+  damage: 7
   penetration: 1
   moveSpeed: 25
   spawnVerticalOffset: 1
-  hasDamageScale: 1
-  hasPenetrationScale: 1
 --- !u!114 &5738400548069601718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +144,15 @@ MonoBehaviour:
             w: 2943839006
         IdentifierType: 1
       GenerationType: 1
+--- !u!114 &5821644174448124135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856451364952303405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab204bc63fe46cc9fe338deb2918d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

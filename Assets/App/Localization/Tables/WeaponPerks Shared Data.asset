@@ -63,6 +63,14 @@ MonoBehaviour:
     m_Key: StarShooterDescription
     m_Metadata:
       m_Items: []
+  - m_Id: 32241546294394880
+    m_Key: TurretsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32241595959148544
+    m_Key: TurretsDescription
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

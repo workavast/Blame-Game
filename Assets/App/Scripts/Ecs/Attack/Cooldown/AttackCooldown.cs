@@ -3,7 +3,7 @@ using App.Ecs.SystemGroups;
 using Unity.Burst;
 using Unity.Entities;
 
-namespace App.Ecs.Attack
+namespace App.Ecs.Attack.Cooldown
 {
     public struct DefaultAttackCooldown : IComponentData
     {

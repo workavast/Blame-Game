@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Bullets;
 using App.Ecs.Moving;
 using App.Ecs.Player;
@@ -168,8 +169,8 @@ namespace App.Ecs.Enemies.GunnerBot
             var ecbWorld = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (transform, bulletData, entity) in 
-                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<BulletInitialData>>()
+            foreach (var (transform, bulletData, damage, penetration, entity) in 
+                     SystemAPI.Query<RefRO<LocalToWorld>, RefRO<BulletInitialData>, RefRO<AttackDamage>, RefRO<BulletPenetration>>()
                          .WithAll<GunnerBotTag, GunnerBotInZoneFlag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -178,7 +179,7 @@ namespace App.Ecs.Enemies.GunnerBot
 
                 var bulletPrefab = bulletData.ValueRO.BulletPrefab;
                 var bulletPosition = transform.ValueRO.Position + new float3(0, bulletData.ValueRO.SpawnVerticalOffset, 0);
-                BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, transform.ValueRO.Rotation);
+                BulletBuilder.Build(ref ecb, bulletPrefab, bulletData, bulletPosition, transform.ValueRO.Rotation, damage, penetration);
             }
         }
     }

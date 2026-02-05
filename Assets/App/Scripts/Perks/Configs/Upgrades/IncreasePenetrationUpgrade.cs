@@ -1,5 +1,4 @@
-﻿using App.Ecs;
-using App.Ecs.Shooting;
+﻿using App.Ecs.Bullets;
 using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;
@@ -17,10 +16,10 @@ namespace App.Perks.Configs.Upgrades
         
         public override void Perform(PerksActivator perksActivator)
         {
-            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, AdditionalPenetration>();
+            var currentScale = EcsBridge.GetComponentOfSingletonRO<TTag, BulletPenetration>();
             currentScale.Value += additionalPenetration;
             
-            EcsBridge.TrySetComponentOfSingleton<TTag, AdditionalPenetration>(currentScale);
+            EcsBridge.TrySetComponentOfSingleton<TTag, BulletPenetration>(currentScale);
         }
     }
 }

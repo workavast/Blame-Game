@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Moving;
 using App.Ecs.Player;
 using App.Ecs.Randomisation;
@@ -43,15 +44,13 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
         {
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             var playerPosition = SystemAPI.GetComponent<LocalTransform>(playerEntity).Position;
-            var globalDamageScale = SystemAPI.GetComponent<AttackDamageScale>(playerEntity);
+            var globalDamageScale = SystemAPI.GetComponent<AttackDamage>(playerEntity);
 
             var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (data, additionalProjectilesCount, attackDamage, 
-                         damageScale, randomHolder, entity) in 
-                     SystemAPI.Query<RefRO<RocketLauncherData>, RefRO<AdditionalProjectilesCount>, RefRO<AttackDamage>, 
-                             RefRO<AttackDamageScale>, RefRW<RandomHolder>>()
+            foreach (var (data, additionalProjectilesCount, damage, randomHolder, entity) in 
+                     SystemAPI.Query<RefRO<RocketLauncherData>, RefRO<AdditionalProjectilesCount>, RefRO<AttackDamage>, RefRW<RandomHolder>>()
                          .WithAll<RocketLauncherTag>()
                          .WithDisabled<AttackCooldown>()
                          .WithEntityAccess())
@@ -59,7 +58,7 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
                 SystemAPI.SetComponentEnabled<AttackCooldown>(entity, true);
 
                 var rocketsCount = data.ValueRO.RocketsCount + additionalProjectilesCount.ValueRO.Value;
-                var damage = attackDamage.ValueRO.Value * (damageScale.ValueRO.Value + globalDamageScale.Value);
+                var resultDamage = damage.ValueRO.Value * (damage.ValueRO.Scale + globalDamageScale.Scale);
                 for (var i = 0; i < rocketsCount; i++)
                 {
                     var spawnPoint = RandomPosition.GetPointInRadius(playerPosition, data.ValueRO.MinDistance, data.ValueRO.MaxDistance, ref randomHolder.ValueRW.Random);
@@ -69,7 +68,7 @@ namespace App.Ecs.PlayerPerks.RocketLauncher
                     var randomInterval = randomHolder.ValueRW.Random.NextFloat(0, data.ValueRO.RandomInterval);
                     
                     ecb.SetComponent(rocketEntity, LocalTransform.FromPosition(spawnPoint));
-                    ecb.SetComponent(rocketEntity, new AttackDamage() { Value = damage });
+                    ecb.SetComponent(rocketEntity, new AttackDamage() { Value = resultDamage });
                     ecb.SetComponent(rocketEntity, new RocketTargetHeight() { Value = playerPosition.y });
                     ecb.SetComponent(rocketEntity, new MoveSpeed() { Value = data.ValueRO.MoveSpeed });
                     ecb.SetComponent(rocketEntity, new RocketExplosionRadius() { Value = data.ValueRO.ExplosionRadius });

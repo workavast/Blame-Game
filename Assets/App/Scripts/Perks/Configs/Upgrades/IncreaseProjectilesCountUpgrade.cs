@@ -1,5 +1,4 @@
-﻿using App.Ecs;
-using App.Ecs.Shooting;
+﻿using App.Ecs.Shooting;
 using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;

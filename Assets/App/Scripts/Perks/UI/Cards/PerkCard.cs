@@ -22,13 +22,24 @@ namespace App.Perks.UI.Cards
             activateBtn.onClick.AddListener(() => OnActivate?.Invoke(_perkConfig));
         }
 
+        private void OnEnable() 
+            => UpdateTexts();
+
         public void SetPerk(PerkConfig perkConfig)
         {
             _perkConfig = perkConfig;
 
-            title.text = _perkConfig.GetTitle();
-            description.text = _perkConfig.GetDescription();
             icon.sprite = _perkConfig.Icon;
+            UpdateTexts();
+        }
+
+        private void UpdateTexts()
+        {
+            if (_perkConfig == null)
+                return;
+            
+            title.text = _perkConfig.GetTitle();
+            description.text = _perkConfig.GetDescription();            
         }
     }
 }

@@ -2,7 +2,7 @@
 using Unity.Burst;
 using Unity.Entities;
 
-namespace App.Ecs
+namespace App.Ecs.ExistTime
 {
     public struct ExistTimer : IComponentData
     {

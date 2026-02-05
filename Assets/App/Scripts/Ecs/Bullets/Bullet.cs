@@ -1,5 +1,6 @@
 ﻿using App.Ecs.Attack;
 using App.Ecs.EntityViews;
+using App.Ecs.ExistTime;
 using App.Ecs.Health;
 using App.Ecs.Moving;
 using App.Ecs.SystemGroups;
@@ -30,9 +31,7 @@ namespace App.Ecs.Bullets
     {
         public Entity BulletPrefab;
         public float SpawnVerticalOffset;
-        public float Damage;
         public float MoveSpeed;
-        public int Penetration;
     }
 
     [UpdateInGroup(typeof(IndependentMoveSystemGroup))]

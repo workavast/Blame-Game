@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: Select
     m_Metadata:
       m_Items: []
+  - m_Id: 32239636711669760
+    m_Localized: Increase Spawn Rate for {0:#%}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32240176979968000
+    m_Localized: Increase Turrets Ammo Capacity for {0:#}
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4440840924580397001}
   - component: {fileID: 7090517521248052351}
   - component: {fileID: -5791132962967824092}
+  - component: {fileID: -795633861841393562}
   - component: {fileID: 7517491035079261124}
   m_Layer: 0
   m_Name: ECS_ExpOrb
@@ -48,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1e53a833204a45a362d0dad1e1f9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damping: 0.5
 --- !u!114 &7090517521248052351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expAmount: 1
-  damping: 0.5
 --- !u!114 &-5791132962967824092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +77,22 @@ MonoBehaviour:
   defaultMoveSpeed: 0
   isPhysically: 0
   useDefaultMoveSystem: 1
+--- !u!114 &-795633861841393562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5116676332423392054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4713576f6b4ac1acfa3017efc7c4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledByDefault: 1
+  damping: 0.5
+  dampingScale: 5
+  dampingScaleMoveSpeedLimit: 2.5
 --- !u!114 &7517491035079261124
 MonoBehaviour:
   m_ObjectHideFlags: 0

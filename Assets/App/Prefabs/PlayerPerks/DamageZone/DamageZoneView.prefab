@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: -2191656751336819318}
   - component: {fileID: 4582370686019908126}
   - component: {fileID: 2053432168081825806}
+  - component: {fileID: -7292207473795671848}
   m_Layer: 0
   m_Name: DamageZoneView
   m_TagString: Untagged
@@ -93,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9259be38fba4d9e855f88282aa03d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleanupCallback: {fileID: 2053432168081825806}
 --- !u!114 &2053432168081825806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +106,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323cc3557c57428c9c78f50fe92bb987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7292207473795671848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564080251355479038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8cb3781209748c4a6682dc6808e767c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 94178aee168d5094391c118561a284be, type: 3}
+  attackCooldownView: {fileID: 0}
+  initialValue: 1
 --- !u!1001 &8401631781550205561
 PrefabInstance:
   m_ObjectHideFlags: 0
