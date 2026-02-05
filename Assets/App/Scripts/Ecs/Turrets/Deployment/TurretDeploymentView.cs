@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace App.Ecs.Turrets.Deployment
 {
-    public class TurretStateDeploymentView : MonoBehaviour, IEntityViewElement
+    public class TurretDeploymentView : MonoBehaviour, IEntityViewElement
     {
         [SerializeField] private TurretSphereView sphereView;
         [SerializeField] private Ease animationEase = Ease.Linear;

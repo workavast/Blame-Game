@@ -1,12 +1,12 @@
-﻿using System;
-using App.Ecs.EntityViews;
+﻿using App.Ecs.Shooting.Ammo;
 using DG.Tweening;
 using UnityEngine;
 
-namespace App.Ecs.Turrets.ReadyToUse
+namespace App.Ecs.Turrets
 {
-    public class TurretCapacityView : MonoBehaviour, IEntityViewElement
+    public class TurretCapacityView : MonoBehaviour
     {
+        [SerializeField] private AmmoCapacityView ammoCapacityView;
         [SerializeField] private TurretSphereView sphereView;
         [SerializeField] private Ease percentageEase = Ease.InQuint;
         [SerializeField] private Ease animationEase = Ease.Linear;
@@ -15,12 +15,12 @@ namespace App.Ecs.Turrets.ReadyToUse
         private float _lastPercentage = 1;
         private Tween _currentTween;
 
-        public event Action<IEntityViewElement> OnCleanupCompleted;
+        private void Awake()
+        {
+            ammoCapacityView.OnCapacityPercentageChanged += SetCapacityPercentage;
+        }
 
-        public bool OnDestroyCallback() 
-            => true;
-
-        public void SetCapacityPercentage(float percentage)
+        private void SetCapacityPercentage(float percentage)
         {
             percentage = Mathf.Clamp01(percentage);
             var targetPercentage = DOVirtual.EasedValue(0f, 1f, percentage, animationEase);

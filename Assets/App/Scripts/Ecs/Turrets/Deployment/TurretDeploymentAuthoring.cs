@@ -13,7 +13,7 @@ namespace App.Ecs.Turrets.Deployment
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new TurretStateDeploymentTimer() { TargetValue = authoring.deploymentTime });
+                AddComponent(entity, new TurretDeploymentTimer() { TargetValue = authoring.deploymentTime });
             }
         }
     }

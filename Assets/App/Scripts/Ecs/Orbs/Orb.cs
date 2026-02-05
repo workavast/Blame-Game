@@ -33,7 +33,7 @@ namespace App.Ecs.Orbs
                          .WithEntityAccess())
             {
                 if (moveSpeed.ValueRO.Value == 0)
-                    MoveDampingUtils.FullRemove(entity, ecb);
+                    MoveDampingUtils.FullRemove(entity, ref ecb);
             }
         }
     }

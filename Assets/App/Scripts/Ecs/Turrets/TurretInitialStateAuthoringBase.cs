@@ -3,7 +3,7 @@
 namespace App.Ecs.Turrets
 {
     [DisallowMultipleComponent]
-    public abstract class TurretInitialStateAuthoring : MonoBehaviour
+    public abstract class TurretInitialStateAuthoringBase : MonoBehaviour
     {
         
     }

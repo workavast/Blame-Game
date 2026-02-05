@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace App.Ecs.Shooting
+namespace App.Ecs.Shooting.Ammo
 {
     public class AmmoCapacityAuthoring : MonoBehaviour
     {

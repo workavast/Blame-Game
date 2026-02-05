@@ -2,7 +2,7 @@
 
 namespace App.Ecs.Turrets.Deployment
 {
-    public class TurretInitialStateDeploymentAuthoring : TurretInitialStateAuthoring
+    public class TurretInitialStateDeploymentAuthoring : TurretInitialStateAuthoringBase
     {
         private class Baker : Baker<TurretInitialStateDeploymentAuthoring>
         {

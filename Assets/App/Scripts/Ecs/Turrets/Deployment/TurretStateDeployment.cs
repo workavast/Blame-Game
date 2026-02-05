@@ -1,6 +1,4 @@
-﻿using App.Ecs.EntityViews;
-using App.Ecs.SystemGroups;
-using App.Ecs.Turrets.ReadyToUse;
+﻿using App.Ecs.SystemGroups;
 using Unity.Entities;
 
 namespace App.Ecs.Turrets.Deployment
@@ -10,26 +8,14 @@ namespace App.Ecs.Turrets.Deployment
         
     }
     
-    public struct TurretStateDeploymentViewHolder : IComponentData
-    {
-        public UnityObjectRef<TurretStateDeploymentView> Instance;
-    }
-    
-    public struct TurretStateDeploymentTimer : IComponentData
+    public struct TurretDeploymentTimer : IComponentData
     {
         public float TargetValue;
         public float Value;
     }
     
-    public partial class TurretStateDeploymentViewHolderInitSystem
-        : ViewHolderInitializeSystem<TurretStateDeploymentTag, TurretStateDeploymentView, TurretStateDeploymentViewHolder>
-    {
-        protected override TurretStateDeploymentViewHolder CreateViewHolder(TurretStateDeploymentView view)
-            => new() { Instance = view };
-    }
-    
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]
-    public partial struct TurretStateDeploymentViewUpdateSystem : ISystem
+    public partial struct TurretDeploymentTimerUpdateSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -40,12 +26,11 @@ namespace App.Ecs.Turrets.Deployment
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
             
-            foreach (var (deploymentTimer, viewHolder) in 
-                     SystemAPI.Query<RefRW<TurretStateDeploymentTimer>, RefRW<TurretStateDeploymentViewHolder>>()
+            foreach (var deploymentTimer in 
+                     SystemAPI.Query<RefRW<TurretDeploymentTimer>>()
                          .WithAll<TurretStateDeploymentTag>())
             {
                 deploymentTimer.ValueRW.Value += deltaTime;
-                viewHolder.ValueRO.Instance.Value.SetDeployTime(deploymentTimer.ValueRO.Value/deploymentTimer.ValueRO.TargetValue);
             }
         }
     }
@@ -65,16 +50,17 @@ namespace App.Ecs.Turrets.Deployment
             var ecb = ecbWorld.CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (deploymentTimer, entity) in 
-                     SystemAPI.Query<RefRO<TurretStateDeploymentTimer>>()
+                     SystemAPI.Query<RefRO<TurretDeploymentTimer>>()
                          .WithAll<TurretStateDeploymentTag>()
                          .WithEntityAccess())
             {
                 if (deploymentTimer.ValueRO.Value >= deploymentTimer.ValueRO.TargetValue)
                 {
                     ecb.RemoveComponent<TurretStateDeploymentTag>(entity);
-                    ecb.RemoveComponent<TurretStateDeploymentTimer>(entity);
+                    ecb.RemoveComponent<TurretDeploymentTimer>(entity);
                     ecb.RemoveComponent<TurretStateDeploymentViewHolder>(entity);
-                    ecb.AddComponent<TurretStateReadyToUseTag>(entity);
+                    
+                    TurretStatesUtils.SetReadyToUseState(entity, ref ecb);
                 }
             }
         }

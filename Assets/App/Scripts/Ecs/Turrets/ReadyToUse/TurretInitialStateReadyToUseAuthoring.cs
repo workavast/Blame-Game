@@ -2,7 +2,7 @@
 
 namespace App.Ecs.Turrets.ReadyToUse
 {
-    public class TurretInitialStateReadyToUseAuthoring : TurretInitialStateAuthoring
+    public class TurretInitialStateReadyToUseAuthoring : TurretInitialStateAuthoringBase
     {
         private class Baker : Baker<TurretInitialStateReadyToUseAuthoring>
         {

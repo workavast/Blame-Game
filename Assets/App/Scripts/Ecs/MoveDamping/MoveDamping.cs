@@ -23,7 +23,7 @@ namespace App.Ecs.MoveDamping
         /// <summary>
         /// remove all related components from entity
         /// </summary>
-        public static void FullRemove(Entity entity, EntityCommandBuffer ecb)
+        public static void FullRemove(Entity entity, ref EntityCommandBuffer ecb)
         {
             ecb.RemoveComponent<MoveDampingTag>(entity);
             ecb.RemoveComponent<InertialMoveDamping>(entity);
