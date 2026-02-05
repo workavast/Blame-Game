@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Experience;
 using Unity.Entities;
 using UnityEngine;

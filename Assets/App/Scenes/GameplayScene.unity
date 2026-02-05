@@ -449,6 +449,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1846437341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194575688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1865161959358781867, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+  m_PrefabInstance: {fileID: 7058456261474037533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5417871816fe46298fe3706a75a503f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &324691976
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,6 +3776,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamplaySceneContext
       objectReference: {fileID: 0}
+    - target: {fileID: 1410539230152431058, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
+      propertyPath: uiPerksCooldownViews
+      value: 
+      objectReference: {fileID: 194575688}
     - target: {fileID: 2278671928407448817, guid: 90d2514ef46f28c49a15a7fddadeafca, type: 3}
       propertyPath: screensController
       value: 
@@ -3850,6 +3865,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4638167786791674950, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638167786791674950, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638167786791674950, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638167786791674950, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5467430393144199903, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3928,6 +3959,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467430393144199903, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823681979544462369, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823681979544462369, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823681979544462369, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823681979544462369, guid: 4870f5d91cd630843b4041202722dbb2, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

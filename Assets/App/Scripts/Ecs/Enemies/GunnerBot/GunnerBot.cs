@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Bullets;
 using App.Ecs.Moving;
 using App.Ecs.Player;

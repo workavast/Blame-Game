@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.EcsBridges;
 using App.Perks.PerksManagement;
 using Unity.Entities;

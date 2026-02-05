@@ -1,4 +1,5 @@
 ﻿using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Health;
 using App.Ecs.Player;
 using App.Ecs.SystemGroups;

@@ -1,5 +1,6 @@
 ﻿using App.Ecs.AoeZones;
 using App.Ecs.Attack;
+using App.Ecs.Attack.Cooldown;
 using App.Ecs.Enemies;
 using App.Ecs.Health;
 using App.Ecs.Player;

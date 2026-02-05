@@ -9,10 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4265581567283410751}
+  - component: {fileID: -5242588036075767505}
   - component: {fileID: 7488058628797259467}
   - component: {fileID: 8440447385563137795}
   - component: {fileID: 3866568303860793416}
   - component: {fileID: 7855151480677827190}
+  - component: {fileID: -53393929206100575}
   m_Layer: 0
   m_Name: ECS_RocketLauncher
   m_TagString: Untagged
@@ -35,6 +37,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5242588036075767505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165562416961467058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 7689696242623992507
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 1226538406
+            y: 1145070960
+            z: 2859520959
+            w: 1296874015
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &7488058628797259467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDamage: 25
-  hasDamageScale: 1
+  defaultDamageScale: 1
 --- !u!114 &7855151480677827190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,5 +120,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3256c30889754c2780b2022243c670da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-53393929206100575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165562416961467058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab204bc63fe46cc9fe338deb2918d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

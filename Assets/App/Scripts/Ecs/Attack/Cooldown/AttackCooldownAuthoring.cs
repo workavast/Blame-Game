@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace App.Ecs.Attack
+namespace App.Ecs.Attack.Cooldown
 {
     public class AttackCooldownAuthoring : MonoBehaviour
     {

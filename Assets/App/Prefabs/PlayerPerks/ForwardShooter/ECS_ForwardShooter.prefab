@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5099493810805208962}
   - component: {fileID: 6990804207654027417}
   - component: {fileID: -441343230447846016}
+  - component: {fileID: 197701840496398097}
   m_Layer: 0
   m_Name: ECS_ForwardShooter
   m_TagString: Untagged
@@ -91,7 +92,6 @@ MonoBehaviour:
   penetration: 0
   moveSpeed: 17.5
   spawnVerticalOffset: 1
-  hasDamageScale: 1
 --- !u!114 &5099493810805208962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +143,15 @@ MonoBehaviour:
             w: 2256630807
         IdentifierType: 1
       GenerationType: 1
+--- !u!114 &197701840496398097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8888059500304821474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab204bc63fe46cc9fe338deb2918d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

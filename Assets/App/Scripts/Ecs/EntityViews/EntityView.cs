@@ -46,7 +46,7 @@ namespace App.Ecs.EntityViews
         public TView GetView<TView>() where TView : MonoBehaviour, IEntityViewElement
         {
             if (!TryGetView<TView>(out var view))
-                throw new NullReferenceException($"Entity View doesnt have requested view: [{name}] [{nameof(TView)}]");
+                throw new NullReferenceException($"Entity View doesnt have requested view: [{name}] [{typeof(TView).Name}]");
             
             return view;
         }

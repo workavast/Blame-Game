@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6662363181241009909}
+  - component: {fileID: 4975652793700130056}
   - component: {fileID: 3072515442050613519}
   - component: {fileID: -7771805949516489839}
   - component: {fileID: 8239390322002822675}
+  - component: {fileID: 4955382554194045971}
   - component: {fileID: 4680679382985423344}
   - component: {fileID: 5274394542065523535}
   m_Layer: 0
@@ -36,6 +38,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4975652793700130056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151400925757132560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8d21e1b054977986231f228a78955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab:
+    Id:
+      GlobalId:
+        SceneObjectIdentifier0: 7689696242623992507
+        SceneObjectIdentifier1: 0
+        AssetGUID:
+          Value:
+            x: 4282600853
+            y: 1076996869
+            z: 3479767461
+            w: 3140447262
+        IdentifierType: 1
+      GenerationType: 1
 --- !u!114 &3072515442050613519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 4.5
   haveRateScale: 1
+--- !u!114 &4955382554194045971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151400925757132560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab204bc63fe46cc9fe338deb2918d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4680679382985423344
 MonoBehaviour:
   m_ObjectHideFlags: 0
