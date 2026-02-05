@@ -17,7 +17,7 @@ namespace App.Ecs.Attack.Sfx
         public UnityObjectRef<AttackSfxView> Instance;
     }
 
-    public struct AttackSfxHolderInitializeFlag : IComponentData, IEnableableComponent
+    public struct AttackSfxViewOwnerTag : IComponentData
     {
 
     }
@@ -43,7 +43,7 @@ namespace App.Ecs.Attack.Sfx
     }
 
     public partial class AttackSfxViewHolderInitSystem
-        : ViewHolderInitializeSystem<AttackSfxHolderInitializeFlag, AttackSfxView, AttackSfxViewHolder>
+        : ViewHolderInitializeSystem<AttackSfxViewOwnerTag, AttackSfxView, AttackSfxViewHolder>
     {
         protected override AttackSfxViewHolder CreateViewHolder(AttackSfxView view)
             => new() { Instance = view };

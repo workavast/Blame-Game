@@ -16,7 +16,7 @@ namespace App.Ecs.Health.Death.Sfx
         public UnityObjectRef<DeathSfxView> Instance;
     }
 
-    public struct DeathSfxHolderInitializeFlag : IComponentData, IEnableableComponent
+    public struct DeathSfxViewOwnerTag : IComponentData
     {
 
     }
@@ -58,7 +58,7 @@ namespace App.Ecs.Health.Death.Sfx
     }
 
     public partial class DeathSfxViewHolderInitSystem
-        : ViewHolderInitializeSystem<DeathSfxHolderInitializeFlag, DeathSfxView, DeathSfxViewHolder>
+        : ViewHolderInitializeSystem<DeathSfxViewOwnerTag, DeathSfxView, DeathSfxViewHolder>
     {
         protected override DeathSfxViewHolder CreateViewHolder(DeathSfxView view)
             => new() { Instance = view };

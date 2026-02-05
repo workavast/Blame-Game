@@ -5,12 +5,17 @@ using Unity.Entities;
 
 namespace App.Ecs.Turrets.ReadyToUse
 {
+    public struct TurretCapacityViewOwnerTag : IComponentData
+    {
+        
+    }
+    
     public struct TurretCapacityViewHolder : IComponentData
     {
         public UnityObjectRef<TurretCapacityView> Instance;
     }
 
-    public partial class TurretCapacityViewHolderInitSystem : ViewHolderInitializeSystem<TurretTag, TurretCapacityView, TurretCapacityViewHolder>
+    public partial class TurretCapacityViewHolderInitSystem : ViewHolderInitializeSystem<TurretCapacityViewOwnerTag, TurretCapacityView, TurretCapacityViewHolder>
     {
         protected override TurretCapacityViewHolder CreateViewHolder(TurretCapacityView view) 
             => new() { Instance = view };

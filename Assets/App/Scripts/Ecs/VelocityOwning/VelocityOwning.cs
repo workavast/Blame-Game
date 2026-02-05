@@ -6,7 +6,7 @@ using Unity.Physics;
 
 namespace App.Ecs.VelocityOwning
 {
-    public struct VelocityViewOwner : IComponentData
+    public struct VelocityViewOwnerTag : IComponentData
     {
 
     }
@@ -16,7 +16,7 @@ namespace App.Ecs.VelocityOwning
         public UnityObjectRef<VelocityView> Instance;
     }
 
-    public partial class VelocityViewHolderInitSystem : ViewHolderInitializeSystem<VelocityViewOwner, VelocityView,
+    public partial class VelocityViewHolderInitSystem : ViewHolderInitializeSystem<VelocityViewOwnerTag, VelocityView,
         VelocityViewHolder>
     {
         protected override VelocityViewHolder CreateViewHolder(VelocityView view)

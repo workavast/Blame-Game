@@ -3,7 +3,7 @@ using Unity.Entities;
 
 namespace App.Ecs.Health.Death.Vfx
 {
-    public struct DeathVfxViewHolderInitializeFlag : IComponentData, IEnableableComponent
+    public struct DeathVfxViewOwnerTag : IComponentData
     {
 
     }
@@ -14,7 +14,7 @@ namespace App.Ecs.Health.Death.Vfx
     }
 
     public partial class DeathVfxViewHolderInitSystem
-        : ViewHolderInitializeSystem<DeathVfxViewHolderInitializeFlag, DeathVfxView, DeathVfxViewHolder>
+        : ViewHolderInitializeSystem<DeathVfxViewOwnerTag, DeathVfxView, DeathVfxViewHolder>
     {
         protected override DeathVfxViewHolder CreateViewHolder(DeathVfxView view)
             => new() { Instance = view };

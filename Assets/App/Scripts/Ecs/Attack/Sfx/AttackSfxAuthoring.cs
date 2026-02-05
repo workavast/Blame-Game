@@ -21,7 +21,7 @@ namespace App.Ecs.Attack.Sfx
                     AttackSfxRef = authoring.sfxRef
                 });
 
-                AddComponent(entity, new AttackSfxHolderInitializeFlag());
+                AddComponent(entity, new AttackSfxViewOwnerTag());
             }
         }
     }

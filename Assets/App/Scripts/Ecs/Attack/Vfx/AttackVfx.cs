@@ -4,7 +4,7 @@ using Unity.Entities;
 
 namespace App.Ecs.Attack.Vfx
 {
-    public struct AttackVfxViewHolderInitializeFlag : IComponentData, IEnableableComponent
+    public struct AttackVfxViewOwnerTag : IComponentData
     {
 
     }
@@ -15,7 +15,7 @@ namespace App.Ecs.Attack.Vfx
     }
 
     public partial class AttackVfxViewHolderInitSystem
-        : ViewHolderInitializeSystem<AttackVfxViewHolderInitializeFlag, AttackVfxView, AttackVfxViewHolder>
+        : ViewHolderInitializeSystem<AttackVfxViewOwnerTag, AttackVfxView, AttackVfxViewHolder>
     {
         protected override AttackVfxViewHolder CreateViewHolder(AttackVfxView view)
             => new() { Instance = view };

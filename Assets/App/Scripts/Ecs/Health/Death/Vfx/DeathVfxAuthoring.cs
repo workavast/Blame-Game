@@ -12,7 +12,7 @@ namespace App.Ecs.Health.Death.Vfx
             {
                 var entity = GetEntity(TransformUsageFlags.None);
                 
-                AddComponent(entity, new DeathVfxViewHolderInitializeFlag());
+                AddComponent(entity, new DeathVfxViewOwnerTag());
             }
         }
     }
