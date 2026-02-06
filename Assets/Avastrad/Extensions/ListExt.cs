@@ -56,5 +56,17 @@ namespace Avastrad.Extensions
             
             return false;
         }
+        
+        public static bool Contains<T>(this IReadOnlyList<T> list, Func<T, bool> func) 
+            where T: class
+        {
+            foreach (var tValue in list)
+            {
+                if (func(tValue))
+                    return true;
+            }
+            
+            return false;
+        }
     }
 }

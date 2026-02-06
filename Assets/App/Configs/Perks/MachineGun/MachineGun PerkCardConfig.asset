@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67a17278860bf574f91a7dbe9b79dd47, type: 2}
   - {fileID: 11400000, guid: 767d83e683dd012419e413108deb954c, type: 2}
   - {fileID: 11400000, guid: 2cbc1a48311a4b84ab6d7994c1c3206d, type: 2}
+  unlockedByDefault: 1
   ecsPerkPrefab: {fileID: 8210490951117237937, guid: d215092dd6e59c94b80d821b65e4d11c, type: 3}
   references:
     version: 2

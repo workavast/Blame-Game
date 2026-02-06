@@ -32,6 +32,7 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: 94178aee168d5094391c118561a284be, type: 3}
   childPerks: []
+  unlockedByDefault: 1
   additionalScale: 0.15
   references:
     version: 2

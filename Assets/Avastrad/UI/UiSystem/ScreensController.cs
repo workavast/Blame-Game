@@ -18,6 +18,9 @@ namespace Avastrad.UI.UiSystem
             
             _commandsFactory = new CommandsFactory(_screensControllerInternal);
         }
+        
+        public TScreen GetScreen<TScreen>(string[] args = null) where TScreen : ScreenBase 
+            => _screensControllerInternal.GetScreen<TScreen>();
 
         public void SetScreen(Type screenType, string[] args = null)
         {

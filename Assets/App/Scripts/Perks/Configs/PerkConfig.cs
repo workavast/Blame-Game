@@ -11,8 +11,10 @@ namespace App.Perks.Configs
         [SerializeField] protected LocalizedString description;
         [SerializeField] private Sprite icon;
         [SerializeField] private List<PerkConfig> childPerks;
+        [SerializeField] private bool unlockedByDefault;
 
         public Sprite Icon => icon;
+        public bool UnlockedByDefault => unlockedByDefault;
         public IReadOnlyList<PerkConfig> ChildPerks => childPerks;
         
         public string GetTitle()

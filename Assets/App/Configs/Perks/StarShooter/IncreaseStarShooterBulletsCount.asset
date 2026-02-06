@@ -32,6 +32,7 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: 96364c1d4a3cb7b41a612113fec51f86, type: 3}
   childPerks: []
+  unlockedByDefault: 1
   additionalProjectilesCount: 2
   references:
     version: 2
