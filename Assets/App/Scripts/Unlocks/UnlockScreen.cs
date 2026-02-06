@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace App.Unlocks
 {
-    public class UnlockScreen : DefaultScreen
+    public class UnlockScreen : ScreenWithAnims
     {
         [SerializeField] private UnlocksWindow unlocksWindow;
         [SerializeField] private LinesDrawer linesDrawer;
+        [SerializeField] private Transform showAnimationTransform;
         
         public override void Initialize()
         {

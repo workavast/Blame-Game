@@ -54,8 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b41fd6e4b647dd9729097e8920d4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showAnimation:
-    rid: 4433144150564012167
+  showAnimations:
+  - rid: 6938858607224553628
   restartBtn: {fileID: 5494540976081528617}
   backInMenuBtn: {fileID: 7970737704864749314}
   gameplaySceneRef: {fileID: 11400000, guid: 4d79c5046c7b30747a17138936b2c867, type: 2}
@@ -64,10 +64,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4433144150564012167
-      type: {class: DefaultShowAnim, ns: App.UI, asm: Assembly-CSharp}
+    - rid: 6938858607224553628
+      type: {class: ScaleShowAnim, ns: App.UI.ShowAnims, asm: Assembly-CSharp}
       data:
+        content: {fileID: 3166864735076432093}
         easingShowType: 3
+        directions: {x: 0, y: 1, z: 0}
         showDuration: 0.1
 --- !u!114 &49394793632346575
 MonoBehaviour:

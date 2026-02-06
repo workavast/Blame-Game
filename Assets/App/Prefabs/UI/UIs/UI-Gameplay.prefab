@@ -1153,6 +1153,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5467430393144199903}
     m_Modifications:
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: showAnimations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: 'showAnimations.Array.data[0]'
+      value: 6938858607224553629
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: 'managedReferences[6938858607224553629]'
+      value: Assembly-CSharp App.UI.ShowAnims.ScaleShowAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].content
+      value: 
+      objectReference: {fileID: 2582324002570367940}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].directions.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].directions.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].directions.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].showDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854573758233556146, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
+      propertyPath: managedReferences[6938858607224553629].easingShowType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6566216523931660013, guid: 6e8b57b1aafaa1146940b69eec17d156, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1206,6 +1246,46 @@ PrefabInstance:
     - target: {fileID: 229210236977763578, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: showAnimations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: 'showAnimations.Array.data[0]'
+      value: 6938858607224553630
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: 'managedReferences[6938858607224553630]'
+      value: Assembly-CSharp App.UI.ShowAnims.ScaleShowAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].content
+      value: 
+      objectReference: {fileID: 2036931052679791643}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].directions.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].directions.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].directions.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].showDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556870381476905473, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
+      propertyPath: managedReferences[6938858607224553630].easingShowType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7041811986571580051, guid: 6f04bac8623d6f04394f5b54ea807b1e, type: 3}
       propertyPath: m_LocalPosition.x

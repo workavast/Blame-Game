@@ -1124,10 +1124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnlocksScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 8248169784858099339, guid: 417703caf4e32484aa5cb99c4d4b743f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

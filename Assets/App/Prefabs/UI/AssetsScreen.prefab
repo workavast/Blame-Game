@@ -897,14 +897,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showAnimation:
-    rid: 4433144211413925976
+    rid: -2
+  showAnimations:
+  - rid: 6938858607224553615
   references:
     version: 2
     RefIds:
-    - rid: 4433144211413925976
-      type: {class: DefaultShowAnim, ns: App.UI, asm: Assembly-CSharp}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6938858607224553615
+      type: {class: ScaleShowAnim, ns: App.UI.ShowAnims, asm: Assembly-CSharp}
       data:
+        content: {fileID: 1256194214248021312}
         easingShowType: 3
+        directions: {x: 0, y: 1, z: 0}
         showDuration: 0.1
 --- !u!223 &8270709757118426932
 Canvas:

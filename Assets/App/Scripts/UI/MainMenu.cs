@@ -1,6 +1,6 @@
 ﻿namespace App.UI
 {
-    public class MainMenu : DefaultScreen
+    public class MainMenu : ScreenWithAnims
     {
     }
 }

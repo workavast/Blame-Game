@@ -7,7 +7,7 @@ using Zenject;
 
 namespace App.Perks.UI.Cards
 {
-    public class PerksScreen : DefaultScreen
+    public class PerksScreen : ScreenWithAnims
     {
         [SerializeField] private PerksChooseWindow perksChooseWindow;
         
