@@ -4,7 +4,7 @@ using App.Unlocks.Graphs;
 
 namespace App.Unlocks.Storage
 {
-    public class UnlockStorage : IUnlocksStorage
+    public class UnlockStorage : IReadOnlyUnlocksStorage
     {
         private readonly List<UnlockConfig> _unlocks = new(4);
 

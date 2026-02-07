@@ -9,7 +9,8 @@ namespace App.Unlocks.Storage
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<UnlockStorage>().FromNew().AsSingle().WithArguments(unlocksConfig);
+            Container.BindInterfacesAndSelfTo<UnlockStorage>().FromNew().AsSingle().WithArguments(unlocksConfig);
+            Container.Bind<Unlocker>().FromNew().AsSingle();
         }
     }
 }

@@ -11,7 +11,8 @@ namespace App.Unlocks.UI
         [SerializeField] private PopupController popupController;
         [SerializeField] private List<UnlockView> allUnlockViews = new();
         
-        [Inject] private readonly IUnlocksStorage _unlocksStorage;
+        [Inject] private readonly UnlockStorage _unlocksStorage;
+        [Inject] private readonly Unlocker _unlocker;
         
         public void Initialize()
         {
@@ -19,7 +20,7 @@ namespace App.Unlocks.UI
             {
                 var state = _unlocksStorage.GetState(view.GetUnlockConfig());
                 view.SetState(state);
-                view.OnClick += UnlockPerk;
+                view.OnClick += TryUnlockPerk;
             }
             
             var popups = GetComponentsInChildren<UnlockPopupActivator>();
@@ -27,10 +28,19 @@ namespace App.Unlocks.UI
                 popup.Initialize(popupController);
         }
 
-        private void UnlockPerk(UnlockConfig unlockConfig)
+        private void TryUnlockPerk(UnlockConfig unlockConfig)
         {
-            _unlocksStorage.Unlock(unlockConfig);
+            if (_unlocksStorage.GetState(unlockConfig) == UnlockState.Unlocked)
+            {
+                Debug.LogWarning("Perk is already unlocked");
+                return;
+            }
 
+            if (!_unlocker.TryUnlock(unlockConfig))
+            {
+                return;
+            }
+            
             UpdateState(unlockConfig);
             foreach (var child in unlockConfig.ChildUnlocks) 
                 UpdateState(child);

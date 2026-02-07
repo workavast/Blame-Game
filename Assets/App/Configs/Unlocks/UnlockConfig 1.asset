@@ -16,3 +16,4 @@ MonoBehaviour:
   perk: {fileID: 11400000, guid: b2e796203da6a2e4fbba25871f5200f1, type: 2}
   childUnlocks:
   - {fileID: 11400000, guid: 8c3045f9e6acf7d489d8911f092267b1, type: 2}
+  cost: 1
