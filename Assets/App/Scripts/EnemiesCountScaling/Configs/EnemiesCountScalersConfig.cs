@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.EnemiesCountScaling.Configs
 {
-    [CreateAssetMenu(fileName = nameof(EnemiesCountScalersConfig), menuName = "App/" + nameof(EnemiesCountScalersConfig))]
+    [CreateAssetMenu(fileName = nameof(EnemiesCountScalersConfig), menuName = EnemiesCountScalingConsts.Path + nameof(EnemiesCountScalersConfig))]
     public class EnemiesCountScalersConfig : ScriptableObject
     {
         [SerializeField] private List<EnemiesCountScalerConfig> configs;
