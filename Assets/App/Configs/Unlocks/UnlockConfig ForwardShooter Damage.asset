@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bdf945a91ff4c5e8b0cb3c59ec9cc80, type: 3}
-  m_Name: UnlockConfig 4
+  m_Name: UnlockConfig ForwardShooter Damage
   m_EditorClassIdentifier: 
-  id: ForwardShooterFireRate
-  perk: {fileID: 11400000, guid: 58643a2f921e5b645bbdd430001e63c0, type: 2}
-  childUnlocks: []
+  id: ForwardShooterDamage
+  perk: {fileID: 11400000, guid: b2e796203da6a2e4fbba25871f5200f1, type: 2}
+  childUnlocks:
+  - {fileID: 11400000, guid: 8c3045f9e6acf7d489d8911f092267b1, type: 2}
+  cost:
+    resources:
+      _serializedList:
+      - Key: 0
+        Value: 10

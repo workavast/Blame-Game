@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bdf945a91ff4c5e8b0cb3c59ec9cc80, type: 3}
-  m_Name: UnlockConfig 2
+  m_Name: UnlockConfig GlobalDamage
   m_EditorClassIdentifier: 
-  id: Turrets
-  perk: {fileID: 11400000, guid: 9a36b88ed0b6a8643ae83628e53ece41, type: 2}
+  id: GlobalDamage
+  perk: {fileID: 11400000, guid: 7ce2e14b7273dbf4d8bfa659f0590b32, type: 2}
   childUnlocks: []

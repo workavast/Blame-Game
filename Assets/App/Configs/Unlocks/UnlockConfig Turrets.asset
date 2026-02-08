@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bdf945a91ff4c5e8b0cb3c59ec9cc80, type: 3}
-  m_Name: UnlockConfig
+  m_Name: UnlockConfig Turrets
   m_EditorClassIdentifier: 
-  id: ForwardShooter
-  perk: {fileID: 11400000, guid: 7a649116063b04e488d3bcb06fbe96d7, type: 2}
-  childUnlocks:
-  - {fileID: 11400000, guid: 7f70432f934667f4ea64381135b1c261, type: 2}
-  - {fileID: 11400000, guid: 3e443b62d5cf4884c83b6b768f31128d, type: 2}
+  id: Turrets
+  perk: {fileID: 11400000, guid: 9a36b88ed0b6a8643ae83628e53ece41, type: 2}
+  childUnlocks: []
