@@ -6,9 +6,9 @@ using UnityEngine;
 namespace App.Resources
 {
     [Serializable]
-    public struct ResourcesValue
+    public class ResourcesValue
     {
-        [SerializeField] private SerializedDictionary<ResourceType, int> resources;
+        [SerializeField] private SerializedDictionary<ResourceType, int> resources = new();
         
         public IReadOnlyDictionary<ResourceType, int> Resources => resources;
 

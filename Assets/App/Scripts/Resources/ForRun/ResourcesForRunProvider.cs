@@ -17,9 +17,6 @@ namespace App.Resources.ForRun
         /// </summary>
         public event Action<ResourceType, int> OnChanged;
         
-        public void AddScrap(int amount) 
-            => Add(ResourceType.Scrap, amount);
-
         public void Add(ResourceType resource, int amount)
         {
             if(amount < 0)
@@ -31,7 +28,7 @@ namespace App.Resources.ForRun
             _resourcesStorage.Add(resource, amount);
             _resourcesStorageForRun.Add(resource, amount);
             
-            OnChanged?.Invoke(resource, amount);
+            OnChanged?.Invoke(resource, _resourcesStorageForRun.GetAmount(resource));
         }
         
         public int GetAmount(ResourceType resource) 

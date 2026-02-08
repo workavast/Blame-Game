@@ -15,3 +15,10 @@ MonoBehaviour:
   id: Turrets
   perk: {fileID: 11400000, guid: 9a36b88ed0b6a8643ae83628e53ece41, type: 2}
   childUnlocks: []
+  cost:
+    resources:
+      _serializedList:
+      - Key: 0
+        Value: 700
+      - Key: 1
+        Value: 300

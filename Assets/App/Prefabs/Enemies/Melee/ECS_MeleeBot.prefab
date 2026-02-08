@@ -110,6 +110,8 @@ GameObject:
   - component: {fileID: -1223041920009513085}
   - component: {fileID: 7783301245421215506}
   - component: {fileID: 1678872359664443564}
+  - component: {fileID: -3977631505203842782}
+  - component: {fileID: 8713037137588898283}
   - component: {fileID: 2063136403930931532}
   - component: {fileID: 4882858298617865117}
   - component: {fileID: 4990772333180942775}
@@ -289,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDamage: 2
-  hasDamageScale: 0
+  defaultDamageScale: 1
 --- !u!114 &5847842444254435159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +368,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbsCount: 1
+--- !u!114 &-3977631505203842782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee861525e76246d28428bfbf57332f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+    _serializedList:
+    - Key: 0
+      Value:
+        minAmount: 1
+        maxAmount: 2
+  minAmount: 1
+  maxAmount: 2
+--- !u!114 &8713037137588898283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394460037251805814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3256c30889754c2780b2022243c670da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2063136403930931532
 MonoBehaviour:
   m_ObjectHideFlags: 0

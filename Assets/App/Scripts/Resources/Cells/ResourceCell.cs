@@ -5,7 +5,7 @@ namespace App.Resources.Cells
 {
     public class ResourceCell : IReadOnlyResourceCell
     {
-        public ResourceType ResourceType { get; private set; }
+        public ResourceType ResourceType { get; }
         public int Amount { get; private set; }
         public event Action<int> OnChanged;
 

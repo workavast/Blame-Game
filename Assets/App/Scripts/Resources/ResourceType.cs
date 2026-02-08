@@ -3,5 +3,6 @@
     public enum ResourceType
     {
         Scrap = 0,
+        Plasma = 1,
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Perks.Configs;
 using App.Resources;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 namespace App.Unlocks
