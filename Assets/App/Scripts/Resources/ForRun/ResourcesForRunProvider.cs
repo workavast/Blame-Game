@@ -36,5 +36,8 @@ namespace App.Resources.ForRun
         
         public IReadOnlyResourceCell GetResourceCell(ResourceType resource) 
             => _resourcesStorageForRun.GetResourceCell(resource);
+        
+        public IReadOnlyResourceStorage GetResourceStorage() 
+            => _resourcesStorageForRun;
     }
 }

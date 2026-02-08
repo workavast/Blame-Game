@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using App.Resources.Cells;
+using App.Resources.ResourcesValues;
 using Avastrad.Libs.EnumValuesLib;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace App.Resources.Storage
     {
         private readonly Dictionary<ResourceType, ResourceCell> _resources;
         
-        public event Action<ResourceType, int> OnChanged;
+        public event Action OnChanged;
 
         public ResourcesStorage()
         {
@@ -20,6 +21,9 @@ namespace App.Resources.Storage
             foreach (var resourceType in resourceTypes) 
                 _resources.Add(resourceType, new ResourceCell(resourceType));
         }
+        
+        public override string ToString() 
+            => string.Join(", ", _resources.Select(x => $"{x.Key}: {x.Value.Amount}"));
         
         public bool HasEnough(ResourcesValue resources)
         {
@@ -36,45 +40,23 @@ namespace App.Resources.Storage
         public void Add(ResourcesValue resources)
         {
             foreach (var resource in resources.Resources)
-                Add(resource.Key, resource.Value);
+                Add(resource.Key, resource.Value, false);
+            OnChanged?.Invoke();
+        }
+        
+        public void Add(ResourceType resourceType, int amount) 
+            => Add(resourceType, amount, true);
 
-            foreach (var resource in resources.Resources)
-                OnChanged?.Invoke(resource.Key, GetAmount(resource.Key));//TODO: decrease event calls
-        }
-        
-        public void Add(ResourceType resourceType, int amount)
-        {
-            if (amount < 0)
-            {
-                Debug.LogError($"Cannot add negative amount of resource: [{resourceType}] [{amount}]");
-                return;
-            }
-            
-            _resources[resourceType].ChangeAmount(amount);
-            OnChanged?.Invoke(resourceType, _resources[resourceType].Amount);
-        }
-        
         public void Remove(ResourcesValue resources)
         {
             foreach (var resource in resources.Resources)
-                Remove(resource.Key, resource.Value);
-            
-            foreach (var resource in resources.Resources)
-                OnChanged?.Invoke(resource.Key, GetAmount(resource.Key));//TODO: decrease event calls
+                Remove(resource.Key, resource.Value, false);
+            OnChanged?.Invoke();
         }
         
-        public void Remove(ResourceType resourceType, int amount)
-        {
-            if (amount < 0)
-            {
-                Debug.LogError($"Cannot remove negative amount of resource: [{resourceType}] [{amount}]");
-                return;
-            }
-            
-            _resources[resourceType].ChangeAmount(-amount);
-            OnChanged?.Invoke(resourceType, _resources[resourceType].Amount);
-        }
-        
+        public void Remove(ResourceType resourceType, int amount) 
+            => Remove(resourceType, amount, true);
+
         public IReadOnlyDictionary<ResourceType, int> GetAmounts() 
             => _resources.ToDictionary(x => x.Key, x => x.Value.Amount);
 
@@ -84,7 +66,32 @@ namespace App.Resources.Storage
         public IReadOnlyResourceCell GetResourceCell(ResourceType resourceType) 
             => _resources[resourceType];
         
-        public override string ToString() 
-            => string.Join(", ", _resources.Select(x => $"{x.Key}: {x.Value.Amount}"));
+        private void Add(ResourceType resourceType, int amount, bool notify)
+        {
+            if (amount < 0)
+            {
+                Debug.LogError($"Cannot add negative amount of resource: [{resourceType}] [{amount}]");
+                return;
+            }
+            
+            _resources[resourceType].ChangeAmount(amount);
+
+            if (notify)
+                OnChanged?.Invoke();
+        }
+
+        private void Remove(ResourceType resourceType, int amount, bool notify)
+        {
+            if (amount < 0)
+            {
+                Debug.LogError($"Cannot remove negative amount of resource: [{resourceType}] [{amount}]");
+                return;
+            }
+            
+            _resources[resourceType].ChangeAmount(-amount);
+            
+            if (notify)
+                OnChanged?.Invoke();
+        }
     }
 }

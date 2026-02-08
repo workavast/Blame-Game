@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace App.Resources
+namespace App.Resources.ResourcesValues
 {
     [Serializable]
     public class ResourcesValue

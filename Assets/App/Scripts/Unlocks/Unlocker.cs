@@ -1,5 +1,4 @@
-﻿using App.Resources;
-using App.Resources.Storage;
+﻿using App.Resources.Storage;
 using App.Unlocks.Storage;
 using UnityEngine;
 using Zenject;
@@ -20,9 +19,7 @@ namespace App.Unlocks
                 return true;
             }
             
-            //TODO: fix cost ToString
-            Debug.Log($"Not enough scrap to unlock:" +
-                      $"\n unlock id:[{unlockConfig.Id}]" +
+            Debug.Log($"Not enough resources to unlock: [{unlockConfig.Id}]" +
                       $"\n unlock cost:[{unlockConfig.Cost}]" +
                       $"\n current resources:[{_resourcesStorage.ToString()}]");
             
