@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.StarShooter
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseStarShooterFireRate), menuName = PerkConst.StarShooterPath + nameof(IncreaseStarShooterFireRate))]
+    [CreateAssetMenu(fileName = nameof(IncreaseStarShooterFireRate), menuName = PerksConsts.StarShooterPath + nameof(IncreaseStarShooterFireRate))]
     public class IncreaseStarShooterFireRate : IncreaseFireRateUpgrade<StarShooterTag>
     {
         

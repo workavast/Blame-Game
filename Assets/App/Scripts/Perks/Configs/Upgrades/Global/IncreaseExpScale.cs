@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.Global
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseExpScale), menuName = PerkConst.GlobalPath + nameof(IncreaseExpScale))]
+    [CreateAssetMenu(fileName = nameof(IncreaseExpScale), menuName = PerksConsts.GlobalPath + nameof(IncreaseExpScale))]
     public class IncreaseExpScale : PerformPerk
     {
         [SerializeField] private float scale;

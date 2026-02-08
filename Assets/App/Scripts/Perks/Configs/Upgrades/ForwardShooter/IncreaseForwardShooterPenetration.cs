@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.ForwardShooter
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseForwardShooterPenetration), menuName = PerkConst.ForwardShooterPath + nameof(IncreaseForwardShooterPenetration))]
+    [CreateAssetMenu(fileName = nameof(IncreaseForwardShooterPenetration), menuName = PerksConsts.ForwardShooterPath + nameof(IncreaseForwardShooterPenetration))]
     public class IncreaseForwardShooterPenetration : IncreasePenetrationUpgrade<ForwardShooterTag>
     {
         

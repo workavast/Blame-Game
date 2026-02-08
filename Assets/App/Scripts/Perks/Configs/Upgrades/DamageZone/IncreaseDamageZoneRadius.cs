@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.DamageZone
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseDamageZoneRadius), menuName = PerkConst.DamageZonePath + nameof(IncreaseDamageZoneRadius))]
+    [CreateAssetMenu(fileName = nameof(IncreaseDamageZoneRadius), menuName = PerksConsts.DamageZonePath + nameof(IncreaseDamageZoneRadius))]
     public class IncreaseDamageZoneRadius : IncreaseAoeZoneRadius<DamageZoneTag>
     {
 

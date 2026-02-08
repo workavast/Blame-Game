@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.RocketLauncher
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseRocketLauncherRocketsCount), menuName = PerkConst.RocketLauncherPath + nameof(IncreaseRocketLauncherRocketsCount))]
+    [CreateAssetMenu(fileName = nameof(IncreaseRocketLauncherRocketsCount), menuName = PerksConsts.RocketLauncherPath + nameof(IncreaseRocketLauncherRocketsCount))]
     public class IncreaseRocketLauncherRocketsCount : IncreaseProjectilesCountUpgrade<RocketLauncherTag>
     {
         
