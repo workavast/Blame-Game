@@ -1,4 +1,5 @@
 ﻿using App.Resources;
+using App.Resources.Storage;
 using App.Unlocks.Storage;
 using UnityEngine;
 using Zenject;
@@ -12,17 +13,18 @@ namespace App.Unlocks
 
         public bool TryUnlock(UnlockConfig unlockConfig)
         {
-            if (_resourcesStorage.HasEnoughScrap(unlockConfig.Cost))
+            if (_resourcesStorage.HasEnough(unlockConfig.Cost))
             {
-                _resourcesStorage.RemoveScrap(unlockConfig.Cost);
+                _resourcesStorage.Remove(unlockConfig.Cost);
                 _unlocksStorage.Unlock(unlockConfig);
                 return true;
             }
             
+            //TODO: fix cost ToString
             Debug.Log($"Not enough scrap to unlock:" +
-                      $"\n current scrap:[{_resourcesStorage.Scrap}]" +
                       $"\n unlock id:[{unlockConfig.Id}]" +
-                      $"\n unlock cost:[{unlockConfig.Cost}]");
+                      $"\n unlock cost:[{unlockConfig.Cost}]" +
+                      $"\n current resources:[{_resourcesStorage.ToString()}]");
             
             return false;
         }

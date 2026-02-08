@@ -1,4 +1,6 @@
 ﻿using System;
+using App.Resources.Cells;
+using App.Resources.Storage;
 using UnityEngine;
 using Zenject;
 
@@ -8,14 +10,17 @@ namespace App.Resources.ForRun
     {
         [Inject] private readonly ResourcesStorage _resourcesStorage;
 
-        public int Scrap { get; private set; }
+        private readonly ResourcesStorage _resourcesStorageForRun = new();
         
         /// <summary>
-        /// return full scrap amount for run
+        /// return full amount of resource for run
         /// </summary>
-        public event Action<int> OnScrapChanged;
+        public event Action<ResourceType, int> OnChanged;
+        
+        public void AddScrap(int amount) 
+            => Add(ResourceType.Scrap, amount);
 
-        public void AddScrap(int amount)
+        public void Add(ResourceType resource, int amount)
         {
             if(amount < 0)
             {
@@ -23,10 +28,16 @@ namespace App.Resources.ForRun
                 return;
             }
             
-            Scrap += amount;
-            _resourcesStorage.AddScrap(amount);
+            _resourcesStorage.Add(resource, amount);
+            _resourcesStorageForRun.Add(resource, amount);
             
-            OnScrapChanged?.Invoke(Scrap);
+            OnChanged?.Invoke(resource, amount);
         }
+        
+        public int GetAmount(ResourceType resource) 
+            => _resourcesStorageForRun.GetAmount(resource);
+        
+        public IReadOnlyResourceCell GetResourceCell(ResourceType resource) 
+            => _resourcesStorageForRun.GetResourceCell(resource);
     }
 }

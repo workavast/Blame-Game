@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Unlocks
 {
-    [CreateAssetMenu(fileName = nameof(UnlocksConfig), menuName = "Unlocks/" + nameof(UnlocksConfig))]
+    [CreateAssetMenu(fileName = nameof(UnlocksConfig), menuName = UnlocksConsts.Path + nameof(UnlocksConfig))]
     public class UnlocksConfig : ScriptableObject
     {
         [SerializeField] private List<UnlockConfig> rootConfigs;

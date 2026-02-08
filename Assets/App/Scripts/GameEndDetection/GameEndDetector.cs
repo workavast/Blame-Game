@@ -2,6 +2,7 @@
 using App.GameTiming;
 using App.PlayerProviding;
 using App.Resources;
+using App.Resources.Storage;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,8 @@ namespace App.GameEndDetection
 {
     public class GameEndDetector : MonoBehaviour
     {
+        [SerializeField] private ResourcesValueConfig resourcesForWin;
+        
         [Inject] private readonly ScreensController _screensController;
         [Inject] private readonly PlayerProvider _playerProvider;
         [Inject] private readonly IGameTimerRO _gameTimer;
@@ -47,7 +50,7 @@ namespace App.GameEndDetection
             }
             
             _gameIsOver = true;
-            _resourcesStorage.AddScrap(100);//TODO: add it to the config, or make it depend of the survive time
+            _resourcesStorage.Add(resourcesForWin.ResourcesAmount);
             _screensController.ToggleScreen<GameWinUi>(true);
             _gamePause.SetPauseState(true);
         }

@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace App.Resources
+namespace App.Resources.Storage
 {
     public class ResourcesStorageInstaller : MonoInstaller
     {
