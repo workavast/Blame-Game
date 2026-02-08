@@ -1,7 +1,7 @@
 ﻿using App.Ecs.Health.Death;
 using App.Ecs.Randomisation;
-using App.Resources;
-using App.Resources.ForRun;
+using App.ResourcesSystem;
+using App.ResourcesSystem.ForRun;
 using Unity.Collections;
 using Unity.Entities;
 

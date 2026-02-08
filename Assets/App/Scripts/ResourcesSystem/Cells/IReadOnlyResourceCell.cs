@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace App.Resources.Cells
+namespace App.ResourcesSystem.Cells
 {
     public interface IReadOnlyResourceCell
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using App.Resources;
+using App.ResourcesSystem;
 using AYellowpaper.SerializedCollections;
 using Unity.Entities;
 using UnityEngine;

@@ -1,10 +1,10 @@
 ﻿using System;
-using App.Resources.Cells;
-using App.Resources.Storage;
+using App.ResourcesSystem.Cells;
+using App.ResourcesSystem.Storage;
 using UnityEngine;
 using Zenject;
 
-namespace App.Resources.ForRun
+namespace App.ResourcesSystem.ForRun
 {
     public class ResourcesForRunProvider
     {

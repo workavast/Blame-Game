@@ -1,7 +1,7 @@
-﻿using App.Resources.Storage;
+﻿using App.ResourcesSystem.Storage;
 using Zenject;
 
-namespace App.Resources.UI
+namespace App.ResourcesSystem.UI
 {
     public class ResourcesViewGlobal : ResourcesView
     {

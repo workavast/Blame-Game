@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Resources.Cells;
-using App.Resources.ResourcesValues;
+using App.ResourcesSystem.Cells;
+using App.ResourcesSystem.ResourcesValues;
 
-namespace App.Resources.Storage
+namespace App.ResourcesSystem.Storage
 {
     public interface IReadOnlyResourceStorage
     {

@@ -1,4 +1,4 @@
-﻿namespace App.Resources
+﻿namespace App.ResourcesSystem
 {
     public enum ResourceType
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using App.Resources.Cells;
-using App.Resources.ResourcesValues;
+using App.ResourcesSystem.Cells;
+using App.ResourcesSystem.ResourcesValues;
 using Avastrad.Libs.EnumValuesLib;
 using UnityEngine;
 
-namespace App.Resources.Storage
+namespace App.ResourcesSystem.Storage
 {
     public class ResourcesStorage : IReadOnlyResourceStorage
     {

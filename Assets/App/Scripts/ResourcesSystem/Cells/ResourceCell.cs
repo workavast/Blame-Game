@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace App.Resources.Cells
+namespace App.ResourcesSystem.Cells
 {
     public class ResourceCell : IReadOnlyResourceCell
     {

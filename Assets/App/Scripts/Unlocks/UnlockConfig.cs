@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Perks.Configs;
-using App.Resources;
-using App.Resources.ResourcesValues;
+using App.ResourcesSystem.ResourcesValues;
 using UnityEngine;
 
 namespace App.Unlocks

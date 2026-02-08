@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace App.Resources.ForRun
+namespace App.ResourcesSystem.ForRun
 {
     public class ResourcesForRunInstaller : MonoInstaller
     {

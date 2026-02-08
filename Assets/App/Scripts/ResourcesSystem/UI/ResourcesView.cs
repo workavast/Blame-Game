@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using App.Resources.ResourcesConfigs;
-using App.Resources.Storage;
+using App.ResourcesSystem.ResourcesConfigs;
+using App.ResourcesSystem.Storage;
 using App.Utils;
 using Avastrad.Libs.EnumValuesLib;
 using UnityEngine;
 using Zenject;
 
-namespace App.Resources.UI
+namespace App.ResourcesSystem.UI
 {
     public abstract class ResourcesView : MonoBehaviour
     {

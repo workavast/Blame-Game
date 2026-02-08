@@ -1,8 +1,8 @@
-﻿using App.Resources.ForRun;
-using App.Resources.Storage;
+﻿using App.ResourcesSystem.ForRun;
+using App.ResourcesSystem.Storage;
 using Zenject;
 
-namespace App.Resources.UI
+namespace App.ResourcesSystem.UI
 {
     public class ResourcesViewForRun : ResourcesView
     {

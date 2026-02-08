@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace App.Resources.ResourcesConfigs
+namespace App.ResourcesSystem.ResourcesConfigs
 {
     [CreateAssetMenu(fileName = nameof(ResourcesConfigsStorage), menuName = ResourcesConsts.Path + nameof(ResourcesConfigsStorage))]
     public class ResourcesConfigsStorage : ScriptableObject

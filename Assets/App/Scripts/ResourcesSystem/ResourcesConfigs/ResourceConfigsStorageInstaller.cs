@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace App.Resources.ResourcesConfigs
+namespace App.ResourcesSystem.ResourcesConfigs
 {
     public class ResourceConfigsStorageInstaller : MonoInstaller
     {

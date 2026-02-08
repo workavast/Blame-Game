@@ -1,5 +1,5 @@
 ﻿using App.Ecs.Randomisation;
-using App.Resources;
+using App.ResourcesSystem;
 using Unity.Entities;
 
 namespace App.Ecs.ResourcesDropping

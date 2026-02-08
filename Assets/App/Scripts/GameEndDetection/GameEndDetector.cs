@@ -1,9 +1,8 @@
 ﻿using App.GamePausing;
 using App.GameTiming;
 using App.PlayerProviding;
-using App.Resources;
-using App.Resources.ResourcesValues;
-using App.Resources.Storage;
+using App.ResourcesSystem.ResourcesValues;
+using App.ResourcesSystem.Storage;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
 using Zenject;

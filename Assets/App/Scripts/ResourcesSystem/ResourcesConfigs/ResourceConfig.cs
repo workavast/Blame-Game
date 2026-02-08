@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Resources.ResourcesConfigs
+namespace App.ResourcesSystem.ResourcesConfigs
 {
     [CreateAssetMenu(fileName = nameof(ResourceConfig), menuName = ResourcesConsts.Path + nameof(ResourceConfig))]
     public class ResourceConfig : ScriptableObject

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using App.Bootstraps;
 using Zenject;
 
-namespace App.Resources.ForRun
+namespace App.ResourcesSystem.ForRun
 {
     public class ResourcesForRunBootstrap : Bootstrap
     {

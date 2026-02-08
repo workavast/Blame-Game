@@ -1,11 +1,11 @@
-﻿using App.Resources.Cells;
-using App.Resources.ResourcesConfigs;
+﻿using App.ResourcesSystem.Cells;
+using App.ResourcesSystem.ResourcesConfigs;
 using Avastrad.Libs.CheckOnNullLib;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Resources.UI
+namespace App.ResourcesSystem.UI
 {
     public class ResourceView : MonoBehaviour
     {
