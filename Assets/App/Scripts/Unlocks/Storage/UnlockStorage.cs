@@ -6,7 +6,7 @@ namespace App.Unlocks.Storage
 {
     public class UnlockStorage : IReadOnlyUnlocksStorage
     {
-        private readonly List<UnlockConfig> _unlocks = new(4);
+        private readonly List<string> _unlocks = new(4);
 
         private readonly Graph _graph;
         
@@ -15,10 +15,10 @@ namespace App.Unlocks.Storage
             _graph = new Graph(unlocksConfig.RootConfigs);
         }
         
-        public void Unlock(UnlockConfig unlockConfig)
+        public void Unlock(string unlockId)
         {
-            _graph.Unlock(unlockConfig);
-            _unlocks.Add(unlockConfig);
+            _graph.Unlock(unlockId);
+            _unlocks.Add(unlockId);
         }
 
         public bool Unlocked(PerkConfig perkConfig)
@@ -26,8 +26,8 @@ namespace App.Unlocks.Storage
             if (perkConfig.UnlockedByDefault)
                 return true;
             
-            foreach (var unlock in _unlocks)
-                if (unlock.Perk == perkConfig)
+            foreach (var unlockId in _unlocks)
+                if (unlockId == perkConfig.Id)
                     return true;
 
             return false;
@@ -38,8 +38,8 @@ namespace App.Unlocks.Storage
             if (unlockConfig.Perk.UnlockedByDefault)
                 return true;
             
-            foreach (var unlock in _unlocks)
-                if (unlock.Id == unlockConfig.Id)
+            foreach (var unlockId in _unlocks)
+                if (unlockId == unlockConfig.Id)
                     return true;
 
             return false;
@@ -53,7 +53,7 @@ namespace App.Unlocks.Storage
             return _graph.GetState(unlockConfig);
         }
 
-        public IReadOnlyList<UnlockConfig> GetUnlocks() 
+        public IReadOnlyList<string> GetUnlocks() 
             => _unlocks;
     }
 }

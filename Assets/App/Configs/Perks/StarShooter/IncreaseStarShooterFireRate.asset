@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37e9d18fd9a46c3988944363943e9ee, type: 3}
   m_Name: IncreaseStarShooterFireRate
   m_EditorClassIdentifier: 
+  id: StarShooter-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

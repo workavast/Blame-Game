@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27392cb908344fd6ad78f75298747d64, type: 3}
   m_Name: IncreaseForwardShooterDamage
   m_EditorClassIdentifier: 
+  id: ForwardShooter-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

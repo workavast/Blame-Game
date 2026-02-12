@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb293b8ae20d48b6aaf0ca5faae6c545, type: 3}
   m_Name: IncreaseStarShooterBulletsCount
   m_EditorClassIdentifier: 
+  id: StarShooter-Count
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

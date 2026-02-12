@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7465388e9dad4add8ab486c13e13d468, type: 3}
   m_Name: IncreaseTurretsDamage
   m_EditorClassIdentifier: 
+  id: Turrets-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

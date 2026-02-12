@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad20b4cf0ee34f03bb039f7fafca216b, type: 3}
   m_Name: IncreaseRifleFireRate
   m_EditorClassIdentifier: 
+  id: Rifle-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

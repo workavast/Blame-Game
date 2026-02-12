@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21afce68be64a8a974234d57d2560bf, type: 3}
   m_Name: IncreaseGlobalDamage
   m_EditorClassIdentifier: 
+  id: Global-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d

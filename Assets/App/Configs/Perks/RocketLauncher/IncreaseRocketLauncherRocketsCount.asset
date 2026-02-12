@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8551382778b348bfa42e94b9464e98a2, type: 3}
   m_Name: IncreaseRocketLauncherRocketsCount
   m_EditorClassIdentifier: 
+  id: RocketLauncher-Count
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

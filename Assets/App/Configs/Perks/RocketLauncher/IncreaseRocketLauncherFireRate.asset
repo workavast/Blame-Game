@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4672453b0a00441c9c488f5acddb89a9, type: 3}
   m_Name: IncreaseRocketLauncherFireRate
   m_EditorClassIdentifier: 
+  id: RocketLauncher-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

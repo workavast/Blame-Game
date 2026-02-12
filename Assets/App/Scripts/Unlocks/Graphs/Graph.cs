@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using App.Unlocks.Storage;
-using UnityEngine;
 
 namespace App.Unlocks.Graphs
 {
@@ -24,10 +23,10 @@ namespace App.Unlocks.Graphs
             return UnlockState.UnAvailable;
         }
         
-        public void Unlock(UnlockConfig unlockConfig)
+        public void Unlock(string unlockId)
         {
             foreach (var root in _roots) 
-                root.TryUnlock(unlockConfig.Id);
+                root.TryUnlock(unlockId);
         }
     
         private class Leaf

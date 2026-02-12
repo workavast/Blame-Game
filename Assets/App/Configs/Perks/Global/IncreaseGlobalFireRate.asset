@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73896283dd424e139f16e6599c6eb886, type: 3}
   m_Name: IncreaseGlobalFireRate
   m_EditorClassIdentifier: 
+  id: Global-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d

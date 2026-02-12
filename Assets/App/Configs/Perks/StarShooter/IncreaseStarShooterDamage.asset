@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bb2ac2d22d496aa6816fe986a9a945, type: 3}
   m_Name: IncreaseStarShooterDamage
   m_EditorClassIdentifier: 
+  id: StarShooter-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

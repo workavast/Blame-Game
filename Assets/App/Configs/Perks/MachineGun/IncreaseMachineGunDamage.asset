@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513f8f694e984905932e7ec886b524c4, type: 3}
   m_Name: IncreaseMachineGunDamage
   m_EditorClassIdentifier: 
+  id: MachineGun-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8

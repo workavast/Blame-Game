@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fb31eb7483466f9b2c543de40bf256, type: 3}
   m_Name: GameTimeConfig
   m_EditorClassIdentifier: 
-  startTime: 120
+  startTime: 0
   winTime: 300

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdebb5fde9b1430980fbb7765646e1f7, type: 3}
   m_Name: IncreaseExpZoneRadius
   m_EditorClassIdentifier: 
+  id: Global-ExpZoneRadius
   title:
     m_TableReference:
       m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d

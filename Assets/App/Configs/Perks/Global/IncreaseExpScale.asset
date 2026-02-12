@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19732ac4e8e748838f9dddc4262ab1cc, type: 3}
   m_Name: IncreaseExpScale
   m_EditorClassIdentifier: 
+  id: Global-ExpScale
   title:
     m_TableReference:
       m_TableCollectionName: GUID:798d47e854956b04782b2f3b7188019d

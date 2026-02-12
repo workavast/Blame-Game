@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1470cc740b2e4ca2868e391d06151dcb, type: 3}
   m_Name: IncreaseForwardShooterFireRate
   m_EditorClassIdentifier: 
+  id: ForwardShooter-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
