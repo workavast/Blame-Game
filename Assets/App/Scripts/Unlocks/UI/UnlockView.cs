@@ -12,7 +12,9 @@ namespace App.Unlocks.UI
         [SerializeField] private Image hide;
         [SerializeField] private UnlockConfig unlockConfig;
         [SerializeField] private Button button;
-
+        
+        public UnlockState State { get; private set; }
+        
         public event Action<UnlockConfig> OnClick;
 
         private void Awake()
@@ -40,6 +42,7 @@ namespace App.Unlocks.UI
                 default:
                     throw new ArgumentOutOfRangeException(nameof(unlockState), unlockState, null);
             }
+            State = unlockState;
         }
         
         private void OnDestroy() 

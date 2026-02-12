@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f54fc40c340ac4893a82eb76864e8b, type: 3}
-  m_Name: PlascmaConfig
+  m_Script: {fileID: 11500000, guid: 1787d95e14cd40bf8585e5fb1a8e0e2e, type: 3}
+  m_Name: ResourcesForWinConfig
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: cb69849ae45f4ba47ad05cca539912b9, type: 3}
+  resourcesAmount:
+    resources:
+      _serializedList:
+      - Key: 0
+        Value: 50

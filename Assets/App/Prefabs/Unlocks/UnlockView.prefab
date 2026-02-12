@@ -340,6 +340,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockView: {fileID: 5011339534145031529}
+  costTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:f634d6a4084cb494eab2c5dd98a3f9b3
+    m_TableEntryReference:
+      m_KeyId: 151452020736
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8806836809284961772
 GameObject:
   m_ObjectHideFlags: 0
