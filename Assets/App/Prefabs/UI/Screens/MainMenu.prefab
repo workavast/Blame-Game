@@ -118,21 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4431da3e72d4fe38d5225aa0fc81c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showAnimation:
-    rid: 6938858607224553579
   showAnimations:
   - rid: 6938858607224553608
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 6938858607224553579
-      type: {class: ScaleShowAnim, ns: App.UI, asm: Assembly-CSharp}
-      data:
-        content: {fileID: 7029919958524498855}
-        easingShowType: 3
-        showDuration: 0.1
     - rid: 6938858607224553608
       type: {class: ScaleShowAnim, ns: App.UI.ShowAnims, asm: Assembly-CSharp}
       data:

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f54fc40c340ac4893a82eb76864e8b, type: 3}
   m_Name: ScrapConfig
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: cbf28945a5ebe4a48ae6d7e77c1b9e50, type: 3}
+  icon: {fileID: 224981854, guid: 5fa126e6a262bc741854b9c147de52bc, type: 3}
+  spriteAssetIndex: 0
