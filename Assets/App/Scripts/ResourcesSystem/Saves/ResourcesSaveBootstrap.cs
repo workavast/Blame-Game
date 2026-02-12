@@ -12,7 +12,6 @@ namespace App.ResourcesSystem.Saves
         protected override Task SelfInitialization(CancellationToken cancellationToken)
         {
             _resourcesSaveManager.Load();
-            _resourcesSaveManager.Activate();
             return Task.CompletedTask;
         }
     }

@@ -894,3 +894,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668a1e51a5145fd81993d1464677ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourcesValueConfig: {fileID: 11400000, guid: 570fab92e6350bb479f5717ec24b4eaa, type: 2}

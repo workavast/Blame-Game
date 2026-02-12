@@ -1,4 +1,5 @@
-﻿using App.ResourcesSystem.Storage;
+﻿using App.ResourcesSystem.Saves;
+using App.ResourcesSystem.Storage;
 using App.Unlocks.Saves;
 using App.Unlocks.Storage;
 using UnityEngine;
@@ -8,15 +9,17 @@ namespace App.Unlocks
     public class Unlocker
     {
         private readonly ResourcesStorage _resourcesStorage;
+        private readonly ResourcesSaveManager _resourcesSaveManager;
         private readonly UnlockStorage _unlocksStorage;
-        private readonly UnlocksSaveManger _saveManger;
+        private readonly UnlocksSaveManger _unlocksSaveManger;
 
-        public Unlocker(ResourcesStorage resourcesStorage, UnlockStorage unlocksStorage,
-            UnlocksSaveManger saveManger)
+        public Unlocker(ResourcesStorage resourcesStorage, ResourcesSaveManager resourcesSaveManager,
+            UnlockStorage unlocksStorage, UnlocksSaveManger unlocksSaveManger)
         {
             _resourcesStorage = resourcesStorage;
+            _resourcesSaveManager = resourcesSaveManager;
             _unlocksStorage = unlocksStorage;
-            _saveManger = saveManger;
+            _unlocksSaveManger = unlocksSaveManger;
         }
 
         public bool TryUnlock(UnlockConfig unlockConfig)
@@ -25,7 +28,8 @@ namespace App.Unlocks
             {
                 _resourcesStorage.Remove(unlockConfig.Cost);
                 _unlocksStorage.Unlock(unlockConfig.Id);
-                _saveManger.Save();
+                _resourcesSaveManager.Save();
+                _unlocksSaveManger.Save();
                 return true;
             }
             

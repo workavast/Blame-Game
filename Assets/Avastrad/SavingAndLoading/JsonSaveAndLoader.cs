@@ -68,9 +68,7 @@ namespace Avastrad.SavingAndLoading
 
         public void CreateFile()
         {
-            Debug.Log(_savePath);
             var directory = Path.GetDirectoryName(_savePath);
-            Debug.Log(directory);
             
             if (!Directory.Exists(directory)) 
                 Directory.CreateDirectory(directory);

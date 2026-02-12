@@ -1,5 +1,6 @@
 ﻿using System;
 using App.ResourcesSystem.Cells;
+using App.ResourcesSystem.ResourcesValues;
 using App.ResourcesSystem.Storage;
 using UnityEngine;
 using Zenject;
@@ -8,9 +9,17 @@ namespace App.ResourcesSystem.ForRun
 {
     public class ResourcesForRunProvider
     {
-        [Inject] private readonly ResourcesStorage _resourcesStorage;
+        private readonly ResourcesValueConfig _resourcesForWin;
+        private readonly ResourcesStorage _resourcesStorage;
 
         private readonly ResourcesStorage _resourcesStorageForRun = new();
+        private readonly ResourcesStorage _resourcesStorageForRunEnd = new();
+
+        public ResourcesForRunProvider(ResourcesValueConfig resourcesForWin, ResourcesStorage resourcesStorage)
+        {
+            _resourcesForWin = resourcesForWin;
+            _resourcesStorage = resourcesStorage;
+        }
         
         /// <summary>
         /// return full amount of resource for run
@@ -39,5 +48,17 @@ namespace App.ResourcesSystem.ForRun
         
         public IReadOnlyResourceStorage GetResourceStorage() 
             => _resourcesStorageForRun;
+
+        public IReadOnlyResourceStorage GetResourceStorageForEnd() 
+            => _resourcesStorageForRunEnd;
+        
+        public void GameEnded(bool win)
+        {
+            if (win)
+            {
+                _resourcesStorage.Add(_resourcesForWin.ResourcesAmount);
+                _resourcesStorageForRunEnd.Add(_resourcesForWin.ResourcesAmount);
+            }
+        }
     }
 }

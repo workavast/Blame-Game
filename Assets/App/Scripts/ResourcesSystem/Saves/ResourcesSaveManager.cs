@@ -1,9 +1,10 @@
 ﻿using System;
 using App.ResourcesSystem.Storage;
+using UnityEngine;
 
 namespace App.ResourcesSystem.Saves
 {
-    public class ResourcesSaveManager : IDisposable
+    public class ResourcesSaveManager
     {
         private readonly ResourcesSaveModule _saveModule;
         private readonly ResourcesStorage _resourcesStorage;
@@ -14,19 +15,13 @@ namespace App.ResourcesSystem.Saves
             _resourcesStorage = resourcesStorage;
         }
         
-        public void Dispose() 
-            => Deactivate();
-        
         public void Save()
-            => _saveModule.Save(_resourcesStorage);
+        {
+            Debug.Log("Save resources");
+            _saveModule.Save(_resourcesStorage);
+        }
 
         public void Load() 
             => _saveModule.Load(_resourcesStorage);
-        
-        public void Activate() 
-            => _resourcesStorage.OnChanged += Save;
-
-        public void Deactivate() 
-            => _resourcesStorage.OnChanged -= Save;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using App.GamePausing;
 using App.GameTiming;
 using App.PlayerProviding;
+using App.ResourcesSystem.ForRun;
 using App.ResourcesSystem.ResourcesValues;
+using App.ResourcesSystem.Saves;
 using App.ResourcesSystem.Storage;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
@@ -11,13 +13,12 @@ namespace App.GameEndDetection
 {
     public class GameEndDetector : MonoBehaviour
     {
-        [SerializeField] private ResourcesValueConfig resourcesForWin;
-        
         [Inject] private readonly ScreensController _screensController;
         [Inject] private readonly PlayerProvider _playerProvider;
         [Inject] private readonly IGameTimerRO _gameTimer;
         [Inject] private readonly GamePause _gamePause;
-        [Inject] private readonly ResourcesStorage _resourcesStorage;
+        [Inject] private readonly ResourcesForRunProvider _resourcesStorageForRun;
+        [Inject] private readonly ResourcesSaveManager _resourcesSaveManager;
 
         private bool _gameIsOver;
         
@@ -30,6 +31,8 @@ namespace App.GameEndDetection
         {
             if (_gameIsOver) 
                 _gamePause.SetPauseState(false);
+            else
+                _resourcesSaveManager.Save();
         }
 
         private void Update()
@@ -45,13 +48,16 @@ namespace App.GameEndDetection
         {
             if (_gameIsOver)
             {
-                Debug.LogError("Game Already overed");
+                Debug.LogError("Game already ended");
                 return;
             }
             
             _gameIsOver = true;
-            _resourcesStorage.Add(resourcesForWin.ResourcesAmount);
-            _screensController.ToggleScreen<GameWinUi>(true);
+            
+            _resourcesStorageForRun.GameEnded(true);
+            _resourcesSaveManager.Save();
+
+            _screensController.SetScreen<GameWinUi>();
             _gamePause.SetPauseState(true);
         }
         
@@ -59,12 +65,15 @@ namespace App.GameEndDetection
         {
             if (_gameIsOver)
             {
-                Debug.LogError("Game Already overed");
+                Debug.LogError("Game already ended");
                 return;
             }
             
             _gameIsOver = true;
-            _screensController.ToggleScreen<GameLooseUi>(true);
+            
+            _resourcesSaveManager.Save();
+            
+            _screensController.SetScreen<GameLooseUi>();
             _gamePause.SetPauseState(true);
         }
     }

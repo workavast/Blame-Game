@@ -22,6 +22,13 @@ namespace Avastrad.UI.UiSystem
         public TScreen GetScreen<TScreen>(string[] args = null) where TScreen : ScreenBase 
             => _screensControllerInternal.GetScreen<TScreen>();
 
+        public void SetScreen<TScreen>()
+            where TScreen : ScreenBase 
+        {
+            var command = _commandsFactory.SetScreen(typeof(TScreen));
+            _commandsRepository.ExecuteCommand(command);
+        }
+        
         public void SetScreen(Type screenType, string[] args = null)
         {
             var command = _commandsFactory.SetScreen(screenType);
