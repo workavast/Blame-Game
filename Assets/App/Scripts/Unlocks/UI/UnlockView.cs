@@ -9,7 +9,8 @@ namespace App.Unlocks.UI
     public class UnlockView : MonoBehaviour
     {
         [SerializeField] private Image icon;
-        [SerializeField] private Image hide;
+        [SerializeField] private GameObject hide;
+        [SerializeField] private GameObject fill;
         [SerializeField] private UnlockConfig unlockConfig;
         [SerializeField] private Button button;
         
@@ -24,20 +25,28 @@ namespace App.Unlocks.UI
             button.onClick.AddListener(Clicked);
         }
 
+        private void OnDestroy() 
+        {
+            button.onClick.RemoveListener(Clicked);
+        }
+        
         public void SetState(UnlockState unlockState)
         {
             switch (unlockState)
             {
                 case UnlockState.UnAvailable:
-                    hide.gameObject.SetActive(true);
+                    hide.SetActive(true);
+                    fill.SetActive(false);
                     button.interactable = true;
                     break;
                 case UnlockState.Available:
-                    hide.gameObject.SetActive(false);
+                    hide.SetActive(false);
+                    fill.SetActive(false);
                     button.interactable = true;
                     break;
                 case UnlockState.Unlocked:
-                    hide.gameObject.SetActive(false);
+                    hide.SetActive(false);
+                    fill.SetActive(true);
                     button.interactable = false;
                     break;
                 default:
@@ -45,11 +54,6 @@ namespace App.Unlocks.UI
             }
             State = unlockState;
             OnStateChanged?.Invoke();
-        }
-        
-        private void OnDestroy() 
-        {
-            button.onClick.RemoveListener(Clicked);
         }
         
         public PerkConfig GetPerkDataConfig() 
