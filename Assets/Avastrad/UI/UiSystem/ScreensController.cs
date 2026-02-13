@@ -19,7 +19,7 @@ namespace Avastrad.UI.UiSystem
             _commandsFactory = new CommandsFactory(_screensControllerInternal);
         }
         
-        public TScreen GetScreen<TScreen>(string[] args = null) where TScreen : ScreenBase 
+        public TScreen GetScreen<TScreen>() where TScreen : ScreenBase 
             => _screensControllerInternal.GetScreen<TScreen>();
 
         public void SetScreen<TScreen>()
@@ -29,25 +29,25 @@ namespace Avastrad.UI.UiSystem
             _commandsRepository.ExecuteCommand(command);
         }
         
-        public void SetScreen(Type screenType, string[] args = null)
+        public void SetScreen(Type screenType)
         {
             var command = _commandsFactory.SetScreen(screenType);
             _commandsRepository.ExecuteCommand(command);
         }
 
-        public void ToggleScreen(Type screenType, string[] args = null)
+        public void ToggleScreen(Type screenType)
         {
             var command = _commandsFactory.ToggleScreen(screenType);
             _commandsRepository.ExecuteCommand(command);
         }
 
-        public void ToggleScreen(Type screenType, bool show, string[] args = null)
+        public void ToggleScreen(Type screenType, bool show)
         {
             var command = _commandsFactory.ToggleScreen(screenType, show);
             _commandsRepository.ExecuteCommand(command);
         }
 
-        public TScreen ToggleScreen<TScreen>(bool show, string[] args = null)
+        public TScreen ToggleScreen<TScreen>(bool show)
             where TScreen : ScreenBase
         {
             var screenType = typeof(TScreen);

@@ -9,13 +9,13 @@ namespace App.UI
     {
         [SerializeField, SerializeReference, Polymorphic] protected ShowAnim[] showAnimations;
 
-        protected override void Show(string[] args = null)
+        protected override void Show()
         {
             if (showAnimations != null)
                 foreach (var anim in showAnimations)
                     anim?.Play();
             
-            base.Show(args);
+            base.Show();
         }
     }
 }
