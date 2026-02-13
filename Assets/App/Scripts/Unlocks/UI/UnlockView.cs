@@ -14,8 +14,9 @@ namespace App.Unlocks.UI
         [SerializeField] private Button button;
         
         public UnlockState State { get; private set; }
-        
+
         public event Action<UnlockConfig> OnClick;
+        public event Action OnStateChanged; 
 
         private void Awake()
         {
@@ -43,6 +44,7 @@ namespace App.Unlocks.UI
                     throw new ArgumentOutOfRangeException(nameof(unlockState), unlockState, null);
             }
             State = unlockState;
+            OnStateChanged?.Invoke();
         }
         
         private void OnDestroy() 

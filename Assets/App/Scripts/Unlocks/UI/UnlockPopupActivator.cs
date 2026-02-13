@@ -31,16 +31,23 @@ namespace App.Unlocks.UI
         
         public void OnPointerEnter(PointerEventData eventData)
         {
-            var popupPosition = _rectTransform.position;
-            var config = unlockView.GetPerkDataConfig();
-            var description = BuildDescription(unlockView);
-            
-            _popupController.Show(popupPosition, config.GetTitle(), description);
+            Show();
+            unlockView.OnStateChanged += Show;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             _popupController.Hide();
+            unlockView.OnStateChanged -= Show;
+        }
+        
+        private void Show()
+        {
+            var popupPosition = _rectTransform.position;
+            var config = unlockView.GetPerkDataConfig();
+            var description = BuildDescription(unlockView);
+            
+            _popupController.Show(popupPosition, config.GetTitle(), description);
         }
         
         private string BuildDescription(UnlockView unlockView)
