@@ -9,14 +9,17 @@ namespace App.Unlocks.UI
     public class UnlocksWindow : MonoBehaviour
     {
         [SerializeField] private PopupController popupController;
-        [SerializeField] private List<UnlockView> allUnlockViews = new();
         
         [Inject] private readonly UnlockStorage _unlocksStorage;
         [Inject] private readonly Unlocker _unlocker;
         
-        public void Initialize()
+        private IReadOnlyList<UnlockView> _views;
+        
+        public void Initialize(IReadOnlyList<UnlockView> views)
         {
-            foreach (var view in allUnlockViews)
+            _views = views;
+            
+            foreach (var view in _views)
             {
                 var state = _unlocksStorage.GetState(view.GetUnlockConfig());
                 view.SetState(state);
@@ -48,7 +51,7 @@ namespace App.Unlocks.UI
 
         private void UpdateState(UnlockConfig unlockConfig)
         {
-            foreach (var view in allUnlockViews)
+            foreach (var view in _views)
                 if (view.GetUnlockConfig() == unlockConfig)
                     view.SetState(_unlocksStorage.GetState(unlockConfig));
         }

@@ -8,15 +8,14 @@ namespace App.Unlocks.UI
     {
         [SerializeField] private UILineRenderer lineRendererPrefab;
         [SerializeField] private UnlocksConfig config;
-        [SerializeField] private List<UnlockView> views;
 
-        public void Initialize()
+        public void Initialize(IReadOnlyList<UnlockView> views)
         {
             foreach (var view in views) 
-                DrawLine(view);
+                DrawLine(view, views);
         }
         
-        private void DrawLine(UnlockView parentView)
+        private void DrawLine(UnlockView parentView, IReadOnlyList<UnlockView> views)
         {
             var children = parentView.GetUnlockConfig().ChildUnlocks;
 

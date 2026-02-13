@@ -244,15 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRendererPrefab: {fileID: 3879742440083068699, guid: add9d4dd5b667bb4bbb1d3612b5ba3ac, type: 3}
   config: {fileID: 11400000, guid: 530c4b521068a5741aeb17790c24d058, type: 2}
-  views:
-  - {fileID: 3348301337025322486}
-  - {fileID: 859858387770877641}
-  - {fileID: 7872290696253386352}
-  - {fileID: 7058680490828041682}
-  - {fileID: 8648517318077554900}
-  - {fileID: 470714028447086186}
-  - {fileID: 6342063255639660885}
-  - {fileID: 7540410455229980893}
 --- !u!1 &8248169784858099339
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +342,15 @@ MonoBehaviour:
   - rid: 6938858607224553636
   - rid: 6938858607224553611
   - rid: 6938858607224553612
+  unlockViews:
+  - {fileID: 3348301337025322486}
+  - {fileID: 859858387770877641}
+  - {fileID: 7872290696253386352}
+  - {fileID: 7058680490828041682}
+  - {fileID: 8648517318077554900}
+  - {fileID: 470714028447086186}
+  - {fileID: 6342063255639660885}
+  - {fileID: 7540410455229980893}
   unlocksWindow: {fileID: 6681117956288212663}
   linesDrawer: {fileID: 7577597433916073242}
   showAnimationTransform: {fileID: 4328560213271480417}
@@ -390,15 +390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupController: {fileID: 3094389859404413636}
-  allUnlockViews:
-  - {fileID: 3348301337025322486}
-  - {fileID: 859858387770877641}
-  - {fileID: 7872290696253386352}
-  - {fileID: 7058680490828041682}
-  - {fileID: 8648517318077554900}
-  - {fileID: 470714028447086186}
-  - {fileID: 6342063255639660885}
-  - {fileID: 7540410455229980893}
 --- !u!1 &8637399096440575251
 GameObject:
   m_ObjectHideFlags: 0
