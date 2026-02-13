@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdf945a91ff4c5e8b0cb3c59ec9cc80, type: 3}
   m_Name: UnlockConfig Turrets
   m_EditorClassIdentifier: 
-  id: Turrets
   perk: {fileID: 11400000, guid: 9a36b88ed0b6a8643ae83628e53ece41, type: 2}
-  childUnlocks: []
+  childUnlocks:
+  - {fileID: 11400000, guid: 22bf20e7cb9bd50438861a8854134598, type: 2}
+  - {fileID: 11400000, guid: f0d1cb45eaba0a04d8b9f04ff7610fde, type: 2}
+  - {fileID: 11400000, guid: 63e25b2af5ebb8845935e80dd68d4f8a, type: 2}
   cost:
     resources:
       _serializedList:

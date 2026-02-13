@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bdf945a91ff4c5e8b0cb3c59ec9cc80, type: 3}
-  m_Name: UnlockConfig ForwardShooter
+  m_Name: UnlockConfig Turrets Damage
   m_EditorClassIdentifier: 
-  perk: {fileID: 11400000, guid: 7a649116063b04e488d3bcb06fbe96d7, type: 2}
-  childUnlocks:
-  - {fileID: 11400000, guid: 7f70432f934667f4ea64381135b1c261, type: 2}
-  - {fileID: 11400000, guid: 3e443b62d5cf4884c83b6b768f31128d, type: 2}
+  perk: {fileID: 11400000, guid: 5624c2bbf965662459ee1d889b39e7e6, type: 2}
+  childUnlocks: []
   cost:
     resources:
       _serializedList:
       - Key: 0
+        Value: 200
+      - Key: 1
         Value: 50
