@@ -4,7 +4,7 @@ using App.Unlocks.Storage;
 
 namespace App.Unlocks.Saves
 {
-    public class UnlocksSaveModule : SaveModule<UnlocksSaveModel>
+    public class UnlocksSaveModule : SaveModule<UnlocksStorageState>
     {
         public UnlocksSaveModule(string filePath) : base(filePath)
         {
@@ -13,21 +13,21 @@ namespace App.Unlocks.Saves
         public void Save(UnlockStorage unlockStorage)
         {
             var unlocks = unlockStorage.GetUnlocks();
-            var saveModel = new UnlocksSaveModel()
+            var saveState = new UnlocksStorageState()
             {
                 unlocks = unlocks.ToArray()
             };
             
-            Save(saveModel);
+            Save(saveState);
         }
         
         public void Load(UnlockStorage unlockStorage)
         {
-            var saveModel = Load();
-            if (saveModel.unlocks == null)
+            var saveState = Load();
+            if (saveState.unlocks == null)
                 return;
             
-            foreach (var unlockId in saveModel.unlocks)
+            foreach (var unlockId in saveState.unlocks)
                 unlockStorage.Unlock(unlockId);
         }
     }

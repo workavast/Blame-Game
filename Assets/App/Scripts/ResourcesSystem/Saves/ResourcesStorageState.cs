@@ -3,13 +3,13 @@
 namespace App.ResourcesSystem.Saves
 {
     [Serializable]
-    public class ResourcesSaveModel
+    public class ResourcesStorageState
     {
-        public ResourceCellSaveModel[] resources;
+        public ResourceCellState[] resources;
     }
     
     [Serializable]
-    public class ResourceCellSaveModel
+    public class ResourceCellState
     {
         public ResourceType resourceId;
         public int amount;

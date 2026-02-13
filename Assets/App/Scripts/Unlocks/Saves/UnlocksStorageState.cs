@@ -3,7 +3,7 @@
 namespace App.Unlocks.Saves
 {
     [Serializable]
-    public class UnlocksSaveModel
+    public class UnlocksStorageState
     {
         public string[] unlocks;
     }

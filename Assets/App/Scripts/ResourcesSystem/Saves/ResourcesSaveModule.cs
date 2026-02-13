@@ -1,10 +1,9 @@
 ﻿using App.ResourcesSystem.Storage;
 using App.Saves;
-using UnityEngine;
 
 namespace App.ResourcesSystem.Saves
 {
-    public class ResourcesSaveModule : SaveModule<ResourcesSaveModel>
+    public class ResourcesSaveModule : SaveModule<ResourcesStorageState>
     {
         public ResourcesSaveModule(string filePath) : base(filePath)
         {
@@ -14,15 +13,15 @@ namespace App.ResourcesSystem.Saves
         public void Save(ResourcesStorage resourcesStorage)
         {
             var resources = resourcesStorage.GetAmounts();
-            var saveModel = new ResourcesSaveModel
+            var saveState = new ResourcesStorageState
             {
-                resources = new ResourceCellSaveModel[resources.Count]
+                resources = new ResourceCellState[resources.Count]
             };
 
             var i = 0;
             foreach (var resource in resources)
             {
-                saveModel.resources[i] = new ResourceCellSaveModel
+                saveState.resources[i] = new ResourceCellState
                 {
                     resourceId = resource.Key,
                     amount = resource.Value
@@ -30,17 +29,16 @@ namespace App.ResourcesSystem.Saves
                 i++;
             }
             
-            Save(saveModel);
+            Save(saveState);
         }
         
         public void Load(ResourcesStorage resourcesStorage)
         {
-            var saveModel = Load();
-
-            if (saveModel?.resources == null)
+            var saveState = Load();
+            if (saveState?.resources == null)
                 return;
             
-            foreach (var resource in saveModel.resources) 
+            foreach (var resource in saveState.resources) 
                 resourcesStorage.Add(resource.resourceId, resource.amount);
         }
     }
