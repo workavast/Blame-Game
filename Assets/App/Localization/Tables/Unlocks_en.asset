@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: Start Landing
     m_Metadata:
       m_Items: []
+  - m_Id: 661203634253824
+    m_Localized: Cards Access Tree
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
