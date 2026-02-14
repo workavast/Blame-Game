@@ -45,6 +45,8 @@ Control:
   <p></p>
   <img width="800" height="450" alt="Active Perks Grid" src="https://github.com/user-attachments/assets/342f3fbf-b21c-4731-a0ec-d4baba06b207" />
   <p></p>
+  <img width="800" height="450" alt="UnlocksTree" src="https://github.com/user-attachments/assets/723deb2b-626e-45b3-b4b8-f4caa1234026" />
+  <p></p>
   <img width="800" height="450" alt="Bestiary" src="https://github.com/user-attachments/assets/13277fac-935f-4765-8854-92ceed1a2591" />
 </details>
 
