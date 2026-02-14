@@ -11,7 +11,7 @@ namespace App.Ecs.VelocityOwning
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
-                AddComponent(entity, new VelocityViewOwner());
+                AddComponent(entity, new VelocityViewOwnerTag());
             }
         }
     }

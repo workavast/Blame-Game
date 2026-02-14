@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.MachineGun
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseMachineGunDamage), menuName = PerkConst.MachineGunPath + nameof(IncreaseMachineGunDamage))]
+    [CreateAssetMenu(fileName = nameof(IncreaseMachineGunDamage), menuName = PerksConsts.MachineGunPath + nameof(IncreaseMachineGunDamage))]
     public class IncreaseMachineGunDamage : IncreaseDamageScaleUpgrade<MachineGunTag>
     {
         

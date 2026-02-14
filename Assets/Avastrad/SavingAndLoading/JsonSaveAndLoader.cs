@@ -8,19 +8,22 @@ namespace Avastrad.SavingAndLoading
     {
         private readonly string _savePath;
 
-        public JsonSaveAndLoader(string savePath = "/Save.json")
+        public JsonSaveAndLoader(string fullSavePath)
         {
-            if (string.IsNullOrEmpty(savePath))
+            if (string.IsNullOrEmpty(fullSavePath))
                 throw new NullReferenceException("Save path can't be empty");
 
-            if (savePath[0] != '/')
-                Debug.LogWarning("Save path started not from /");
-            
-            _savePath = Application.persistentDataPath + savePath;
+            _savePath = fullSavePath;
         }
         
         public void Save(object data)
         {
+            if (!Exist())
+            {
+                Debug.Log("Save doesnt exist");
+                CreateFile();
+            }
+            
             var save = JsonUtility.ToJson(data);
             using (var writer = new StreamWriter(_savePath)) 
                 writer.Write(save);
@@ -62,5 +65,16 @@ namespace Avastrad.SavingAndLoading
 
         public void DeleteSave()
             => File.Delete(_savePath);
+
+        public void CreateFile()
+        {
+            var directory = Path.GetDirectoryName(_savePath);
+            
+            if (!Directory.Exists(directory)) 
+                Directory.CreateDirectory(directory);
+            
+            using (var writer = new StreamWriter(_savePath)) 
+                writer.Write("");
+        }
     }
 }

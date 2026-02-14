@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = nameof(InitialPerksConfig), menuName = PerksConsts.Path + nameof(InitialPerksConfig))]
     public class InitialPerksConfig : ScriptableObject
     {
         [SerializeField] private List<PerkConfig> initialPerks;

@@ -1,6 +1,6 @@
 ﻿namespace App.UI
 {
-    public class AssetsScreen : DefaultScreen
+    public class AssetsScreen : ScreenWithAnims
     {
         
     }

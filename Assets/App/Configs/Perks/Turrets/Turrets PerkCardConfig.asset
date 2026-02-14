@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40012cf817d04bdb96070f4e5cefe68c, type: 3}
   m_Name: Turrets PerkCardConfig
   m_EditorClassIdentifier: 
+  id: Turrets
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
@@ -35,6 +36,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bc8f0a9d70cee44297bfc4930e4a4e1, type: 2}
   - {fileID: 11400000, guid: 5624c2bbf965662459ee1d889b39e7e6, type: 2}
   - {fileID: 11400000, guid: 3afdaf9fdb5de9341b9f2d197478d3e4, type: 2}
+  unlockedByDefault: 0
   ecsPerkPrefab: {fileID: 3072515442050613519, guid: 19caab59ca4d972409762a85225bdc8c, type: 3}
   references:
     version: 2

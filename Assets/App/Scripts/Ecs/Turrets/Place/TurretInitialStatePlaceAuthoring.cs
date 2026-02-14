@@ -2,7 +2,7 @@
 
 namespace App.Ecs.Turrets.Place
 {
-    public class TurretInitialStatePlaceAuthoring : TurretInitialStateAuthoring
+    public class TurretInitialStatePlaceAuthoring : TurretInitialStateAuthoringBase
     {
         private class Baker : Baker<TurretInitialStatePlaceAuthoring>
         {

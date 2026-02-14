@@ -21,7 +21,7 @@ namespace App.Ecs.Health.Death.Sfx
                     DeathSfxRef = authoring.deathSfxRef
                 });
                 
-                AddComponent(entity, new DeathSfxHolderInitializeFlag());
+                AddComponent(entity, new DeathSfxViewOwnerTag());
             }
         }
     }

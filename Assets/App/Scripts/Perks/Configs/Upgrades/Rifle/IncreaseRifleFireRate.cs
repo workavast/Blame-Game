@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs.Upgrades.Rifle
 {
-    [CreateAssetMenu(fileName = nameof(IncreaseRifleFireRate), menuName = PerkConst.RiflePath + nameof(IncreaseRifleFireRate))]
+    [CreateAssetMenu(fileName = nameof(IncreaseRifleFireRate), menuName = PerksConsts.RiflePath + nameof(IncreaseRifleFireRate))]
     public class IncreaseRifleFireRate : IncreaseFireRateUpgrade<RifleTag>
     {
         

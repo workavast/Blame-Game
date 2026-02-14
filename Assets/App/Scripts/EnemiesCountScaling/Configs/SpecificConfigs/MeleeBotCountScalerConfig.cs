@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.EnemiesCountScaling.Configs
 {
-    [CreateAssetMenu(fileName = nameof(MeleeBotCountScalerConfig), menuName = "App/" + nameof(MeleeBotCountScalerConfig))]
+    [CreateAssetMenu(fileName = nameof(MeleeBotCountScalerConfig), menuName = EnemiesCountScalingConsts.Path + nameof(MeleeBotCountScalerConfig))]
     public class MeleeBotCountScalerConfig : EnemiesCountScalerConfig
     {
         public override IEnemiesScaler TakeEnemiesScaler() 

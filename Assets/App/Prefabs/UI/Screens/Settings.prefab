@@ -449,7 +449,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 176760049920729493}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9008248
+  m_Size: 0.9009844
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -781,6 +781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42e9a22cac64d0eb6a40487c661746d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAnimation:
+    rid: 6938858607224553578
+  showAnimations:
+  - rid: 6938858607224553610
   showAnim:
     rid: 4433144150564012148
   screen:
@@ -794,7 +798,25 @@ MonoBehaviour:
     - rid: 4433144150564012148
       type: {class: SettingsShowAnim, ns: App.Settings, asm: Assembly-CSharp}
       data:
+        content: {fileID: 0}
         easingShowType: 3
+        directions: {x: 0, y: 1, z: 0}
+        showDuration: 0.1
+        scrollbar: {fileID: 8821175135066888583}
+    - rid: 6938858607224553578
+      type: {class: SettingsShowAnim, ns: App.Settings, asm: Assembly-CSharp}
+      data:
+        content: {fileID: 8542252684471380043}
+        easingShowType: 3
+        directions: {x: 0, y: 1, z: 0}
+        showDuration: 0.1
+        scrollbar: {fileID: 8821175135066888583}
+    - rid: 6938858607224553610
+      type: {class: SettingsShowAnim, ns: App.Settings, asm: Assembly-CSharp}
+      data:
+        content: {fileID: 8542252684471380043}
+        easingShowType: 3
+        directions: {x: 0, y: 1, z: 0}
         showDuration: 0.1
         scrollbar: {fileID: 8821175135066888583}
 --- !u!114 &2532614794539834083

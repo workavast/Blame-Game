@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using App.Ecs.Shooting.Ammo;
+using Unity.Entities;
 
 namespace App.Ecs.Shooting
 {
@@ -10,12 +11,6 @@ namespace App.Ecs.Shooting
     public struct ShootDistanceReaction : IComponentData
     {
         public float Value;
-    }
-    
-    public struct AmmoCapacity : IComponentData
-    {
-        public int DefaultValue;
-        public int Value;
     }
     
     public struct ShootingUtils

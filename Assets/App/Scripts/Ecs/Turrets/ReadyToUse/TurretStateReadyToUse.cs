@@ -4,6 +4,7 @@ using App.Ecs.Bullets;
 using App.Ecs.Enemies;
 using App.Ecs.Player;
 using App.Ecs.Shooting;
+using App.Ecs.Shooting.Ammo;
 using App.Ecs.SystemGroups;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -13,7 +14,7 @@ namespace App.Ecs.Turrets.ReadyToUse
 {
     public struct TurretStateReadyToUseTag : IComponentData
     {
-
+        
     }
     
     [UpdateInGroup(typeof(AfterTransformPausableSimulationGroup))]

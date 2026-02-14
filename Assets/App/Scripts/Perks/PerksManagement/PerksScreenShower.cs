@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using App.LevelManagement;
-using App.Perks.Configs;
-using App.Perks.UI;
 using App.Perks.UI.Cards;
 using Avastrad.UI.UiSystem;
 using UnityEngine;
@@ -32,10 +29,7 @@ namespace App.Perks.PerksManagement
 
         private void TryShowPerksScreen()
         {
-            if (_perksStorage.CountOfAvailableMainPerks <= 0)
-                return;
-
-            var perksScreen = _screensController.ToggleScreen<PerksScreen>(true);
+            var perksScreen = _screensController.GetScreen<PerksScreen>();
 
             var withGlobalPerks = _levelStorage.Level > 1; //if it is't initial level -> use global perks
             var perkCardsCount = 0;
@@ -44,7 +38,14 @@ namespace App.Perks.PerksManagement
             else
                 perkCardsCount = Mathf.Min(perksScreen.CardsCount, _perksStorage.CountOfAvailableMainPerks);
 
+            if (perkCardsCount <= 0)
+            {
+                Debug.Log("No perks available");
+                return;
+            }
+            
             var randomPerks = _perksStorage.GetRandomPerks(perkCardsCount, withGlobalPerks);
+            _screensController.ToggleScreen<PerksScreen>(true);
             perksScreen.ShowPerksVariants(randomPerks);
         }
     }

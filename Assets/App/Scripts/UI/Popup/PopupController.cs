@@ -30,6 +30,7 @@ namespace App.UI.Popup
         public void Show(Vector2 screenPosition, string title, string description)
         {
             dynamicPopup.SetData(title, description);
+            dynamicPopup.Show();
 
             // Update layout to take valid size
             Canvas.ForceUpdateCanvases();
@@ -64,8 +65,6 @@ namespace App.UI.Popup
 
             anchoredPos = ClampAnchoredPosInCanvas(anchoredPos, pivot, popupSize);
             _popupRect.anchoredPosition = anchoredPos;
-
-            dynamicPopup.Show();
         }
         
         public void Hide()

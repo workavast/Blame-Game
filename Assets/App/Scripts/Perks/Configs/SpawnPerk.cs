@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Perks.Configs
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = nameof(SpawnPerk), menuName = PerksConsts.Path + nameof(SpawnPerk))]
     public class SpawnPerk : PerkConfig
     {
         [SerializeField] private MonoBehaviour ecsPerkPrefab;

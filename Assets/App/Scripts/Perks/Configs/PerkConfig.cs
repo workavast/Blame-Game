@@ -7,12 +7,16 @@ namespace App.Perks.Configs
 {
     public abstract class PerkConfig : ScriptableObject
     {
+        [SerializeField] private string id;
         [SerializeField] protected LocalizedString title;
         [SerializeField] protected LocalizedString description;
         [SerializeField] private Sprite icon;
         [SerializeField] private List<PerkConfig> childPerks;
+        [SerializeField] private bool unlockedByDefault;
 
+        public string Id => id;
         public Sprite Icon => icon;
+        public bool UnlockedByDefault => unlockedByDefault;
         public IReadOnlyList<PerkConfig> ChildPerks => childPerks;
         
         public string GetTitle()

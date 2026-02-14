@@ -1,5 +1,4 @@
 ﻿using App.Perks.Configs;
-using App.Perks.UI;
 using UnityEngine;
 using Zenject;
 

@@ -7,7 +7,7 @@ using Zenject;
 
 namespace App.GameEndDetection
 {
-    public class GameWinUi : DefaultScreen
+    public class GameWinUi : ScreenWithAnims
     {
         [SerializeField] private Button restartBtn;
         [SerializeField] private Button backInMenuBtn;

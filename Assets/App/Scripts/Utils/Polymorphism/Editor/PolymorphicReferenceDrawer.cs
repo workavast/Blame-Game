@@ -9,6 +9,20 @@ namespace App.Utils.Polymorphism.Editor
     [CustomPropertyDrawer(typeof(PolymorphicAttribute))]
     public class PolymorphicReferenceDrawer : PropertyDrawer
     {
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            // Handle array/list elements
+            if (property.propertyType == SerializedPropertyType.ManagedReference)
+            {
+                DrawManagedReference(position, property, label, fieldInfo.FieldType);
+            }
+            else
+            {
+                // Fallback for non-managed reference properties
+                EditorGUI.PropertyField(position, property, label, true);
+            }
+        }
+        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             if (property.propertyType != SerializedPropertyType.ManagedReference)
@@ -18,17 +32,11 @@ namespace App.Utils.Polymorphism.Editor
             return EditorGUIUtility.singleLineHeight + 4 + bodyHeight;
         }
 
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        private static void DrawManagedReference(Rect position, SerializedProperty property, GUIContent label, System.Type fieldType)
         {
-            if (property.propertyType != SerializedPropertyType.ManagedReference)
-            {
-                EditorGUI.PropertyField(position, property, label, true);
-                return;
-            }
-
             EditorGUI.BeginProperty(position, label, property);
 
-            var baseType = fieldInfo.FieldType;
+            var baseType = GetBaseTypeFromFieldType(fieldType);
             var types = TypeCache.GetTypesDerivedFrom(baseType)
                 .Where(t => !t.IsAbstract && !t.IsGenericType)
                 .OrderBy(t => t.Name)
@@ -37,7 +45,7 @@ namespace App.Utils.Polymorphism.Editor
             var options = new List<string> { "None" };
             options.AddRange(types.Select(t => t.Name));
 
-            // determine current selection
+            // Determine current selection
             int currentIndex = 0; // None
             if (!string.IsNullOrEmpty(property.managedReferenceFullTypename))
             {
@@ -55,7 +63,7 @@ namespace App.Utils.Polymorphism.Editor
             }
 
             var rectType = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            int newIndex = EditorGUI.Popup(rectType, label.text, currentIndex, options.ToArray());
+            var newIndex = EditorGUI.Popup(rectType, label.text, currentIndex, options.ToArray());
 
             if (newIndex != currentIndex)
             {
@@ -76,6 +84,20 @@ namespace App.Utils.Polymorphism.Editor
             EditorGUI.PropertyField(rectBody, property, GUIContent.none, true);
 
             EditorGUI.EndProperty();
+        }
+        
+        private static Type GetBaseTypeFromFieldType(Type fieldType)
+        {
+            // Handle arrays
+            if (fieldType.IsArray)
+                return fieldType.GetElementType();
+
+            // Handle List<T>
+            if (fieldType.IsGenericType && fieldType.GetGenericTypeDefinition() == typeof(List<>))
+                return fieldType.GetGenericArguments()[0];
+
+            // Return as-is for single fields
+            return fieldType;
         }
     }
 }

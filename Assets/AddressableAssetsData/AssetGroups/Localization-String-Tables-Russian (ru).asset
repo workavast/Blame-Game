@@ -69,6 +69,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbb76aa1495173e45a11cdf666f238b2
+    m_Address: Unlocks_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fd43d93082aa60b4aa6bd6f4425562d4
     m_Address: EnemiesTitles_ru
     m_ReadOnly: 1

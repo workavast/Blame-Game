@@ -12,7 +12,7 @@ namespace App.Ecs.Attack.Vfx
             {
                 var entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new AttackVfxViewHolderInitializeFlag());
+                AddComponent(entity, new AttackVfxViewOwnerTag());
             }
         }
     }

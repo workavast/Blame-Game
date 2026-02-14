@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.EnemiesCountScaling.Configs
 {
-    [CreateAssetMenu(fileName = nameof(KamikazeCountScalerConfig), menuName = "App/" + nameof(KamikazeCountScalerConfig))]
+    [CreateAssetMenu(fileName = nameof(KamikazeCountScalerConfig), menuName = EnemiesCountScalingConsts.Path + nameof(KamikazeCountScalerConfig))]
     public class KamikazeCountScalerConfig : EnemiesCountScalerConfig
     {
         public override IEnemiesScaler TakeEnemiesScaler() 

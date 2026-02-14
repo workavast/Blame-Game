@@ -6,18 +6,18 @@ namespace Avastrad.UI.UiSystem
     {
         public virtual void Initialize() {}
         
-        public void SetActive(bool isActive, string[] args = null)
+        public void SetActive(bool isActive)
         {
             if (isActive)
-                Show(args);
+                Show();
             else
-                Hide(args);
+                Hide();
         }
         
-        protected virtual void Show(string[] args = null)
+        protected virtual void Show()
             => gameObject.SetActive(true);
 
-        protected virtual void Hide(string[] args = null) 
+        protected virtual void Hide() 
             => HideInstantly();
         
         protected virtual void HideInstantly()

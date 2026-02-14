@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27392cb908344fd6ad78f75298747d64, type: 3}
   m_Name: IncreaseForwardShooterDamage
   m_EditorClassIdentifier: 
+  id: ForwardShooter-Damage
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
@@ -32,6 +33,7 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: 208fadd1e0552c24eafd4b07759aeaa6, type: 3}
   childPerks: []
+  unlockedByDefault: 0
   damageScale: 0.25
   references:
     version: 2

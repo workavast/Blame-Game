@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a801a6189e4afd98d215d7770e1ada, type: 3}
   m_Name: IncreaseMachineGunFireRate
   m_EditorClassIdentifier: 
+  id: MachineGun-FireRate
   title:
     m_TableReference:
       m_TableCollectionName: GUID:a9fd30968dbcbb343988bb634e6f0ee8
@@ -32,6 +33,7 @@ MonoBehaviour:
     m_LocalVariables: []
   icon: {fileID: 21300000, guid: f2b927b066c29004c8e187e403fdce5f, type: 3}
   childPerks: []
+  unlockedByDefault: 1
   additionalFireRate: 0.25
   references:
     version: 2

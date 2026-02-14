@@ -16,7 +16,9 @@ MonoBehaviour:
   - m_TableCollectionName: MainMenu
   - m_TableCollectionName: Settings
   - m_TableCollectionName: Assets
+  - m_TableCollectionName: Unlocks
   tables:
   - {fileID: 11400000, guid: 79e669b2b77785c408024257d7571d34, type: 2}
   - {fileID: 11400000, guid: 6e458aabc4b38e341927c044fc39675d, type: 2}
   - {fileID: 11400000, guid: e6ac8ce3045eda24c9553b49bc06203e, type: 2}
+  - {fileID: 11400000, guid: 44079fba51954244c8ecf4fe40a2627c, type: 2}
