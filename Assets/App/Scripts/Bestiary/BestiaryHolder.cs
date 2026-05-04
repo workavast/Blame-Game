@@ -39,9 +39,11 @@ namespace App.Bestiary
         
         public void Close()
         {
+            _bestiaryManager.OnCloseRequested -= Close;
             _sceneLoader.ShowLoadScreen(loadingConfig.ShowDuration, () =>
             {
                 _bestiaryManager.ToggleVisibility(false);
+                _bestiaryManager.OnCloseRequested += Close;
                 _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
             });
         }

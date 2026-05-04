@@ -18,6 +18,12 @@ namespace App.Bestiary.Article
             articleManager.Initialize(config.BestiaryArticles.Count);
         }
 
+        public void ToDefault(int defaultIndex)
+        {
+            SetArticle(defaultIndex);
+            articleManager.RestDescription();
+        }
+
         public void NextModel() 
             => SetArticle(ActiveArticle + 1);
 

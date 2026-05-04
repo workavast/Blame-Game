@@ -8,9 +8,9 @@ namespace App.Bestiary.Article
         [SerializeField] private Transform modelHolder;
         [SerializeField] private ArticlesList articlesList;
         [SerializeField] private ArticleDescription articleDescription;
+        [SerializeField] private bool descriptionIsVisibleByDefault = true;
 
         private GameObject _activeModel;
-        private ArticleConfig _activeConfig;
 
         public void Initialize(int articlesCount)
         {
@@ -19,25 +19,26 @@ namespace App.Bestiary.Article
 
         public void SetArticle(int index, ArticleConfig articleConfig)
         {
-            _activeConfig = articleConfig;
-            
-            LoadModel();
-            UpdateTexts();
+            LoadModel(articleConfig);
+            UpdateTexts(articleConfig);
             articlesList.ActivateArticle(index);
         }
 
-        private void LoadModel()
+        public void RestDescription() 
+            => articleDescription.SetVisibility(descriptionIsVisibleByDefault);
+
+        private void LoadModel(ArticleConfig articleConfig)
         {
             if (_activeModel != null) 
                 Destroy(_activeModel);
 
-            _activeModel = Instantiate(_activeConfig.Model, modelHolder);
+            _activeModel = Instantiate(articleConfig.Model, modelHolder);
         }
         
-        private void UpdateTexts()
+        private void UpdateTexts(ArticleConfig articleConfig)
         {
-            articleDescription.SetTitle(_activeConfig.Title);
-            articleDescription.SetDescription(_activeConfig.Description);
+            articleDescription.SetTitle(articleConfig.Title);
+            articleDescription.SetDescription(articleConfig.Description);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace App.Bestiary
             if (isVisible)
             {
                 cameraManager.ToDefault();
-                articleManager.SetArticle(defaultArticleIndex);
+                articleManager.ToDefault(defaultArticleIndex);
             }
         }
         

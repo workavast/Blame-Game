@@ -6,5 +6,6 @@ namespace App.Unlocks.Storage
     {
         public bool Unlocked(PerkConfig perkConfig);
         public bool Unlocked(UnlockConfig unlockConfig);
+        public UnlockState GetState(UnlockConfig unlockConfig);
     }
 }

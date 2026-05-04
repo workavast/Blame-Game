@@ -17,16 +17,16 @@ namespace App.Bestiary.Article.UI
             visibilityToggleBtn.onClick.AddListener(ToggleVisibility);
         }
 
-        private void ToggleVisibility()
-        {
-            var isVisible = !descriptionHolder.activeSelf;
-            descriptionHolder.SetActive(isVisible);
-        }
+        public void SetVisibility(bool isVisible) 
+            => descriptionHolder.SetActive(isVisible);
 
         public void SetTitle(LocalizedString title) 
             => titleField.StringReference = title;
 
         public void SetDescription(LocalizedString description) 
             => descriptionField.StringReference = description;
+        
+        private void ToggleVisibility() 
+            => SetVisibility(!descriptionHolder.activeSelf);
     }
 }
