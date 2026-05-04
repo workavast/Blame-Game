@@ -79,3 +79,7 @@ crashlytics-build.properties
 
 # Editor game saves folder
 /[Aa]ssets/[Aa]pp/[Ss]aves
+
+# plantUML diagrams
+*.puml
+*.puml.meta
