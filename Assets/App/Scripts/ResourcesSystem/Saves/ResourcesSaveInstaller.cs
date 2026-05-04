@@ -9,8 +9,7 @@ namespace App.ResourcesSystem.Saves
         
         public override void InstallBindings()
         {
-            Container.Bind<ResourcesSaveModule>().FromNew().AsSingle().WithArguments(saveFilePath);
-            Container.Bind<ResourcesSaveManager>().FromNew().AsSingle();
+            Container.Bind<ResourcesSaveManager>().FromNew().AsSingle().WithArguments(saveFilePath);
         }
     }
 }

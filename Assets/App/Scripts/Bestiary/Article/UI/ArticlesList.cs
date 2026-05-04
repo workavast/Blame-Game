@@ -14,7 +14,7 @@ namespace App.Bestiary.Article.UI
 
         public event Action<int> OnManualActivateArticle;
 
-        public void Initialize(int articlesCount, int initialIndex)
+        public void Initialize(int articlesCount)
         {
             for (int i = 0; i < viewsHolder.childCount; i++) 
                 Destroy(viewsHolder.GetChild(i).gameObject);
@@ -28,8 +28,6 @@ namespace App.Bestiary.Article.UI
                 article.OnPressed += ManualSetArticle;
                 _articleViews.Add(article);
             }
-
-            ActivateArticle(initialIndex);
         }
         
         public void ActivateArticle(int articleIndex)

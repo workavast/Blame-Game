@@ -53,3 +53,4 @@ MonoBehaviour:
   loadingConfig: {fileID: 11400000, guid: a9317aa0e7ab08e418fd5a4dd74b40be, type: 2}
   stringTablesPreloader:
     config: {fileID: 11400000, guid: 9393db7bfb60c974ba7043f9bf69e99c, type: 2}
+  parent: {fileID: 0}

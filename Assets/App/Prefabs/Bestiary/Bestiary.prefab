@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7637444243591811549}
   - component: {fileID: 7969490754825907416}
-  - component: {fileID: 8778934685091639437}
+  - component: {fileID: 369347482415557642}
+  - component: {fileID: 7743738886896792688}
+  - component: {fileID: 4891889023611836216}
   - component: {fileID: 8617333298398001122}
   m_Layer: 0
   m_Name: Bestiary
@@ -50,11 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513be584d6f14d53a997abac2f17d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: e32ada1ed3c752b408109d63989682c8, type: 2}
-  defaultIndex: 0
-  articleManager: {fileID: 8617333298398001122}
+  defaultArticleIndex: 0
+  articleManager: {fileID: 4891889023611836216}
   cameraManager: {fileID: 6722276784979229467}
---- !u!114 &8778934685091639437
+  bestiaryCloseReader: {fileID: 369347482415557642}
+--- !u!114 &369347482415557642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,12 +65,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 119647297088317672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a620cb12c3a4d468e86eb98930d1344, type: 3}
+  m_Script: {fileID: 11500000, guid: e087da0c82e44925b1974f81b1133552, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  bestiaryManager: {fileID: 7969490754825907416}
+  m_EditorClassIdentifier: Assembly-CSharp::App.Bestiary.BestiaryCloseReader
+  closeBestiaryBtn: {fileID: 299517451798317228}
+--- !u!114 &7743738886896792688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119647297088317672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f609c50bd0f477c988f7bea30b397b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::App.Bestiary.Article.ArticlesInputReader
+  nextArticleBtn: {fileID: 2847939417652908423}
+  prevArticleBtn: {fileID: 5866066082183059428}
   nextBtn: {fileID: 8566748139033377990, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   prevBtn: {fileID: -1489776215190155266, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  articlesList: {fileID: 7702415330712082954}
+  articlesManager: {fileID: 4891889023611836216}
+--- !u!114 &4891889023611836216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119647297088317672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3083e606f83e47e28fabcb7435f37077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::App.Bestiary.Article.ArticlesManager
+  articleManager: {fileID: 8617333298398001122}
+  config: {fileID: 11400000, guid: e32ada1ed3c752b408109d63989682c8, type: 2}
 --- !u!114 &8617333298398001122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelHolder: {fileID: 4091935152408763476}
-  articlesList: {fileID: 9202696276042331088}
+  articlesList: {fileID: 7702415330712082954}
   articleDescription: {fileID: 8745306271262890759}
 --- !u!1 &784415257975238740
 GameObject:
@@ -94,7 +126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5103478649116327208}
   - component: {fileID: 2862324753234508851}
-  - component: {fileID: 9202696276042331088}
   m_Layer: 0
   m_Name: ArticlesHolderList
   m_TagString: Untagged
@@ -151,20 +182,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &9202696276042331088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784415257975238740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8649061bb6d440ba82cd355bdd4b6f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  articlePrefab: {fileID: 2953113039226650626, guid: 6caea94649314fb49a2f78b08a81e307, type: 3}
-  viewsHolder: {fileID: 5103478649116327208}
 --- !u!1 &1006661632663206976
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +315,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -319,9 +338,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2797207099118586918
 GameObject:
@@ -557,9 +578,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5909515914644358222}
+  - component: {fileID: 7702415330712082954}
   - component: {fileID: 6542987812397975380}
   - component: {fileID: 506958254843989425}
-  - component: {fileID: 6212020654490018526}
   m_Layer: 0
   m_Name: UI-ArticlesBar
   m_TagString: Untagged
@@ -587,6 +608,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7702415330712082954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255465655789782911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8649061bb6d440ba82cd355bdd4b6f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  articlePrefab: {fileID: 2953113039226650626, guid: 6caea94649314fb49a2f78b08a81e307, type: 3}
+  viewsHolder: {fileID: 5103478649116327208}
 --- !u!223 &6542987812397975380
 Canvas:
   m_ObjectHideFlags: 0
@@ -627,22 +662,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6212020654490018526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255465655789782911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe30dcf0a954637914d2cc28a86b9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextBtn: {fileID: 2847939417652908423}
-  prevBtn: {fileID: 5866066082183059428}
-  articlesList: {fileID: 9202696276042331088}
-  bestiaryManager: {fileID: 7969490754825907416}
 --- !u!1 &4295792230141831667
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,14 +846,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4361035416607320363}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 40
   m_Range: 4.3
   m_SpotAngle: 105
   m_InnerSpotAngle: 22
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -896,17 +915,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &4925142123508389835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,7 +1141,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -1124,6 +1148,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!81 &4210306595938397412
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1194,6 +1219,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1215,9 +1242,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &18782236586257891
 CapsuleCollider:
@@ -1568,9 +1597,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975808097202736546}
+  - component: {fileID: 8745306271262890759}
   - component: {fileID: 1319480801672757629}
   - component: {fileID: 888404701976721003}
-  - component: {fileID: 8745306271262890759}
   m_Layer: 0
   m_Name: UI-ArticleDescription
   m_TagString: Untagged
@@ -1598,6 +1627,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8745306271262890759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6562419466095710842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2d45688f5e4f0196079e3a4009636d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visibilityToggleBtn: {fileID: 9053988757975607834}
+  descriptionHolder: {fileID: 6958301051695584873}
+  titleField: {fileID: 8477755191760627469}
+  descriptionField: {fileID: 7373922528645309207}
 --- !u!223 &1319480801672757629
 Canvas:
   m_ObjectHideFlags: 0
@@ -1638,22 +1683,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8745306271262890759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6562419466095710842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2d45688f5e4f0196079e3a4009636d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visibilityToggleBtn: {fileID: 9053988757975607834}
-  descriptionHolder: {fileID: 6958301051695584873}
-  titleField: {fileID: 8477755191760627469}
-  descriptionField: {fileID: 7373922528645309207}
 --- !u!1 &6958301051695584873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +1985,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1977,9 +2008,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8322684850882024183
 GameObject:
@@ -2117,6 +2150,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2138,9 +2173,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9152790685522119285
 GameObject:
@@ -2203,6 +2240,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2224,9 +2263,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &1160915203981535047
 PrefabInstance:
@@ -2551,17 +2592,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8045136650381198763, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 6738312134183320734}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
 --- !u!114 &299517451798317228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2121812952773214215, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
   m_PrefabInstance: {fileID: 1826816762250184875}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573790471373212928}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -2572,25 +2610,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1661778943189611817, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
   m_PrefabInstance: {fileID: 1826816762250184875}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8573790471373212928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8045136650381198763, guid: 152d02bb5cb6fd44d813cedc061110da, type: 3}
-  m_PrefabInstance: {fileID: 1826816762250184875}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6738312134183320734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573790471373212928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d50e4133a2d4c48a4feb90c205acd4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btn: {fileID: 299517451798317228}
-  bestiaryManager: {fileID: 7969490754825907416}
 --- !u!1001 &2370683077612743053
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace App.Unlocks.UI
     {
         [SerializeField] private PopupController popupController;
         
-        [Inject] private readonly UnlockStorage _unlocksStorage;
+        [Inject] private readonly IReadOnlyUnlocksStorage _unlocksStorage;
         [Inject] private readonly Unlocker _unlocker;
         
         private IReadOnlyList<UnlockView> _views;

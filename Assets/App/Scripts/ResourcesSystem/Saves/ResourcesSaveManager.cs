@@ -9,10 +9,10 @@ namespace App.ResourcesSystem.Saves
         private readonly ResourcesSaveModule _saveModule;
         private readonly ResourcesStorage _resourcesStorage;
 
-        public ResourcesSaveManager(ResourcesSaveModule saveModule, ResourcesStorage resourcesStorage)
+        public ResourcesSaveManager(ResourcesStorage resourcesStorage, string saveFilePath)
         {
-            _saveModule = saveModule;
             _resourcesStorage = resourcesStorage;
+            _saveModule = new  ResourcesSaveModule(saveFilePath);
         }
         
         public void Save()
