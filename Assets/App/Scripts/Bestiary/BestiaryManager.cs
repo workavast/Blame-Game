@@ -2,36 +2,24 @@
 using App.Bestiary.Article;
 using App.Bestiary.CameraControl;
 using App.EscProviding;
-using App.Utils;
 using UnityEngine;
 
 namespace App.Bestiary
 {
-    public class BestiaryManager : MonoBehaviour, IEscListener
+    public class BestiaryManager : MonoBehaviour
     {
-        [SerializeField] private BestiaryConfig config;
-        [SerializeField] private int defaultIndex;
-        [SerializeField] private ArticleManager articleManager;
+        [SerializeField] private int defaultArticleIndex;
+        [SerializeField] private ArticlesManager articleManager;
         [SerializeField] private CameraManager cameraManager;
+        [SerializeField] private BestiaryCloseReader bestiaryCloseReader;
         
-        public int ActiveArticle { get; private set; } = -1;
+        public event Action OnCloseRequested;
 
-        private BestiaryHolder _bestiaryHolder;
-        private EscProvider _escProvider;
-        
-        public event Action OnActiveArticleChanged;
-
-        public void Initialize(BestiaryHolder bestiaryHolder, EscProvider escProvider)
+        public void Initialize(EscProvider escProvider)
         {
-            _bestiaryHolder = bestiaryHolder;
-            _escProvider = escProvider;
-            
-            articleManager.Initialize(config.BestiaryArticles.Count, defaultIndex);
-        }
-
-        private void OnDestroy()
-        {
-            _escProvider.UnSub(this);
+            articleManager.Initialize();
+            bestiaryCloseReader.Initialize(escProvider);
+            bestiaryCloseReader.OnCloseRequested += RequestClose;
         }
 
         public void ToggleVisibility(bool isVisible)
@@ -40,42 +28,11 @@ namespace App.Bestiary
             if (isVisible)
             {
                 cameraManager.ToDefault();
-                SetArticle(defaultIndex);
-                _escProvider.Sub(this);
-            }
-            else
-            {
-                _escProvider.UnSub(this);
+                articleManager.SetArticle(defaultArticleIndex);
             }
         }
-
-        public void Close() 
-            => _bestiaryHolder.Close();
-
-        public void NextModel() 
-            => SetArticle(ActiveArticle + 1);
-
-        public void PrevModel() 
-            => SetArticle(ActiveArticle - 1);
-
-        public void SetArticle(int index)
-        {
-            index = MathfExt.Repeat(index, config.BestiaryArticles.Count);
-            
-            if (ActiveArticle == index)
-                return;
-
-            if (!config.Has(index))
-                return;
-
-            ActiveArticle = index;
-            var articleConfig = config.BestiaryArticles[ActiveArticle];
-            articleManager.SetArticle(ActiveArticle, articleConfig);
-            
-            OnActiveArticleChanged?.Invoke();
-        }
-
-        public void OnEscPressed() 
-            => Close();
+        
+        private void RequestClose() 
+            => OnCloseRequested?.Invoke();
     }
 }

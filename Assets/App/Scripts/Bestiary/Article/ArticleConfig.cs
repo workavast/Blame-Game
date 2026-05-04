@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
 
-namespace App.Bestiary
+namespace App.Bestiary.Article
 {
-    [CreateAssetMenu(fileName = nameof(BestiaryArticleConfig), menuName = BestiaryConsts.BestiaryConfigsPath + nameof(BestiaryArticleConfig))]
-    public class BestiaryArticleConfig : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(ArticleConfig), menuName = BestiaryConsts.BestiaryConfigsPath + nameof(ArticleConfig))]
+    public class ArticleConfig : ScriptableObject
     {
         [SerializeField] private GameObject model;
         [SerializeField] private LocalizedString titleName;

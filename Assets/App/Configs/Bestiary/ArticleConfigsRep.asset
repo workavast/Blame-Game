@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4436a5c4b8af4f909326eb53763e23c1, type: 3}
-  m_Name: BestiaryConfig
+  m_Name: ArticleConfigsRep
   m_EditorClassIdentifier: 
   bestiaryArticles:
   - {fileID: 11400000, guid: b8757b3122aec4846b348d2584db30bf, type: 2}

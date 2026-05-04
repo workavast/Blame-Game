@@ -22,8 +22,12 @@ namespace App.Bestiary
         
         private void OnDestroy()
         {
+            if (_bestiaryManager != null)
+                _bestiaryManager.OnCloseRequested -= Close;
+
             if (_loadStarted)
                 bestiaryPrefabRef.ReleaseAsset();
+            
             stringTablesPreloader.Release();
             stringTablesPreloader.Dispose();
         }
@@ -53,8 +57,16 @@ namespace App.Bestiary
 
                 stringTablesPreloader.Initialize();
                 await stringTablesPreloader.Preload();
-                _bestiaryManager = Instantiate(bestiaryPrefab, transform);
-                _bestiaryManager.Initialize(this, _escProvider);
+
+                //buffer GO need for correct initialization of bestiary (initialization should be called before OnEnable)
+                var holder = new GameObject() { name = "BufferHolder", transform = { parent = transform } };
+                holder.SetActive(false);
+                
+                _bestiaryManager = Instantiate(bestiaryPrefab, holder.transform);
+                _bestiaryManager.Initialize(_escProvider);
+                _bestiaryManager.OnCloseRequested += Close;
+                
+                holder.SetActive(true);
             }
 
             _bestiaryManager.ToggleVisibility(true);

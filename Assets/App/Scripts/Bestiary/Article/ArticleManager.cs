@@ -10,14 +10,14 @@ namespace App.Bestiary.Article
         [SerializeField] private ArticleDescription articleDescription;
 
         private GameObject _activeModel;
-        private BestiaryArticleConfig _activeConfig;
+        private ArticleConfig _activeConfig;
 
-        public void Initialize(int articlesCount, int initialIndex)
+        public void Initialize(int articlesCount)
         {
-            articlesList.Initialize(articlesCount, initialIndex);
+            articlesList.Initialize(articlesCount);
         }
 
-        public void SetArticle(int index, BestiaryArticleConfig articleConfig)
+        public void SetArticle(int index, ArticleConfig articleConfig)
         {
             _activeConfig = articleConfig;
             
