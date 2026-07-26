@@ -1,4 +1,5 @@
-﻿using App.Ecs.Sound;
+﻿using System;
+using App.Ecs.Sound;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Content;
@@ -48,50 +49,56 @@ namespace App.Ecs.EntityViews
             
             var entities = query.ToEntityArray(Allocator.Temp);
             var prefabHolders  = query.ToComponentDataArray<EntityViewPrefabHolder>(Allocator.Temp);
-            
+
             for (var i = 0; i < entities.Length; i++)
             {
                 var entity = entities[i];
                 var prefabRef = prefabHolders[i].Prefab;
-                
+
                 if (prefabRef.IsReferenceValid)
                 {
-                    if (prefabRef.LoadingStatus != ObjectLoadingStatus.Completed
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Loading
-                        && prefabRef.LoadingStatus != ObjectLoadingStatus.Queued)
+                    switch (prefabRef.LoadingStatus)
                     {
-                        var viewHolder = EntityManager.GetComponentData<EntityViewPrefabHolder>(entity);
-                        viewHolder.Loaded = true;
-                        ecb.SetComponent(entity, viewHolder);
-                        
-                        prefabRef.LoadAsync();
-                    }
-
-                    if (prefabRef.LoadingStatus == ObjectLoadingStatus.Completed)
-                    {
-                        var instance = ServicesBridge.Get<SpawnProvider>().Spawn(prefabRef.Result);
-
-                        instance.SetPrefab(ref prefabRef);
-
-                        ecb.AddComponent(entity, new EntityViewHolder { Instance = instance });
-                        ecb.AddComponent(entity, new CleanupCallbackHolder()
-                        {
-                            Instance = instance.CleanupCallback, 
-                        });
-
-                        if (!prefabHolders[i].Loaded)
-                        {
+                        case ObjectLoadingStatus.None:
+                            var viewHolderNone = EntityManager.GetComponentData<EntityViewPrefabHolder>(entity);
+                            viewHolderNone.Loaded = true;
+                            ecb.SetComponent(entity, viewHolderNone);
                             prefabRef.LoadAsync();
-                            var viewHolder = EntityManager.GetComponentData<EntityViewPrefabHolder>(entity);
-                            viewHolder.Loaded = true;
-                            ecb.SetComponent(entity, viewHolder); 
-                        }
-                        
-                        ecb.SetComponentEnabled<EntityViewPrefabHolder>(entity, false);
+                            break;
+
+                        case ObjectLoadingStatus.Completed:
+                            var instance = ServicesBridge.Get<SpawnProvider>().Spawn(prefabRef.Result);
+                            instance.SetPrefab(ref prefabRef);
+
+                            ecb.AddComponent(entity, new EntityViewHolder { Instance = instance });
+                            ecb.AddComponent(entity, new CleanupCallbackHolder()
+                            {
+                                Instance = instance.CleanupCallback,
+                            });
+
+                            if (!prefabHolders[i].Loaded)
+                            {
+                                prefabRef.LoadAsync();
+                                var viewHolderCompleted =
+                                    EntityManager.GetComponentData<EntityViewPrefabHolder>(entity);
+                                viewHolderCompleted.Loaded = true;
+                                ecb.SetComponent(entity, viewHolderCompleted);
+                            }
+
+                            ecb.SetComponentEnabled<EntityViewPrefabHolder>(entity, false);
+                            break;
+
+                        case ObjectLoadingStatus.Error:
+                            var viewHolderError = EntityManager.GetComponentData<EntityViewPrefabHolder>(entity);
+                            viewHolderError.Loaded = true;
+                            ecb.SetComponent(entity, viewHolderError);
+                            ecb.SetComponentEnabled<EntityViewPrefabHolder>(entity, false);
+                            Debug.LogError($"Some error with loading asset. Entity index: {entity.Index}");
+                            break;
                     }
                 }
             }
-            
+
             ecb.Playback(EntityManager);
             ecb.Dispose();
         }
