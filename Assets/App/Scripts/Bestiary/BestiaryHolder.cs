@@ -13,6 +13,7 @@ namespace App.Bestiary
         [SerializeField] private AssetReferenceGameObject bestiaryPrefabRef;
         [SerializeField] private LoadingConfig loadingConfig;
         [SerializeField] private StringTablesPreloader stringTablesPreloader;
+        [SerializeField] private GameObject externalUi;
 
         [Inject] private readonly ISceneLoader _sceneLoader;
         [Inject] private readonly EscProvider _escProvider;
@@ -44,6 +45,7 @@ namespace App.Bestiary
             {
                 _bestiaryManager.ToggleVisibility(false);
                 _bestiaryManager.OnCloseRequested += Close;
+                externalUi.SetActive(true);
                 _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
             });
         }
@@ -72,6 +74,7 @@ namespace App.Bestiary
             }
 
             _bestiaryManager.ToggleVisibility(true);
+            externalUi.SetActive(false);
             
             _sceneLoader.HideLoadScreen(loadingConfig.HideDuration);
         }
